@@ -1,0 +1,28 @@
+{
+	"name": "html-loader",
+	"version": "0.1.0",
+	"author": "Tobias Koppers @sokra",
+	"description": "html loader module for webpack",
+	"dependencies": {
+		"html-minifier": "0.5.x",
+		"source-map": "0.1.x",
+		"loader-utils": "0.2.x"
+	},
+	"devDependencies": {
+		"mocha": "1.17.x",
+		"should": "3.1.x"
+	},
+	"scripts": {
+		"test": "mocha --reporter spec"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:webpack/html-loader.git"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	]
+}
