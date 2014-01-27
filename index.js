@@ -14,12 +14,26 @@ function randomIdent() {
 
 module.exports = function(content) {
 	this.cacheable && this.cacheable();
-	var links = attrParse(content);
+	var query = loaderUtils.parseQuery(this.query);
+	var attributes = ["img:src"];
+	if(query.attrs !== undefined) {
+		if(typeof query.attrs === "string")
+			attributes = query.attrs.split(" ");
+		else if(Array.isArray(query.attrs))
+			attributes = query.attrs;
+		else if(query.attrs === false)
+			attributes = [];
+		else
+			throw new Error("Invalid value to query parameter attrs");
+	}
+	var links = attrParse(content, function(tag, attr) {
+		return attributes.indexOf(tag + ":" + attr) >= 0;
+	});
 	links.reverse();
 	var data = {};
 	content = [content];
 	links.forEach(function(link) {
-		if(/^data:|^(https?:)?\/\//.test(link.value)) return;
+		if(/^data:|^(https?:)?\/\/|^[\{\}\[\]#*;,'§\$%&\(=?`´\^°<>]/.test(link.value)) return;
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
@@ -30,7 +44,20 @@ module.exports = function(content) {
 		content.push(x.substr(0, link.start));
 	});
 	content.reverse();
-	return "module.exports = " + JSON.stringify(content.join("")).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
+	content = content.join("");
+	if(this.minimize) {
+		content = htmlMinifier.minify(content, {
+			removeComment: true,
+			collapseWhitespace: true,
+			collapseBooleanAttributes: true,
+			removeAttributeQuotes: true,
+			removeRedundantAttributes: true,
+			useShortDoctype: true,
+			removeEmptyAttributes: true,
+			removeOptionalTags: true
+		})
+	}
+	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
 		return '" + require(' + JSON.stringify(urlToRequire(data[match])) + ') + "';
 	}) + ";";
