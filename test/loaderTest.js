@@ -37,7 +37,7 @@ describe("loader", function() {
 	it("should minimize", function() {
 		loader.call({
 			minimize: true
-		}, '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>\n\t<img src="image.png" />').should.be.eql(
+		}, '<!-- comment --><h3>#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />').should.be.eql(
 			'module.exports = "<h3>#{number} {customer}</h3><p>{title}</p><img src=" + require("./image.png") + ">";'
 		);
 	});

@@ -47,7 +47,7 @@ module.exports = function(content) {
 	content = content.join("");
 	if(this.minimize) {
 		content = htmlMinifier.minify(content, {
-			removeComment: true,
+			removeComments: true,
 			collapseWhitespace: true,
 			collapseBooleanAttributes: true,
 			removeAttributeQuotes: true,
