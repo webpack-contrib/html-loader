@@ -38,7 +38,7 @@ require("html?attrs=img:src img:data-src!./file.html");
 require("html?attrs[]=img:src&attrs[]=img:data-src!./file.html");
 // => '<img  src="http://cdn.example.com/49e...ba9f/a9f...92ca.jpg"  data-src="data:image/png;base64,..." >'
 
-/// minimized
+/// minimized by running `webpack --optimize-minimize`
 // => '<img src=http://cdn.example.com/49e...ba9f/a9f...92ca.jpg data-src=data:image/png;base64,...>'
 ```
 
