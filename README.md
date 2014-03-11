@@ -6,6 +6,10 @@ By default every local `<img src="image.png">` is required (`require("./image.pn
 
 You can specify which tag-attribute combination should be processed by this loader via the query parameter `attrs`. Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attrs=img:src`)
 
+## Usage
+
+[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+
 ## Examples
 
 With this configuration:
