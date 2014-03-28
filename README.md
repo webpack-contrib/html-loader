@@ -44,6 +44,29 @@ require("html?attrs[]=img:src&attrs[]=img:data-src!./file.html");
 
 /// minimized by running `webpack --optimize-minimize`
 // => '<img src=http://cdn.example.com/49e...ba9f/a9f...92ca.jpg data-src=data:image/png;base64,...>'
+
+```
+
+## 'Root-relative' urls
+
+For urls that start with a `/`, the default behavior is to not translate them.
+If a `root` query parameter is set, however, it will be prepended to the url
+and then translated.
+
+With the same configuration above:
+``` html
+<!-- fileB.html -->
+<img src="/image.jpg">
+```
+
+``` javascript
+
+require("html!./fileB.html");
+// => '<img  src="/image.jpg">'
+
+require("html?root=.!./fileB.html");
+// => '<img  src="http://cdn.example.com/49e...ba9f/a9f...92ca.jpg">'
+
 ```
 
 ## License

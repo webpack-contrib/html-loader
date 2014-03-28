@@ -41,4 +41,16 @@ describe("loader", function() {
 			'module.exports = "<h3>#{number} {customer}</h3><p>{title}</p><img src=" + require("./image.png") + ">";'
 		);
 	});
+	it("should not translate root-relative urls (without root query)", function() {
+		loader.call({}, 'Text <img src="/image.png">').should.be.eql(
+			'module.exports = "Text <img src=\\"/image.png\\">";'
+		);
+	});
+	it("should accept root from query", function() {
+		loader.call({
+			query: "?root=/test/"
+		}, 'Text <img src="/image.png">').should.be.eql(
+			'module.exports = "Text <img src=\\"" + require("/test/image.png") + "\\">";'
+		);
+	});
 });
