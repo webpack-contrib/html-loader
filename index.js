@@ -26,6 +26,9 @@ module.exports = function(content) {
 		else
 			throw new Error("Invalid value to query parameter attrs");
 	}
+	var root = query.root;
+	if(root !== undefined && root !== false && typeof root !== "string")
+		throw new Error("Invalid value to query parameter root");
 	var links = attrParse(content, function(tag, attr) {
 		return attributes.indexOf(tag + ":" + attr) >= 0;
 	});
@@ -34,6 +37,7 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(/^data:|^(https?:)?\/\/|^[\{\}\[\]#*;,'§\$%&\(=?`´\^°<>]/.test(link.value)) return;
+		if((root === undefined || root === false) && /^\//.test(link.value)) return;
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
