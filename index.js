@@ -63,14 +63,15 @@ module.exports = function(content) {
 	}
 	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		return '" + require(' + JSON.stringify(urlToRequire(data[match])) + ') + "';
+		return '" + require(' + JSON.stringify(urlToRequire(data[match], root)) + ') + "';
 	}) + ";";
 }
 
-function urlToRequire(url) {
+function urlToRequire(url, root) {
 	if(/^~/.test(url))
 		return url.substring(1);
+	else if(/^\//.test(url))
+		return root.replace(/\/$/, '')+'/'+url.replace(/^\//, '');
 	else
 		return "./"+url;
 }
-
