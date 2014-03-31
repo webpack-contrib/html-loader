@@ -26,6 +26,7 @@ module.exports = function(content) {
 		else
 			throw new Error("Invalid value to query parameter attrs");
 	}
+	var root = query.root;
 	var links = attrParse(content, function(tag, attr) {
 		return attributes.indexOf(tag + ":" + attr) >= 0;
 	});
@@ -33,7 +34,7 @@ module.exports = function(content) {
 	var data = {};
 	content = [content];
 	links.forEach(function(link) {
-		if(/^data:|^(https?:)?\/\/|^[\{\}\[\]#*;,'§\$%&\(=?`´\^°<>]/.test(link.value)) return;
+		if(!loaderUtils.isUrlRequest(link.value, root)) return;
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
@@ -59,14 +60,6 @@ module.exports = function(content) {
 	}
 	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		return '" + require(' + JSON.stringify(urlToRequire(data[match])) + ') + "';
+		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
 	}) + ";";
 }
-
-function urlToRequire(url) {
-	if(/^~/.test(url))
-		return url.substring(1);
-	else
-		return "./"+url;
-}
-

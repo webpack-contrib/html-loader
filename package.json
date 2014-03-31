@@ -6,7 +6,7 @@
 	"dependencies": {
 		"html-minifier": "0.5.x",
 		"source-map": "0.1.x",
-		"loader-utils": "0.2.x"
+		"loader-utils": "~0.2.2"
 	},
 	"devDependencies": {
 		"mocha": "1.17.x",

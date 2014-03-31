@@ -48,7 +48,7 @@ describe("loader", function() {
 	});
 	it("should accept root from query", function() {
 		loader.call({
-			query: "?root=/test/"
+			query: "?root=/test"
 		}, 'Text <img src="/image.png">').should.be.eql(
 			'module.exports = "Text <img src=\\"" + require("/test/image.png") + "\\">";'
 		);
