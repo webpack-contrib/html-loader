@@ -6,6 +6,7 @@
 	"dependencies": {
 		"html-minifier": "0.5.x",
 		"source-map": "0.1.x",
+		"fastparse": "^1.0.0",
 		"loader-utils": "~0.2.2"
 	},
 	"devDependencies": {
