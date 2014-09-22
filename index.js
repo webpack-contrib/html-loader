@@ -46,7 +46,7 @@ module.exports = function(content) {
 	});
 	content.reverse();
 	content = content.join("");
-	if(this.minimize || query.minimize !== undefined) {
+	if(typeof query.minimize === "boolean" ? query.minimize : this.minimize) {
 		content = htmlMinifier.minify(content, {
 			removeComments: true,
 			collapseWhitespace: true,
