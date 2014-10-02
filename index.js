@@ -4,6 +4,7 @@
 */
 var htmlMinifier = require("html-minifier");
 var attrParse = require("./lib/attributesParser");
+var minifyOptionParser = require('./lib/minifyOptionParser');
 var SourceNode = require("source-map").SourceNode;
 var loaderUtils = require("loader-utils");
 
@@ -46,17 +47,9 @@ module.exports = function(content) {
 	});
 	content.reverse();
 	content = content.join("");
-	if(this.minimize) {
-		content = htmlMinifier.minify(content, {
-			removeComments: true,
-			collapseWhitespace: true,
-			collapseBooleanAttributes: true,
-			removeAttributeQuotes: true,
-			removeRedundantAttributes: true,
-			useShortDoctype: true,
-			removeEmptyAttributes: true,
-			removeOptionalTags: true
-		})
+  
+	if(this.minimize) {    
+		content = htmlMinifier.minify(content, minifyOptionParser(query));
 	}
 	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
