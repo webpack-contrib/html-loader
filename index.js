@@ -48,15 +48,15 @@ module.exports = function(content) {
 	content = content.join("");
 	if(this.minimize) {
 		content = htmlMinifier.minify(content, {
-			removeComments: true,
-			collapseWhitespace: true,
-			collapseBooleanAttributes: true,
-			removeAttributeQuotes: true,
-			removeRedundantAttributes: true,
-			useShortDoctype: true,
-			removeEmptyAttributes: true,
-			removeOptionalTags: true
-		})
+			removeComments: query.removeComments !== false,
+			collapseWhitespace: query.collapseWhitespace !== false,
+			collapseBooleanAttributes: query.collapseBooleanAttributes !== false,
+			removeAttributeQuotes: query.removeAttributeQuotes !== false,
+			removeRedundantAttributes: query.removeRedundantAttributes !== false,
+			useShortDoctype: query.useShortDoctype !== false,
+			removeEmptyAttributes: query.removeEmptyAttributes !== false,
+			removeOptionalTags: query.removeOptionalTags !== false
+		});
 	}
 	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
