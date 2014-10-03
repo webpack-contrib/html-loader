@@ -1,6 +1,6 @@
 {
 	"name": "html-loader",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"author": "Tobias Koppers @sokra",
 	"description": "html loader module for webpack",
 	"dependencies": {
