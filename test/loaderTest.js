@@ -53,4 +53,9 @@ describe("loader", function() {
 			'module.exports = "Text <img src=\\"" + require("/test/image.png") + "\\">";'
 		);
 	});
+	it("should ignore hash fragments in URLs", function() {
+	    loader.call({}, '<img src="icons.svg#hash">').should.be.eql(
+	        'module.exports = "<img src=\\"" + require("./icons.svg") + "#hash\\">";'
+	    );
+	});
 });
