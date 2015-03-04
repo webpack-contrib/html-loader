@@ -6,6 +6,7 @@ var htmlMinifier = require("html-minifier");
 var attrParse = require("./lib/attributesParser");
 var SourceNode = require("source-map").SourceNode;
 var loaderUtils = require("loader-utils");
+var url = require("url");
 
 function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
@@ -35,6 +36,15 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return;
+        
+		var uri = url.parse(link.value);
+		if (uri.hash !== null && uri.hash !== undefined) {
+		    uri.hash = null;
+		    link.value = uri.format();
+		    link.length = link.value.length;
+		}
+
+        
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
