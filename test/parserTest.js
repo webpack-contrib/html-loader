@@ -14,6 +14,7 @@ function test(name, html, result) {
 
 describe("parser", function() {
 	test("normal", 'Text <img src="image.png"><img src="image2.png">', ["image.png", "image2.png"]);
+	test("single-quotes", "Text <img src='image.png'><img src='image2.png'>", ["image.png", "image2.png"]);
 	test("whitespace", 'T ex t  <img \t  src =   "image.png"   >  <img\t\nsrc\n=\n"image2.png"\n>', ["image.png", "image2.png"]);
 	test("whitespace2", 'Text < img src="image.png" >', []);
 	test("wrong <", 'Text <<img src="image.png">', ["image.png"]);
