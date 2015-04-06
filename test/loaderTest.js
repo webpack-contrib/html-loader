@@ -38,7 +38,7 @@ describe("loader", function() {
 		loader.call({
 			minimize: true
 		}, '<!-- comment --><h3>#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />').should.be.eql(
-			'module.exports = "<h3>#{number} {customer}</h3><p>{title}</p><img src=" + require("./image.png") + ">";'
+			'module.exports = "<h3>#{number} {customer}</h3><p>{title}</p><img src=\\"" + require("./image.png") + "\\">";'
 		);
 	});
 	it("should not translate root-relative urls (without root query)", function() {
