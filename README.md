@@ -1,6 +1,6 @@
 # html loader for webpack
 
-Exports HTML as string.
+Exports HTML as a string.
 
 By default every local `<img src="image.png">` is required (`require('./image.png')`). You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
 
