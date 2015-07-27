@@ -2,8 +2,6 @@
 
 Exports HTML as a string.
 
-By default every local `<img src="image.png">` is required (`require('./image.png')`). You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
-
 ## Options
 
 ### `minimize`
@@ -17,6 +15,8 @@ Minimizes HTML.
 Default: `attrs=img:src`.
 
 Specifies which tag-attribute combination should be processed by this loader via the query parameter `attrs`. Pass an array of a space-separated list of `<tag>:<attribute>` combinations.
+
+By default every local `<img src="image.png">` is required (`require('./image.png')`). You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
 
 ### `root`
 
