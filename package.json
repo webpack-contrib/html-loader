@@ -14,7 +14,7 @@
     "should": "3.1.x"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec && eslint ./index.js ./lib/ ./test/"
   },
   "repository": {
     "type": "git",
