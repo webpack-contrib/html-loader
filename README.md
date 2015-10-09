@@ -74,6 +74,19 @@ require("html?root=.!./fileB.html");
 
 ```
 
+## Interpolation
+
+You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:
+
+```
+require("html?interpolate!./file.html");
+```
+
+```
+<img src="${require(`./images/gallery.png`)}" />
+<div>${require('./partials/gallery.html')}</div>
+```
+
 ## License
 
 MIT (http://www.opensource.org/licenses/mit-license.php)

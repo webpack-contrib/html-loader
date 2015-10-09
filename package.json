@@ -4,6 +4,7 @@
   "author": "Tobias Koppers @sokra",
   "description": "html loader module for webpack",
   "dependencies": {
+    "es6-templates": "^0.2.2",
     "fastparse": "^1.0.0",
     "html-minifier": "^0.7.2",
     "loader-utils": "~0.2.2",

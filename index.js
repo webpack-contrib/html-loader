@@ -8,6 +8,7 @@ var SourceNode = require("source-map").SourceNode;
 var loaderUtils = require("loader-utils");
 var url = require("url");
 var assign = require("object-assign");
+var compile = require("es6-templates").compile;
 
 function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
@@ -37,15 +38,14 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return;
-        
+
 		var uri = url.parse(link.value);
 		if (uri.hash !== null && uri.hash !== undefined) {
-		    uri.hash = null;
-		    link.value = uri.format();
-		    link.length = link.value.length;
+			uri.hash = null;
+			link.value = uri.format();
+			link.length = link.value.length;
 		}
 
-        
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
@@ -77,7 +77,14 @@ module.exports = function(content) {
 
 		content = htmlMinifier.minify(content, minimizeOptions);
 	}
-	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
+
+	if (query.interpolate) {
+		content = compile('`' + content + '`').code;
+	} else {
+		content = JSON.stringify(content);
+	}
+
+	return "module.exports = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
 		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
 	}) + ";";
