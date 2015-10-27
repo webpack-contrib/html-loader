@@ -7,6 +7,7 @@ var attrParse = require("./lib/attributesParser");
 var SourceNode = require("source-map").SourceNode;
 var loaderUtils = require("loader-utils");
 var url = require("url");
+var assign = require("object-assign");
 
 function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
@@ -57,16 +58,24 @@ module.exports = function(content) {
 	content.reverse();
 	content = content.join("");
 	if(typeof query.minimize === "boolean" ? query.minimize : this.minimize) {
-		content = htmlMinifier.minify(content, {
-			removeComments: query.removeComments !== false,
-			collapseWhitespace: query.collapseWhitespace !== false,
-			collapseBooleanAttributes: query.collapseBooleanAttributes !== false,
-			removeAttributeQuotes: query.removeAttributeQuotes !== false,
-			removeRedundantAttributes: query.removeRedundantAttributes !== false,
-			useShortDoctype: query.useShortDoctype !== false,
-			removeEmptyAttributes: query.removeEmptyAttributes !== false,
-			removeOptionalTags: query.removeOptionalTags !== false
+		var minimizeOptions = assign({}, query);
+
+		[
+			"removeComments",
+			"collapseWhitespace",
+			"collapseBooleanAttributes",
+			"removeAttributeQuotes",
+			"removeRedundantAttributes",
+			"useShortDoctype",
+			"removeEmptyAttributes",
+			"removeOptionalTags"
+		].forEach(function(name) {
+			if (typeof minimizeOptions[name] === "undefined") {
+				minimizeOptions[name] = true;
+			}
 		});
+
+		content = htmlMinifier.minify(content, minimizeOptions);
 	}
 	return "module.exports = " + JSON.stringify(content).replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
