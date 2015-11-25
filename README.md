@@ -19,8 +19,8 @@ With this configuration:
 ``` javascript
 {
 	module: { loaders: [
-		{ test: "\.jpg$", loader: "file-loader" },
-		{ test: "\.png$", loader: "url-loader?mimetype=image/png" }
+		{ test: "\\.jpg$", loader: "file-loader" },
+		{ test: "\\.png$", loader: "url-loader?mimetype=image/png" }
 	]},
 	output: {
 		publicPath: "http://cdn.example.com/[hash]/"
