@@ -8,6 +8,7 @@ function test(name, html, result) {
 			if(tag === "img" && attr === "src") return true;
 			if(tag === "link" && attr === "href") return true;
 			if(tag === "div" && attr === "data-videomp4") return true;
+			if(tag === "use" && attr === "xlink:href") return true;
 			return false;
 		}).map(function(match) { return match.value }).should.be.eql(result);
 	});
@@ -29,7 +30,8 @@ describe("parser", function() {
 	test("tags", '<img src="image.png"><script src="script.js"></script><link type="stylesheet" href="style.css">', ["image.png", "style.css"]);
 	test("cdata", '<![CDATA[<img src="image.png">]]><img src="image2.png">', ["image2.png"]);
 	test("doctype", '<!doctype html><img src="image.png">', ["image.png"]);
-  test("alphanumeric", '<div data-videomp4="video.mp4"></div>', ["video.mp4"]);
+	test("alphanumeric", '<div data-videomp4="video.mp4"></div>', ["video.mp4"]);
+	test("use", '<use xlink:href="vector.svg" />', ["vector.svg"]);
 });
 
 describe("locations", function() {
