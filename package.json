@@ -8,8 +8,7 @@
     "fastparse": "^1.0.0",
     "html-minifier": "^1.0.0",
     "loader-utils": "~0.2.2",
-    "object-assign": "^4.0.1",
-    "source-map": "^0.5.3"
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
     "mocha": "^2.3.4",

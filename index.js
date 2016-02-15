@@ -4,7 +4,6 @@
 */
 var htmlMinifier = require("html-minifier");
 var attrParse = require("./lib/attributesParser");
-var SourceNode = require("source-map").SourceNode;
 var loaderUtils = require("loader-utils");
 var url = require("url");
 var assign = require("object-assign");
@@ -12,7 +11,7 @@ var compile = require("es6-templates").compile;
 
 function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
-};
+}
 
 function getLoaderConfig(context) {
 	var query = loaderUtils.parseQuery(context.query);
@@ -83,7 +82,7 @@ module.exports = function(content) {
 			"removeScriptTypeAttributes",
 			"removeStyleTypeAttributes",
 		].forEach(function(name) {
-			if (typeof minimizeOptions[name] === "undefined") {
+			if(typeof minimizeOptions[name] === "undefined") {
 				minimizeOptions[name] = true;
 			}
 		});
@@ -91,7 +90,7 @@ module.exports = function(content) {
 		content = htmlMinifier.minify(content, minimizeOptions);
 	}
 
-	if (config.interpolate) {
+	if(config.interpolate) {
 		content = compile('`' + content + '`').code;
 	} else {
 		content = JSON.stringify(content);
