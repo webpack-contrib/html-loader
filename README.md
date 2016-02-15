@@ -87,6 +87,46 @@ require("html?interpolate!./file.html");
 <div>${require('./partials/gallery.html')}</div>
 ```
 
+## Advanced options
+
+If you need to pass [more advanced options](https://github.com/webpack/html-loader/pull/46), especially those which cannot be stringified, you can also define an `htmlLoader`-property on your `webpack.config.js`:
+
+``` javascript
+module.exports = {
+  ...
+  module: {
+    loaders: [
+      {
+        test: /\.html$/,
+        loader: "html"
+      }
+    ]
+  }
+  htmlLoader: {
+  	ignoreCustomFragments: [/\{\{.*?}}/]
+  }
+};
+```
+
+If you need to define two different loader configs, you can also change the config's property name via `html?config=otherHtmlLoaderConfig`:
+
+```javascript
+module.exports = {
+  ...
+  module: {
+    loaders: [
+      {
+        test: /\.html$/,
+        loader: "html?config=otherHtmlLoaderConfig"
+      }
+    ]
+  }
+  otherHtmlLoaderConfig: {
+    ...
+  }
+};
+```
+
 ## License
 
 MIT (http://www.opensource.org/licenses/mit-license.php)
