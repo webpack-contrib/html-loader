@@ -14,22 +14,31 @@ function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
 };
 
+function getLoaderConfig(context) {
+	var query = loaderUtils.parseQuery(context.query);
+	var configKey = query.config || 'htmlLoader';
+	var config = context.options && context.options.hasOwnProperty(configKey) ? context.options[configKey] : {};
+
+	delete query.config;
+
+	return assign(query, config);
+}
 
 module.exports = function(content) {
 	this.cacheable && this.cacheable();
-	var query = loaderUtils.parseQuery(this.query);
+	var config = getLoaderConfig(this);
 	var attributes = ["img:src"];
-	if(query.attrs !== undefined) {
-		if(typeof query.attrs === "string")
-			attributes = query.attrs.split(" ");
-		else if(Array.isArray(query.attrs))
-			attributes = query.attrs;
-		else if(query.attrs === false)
+	if(config.attrs !== undefined) {
+		if(typeof config.attrs === "string")
+			attributes = config.attrs.split(" ");
+		else if(Array.isArray(config.attrs))
+			attributes = config.attrs;
+		else if(config.attrs === false)
 			attributes = [];
 		else
-			throw new Error("Invalid value to query parameter attrs");
+			throw new Error("Invalid value to config parameter attrs");
 	}
-	var root = query.root;
+	var root = config.root;
 	var links = attrParse(content, function(tag, attr) {
 		return attributes.indexOf(tag + ":" + attr) >= 0;
 	});
@@ -57,8 +66,8 @@ module.exports = function(content) {
 	});
 	content.reverse();
 	content = content.join("");
-	if(typeof query.minimize === "boolean" ? query.minimize : this.minimize) {
-		var minimizeOptions = assign({}, query);
+	if(typeof config.minimize === "boolean" ? config.minimize : this.minimize) {
+		var minimizeOptions = assign({}, config);
 
 		[
 			"removeComments",
@@ -82,7 +91,7 @@ module.exports = function(content) {
 		content = htmlMinifier.minify(content, minimizeOptions);
 	}
 
-	if (query.interpolate) {
+	if (config.interpolate) {
 		content = compile('`' + content + '`').code;
 	} else {
 		content = JSON.stringify(content);

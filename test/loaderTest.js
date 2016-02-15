@@ -65,6 +65,31 @@ describe("loader", function() {
 			'module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=\\"\" + require("./image.png") + "\\\"/>";'
 		);
 	});
+	it("should accept complex options via a webpack config property", function() {
+		loader.call({
+			minimize: true,
+			options: {
+				htmlLoader: {
+					ignoreCustomFragments: [/\{\{.*?}}/]
+				}
+			}
+		}, '<h3>{{ count <= 1 ? "foo" : "bar" }}</h3>').should.be.eql(
+			'module.exports = "<h3>{{ count <= 1 ? \\"foo\\" : \\"bar\\" }}</h3>";'
+		);
+	});
+	it("should allow the webpack config property name to be configured", function() {
+		loader.call({
+			minimize: true,
+			options: {
+				htmlLoaderSuperSpecialConfig: {
+					ignoreCustomFragments: [/\{\{.*?}}/]
+				}
+			},
+			query: '?config=htmlLoaderSuperSpecialConfig'
+		}, '<h3>{{ count <= 1 ? "foo" : "bar" }}</h3>').should.be.eql(
+			'module.exports = "<h3>{{ count <= 1 ? \\"foo\\" : \\"bar\\" }}</h3>";'
+		);
+	});
 	it("should not translate root-relative urls (without root query)", function() {
 		loader.call({}, 'Text <img src="/image.png">').should.be.eql(
 			'module.exports = "Text <img src=\\"/image.png\\">";'
