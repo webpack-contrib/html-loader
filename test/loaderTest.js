@@ -41,6 +41,14 @@ describe("loader", function() {
 			'module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p>  <img src=\\"\" + require("./image.png") + "\\\"/>";'
 		);
 	});
+	// https://github.com/webpack/webpack/issues/752
+	it("should not remove attributes by default", function() {
+		loader.call({
+			minimize: true
+		}, '<input type="text" />').should.be.eql(
+			'module.exports = "<input type=\\"text\\"/>";'
+		);
+	});
 	it("should preserve comments", function() {
 		loader.call({
 			minimize: true,
