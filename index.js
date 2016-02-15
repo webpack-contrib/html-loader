@@ -62,13 +62,17 @@ module.exports = function(content) {
 
 		[
 			"removeComments",
+			"removeCommentsFromCDATA",
+			"removeCDATASectionsFromCDATA",
 			"collapseWhitespace",
-			"collapseBooleanAttributes",
+			"conservativeCollapse",
 			"removeAttributeQuotes",
-			"removeRedundantAttributes",
 			"useShortDoctype",
-			"removeEmptyAttributes",
-			"removeOptionalTags"
+			"keepClosingSlash",
+			"minifyJS",
+			"minifyCSS",
+			"removeScriptTypeAttributes",
+			"removeStyleTypeAttributes",
 		].forEach(function(name) {
 			if (typeof minimizeOptions[name] === "undefined") {
 				minimizeOptions[name] = true;
