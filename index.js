@@ -26,7 +26,7 @@ function getLoaderConfig(context) {
 module.exports = function(content) {
 	this.cacheable && this.cacheable();
 	var config = getLoaderConfig(this);
-	var attributes = ["img:src"];
+	var attributes = ["img:src", "img:srcset"];
 	if(config.attrs !== undefined) {
 		if(typeof config.attrs === "string")
 			attributes = config.attrs.split(" ");
@@ -45,20 +45,30 @@ module.exports = function(content) {
 	var data = {};
 	content = [content];
 	links.forEach(function(link) {
-		if(!loaderUtils.isUrlRequest(link.value, root)) return;
-
-		var uri = url.parse(link.value);
-		if (uri.hash !== null && uri.hash !== undefined) {
-			uri.hash = null;
-			link.value = uri.format();
-			link.length = link.value.length;
-		}
+		var newValue = link.value.split(",");
+		var newValue = newValue.map(function (value) {
+			var valueArray = value.trim().split(" ");
+			var obj = {
+				value: valueArray.shift(),
+				additional: valueArray,
+			};
+			if(!loaderUtils.isUrlRequest(obj.value, root)) return;
+			var uri = url.parse(obj.value);
+			if (uri.hash !== null && uri.hash !== undefined) {
+				obj.hash = uri.hash;
+				uri.hash = null;
+				obj.value = uri.format();
+			}
+			return obj;
+		});
 
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
-		data[ident] = link.value;
+		data[ident] = newValue;
 		var x = content.pop();
+
+
 		content.push(x.substr(link.start + link.length));
 		content.push(ident);
 		content.push(x.substr(0, link.start));
@@ -95,9 +105,16 @@ module.exports = function(content) {
 	} else {
 		content = JSON.stringify(content);
 	}
-
 	return "module.exports = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
+		return data[match].reduce(function (pV,cV, index, array) {
+
+			var hash = cV.hash || "";
+			var additional = cV.additional.length != 0 ? " " + cV.additional.join(" ") : "";
+			if (index != array.length -1) {
+				additional += ",";
+			}
+			return pV + '" + require(' + JSON.stringify(loaderUtils.urlToRequest(cV.value, root)) + ') + "' + hash + additional;
+		},"");
 	}) + ";";
 }
