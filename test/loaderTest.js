@@ -41,6 +41,14 @@ describe("loader", function() {
 			'module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p>  <img src=\\"\" + require("./image.png") + "\\\"/>";'
 		);
 	});
+	it("should throw an Error in case of not closing tag", function() {
+		// #52
+		should.throws(function(){
+			loader.call({
+				minimize: true
+			}, '<h1>Hello World<h1');
+		},Error)
+	});
 	// https://github.com/webpack/webpack/issues/752
 	it("should not remove attributes by default", function() {
 		loader.call({

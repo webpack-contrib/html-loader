@@ -9,6 +9,10 @@ var url = require("url");
 var assign = require("object-assign");
 var compile = require("es6-templates").compile;
 
+function isError(target) {
+	return Object.prototype.toString.call(target)==='[object Error]'
+}
+
 function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
 }
@@ -87,7 +91,16 @@ module.exports = function(content) {
 			}
 		});
 
-		content = htmlMinifier.minify(content, minimizeOptions);
+		try{
+			content = htmlMinifier.minify(content, minimizeOptions);
+		}catch(e){
+			if(!isError(e)){
+				throw new Error(e)
+			}else{
+				throw e;
+            }
+        }
+
 	}
 
 	if(config.interpolate) {
