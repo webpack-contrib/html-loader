@@ -10,7 +10,7 @@ Also every `<img srcset="..."`> is converted to `require` statements. For exampl
 ```
 is converted to
 ``` javascript
-"<img src=\"" + require("./image.jpg") + "\" srcset=\"" + require("./image.jpg") + " 1x," + require("./image@2x.jpg")  " 2x \">"
+"<img src=\"" + require("./image.jpg") + "\" srcset=\"" + require("./image.jpg") + " 1x," + require("./image@2x.jpg") + " 2x \">"
 ```
 You can specify which tag-attribute combination should be processed by this loader via the query parameter `attrs`. Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attrs=[img:src, img:srcset]`)
 
