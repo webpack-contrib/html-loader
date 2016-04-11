@@ -38,8 +38,27 @@ module.exports = function(content) {
 			throw new Error("Invalid value to config parameter attrs");
 	}
 	var root = config.root;
-	var links = attrParse(content, function(tag, attr) {
+	var rawLinks = attrParse(content, function(tag, attr) {
 		return attributes.indexOf(tag + ":" + attr) >= 0;
+	});
+	var links = [];
+	rawLinks.forEach(function (link) {
+		var length = link.length;
+		var start = link.start;
+		var valueList = link.value.split(",");
+		valueList.forEach(function (newLink) {
+			var trimmed = newLink.trim();
+			var cLength = newLink.length;
+			var spacePos = trimmed.indexOf(" ");
+			var spaceStart = newLink.indexOf(trimmed);
+			var len = cLength+ spaceStart;
+			if (-1 != spacePos) {
+				len = spacePos + spaceStart;
+				trimmed = trimmed.substring(0,spacePos);
+			}
+			links.push({start: start, length: len , value: trimmed});
+			start += cLength+1;
+		});
 	});
 	links.reverse();
 	var data = {};
