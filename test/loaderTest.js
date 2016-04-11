@@ -29,6 +29,27 @@ describe("loader", function() {
 			'module.exports = "Text <script src=\\"" + require("./script.js") + "\\"><img src=\\"" + require("./image.png") + "\\">";'
 		);
 	});
+	it("should handle srcset-attrubute by default", function ()
+	{
+		loader.call({
+		},'Text <img srcset="image.png 1x">').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x\\">";'
+		)
+	});
+	it("should handle srcset-attrubute with comma seperated list", function ()
+	{
+		loader.call({
+		},'Text <img srcset="image.png 1x,image@2x.png 2x">').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x,\" + require("./image@2x.png") + " 2x\\">";'
+		)
+	});
+	it("should handle srcset-attrubute with comma seperated list, independend of spaces in list", function ()
+	{
+		loader.call({
+		},'Text <img srcset="image.png 1x,         image@2x.png 2x">').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x,\" + require("./image@2x.png") + " 2x\\">";'
+		)
+	});
 	it("should not make bad things with templates", function() {
 		loader.call({}, '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>').should.be.eql(
 			'module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";'
@@ -38,7 +59,7 @@ describe("loader", function() {
 		loader.call({
 			minimize: true
 		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />').should.be.eql(
-			'module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p>  <img src=\\"\" + require("./image.png") + "\\\"/>";'
+			'module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p> <img src=\" + require("./image.png") + \" />";'
 		);
 	});
 	// https://github.com/webpack/webpack/issues/752
@@ -46,7 +67,7 @@ describe("loader", function() {
 		loader.call({
 			minimize: true
 		}, '<input type="text" />').should.be.eql(
-			'module.exports = "<input type=\\"text\\"/>";'
+			'module.exports = "<input type=text />";'
 		);
 	});
 	it("should preserve comments", function() {
@@ -54,7 +75,7 @@ describe("loader", function() {
 			minimize: true,
 			query: "?-removeComments"
 		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />').should.be.eql(
-			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\"\" + require("./image.png") + "\\\"/>";'
+			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\" + require("./image.png") + \" />";'
 		);
 	});
 	it("should treat attributes as case sensitive", function() {
@@ -62,7 +83,7 @@ describe("loader", function() {
 			minimize: true,
 			query: "?caseSensitive"
 		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />').should.be.eql(
-			'module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=\\"\" + require("./image.png") + "\\\"/>";'
+			'module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=\" + require("./image.png") + \" />";'
 		);
 	});
 	it("should accept complex options via a webpack config property", function() {
