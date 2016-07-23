@@ -103,20 +103,20 @@ describe("loader", function() {
 		);
 	});
 	it("should ignore hash fragments in URLs", function() {
-	    loader.call({}, '<img src="icons.svg#hash">').should.be.eql(
-	        'module.exports = "<img src=\\"" + require("./icons.svg") + "#hash\\">";'
-	    );
+		loader.call({}, '<img src="icons.svg#hash">').should.be.eql(
+			'module.exports = "<img src=\\"" + require("./icons.svg") + "#hash\\">";'
+		);
 	});
 	it("should ignore interpolations by default", function() {
-			loader.call({}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
-				'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
-			);
+		loader.call({}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
+			'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
+		);
 	});
 	it("should enable interpolations when using interpolate flag", function() {
-			loader.call({
-				query: "?interpolate"
-			}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
-				'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\">";'
-			);
+		loader.call({
+			query: "?interpolate"
+		}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
+			'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\">";'
+		);
 	});
 });
