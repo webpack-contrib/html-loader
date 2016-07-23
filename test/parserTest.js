@@ -10,7 +10,9 @@ function test(name, html, result) {
 			if(tag === "div" && attr === "data-videomp4") return true;
 			if(tag === "use" && attr === "xlink:href") return true;
 			return false;
-		}).map(function(match) { return match.value }).should.be.eql(result);
+		}).map(function(match) {
+			return match.value
+		}).should.be.eql(result);
 	});
 }
 
@@ -36,7 +38,9 @@ describe("parser", function() {
 
 describe("locations", function() {
 	it("should report correct locations", function() {
-		attrParse('<img  src= "image.png">', function() { return true }).should.be.eql([{
+		attrParse('<img  src= "image.png">', function() {
+			return true
+		}).should.be.eql([{
 			start: 12,
 			length: 9,
 			value: "image.png"
