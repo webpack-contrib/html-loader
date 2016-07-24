@@ -18,13 +18,13 @@ With this configuration:
 
 ``` javascript
 {
-	module: { loaders: [
-		{ test: /\.jpg$/, loader: "file-loader" },
-		{ test: /\.png$/, loader: "url-loader?mimetype=image/png" }
-	]},
-	output: {
-		publicPath: "http://cdn.example.com/[hash]/"
-	}
+  module: { loaders: [
+    { test: /\.jpg$/, loader: "file-loader" },
+    { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
+  ]},
+  output: {
+    publicPath: "http://cdn.example.com/[hash]/"
+  }
 }
 ```
 
@@ -92,6 +92,8 @@ require("html?interpolate!./file.html");
 If you need to pass [more advanced options](https://github.com/webpack/html-loader/pull/46), especially those which cannot be stringified, you can also define an `htmlLoader`-property on your `webpack.config.js`:
 
 ``` javascript
+var path = require('path');
+...
 module.exports = {
   ...
   module: {
@@ -103,7 +105,9 @@ module.exports = {
     ]
   }
   htmlLoader: {
-  	ignoreCustomFragments: [/\{\{.*?}}/]
+    ignoreCustomFragments: [/\{\{.*?}}/],
+    root: path.resolve(__dirname, 'assets'),
+    attrs: ['img:src', 'link:href']
   }
 };
 ```
