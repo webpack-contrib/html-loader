@@ -29,27 +29,6 @@ describe("loader", function() {
 			'module.exports = "Text <script src=\\"" + require("./script.js") + "\\"><img src=\\"" + require("./image.png") + "\\">";'
 		);
 	});
-	it("should handle srcset-attrubute by default", function ()
-	{
-		loader.call({
-		},'Text <img srcset="image.png 1x">').should.be.eql(
-			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x\\">";'
-		)
-	});
-	it("should handle srcset-attrubute with comma seperated list", function ()
-	{
-		loader.call({
-		},'Text <img srcset="image.png 1x,image@2x.png 2x">').should.be.eql(
-			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x,\" + require("./image@2x.png") + " 2x\\">";'
-		)
-	});
-	it("should handle srcset-attrubute with comma seperated list, independend of spaces in list", function ()
-	{
-		loader.call({
-		},'Text <img srcset="image.png 1x,         image@2x.png 2x">').should.be.eql(
-			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x,\" + require("./image@2x.png") + " 2x\\">";'
-		)
-	});
 	it("should not make bad things with templates", function() {
 		loader.call({}, '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>').should.be.eql(
 			'module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";'
