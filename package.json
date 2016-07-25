@@ -5,10 +5,10 @@
   "description": "html loader module for webpack",
   "dependencies": {
     "es6-templates": "^0.2.2",
-    "fastparse": "^1.0.0",
-    "html-minifier": "^1.0.0",
-    "loader-utils": "~0.2.2",
-    "object-assign": "^4.0.1"
+    "fastparse": "^1.1.1",
+    "html-minifier": "^3.0.1",
+    "loader-utils": "^0.2.15",
+    "object-assign": "^4.1.0"
   },
   "devDependencies": {
     "beautify-lint": "^1.0.4",
@@ -16,8 +16,8 @@
     "eslint": "^3.1.1",
     "istanbul": "^0.4.4",
     "js-beautify": "^1.6.3",
-    "mocha": "^2.3.4",
-    "should": "^7.1.1"
+    "mocha": "^2.5.3",
+    "should": "^10.0.0"
   },
   "scripts": {
     "pretest": "npm run lint && npm run beautify-lint",
