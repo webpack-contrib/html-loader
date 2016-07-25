@@ -38,7 +38,7 @@ describe("loader", function() {
 		loader.call({
 			minimize: true
 		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />').should.be.eql(
-			'module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p>  <img src=\\"\" + require("./image.png") + "\\\"/>";'
+			'module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p> <img src=\" + require("./image.png") + \" />";'
 		);
 	});
 	// https://github.com/webpack/webpack/issues/752
@@ -46,7 +46,7 @@ describe("loader", function() {
 		loader.call({
 			minimize: true
 		}, '<input type="text" />').should.be.eql(
-			'module.exports = "<input type=\\"text\\"/>";'
+			'module.exports = "<input type=text />";'
 		);
 	});
 	it("should preserve comments", function() {
@@ -54,7 +54,7 @@ describe("loader", function() {
 			minimize: true,
 			query: "?-removeComments"
 		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />').should.be.eql(
-			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\"\" + require("./image.png") + "\\\"/>";'
+			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\" + require("./image.png") + \" />";'
 		);
 	});
 	it("should treat attributes as case sensitive", function() {
@@ -62,7 +62,7 @@ describe("loader", function() {
 			minimize: true,
 			query: "?caseSensitive"
 		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />').should.be.eql(
-			'module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=\\"\" + require("./image.png") + "\\\"/>";'
+			'module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=\" + require("./image.png") + \" />";'
 		);
 	});
 	it("should accept complex options via a webpack config property", function() {
@@ -103,20 +103,20 @@ describe("loader", function() {
 		);
 	});
 	it("should ignore hash fragments in URLs", function() {
-	    loader.call({}, '<img src="icons.svg#hash">').should.be.eql(
-	        'module.exports = "<img src=\\"" + require("./icons.svg") + "#hash\\">";'
-	    );
+		loader.call({}, '<img src="icons.svg#hash">').should.be.eql(
+			'module.exports = "<img src=\\"" + require("./icons.svg") + "#hash\\">";'
+		);
 	});
 	it("should ignore interpolations by default", function() {
-			loader.call({}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
-				'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
-			);
+		loader.call({}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
+			'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
+		);
 	});
 	it("should enable interpolations when using interpolate flag", function() {
-			loader.call({
-				query: "?interpolate"
-			}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
-				'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\">";'
-			);
+		loader.call({
+			query: "?interpolate"
+		}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
+			'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\">";'
+		);
 	});
 });
