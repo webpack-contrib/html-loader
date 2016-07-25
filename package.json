@@ -10,6 +10,7 @@
     "loader-utils": "^0.2.15",
     "object-assign": "^4.1.0"
   },
+  "license": "MIT",
   "devDependencies": {
     "beautify-lint": "^1.0.4",
     "codecov.io": "^0.1.6",
@@ -33,11 +34,5 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:webpack/html-loader.git"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ]
+  }
 }
