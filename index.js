@@ -42,30 +42,34 @@ module.exports = function(content) {
 		return attributes.indexOf(tag + ":" + attr) >= 0;
 	});
 	var links = [];
-	rawLinks.forEach(function (link) {
+	rawLinks.forEach(function(link) {
 		var length = link.length;
 		var start = link.start;
 		var valueList = link.value.split(",");
-		valueList.forEach(function (newLink) {
+		valueList.forEach(function(newLink) {
 			var trimmed = newLink.trim();
 			var cLength = newLink.length;
 			var spacePos = trimmed.indexOf(" ");
 			var spaceStart = newLink.indexOf(trimmed);
-			var len = cLength+ spaceStart;
-			if (-1 != spacePos) {
+			var len = cLength + spaceStart;
+			if(-1 != spacePos) {
 				len = spacePos + spaceStart;
-				trimmed = trimmed.substring(0,spacePos);
+				trimmed = trimmed.substring(0, spacePos);
 			}
-			links.push({start: start, length: len , value: trimmed});
-			start += cLength+1;
+			links.push({
+				start: start,
+				length: len,
+				value: trimmed
+			});
+			start += cLength + 1;
 		});
 	});
 	links.reverse();
 	var data = {};
 	content = [content];
 	links.forEach(function(link) {
-		var newValue = link.value.split(",");
-		var newValue = newValue.map(function (value) {
+		var interimValue = link.value.split(",");
+		var newValue = interimValue.map(function(value) {
 			var valueArray = value.trim().split(" ");
 			var obj = {
 				value: valueArray.shift(),
@@ -73,7 +77,7 @@ module.exports = function(content) {
 			};
 			if(!loaderUtils.isUrlRequest(obj.value, root)) return;
 			var uri = url.parse(obj.value);
-			if (uri.hash !== null && uri.hash !== undefined) {
+			if(uri.hash !== null && uri.hash !== undefined) {
 				obj.hash = uri.hash;
 				uri.hash = null;
 				obj.value = uri.format();
@@ -83,10 +87,9 @@ module.exports = function(content) {
 
 		do {
 			var ident = randomIdent();
-		} while(data[ident]);
+		} while (data[ident]);
 		data[ident] = newValue;
 		var x = content.pop();
-
 
 		content.push(x.substr(link.start + link.length));
 		content.push(ident);
@@ -126,14 +129,14 @@ module.exports = function(content) {
 	}
 	return "module.exports = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		return data[match].reduce(function (pV,cV, index, array) {
+		return data[match].reduce(function(pV, cV, index, array) {
 
 			var hash = cV.hash || "";
 			var additional = cV.additional.length != 0 ? " " + cV.additional.join(" ") : "";
-			if (index != array.length -1) {
+			if(index != array.length - 1) {
 				additional += ",";
 			}
 			return pV + '" + require(' + JSON.stringify(loaderUtils.urlToRequest(cV.value, root)) + ') + "' + hash + additional;
-		},"");
+		}, "");
 	}) + ";";
 }
