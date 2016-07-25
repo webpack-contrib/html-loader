@@ -256,5 +256,5 @@ SOFTWARE.
 [test]: http://img.shields.io/travis/webpack/html-loader.svg
 [test-url]: https://travis-ci.org/webpack/html-loader
 
-[cover]: https://coveralls.io/repos/github/webpack/html-loader/badge.svg?branch=master
-[cover-url]: https://coveralls.io/github/webpack/html-loader?branch=master
+[cover]: https://codecov.io/gh/webpack/html-loader/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack/html-loader
