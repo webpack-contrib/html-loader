@@ -66,7 +66,8 @@ module.exports = function(content) {
 	content.reverse();
 	content = content.join("");
 
-	if(config.interpolate){
+	if (config.interpolate === 'require'){
+
 		var reg = /\$\{require\([^)]*\)\}/g;
 		var result;
 		var reqList = [];
@@ -118,7 +119,11 @@ module.exports = function(content) {
 		content = htmlMinifier.minify(content, minimizeOptions);
 	}
 	
-	content = JSON.stringify(content);
+	if(config.interpolate && config.interpolate !== 'require') {
+		content = compile('`' + content + '`').code;
+	} else {
+		content = JSON.stringify(content);
+	}
 
  	return "module.exports = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
