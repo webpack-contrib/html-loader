@@ -122,8 +122,8 @@ describe("loader", function() {
 	it("should enable interpolations when using interpolate=require flag and only require function to be translate", function() {
 		loader.call({
 			query: "?interpolate=require"
-		}, '<a href="${list.href}"><img src="${require(\'./test.jpg\')}" />').should.be.eql(
-			'module.exports = "<a href="${list.href}"><img src=\\"" + require(\'./test.jpg\') + "\\">";'
+		}, '<a href="${list.href}"><img src="${require("./test.jpg")}" /></a>').should.be.eql(
+			'module.exports = "<a href="${list.href}"><img src=\\"" + require("./test.jpg") + "\\"></a>";'
 		);
 	});
 });
