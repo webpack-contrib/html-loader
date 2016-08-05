@@ -123,7 +123,7 @@ describe("loader", function() {
 		loader.call({
 			query: "?interpolate=require"
 		}, '<a href="${list.href}"><img src="${require("./test.jpg")}" /></a>').should.be.eql(
-			'module.exports = "<a href="${list.href}"><img src=\\"" + require("./test.jpg") + "\\"></a>";'
+			'module.exports = "<a href=\"${list.href}\"><img src=\\"" + require("./test.jpg") + "\\" /></a>";'
 		);
 	});
 });
