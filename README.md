@@ -55,7 +55,7 @@ With this configuration:
 ```js
 require("html!./file.html");
 
-// => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg"
+// => '<img src="http://cdn.example.com/49eba9f/a992ca.png"
 //         data-src="image2x.png">'
 ```
 
