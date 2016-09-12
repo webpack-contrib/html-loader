@@ -124,7 +124,7 @@ require("html?interpolate!./file.html");
 
 <div>${require('./components/gallery.html')}</div>
 ```
-And if you only want to use `require` in template and any other `${}` are not to be translate you can set `interpolate` flag to `require`, like so:
+And if you only want to use `require` in template and any other `${}` are not to be translated, you can set `interpolate` flag to `require`, like so:
 
 ```js
 require("html?interpolate=require!./file.ftl");
