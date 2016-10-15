@@ -197,7 +197,8 @@ with a combination of 3 loaders:
 
 The html-loader will parse the URLs, require the images and everything you
 expect. The extract loader will parse the javascript back into a proper html
-file and the file loader will write the _.html_ file for you. Example:
+file, ensuring images are required and point to proper path, and the file loader
+will write the _.html_ file for you. Example:
 
 ```js
 {
