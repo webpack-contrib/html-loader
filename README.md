@@ -185,6 +185,27 @@ module.exports = {
 };
 ```
 
+### Export into HTML files
+
+A very common scenario is exporting the HTML into their own _.html_ file, to
+serve them directly instead of injecting with javascript. This can be achieved
+with a combination of 3 loaders:
+
+- [file-loader](https://github.com/webpack/file-loader)
+- [extract-loader](https://github.com/peerigon/extract-loader)
+- html-loader
+
+The html-loader will parse the URLs, require the images and everything you
+expect. The extract loader will parse the javascript back into a proper html
+file and the file loader will write the _.html_ file for you. Example:
+
+```js
+{
+  test: /\.html$/,
+  loader: 'file-loader?name=[path][name].[ext]!extract-loader!html-loader'
+}
+```
+
 <h2 align="center">Maintainers</h2>
 
 <table>
