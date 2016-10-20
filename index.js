@@ -124,8 +124,10 @@ module.exports = function(content) {
 	} else {
 		content = JSON.stringify(content);
 	}
+
+	var exportsString = config.exportAsEs6Default? "exports.default": "module.exports";
 	
- 	return "module.exports = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
+ 	return exportsString + " = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
 		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
 	}) + ";";

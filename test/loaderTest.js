@@ -126,4 +126,11 @@ describe("loader", function() {
 			'module.exports = "<a href=\\"${list.href}\\"><img src=\\"" + require("./test.jpg") + "\\" /></a>";'
 		);
 	});
+	it("should export as es6 default export", function() {
+		loader.call({
+			query: "?exportAsEs6Default"
+		}, '<p>Hello world!</p>').should.be.eql(
+			'exports.default = "<p>Hello world!</p>";'
+		);
+	});
 });

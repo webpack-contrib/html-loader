@@ -141,6 +141,10 @@ require("html?interpolate=require!./file.ftl");
 <div>${require('./components/gallery.html')}</div>
 ```
 
+### Export format
+
+By default HTML is exported with ```module.exports```, but you can use ```exportAsEs6Default``` flag to export it as ES6 default export (via ```exports.default```)
+
 ### Advanced options
 
 If you need to pass [more advanced options](https://github.com/webpack/html-loader/pull/46), especially those which cannot be stringified, you can also define an `htmlLoader`-property on your `webpack.config.js`:
