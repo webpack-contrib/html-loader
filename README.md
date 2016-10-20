@@ -131,7 +131,7 @@ The enabled rules for minimizing by default are the following ones:
  - minifyCSS
  - removeScriptTypeAttributes
  - removeStyleTypeAttributes
- 
+
  The rules can be disabled using the following options in your `webpack.conf.js`
 
 ```js
