@@ -219,7 +219,7 @@ will write the _.html_ file for you. Example:
       <td align="center">
         <img width="150 height="150"
         src="https://avatars.githubusercontent.com/u/18315?v=3">
-        <a href="https://github.com/hemanth">Hermanth</a>
+        <a href="https://github.com/hemanth">Hemanth</a>
       </td>
       <td align="center">
         <img width="150 height="150"
