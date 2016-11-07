@@ -141,9 +141,13 @@ require("html?interpolate=require!./file.ftl");
 <div>${require('./components/gallery.html')}</div>
 ```
 
-### Export format
+### Export formats
 
-By default HTML is exported with ```module.exports```, but you can use ```exportAsEs6Default``` flag to export it as ES6 default export (via ```exports.default```)
+There are different export formats available:
+
++ ```module.exports``` (default, cjs format). "Hello world" becomes ```module.exports = "Hello world";```
++ ```exports.default``` (when ```exportAsDefault``` param is set, es6to5 format). "Hello world" becomes ```exports.default = "Hello world";```
++ ```exports default``` (when ```exportAsEs6Default``` param is set, es6 format). "Hello world" becomes ```exports default "Hello world";```
 
 ### Advanced options
 
