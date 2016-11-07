@@ -161,7 +161,7 @@ module.exports = {
         loader: "html"
       }
     ]
-  }
+  },
   htmlLoader: {
     ignoreCustomFragments: [/\{\{.*?}}/],
     root: path.resolve(__dirname, 'assets'),
@@ -182,7 +182,7 @@ module.exports = {
         loader: "html?config=otherHtmlLoaderConfig"
       }
     ]
-  }
+  },
   otherHtmlLoaderConfig: {
     ...
   }
