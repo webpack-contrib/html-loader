@@ -53,28 +53,28 @@ With this configuration:
 ```
 
 ```js
-require("html!./file.html");
+require("html-loader!./file.html");
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.png"
 //         data-src="image2x.png">'
 ```
 
 ```js
-require("html?attrs=img:data-src!./file.html");
+require("html-loader?attrs=img:data-src!./file.html");
 
 // => '<img src="image.png" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require("html?attrs=img:src img:data-src!./file.html");
-require("html?attrs[]=img:src&attrs[]=img:data-src!./file.html");
+require("html-loader?attrs=img:src img:data-src!./file.html");
+require("html-loader?attrs[]=img:src&attrs[]=img:data-src!./file.html");
 
 // => '<img  src="http://cdn.example.com/49eba9f/a992ca.png"        
 //           data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require("html?-attrs!./file.html");
+require("html-loader?-attrs!./file.html");
 
 // => '<img  src="image.jpg"  data-src="image2x.png" >'
 ```
@@ -100,13 +100,13 @@ With the same configuration as above:
 ```
 
 ```js
-require("html!./file.html");
+require("html-loader!./file.html");
 
 // => '<img  src="/image.jpg">'
 ```
 
 ```js
-require("html?root=.!./file.html");
+require("html-loader?root=.!./file.html");
 
 // => '<img  src="http://cdn.example.com/49eba9f/a992ca.jpg">'
 ```
@@ -116,7 +116,7 @@ require("html?root=.!./file.html");
 You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:
 
 ```js
-require("html?interpolate!./file.html");
+require("html-loader?interpolate!./file.html");
 ```
 
 ```html
@@ -127,7 +127,7 @@ require("html?interpolate!./file.html");
 And if you only want to use `require` in template and any other `${}` are not to be translated, you can set `interpolate` flag to `require`, like so:
 
 ```js
-require("html?interpolate=require!./file.ftl");
+require("html-loader?interpolate=require!./file.ftl");
 ```
 
 ```html
@@ -158,7 +158,7 @@ module.exports = {
     loaders: [
       {
         test: /\.html$/,
-        loader: "html"
+        loader: "html-loader"
       }
     ]
   }
@@ -170,7 +170,7 @@ module.exports = {
 };
 ```
 
-If you need to define two different loader configs, you can also change the config's property name via `html?config=otherHtmlLoaderConfig`:
+If you need to define two different loader configs, you can also change the config's property name via `html-loader?config=otherHtmlLoaderConfig`:
 
 ```js
 module.exports = {
@@ -179,7 +179,7 @@ module.exports = {
     loaders: [
       {
         test: /\.html$/,
-        loader: "html?config=otherHtmlLoaderConfig"
+        loader: "html-loader?config=otherHtmlLoaderConfig"
       }
     ]
   }
