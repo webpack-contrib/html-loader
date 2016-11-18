@@ -125,9 +125,15 @@ module.exports = function(content) {
 		content = JSON.stringify(content);
 	}
 
-	var exportsString = config.exportAsEs6Default? "exports.default": "module.exports";
-	
- 	return exportsString + " = " + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
+    var exportsString = "module.exports = ";
+	if (config.exportAsDefault) {
+        exportsString = "exports.default = ";
+
+	} else if (config.exportAsEs6Default) {
+        exportsString = "exports default ";
+	}
+
+ 	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
 		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
 	}) + ";";
