@@ -86,6 +86,20 @@ minimized by running `webpack --optimize-minimize`
       data-src=data:image/png;base64,...>'
 ```
 
+or specify the `minimize` query in your `webpack.conf.js`
+
+```js
+module: {
+  loaders: [{
+    test: /\.html$/,
+    loader: 'html',
+    query: {
+      minimize: true
+    }
+  }]
+}
+```
+
 ### 'Root-relative' URLs
 
 For urls that start with a `/`, the default behavior is to not translate them.
