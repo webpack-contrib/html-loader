@@ -137,7 +137,7 @@ describe("loader", function() {
 		loader.call({
 			query: "?exportAsEs6Default"
 		}, '<p>Hello world!</p>').should.be.eql(
-			'exports default "<p>Hello world!</p>";'
+			'export default "<p>Hello world!</p>";'
 		);
 	});
 });

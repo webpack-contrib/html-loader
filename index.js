@@ -130,7 +130,7 @@ module.exports = function(content) {
         exportsString = "exports.default = ";
 
 	} else if (config.exportAsEs6Default) {
-        exportsString = "exports default ";
+        exportsString = "export default ";
 	}
 
  	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
