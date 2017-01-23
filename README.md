@@ -235,47 +235,55 @@ will write the _.html_ file for you. Example:
   <tbody>
     <tr>
       <td align="center">
-        <img width="150 height="150"
+        <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/18315?v=3">
+        </br>
         <a href="https://github.com/hemanth">Hemanth</a>
       </td>
       <td align="center">
-        <img width="150 height="150"
+        <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/8420490?v=3">
+        </br>
         <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
       </td>
       <td align="center">
         <img width="150" height="150" src="https://avatars.githubusercontent.com/u/5419992?v=3">
+        </br>
         <a href="https://github.com/michael-ciniawsky">Michael Ciniawsky</a>
       </td>
       <td align="center">
         <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/6542274?v=3">
+        </br>
         <a href="https://github.com/imvetri">Imvetri</a>
       </td>
-    <tr>
+    </tr>
     <tr>
       <td align="center">
         <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/1520965?v=3">
+        </br>
         <a href="https://github.com/andreicek">Andrei Crnković</a>
       </td>
       <td align="center">
         <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/3367801?v=3">
+        </br>
         <a href="https://github.com/abouthiroppy">Yuta Hiroto</a>
       </td>
       <td align="center">
         <img width="150" height="150" src="https://avatars.githubusercontent.com/u/80044?v=3">
+        </br>
         <a href="https://github.com/petrunov">Vesselin Petrunov</a>
       </td>
       <td align="center">
         <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/973543?v=3">
+        </br>
         <a href="https://github.com/gajus">Gajus Kuizinas</a>
       </td>
-    <tr>
-  <tbody>
+    </tr>
+  </tbody>
 </table>
 
 <h2 align="center">LICENSE</h2>
