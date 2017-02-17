@@ -92,7 +92,7 @@ or specify the `minimize` query in your `webpack.conf.js`
 module: {
   loaders: [{
     test: /\.html$/,
-    loader: 'html',
+    loader: 'html-loader',
     query: {
       minimize: true
     }
