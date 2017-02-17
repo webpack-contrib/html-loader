@@ -36,9 +36,9 @@ With this configuration:
 ```js
 {
   module: {
-    loaders: [
-      { test: /\.jpg$/, loader: "file-loader" },
-      { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
+    rules: [
+      { test: /\.jpg$/, use: [ "file-loader" ] },
+      { test: /\.png$/, use: [ "url-loader?mimetype=image/png" ] }
     ]
   },
   output: {
@@ -86,16 +86,18 @@ minimized by running `webpack --optimize-minimize`
       data-src=data:image/png;base64,...>'
 ```
 
-or specify the `minimize` query in your `webpack.conf.js`
+or specify the `minimize` property in the rule's options in your `webpack.conf.js`
 
 ```js
 module: {
-  loaders: [{
+  rules: [{
     test: /\.html$/,
-    loader: 'html-loader',
-    query: {
-      minimize: true
-    }
+    use: [ {
+      loader: 'html-loader',
+      options: {
+        minimize: true
+      }
+    }],
   }]
 }
 ```
@@ -173,10 +175,10 @@ var path = require('path')
 module.exports = {
   ...
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.html$/,
-        loader: "html-loader"
+        use: [ "html-loader" ]
       }
     ]
   },
@@ -194,10 +196,10 @@ If you need to define two different loader configs, you can also change the conf
 module.exports = {
   ...
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.html$/,
-        loader: "html-loader?config=otherHtmlLoaderConfig"
+        use: [ "html-loader?config=otherHtmlLoaderConfig" ]
       }
     ]
   },
@@ -225,7 +227,7 @@ will write the _.html_ file for you. Example:
 ```js
 {
   test: /\.html$/,
-  loader: 'file-loader?name=[path][name].[ext]!extract-loader!html-loader'
+  use: [ 'file-loader?name=[path][name].[ext]!extract-loader!html-loader' ]
 }
 ```
 
