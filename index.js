@@ -14,7 +14,7 @@ function randomIdent() {
 }
 
 function getLoaderConfig(context) {
-	var query = loaderUtils.parseQuery(context.query);
+	var query = loaderUtils.getOptions(context) || {};
 	var configKey = query.config || 'htmlLoader';
 	var config = context.options && context.options.hasOwnProperty(configKey) ? context.options[configKey] : {};
 
