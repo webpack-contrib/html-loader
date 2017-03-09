@@ -57,6 +57,35 @@ describe("loader", function() {
 			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\" + require("./image.png") + \" />";'
 		);
 	});
+
+	it("should preserve comments and white spaces when minimizing (via webpack config property)", function() {
+		loader.call({
+			minimize: true,
+			options: {
+				htmlLoader: {
+					removeComments: false,
+					collapseWhitespace: false
+				}
+			}
+		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />').should.be.eql(
+			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src=\" + require("./image.png") + \" />";'
+		);
+	});
+
+	it("should preserve comments and white spaces when minizing (via webpack config property)", function() {
+		loader.call({
+			options: {
+				htmlLoader: {
+					minimize: true,
+					removeComments: false,
+					collapseWhitespace: false
+				}
+			}
+		}, '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />').should.be.eql(
+			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src=\" + require("./image.png") + \" />";'
+		);
+	});
+
 	it("should treat attributes as case sensitive", function() {
 		loader.call({
 			minimize: true,
