@@ -102,6 +102,38 @@ module: {
 }
 ```
 
+The enabled rules for minimizing by default are the following ones:
+ - removeComments
+ - removeCommentsFromCDATA
+ - removeCDATASectionsFromCDATA
+ - collapseWhitespace
+ - conservativeCollapse
+ - removeAttributeQuotes
+ - useShortDoctype
+ - keepClosingSlash
+ - minifyJS
+ - minifyCSS
+ - removeScriptTypeAttributes
+ - removeStyleTypeAttributes
+ 
+ The rules can be disabled using the following options in your `webpack.conf.js`
+
+```js
+module: {
+  rules: [{
+    test: /\.html$/,
+    use: [ {
+      loader: 'html-loader',
+      options: {
+        minimize: true,
+        removeComments: false,
+        collapseWhitespace: false
+      }
+    }],
+  }]
+}
+```
+
 ### 'Root-relative' URLs
 
 For urls that start with a `/`, the default behavior is to not translate them.
