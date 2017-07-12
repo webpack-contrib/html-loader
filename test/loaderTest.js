@@ -29,6 +29,13 @@ describe("loader", function() {
 			'module.exports = "Text <script src=\\"" + require("./script.js") + "\\"><img src=\\"" + require("./image.png") + "\\">";'
 		);
 	});
+	it("should accept :attribute (empty tag) from query", function() {
+		loader.call({
+			query: "?attrs[]=:custom-src"
+		}, 'Text <custom-element custom-src="image1.png"><custom-img custom-src="image2.png"/></custom-element>').should.be.eql(
+			'module.exports = "Text <custom-element custom-src=\\"" + require("./image1.png") + "\\"><custom-img custom-src=\\"" + require("./image2.png") + "\\"/></custom-element>";'
+		);
+	});
 	it("should not make bad things with templates", function() {
 		loader.call({}, '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>').should.be.eql(
 			'module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";'

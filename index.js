@@ -39,7 +39,11 @@ module.exports = function(content) {
 	}
 	var root = config.root;
 	var links = attrParse(content, function(tag, attr) {
-		return attributes.indexOf(tag + ":" + attr) >= 0;
+		var item = tag + ":" + attr;
+		var res = attributes.find(function(a) {
+		  return item.indexOf(a) >= 0;
+		});
+		return !!res;
 	});
 	links.reverse();
 	var data = {};
