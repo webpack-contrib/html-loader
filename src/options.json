@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "root": {
+      "type": "string"
+    },
+    "attrs": {
+      "type": ["string", "array"]
+    },
+    "minimize": {
+      "type": ["boolean", "object"]
+    },
+    "interpolate": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

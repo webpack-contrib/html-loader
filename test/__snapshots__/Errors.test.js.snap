@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Errors - Options - ValidationError 1`] = `
+"Validation Error
+
+HTML Loader Invalid Options
+
+options.root should be string
+"
+`;
