@@ -1,6 +1,7 @@
 /* eslint-disable
   import/order,
   import/first,
+  arrow-parens,
   no-undefined,
   no-param-reassign,
   no-useless-escape,
@@ -15,8 +16,8 @@ import minifier from 'html-minifier';
 
 const schema = require('./options');
 
-function randomIdent() {
-  return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
+function randomize() {
+  return `link__${Math.random()}`;
 }
 
 export default function loader(html) {
@@ -24,9 +25,12 @@ export default function loader(html) {
 
   validateOptions(schema, options, 'HTML Loader');
 
+  // eslint-disable-next-line
+  const root = options.root;
+
   let attributes = ['img:src'];
 
-  if (options.attrs === undefined) {
+  if (options.attrs !== undefined) {
     if (typeof options.attrs === 'string') attributes = options.attrs.split(' ');
     else if (Array.isArray(options.attrs)) attributes = options.attrs;
     else if (options.attrs === false) attributes = [];
@@ -38,11 +42,12 @@ export default function loader(html) {
     }
   }
 
-  const { root } = options;
-
-  // eslint-disable-next-line
   const links = attrs(html, (tag, attr) => {
-    return attributes.indexOf(`${tag}:${attr}`) >= 0;
+    const item = `${tag}:${attr}`;
+
+    const result = attributes.find((a) => item.indexOf(a) >= 0);
+
+    return !!result;
   });
 
   links.reverse();
@@ -62,14 +67,15 @@ export default function loader(html) {
       link.value = uri.format();
       link.length = link.value.length;
     }
-    // eslint-disable-next-line
-    var ident;
-    do { ident = randomIdent(); } while (data[ident]);
+
+    let ident;
+    do { ident = randomize(); } while (data[ident]);
     data[ident] = link.value;
 
     const item = html.pop();
 
     html.push(item.substr(link.start + link.length));
+    // eslint-disable-next-line
     html.push(ident);
     html.push(item.substr(0, link.start));
   });
@@ -79,7 +85,7 @@ export default function loader(html) {
   if (options.interpolate === 'require') {
     const regex = /\$\{require\([^)]*\)\}/g;
     // eslint-disable-next-line
-    var result;
+    let result;
 
     const requires = [];
 
@@ -98,12 +104,13 @@ export default function loader(html) {
 
     requires.forEach((link) => {
       const item = html.pop();
-      // eslint-disable-next-line
-      var ident
-      do { ident = randomIdent(); } while (data[ident]);
+
+      let ident;
+      do { ident = randomize(); } while (data[ident]);
       data[ident] = link.value.substring(11, link.length - 3);
 
       html.push(item.substr(link.start + link.length));
+      // eslint-disable-next-line
       html.push(ident);
       html.push(item.substr(0, link.start));
     });
@@ -111,29 +118,27 @@ export default function loader(html) {
     html = html.reverse().join('');
   }
 
-  if (typeof options.minimize === 'boolean' ? options.minimize : this.minimize) {
-    const minimizeOptions = Object.assign({}, options);
-
-    [
-      'removeComments',
-      'removeCommentsFromCDATA',
-      'removeCDATASectionsFromCDATA',
-      'collapseWhitespace',
-      'conservativeCollapse',
-      'removeAttributeQuotes',
-      'useShortDoctype',
-      'keepClosingSlash',
-      'minifyJS',
-      'minifyCSS',
-      'removeScriptTypeAttributes',
-      'removeStyleTypeAttributes',
-    ].forEach((name) => {
-      if (typeof minimizeOptions[name] === 'undefined') {
-        minimizeOptions[name] = true;
-      }
+  if (options.minimize || this.minimize) {
+    let minimize = Object.create({
+      collapseWhitespace: true,
+      conservativeCollapse: true,
+      useShortDoctype: true,
+      keepClosingSlash: true,
+      minifyJS: true,
+      minifyCSS: true,
+      removeComments: true,
+      removeAttributeQuotes: true,
+      removeStyleTypeAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeCommentsFromCDATA: true,
+      removeCDATASectionsFromCDATA: true,
     });
 
-    html = minifier.minify(html, minimizeOptions);
+    if (typeof options.minimize === 'object') {
+      minimize = Object.assign(minimize, options.minimize);
+    }
+
+    html = minifier.minify(html, minimize);
   }
 
   // TODO
@@ -148,8 +153,10 @@ export default function loader(html) {
     html = JSON.stringify(html);
   }
 
-  return `export default ${html.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, (match) => {
+  html = html.replace(/link__[0-9\.]+/g, (match) => {
     if (!data[match]) return match;
     return `"require('${JSON.stringify(loaderUtils.urlToRequest(data[match], root))}')"`;
-  })};`;
+  });
+
+  return `export default ${html};`;
 }

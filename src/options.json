@@ -11,7 +11,7 @@
       "type": ["boolean", "object"]
     },
     "interpolate": {
-      "type": "string"
+      "type": ["boolean", "string"]
     }
   },
   "additionalProperties": false

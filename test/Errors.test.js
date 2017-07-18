@@ -22,8 +22,9 @@ describe('Errors', () => {
 
     return webpack('index.js', config)
       .then((result) => stats(result))
-      .then(({ loader }) => {
-        expect(() => eval(loader.err)).toThrowErrorMatchingSnapshot();
+      .then(({ loaders }) => {
+        expect(() => eval(loaders.err)).toThrow();
+        expect(() => eval(loaders.err)).toThrowErrorMatchingSnapshot();
       })
       .catch((err) => err);
   });

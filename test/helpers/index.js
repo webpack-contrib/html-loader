@@ -2,7 +2,7 @@
 export function stats ({ compilation }) {
   return {
     compilation,
-    loader: {
+    loaders: {
       err: compilation.modules.map((module) => module.error)[0],
       src: compilation.modules.map((module) => module._source._value)[0],
       map: compilation.modules.map((module) => module._source._sourceMap)[0],

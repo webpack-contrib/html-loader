@@ -37,6 +37,15 @@ describe('Options', () => {
       );
     });
 
+    test("Should accept :attribute (empty tag) from query", () => {
+      const html = 'Text <custom-element custom-src="image1.png"><custom-img custom-src="image2.png"/></custom-element>';
+      const result = loader.call({ query: "?attrs[]=:custom-src" }, html);
+
+      expect(result).toEqual(
+        'export default "Text <custom-element custom-src=\\"" + require("./image1.png") + "\\"><custom-img custom-src=\\"" + require("./image2.png") + "\\"/></custom-element>";'
+      );
+    });
+
     test("Should not make bad things wtest.skiph templates", () => {
       const html = '<h3>#{number} {customer}</h3>\n<p>   {ttest.skiple}   </p>';
       const result = loader.call({}, html);

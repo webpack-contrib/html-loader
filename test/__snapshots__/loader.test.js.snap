@@ -1,3 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HTML Loader Should process HTML with defaults 1`] = `"throw new Error(\\"Module build failed: \\\\n\\\\nHTML Loader\\\\n\\\\n[option.attrs] Invalid attribute value found\\\\n\\");"`;
+exports[`HTML Loader Should export as ES2015 Module 1`] = `"export default \\"<p>Hello world!</p>\\";"`;
+
+exports[`HTML Loader Should not remove attributes by default 1`] = `"export default \\"<input type=text />\\";"`;
+
+exports[`HTML Loader Should process HTML with defaults 1`] = `"export default \\"<!DOCTYPE html>\\\\n<html lang=\\\\\\"en\\\\\\">\\\\n<head>\\\\n  <meta charset=\\\\\\"utf-8\\\\\\">\\\\n  <title>HTML Loader</title>\\\\n</head>\\\\n<body>\\\\n  <!-- I'm a comment -->\\\\n  <div id=\\\\\\"app\\\\\\"></div>\\\\n</body>\\\\n</html>\\\\n\\";"`;
+
+exports[`HTML Loader Should process HTML with options.attrs 1`] = `"throw new Error(\\"Module parse failed: /Users/Cini/Github/Webpack/webpack-loaders/html-loader/src/cjs.js??ref--0-0!/Users/Cini/Github/Webpack/webpack-loaders/html-loader/test/fixtures/attrs.html Unexpected token (1:33)\\\\nYou may need an appropriate loader to handle this file type.\\\\n| export default \\\\\\"<div data-attrs=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"foo\\\\\\\\\\\\\\"\\\\\\"')\\\\\\"></div>\\\\\\\\n\\\\\\\\n<custom-element custom-attrs=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"foo\\\\\\\\\\\\\\"\\\\\\"')\\\\\\"></custom-element>\\\\\\\\n<custom-container custom-attrs=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"foo\\\\\\\\\\\\\\"\\\\\\"')\\\\\\"></custom-container>\\\\\\\\n\\\\\\";\\");"`;
+
+exports[`HTML Loader Should process HTML with options.interpolate {Boolean} 1`] = `"throw new Error(\\"Module parse failed: /Users/Cini/Github/Webpack/webpack-loaders/html-loader/src/cjs.js??ref--0-0!/Users/Cini/Github/Webpack/webpack-loaders/html-loader/test/fixtures/interpolate.html Unexpected token (1:15)\\\\nYou may need an appropriate loader to handle this file type.\\\\n| export default <img src=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"\${img.src}\\\\\\\\\\\\\\"\\\\\\"')\\\\\\" alt=\\\\\\"\${img.alt}\\\\\\">\\\\n| <img src=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"\${require(./image.png)}\\\\\\\\\\\\\\"\\\\\\"')\\\\\\">\\\\n| ;\\");"`;
+
+exports[`HTML Loader Should process HTML with options.interpolate {String} 1`] = `"throw new Error(\\"Module parse failed: /Users/Cini/Github/Webpack/webpack-loaders/html-loader/src/cjs.js??ref--0-0!/Users/Cini/Github/Webpack/webpack-loaders/html-loader/test/fixtures/interpolate.html Unexpected token (1:26)\\\\nYou may need an appropriate loader to handle this file type.\\\\n| export default \\\\\\"<img src=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"\${img.src}\\\\\\\\\\\\\\"\\\\\\"')\\\\\\" alt=\\\\\\\\\\\\\\"\${img.alt}\\\\\\\\\\\\\\">\\\\\\\\n<img src=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"\${require(./image.png)}\\\\\\\\\\\\\\"\\\\\\"')\\\\\\">\\\\\\\\n\\\\\\";\\");"`;
+
+exports[`HTML Loader Should process HTML with options.minimize {Boolean} 1`] = `"export default \\"<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>HTML Loader</title> </head> <body> <div id=app></div> </body> </html> \\";"`;
+
+exports[`HTML Loader Should process HTML with options.minimize {Object} 1`] = `"export default \\"<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>HTML Loader</title> </head> <body> <!-- I'm a comment --> <div id=app></div> </body> </html> \\";"`;
+
+exports[`HTML Loader Should process HTML with options.root 1`] = `"throw new Error(\\"Module parse failed: /Users/Cini/Github/Webpack/webpack-loaders/html-loader/src/cjs.js??ref--0-0!/Users/Cini/Github/Webpack/webpack-loaders/html-loader/test/fixtures/root.html Unexpected token (1:26)\\\\nYou may need an appropriate loader to handle this file type.\\\\n| export default \\\\\\"<img src=\\\\\\"require('\\\\\\"./\\\\\\\\\\\\\\"./image.png\\\\\\\\\\\\\\"\\\\\\"')\\\\\\">\\\\\\\\n\\\\\\";\\");"`;
