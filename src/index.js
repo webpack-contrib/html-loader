@@ -1,47 +1,60 @@
-/* eslint-disable */
-import loaderUtils from "loader-utils";
+/* eslint-disable
+  import/order,
+  import/first,
+  no-undefined,
+  no-param-reassign,
+  no-useless-escape,
+*/
+import LoaderError from './Error';
+import loaderUtils from 'loader-utils';
 import validateOptions from 'schema-utils';
 
-import url from "url";
-import attrs from "./lib/attrs";
-import minifier from "html-minifier";
+import url from 'url';
+import attrs from './lib/attrs';
+import minifier from 'html-minifier';
 
 const schema = require('./options');
 
 function randomIdent() {
-  return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
+  return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
 
-export default function loader (html) {
-  var options = loaderUtils.getOptions(this) || {};
+export default function loader(html) {
+  const options = loaderUtils.getOptions(this) || {};
 
   validateOptions(schema, options, 'HTML Loader');
 
-  var attributes = ["img:src"];
+  let attributes = ['img:src'];
 
-  if (options.attrs !== undefined) {
-    if (typeof options.attrs === "string") attributes = options.attrs.split(" ");
+  if (options.attrs === undefined) {
+    if (typeof options.attrs === 'string') attributes = options.attrs.split(' ');
     else if (Array.isArray(options.attrs)) attributes = options.attrs;
-    else if (options.attrs === false)      attributes = [];
-    else throw new Error("Invalid value to options parameter attrs");
+    else if (options.attrs === false) attributes = [];
+    else {
+      throw new LoaderError({
+        name: 'AttributesError',
+        message: 'Invalid attribute value found',
+      });
+    }
   }
 
-  var root = options.root;
+  const { root } = options;
 
-  var links = attrs(html, (tag, attr) => {
-    return attributes.indexOf(tag + ":" + attr) >= 0;
+  // eslint-disable-next-line
+  const links = attrs(html, (tag, attr) => {
+    return attributes.indexOf(`${tag}:${attr}`) >= 0;
   });
 
   links.reverse();
 
-  var data = {};
+  const data = {};
 
   html = [html];
 
   links.forEach((link) => {
-    if(!loaderUtils.isUrlRequest(link.value, root)) return;
+    if (!loaderUtils.isUrlRequest(link.value, root)) return;
 
-    var uri = url.parse(link.value);
+    const uri = url.parse(link.value);
 
     if (uri.hash !== null && uri.hash !== undefined) {
       uri.hash = null;
@@ -49,78 +62,73 @@ export default function loader (html) {
       link.value = uri.format();
       link.length = link.value.length;
     }
-
-    do {
-      var ident = randomIdent();
-    } while(data[ident]);
-
+    // eslint-disable-next-line
+    var ident;
+    do { ident = randomIdent(); } while (data[ident]);
     data[ident] = link.value;
 
-    var x = html.pop();
+    const item = html.pop();
 
-    html.push(x.substr(link.start + link.length));
+    html.push(item.substr(link.start + link.length));
     html.push(ident);
-    html.push(x.substr(0, link.start));
+    html.push(item.substr(0, link.start));
   });
 
-  html.reverse();
-
-  html = html.join("");
+  html = html.reverse().join('');
 
   if (options.interpolate === 'require') {
-    var regex = /\$\{require\([^)]*\)\}/g;
+    const regex = /\$\{require\([^)]*\)\}/g;
+    // eslint-disable-next-line
     var result;
 
-    var reqList = [];
+    const requires = [];
 
-    while(result = regex.exec(html)) {
-      reqList.push({
-        length : result[0].length,
-        start : result.index,
-        value : result[0]
-      })
+    // eslint-disable-next-line
+    while (result = regex.exec(html)) {
+      requires.push({
+        length: result[0].length,
+        start: result.index,
+        value: result[0],
+      });
     }
 
-    reqList.reverse();
+    requires.reverse();
 
     html = [html];
 
-    reqList.forEach((link) => {
-      var x = html.pop();
+    requires.forEach((link) => {
+      const item = html.pop();
+      // eslint-disable-next-line
+      var ident
+      do { ident = randomIdent(); } while (data[ident]);
+      data[ident] = link.value.substring(11, link.length - 3);
 
-      do {
-        var ident = randomIdent();
-      } while(data[ident]);
-
-      data[ident] = link.value.substring(11,link.length - 3)
-
-      html.push(x.substr(link.start + link.length));
+      html.push(item.substr(link.start + link.length));
       html.push(ident);
-      html.push(x.substr(0, link.start));
+      html.push(item.substr(0, link.start));
     });
 
-    html.reverse();
-    html = html.join("");
+    html = html.reverse().join('');
   }
 
-  if (typeof options.minimize === "boolean" ? options.minimize : this.minimize) {
-    var minimizeOptions = Object.assign({}, options);
+  if (typeof options.minimize === 'boolean' ? options.minimize : this.minimize) {
+    const minimizeOptions = Object.assign({}, options);
 
     [
-      "removeComments",
-      "removeCommentsFromCDATA",
-      "removeCDATASectionsFromCDATA",
-      "collapseWhitespace",
-      "conservativeCollapse",
-      "removeAttributeQuotes",
-      "useShortDoctype",
-      "keepClosingSlash",
-      "minifyJS",
-      "minifyCSS",
-      "removeScriptTypeAttributes",
-      "removeStyleTypeAttributes",
+      'removeComments',
+      'removeCommentsFromCDATA',
+      'removeCDATASectionsFromCDATA',
+      'collapseWhitespace',
+      'conservativeCollapse',
+      'removeAttributeQuotes',
+      'useShortDoctype',
+      'keepClosingSlash',
+      'minifyJS',
+      'minifyCSS',
+      'removeScriptTypeAttributes',
+      'removeStyleTypeAttributes',
     ].forEach((name) => {
-      if (typeof minimizeOptions[name] === "undefined") {
+      if (typeof minimizeOptions[name] === 'undefined') {
         minimizeOptions[name] = true;
       }
     });
@@ -129,7 +137,7 @@ export default function loader (html) {
   }
 
   // TODO
-  // Support exporting a template function
+  // #120 - Support exporting a template function
   //
   // import template from 'file.html'
   //
@@ -141,8 +149,7 @@ export default function loader (html) {
   }
 
   return `export default ${html.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, (match) => {
-    if(!data[match]) return match;
-    return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
+    if (!data[match]) return match;
+    return `"require('${JSON.stringify(loaderUtils.urlToRequest(data[match], root))}')"`;
   })};`;
-
 }
