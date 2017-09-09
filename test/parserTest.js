@@ -37,8 +37,12 @@ describe("parser", function() {
 	test("use", '<use xlink:href="vector.svg" />', ["vector.svg"]);
 	test("use", '<use xlink:href="vector.svg" />', ["vector.svg"]);
 	test("inline style url", '<div style="background-image: url(\'image.png\')"></div>', ["image.png"]);
-	test("inline style url w/ flipped quotes", '<div style=\'background-image: url("image.png")\'></div>', ["image.png"]);
-	test("multiple inline style urls", '<div style="background-image: url(\'image.png\'); list-style: square url(\'image2.png\')"></div>', ["image.png", "image2.png"]);
+	test("inline style url w/ outer single quotes", '<div style=\'background-image: url("image.png")\'></div>', ["image.png"]);
+	test("inline style url w/ no quotes", '<div style="background-image: url(image.png)"></div>', ["image.png"]);
+	test("inline style url w/ outer single quotes and no inner quotes", '<div style=\'background-image: url(image.png)\'></div>', ["image.png"]);
+	test("inline style url w/ other quotes", '<div style="font-family: \'test\', serif; background-image: url(image.png);"></div>', ["image.png"]);
+	test("inline style url w/ escaped other quotes", '<div style="font-family: \\"test\\", serif; background-image: url(image.png);"></div>', ["image.png"]);
+	test("inline style multiple urls", '<div style="background-image: url(\'image.png\'); list-style: square url(\'image2.png\')"></div>', ["image.png", "image2.png"]);
 });
 
 describe("locations", function() {
