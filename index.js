@@ -53,6 +53,8 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return;
+		
+		if (link.value.indexOf('mailto:') > -1 ) return;
 
 		var uri = url.parse(link.value);
 		if (uri.hash !== null && uri.hash !== undefined) {
