@@ -24,7 +24,8 @@
     "fastparse": "^1.1.1",
     "html-minifier": "^3.0.1",
     "loader-utils": "^1.0.2",
-    "object-assign": "^4.1.0"
+    "object-assign": "^4.1.0",
+    "sizes-extent": "^0.1.1"
   },
   "devDependencies": {
     "beautify-lint": "^1.0.4",

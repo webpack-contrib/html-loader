@@ -8,6 +8,7 @@ var loaderUtils = require("loader-utils");
 var url = require("url");
 var assign = require("object-assign");
 var compile = require("es6-templates").compile;
+var sizesExtent = require("sizes-extent");
 
 function randomIdent() {
 	return "xxxHTMLLINKxxx" + Math.random() + Math.random() + "xxx";
@@ -66,7 +67,7 @@ module.exports = function(content) {
 		do {
 			var ident = randomIdent();
 		} while(data[ident]);
-		data[ident] = link.value;
+		data[ident] = { href: link.value, sizes: link.sizes };
 		var x = content.pop();
 		content.push(x.substr(link.start + link.length));
 		content.push(ident);
@@ -94,7 +95,7 @@ module.exports = function(content) {
 			do {
 				var ident = randomIdent();
 			} while(data[ident]);
-			data[ident] = link.value.substring(11,link.length - 3)
+			data[ident] = { href: link.value.substring(11,link.length - 3) };
 			content.push(x.substr(link.start + link.length));
 			content.push(ident);
 			content.push(x.substr(0, link.start));
@@ -142,9 +143,32 @@ module.exports = function(content) {
         exportsString = "export default ";
 	}
 
+	var MAX_DPR = 2;
+
  	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
+		if(data[match].href.indexOf('?sizes[]=') !== -1) {
+			var href = data[match].href;
+			var params = href.slice(href.indexOf('?'));
+			var hrefWithoutParams = href.slice(0, href.indexOf('?'));
+
+			var requireSizes = JSON.stringify(
+				'responsive-loader' + params + '!' + loaderUtils.urlToRequest(hrefWithoutParams, root)
+			);
+			return '" + require(' + requireSizes + ').src + "\\" srcset=\\"" + require(' + requireSizes + ').srcSet + "';
+		}
+		if(data[match].sizes) {
+			var extent = sizesExtent(data[match].sizes);
+
+			if(!extent) {
+				throw new Error('sizes attribute not understood: ' + data[match].sizes);
+			}
+
+			var responsive = 'responsive-loader?min=' + extent[0] + '&max=' + (extent[1] * MAX_DPR) + '!';
+			var requireMinmax = JSON.stringify(responsive + loaderUtils.urlToRequest(data[match].href, root));
+			return '" + require(' + requireMinmax + ').src + "\\" srcset=\\"" + require(' + requireMinmax + ').srcSet + "';
+		}
+		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match].href, root)) + ') + "';
 	}) + ";";
 
 }

@@ -188,4 +188,24 @@ describe("loader", function() {
 			'export default "<p>Hello world!</p>";'
 		);
 	});
+	it("should call responsive-loader automatically when sizes attribute specified", function() {
+		loader.call({}, 'Text <img src="image.png" sizes="100vw"><img src="~bootstrap-img" sizes="(max-width: 800px) 100vw, 50vw"> Text').should.be.eql(
+			'module.exports = "Text <img src=\\"" + require("responsive-loader?min=320&max=2560!./image.png").src + "\\" srcset=\\"" + require("responsive-loader?min=320&max=2560!./image.png").srcSet + "\\" sizes=\\"100vw\\"><img src=\\"" + require("responsive-loader?min=320&max=1600!bootstrap-img").src + "\\" srcset=\\"" + require("responsive-loader?min=320&max=1600!bootstrap-img").srcSet + "\\" sizes=\\"(max-width: 800px) 100vw, 50vw\\"> Text";'
+		);
+	});
+	it("should call responsive-loader automatically when ?sizes[] specified", function() {
+		loader.call({}, 'Text <img src="image.png?sizes[]=400&sizes[]=500&sizes[]=600" sizes="100vw"> Text').should.be.eql(
+			'module.exports = "Text <img src=\\"" + require("responsive-loader?sizes[]=400&sizes[]=500&sizes[]=600!./image.png").src + "\\" srcset=\\"" + require("responsive-loader?sizes[]=400&sizes[]=500&sizes[]=600!./image.png").srcSet + "\\" sizes=\\"100vw\\"> Text";'
+		);
+	});
+	it("shouldn't call responsive-loader if srcset is already specified", function() {
+		loader.call({}, 'Text <img src="image.png" sizes="100vw" srcset="blablabla"> Text').should.be.eql(
+			'module.exports = "Text <img src=\\"" + require("./image.png") + "\\" sizes=\\"100vw\\" srcset=\\"blablabla\\"> Text";'
+		);
+	});
+	it("should throw when it doesn't understand sizes attribute", function() {
+		should.throws(function() {
+			loader.call({}, 'Text <img src="image.png" sizes="invalid""> Text');
+		}, /sizes attribute not understood: invalid/);
+	});
 });
