@@ -150,6 +150,11 @@ describe("loader", function() {
 			'module.exports = "<img src=\\"" + require("./icons.svg") + "#hash\\">";'
 		);
 	});
+	it("should ignore anchor with 'mailto:' in the href attribute", function() {
+		loader.call({}, '<a href="mailto:username@exampledomain.com"></a>').should.be.eql(
+			'module.exports = "<a href=\\"mailto:username@exampledomain.com\\"></a>";'
+		);
+	});
 	it("should ignore interpolations by default", function() {
 		loader.call({}, '<img src="${"Hello " + (1+1)}">').should.be.eql(
 			'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
