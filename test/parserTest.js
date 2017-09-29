@@ -9,6 +9,7 @@ function test(name, html, result) {
 			if(tag === "link" && attr === "href") return true;
 			if(tag === "div" && attr === "data-videomp4") return true;
 			if(tag === "use" && attr === "xlink:href") return true;
+			if(tag === "div" && attr === "style") return true;
 			return false;
 		}).map(function(match) {
 			return match.value
@@ -34,6 +35,14 @@ describe("parser", function() {
 	test("doctype", '<!doctype html><img src="image.png">', ["image.png"]);
 	test("alphanumeric", '<div data-videomp4="video.mp4"></div>', ["video.mp4"]);
 	test("use", '<use xlink:href="vector.svg" />', ["vector.svg"]);
+	test("use", '<use xlink:href="vector.svg" />', ["vector.svg"]);
+	test("inline style url", '<div style="background-image: url(\'image.png\')"></div>', ["image.png"]);
+	test("inline style url w/ outer single quotes", '<div style=\'background-image: url("image.png")\'></div>', ["image.png"]);
+	test("inline style url w/ no quotes", '<div style="background-image: url(image.png)"></div>', ["image.png"]);
+	test("inline style url w/ outer single quotes and no inner quotes", '<div style=\'background-image: url(image.png)\'></div>', ["image.png"]);
+	test("inline style url w/ other quotes", '<div style="font-family: \'test\', serif; background-image: url(image.png);"></div>', ["image.png"]);
+	test("inline style url w/ escaped other quotes", '<div style="font-family: \\"test\\", serif; background-image: url(image.png);"></div>', ["image.png"]);
+	test("inline style multiple urls", '<div style="background-image: url(\'image.png\'); list-style: square url(\'image2.png\')"></div>', ["image.png", "image2.png"]);
 });
 
 describe("locations", function() {
