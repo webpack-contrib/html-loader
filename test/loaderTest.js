@@ -3,9 +3,29 @@ var should = require("should");
 var loader = require("../");
 
 describe("loader", function() {
-	it("should convert to requires", function() {
+	it("should convert src to requires", function() {
 		loader.call({}, 'Text <img src="image.png"><img src="~bootstrap-img"> Text').should.be.eql(
 			'module.exports = "Text <img src=\\"" + require("./image.png") + "\\"><img src=\\"" + require("bootstrap-img") + "\\"> Text";'
+		);
+	});
+	it("should convert srcset to requires", function() {
+		loader.call({}, 'Text <img srcset="image@2x.png 2x, ~bootstrap-img 3x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2x," + require("bootstrap-img") + " 3x\\"> Text";'
+		);
+	});
+	it("should support both src srcset on a same element", function() {
+		loader.call({}, 'Text <img src="image.png" srcset="image@2x.png 2x, ~bootstrap-img 3x"> Text').should.be.eql(
+			'module.exports = "Text <img src=\\"" + require("./image.png") + "\\" srcset=\\"" + require("./image@2x.png") + " 2x," + require("bootstrap-img") + " 3x\\"> Text";'
+		);
+	});
+	it("should support multiple srcset qualifiers on a same element", function() {
+		loader.call({}, 'Text <img srcset="image-300w@2x.png 300w 2x, image@2x.png 2x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image-300w@2x.png") + " 300w 2x," + require("./image@2x.png") + " 2x\\"> Text";'
+		);
+	});
+	it("should normalize spacing between entries of a srcset attribute", function() {
+		loader.call({}, 'Text <img srcset="image.png 1x,       image@2x.png 300w 2x,   image@3x.png 3x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x," + require("./image@2x.png") + " 300w 2x," + require("./image@3x.png") + " 3x\\"> Text";'
 		);
 	});
 	it("should accept attrs from query", function() {
