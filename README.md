@@ -173,6 +173,29 @@ require("html-loader?root=.!./file.html");
 // => '<img  src="http://cdn.example.com/49eba9f/a992ca.jpg">'
 ```
 
+### Ignore specified image files
+
+You can use `ignoreFiles` option to ignore some image files, like so:
+
+```js
+module: {
+  rules: [{
+    test: /\.html$/,
+    use: [ {
+      loader: 'html-loader',
+      options: {
+        ignoreFiles: [
+            /{{.*?}}/
+        ]
+      }
+    }],
+  }]
+}
+```
+
+`<img src="angular{{version}}.jpg"/>` should be remained as `<img src="angular{{version}}.jpg"/>`.
+You can also use a function or a string instead of the RegExp.
+
 ### Interpolation
 
 You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:

@@ -53,7 +53,7 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return;
-		
+
 		if (link.value.indexOf('mailto:') > -1 ) return;
 
 		var uri = url.parse(link.value);
@@ -142,9 +142,32 @@ module.exports = function(content) {
         exportsString = "export default ";
 	}
 
- 	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
-		if(!data[match]) return match;
-		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
+	function shouldIgnoreFile(fileName) {
+		var rules = config.ignoreFiles || [];
+		return rules.find(function(rule) {
+			if (rule instanceof Function) {
+				return rule(fileName);
+			}
+
+			if (typeof rule === 'string') {
+				rule = new RegExp(rule);
+			}
+
+			if (rule instanceof RegExp) {
+				return rule.test(fileName);
+			}
+
+			throw "html-loader: the `ignoreRules` option should be an array of strings/RegExps/functions";
+		});
+	}
+
+	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function (match) {
+		var fileName = data[match];
+		if (!fileName) return match;
+		if (shouldIgnoreFile(fileName)) {
+			return fileName;
+		}
+		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(fileName, root)) + ') + "';
 	}) + ";";
 
 }
