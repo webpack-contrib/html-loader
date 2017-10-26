@@ -174,6 +174,67 @@ describe("loader", function() {
 			'module.exports = "<a href=\\"${list.href}\\"><img src=\\"" + require("./test.jpg") + "\\" /></a>";'
 		);
 	});
+	it("should ignore files specified by regexp", function() {
+		loader.call({
+			options: {
+				htmlLoader: {
+					ignoreFiles: [/{{.*?}}/]
+				}
+			}
+		}, '<img src="angular{{version}}.jpg"/>').should.be.eql('module.exports = "<img src=\\"angular{{version}}.jpg\\"/>";');
+	});
+
+	it("should ignore files specified by regexp(string)", function() {
+		loader.call({
+			options: {
+				htmlLoader: {
+					ignoreFiles: ["{{.*?}}"]
+				}
+			}
+		}, '<img src="angular{{version}}.jpg"/>').should.be.eql('module.exports = "<img src=\\"angular{{version}}.jpg\\"/>";');
+	});
+
+	it("should ignore files specified by function", function() {
+		loader.call({
+			options: {
+				htmlLoader: {
+					ignoreFiles: [function(fileName) {
+						return /{{.*?}}/.test(fileName);
+					}]
+				}
+			}
+		}, '<img src="angular{{version}}.jpg"/>').should.be.eql('module.exports = "<img src=\\"angular{{version}}.jpg\\"/>";');
+	});
+
+	it("should ignore files specified by multiple filters", function() {
+		loader.call({
+			options: {
+				htmlLoader: {
+					ignoreFiles: [
+						function(fileName) {
+							return /{{.*?}}/.test(fileName);
+						},
+						/no-hash/,
+					]
+				}
+			}
+		}, '<img src="angular{{version}}.jpg"/><img src="no-hash.png"/>').should.be.eql('module.exports = "<img src=\\"angular{{version}}.jpg\\"/><img src=\\"no-hash.png\\"/>";');
+	});
+
+	it("should throw an error for illegal `ignoreFiles`", function() {
+		should(function illegalOption() {
+			loader.call({
+				options: {
+					htmlLoader: {
+						ignoreFiles: [
+							1
+						]
+					}
+				}
+			}, '<img src="angular{{version}}.jpg"/><img src="no-hash.png"/>');
+		}).throw();
+	});
+
 	it("should export as default export for es6to5 transpilation", function() {
 		loader.call({
 			query: "?exportAsDefault"
