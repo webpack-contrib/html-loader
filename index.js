@@ -53,7 +53,7 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return;
-		
+
 		if (link.value.indexOf('mailto:') > -1 ) return;
 
 		var uri = url.parse(link.value);
@@ -129,6 +129,9 @@ module.exports = function(content) {
 	}
 
 	if(config.interpolate && config.interpolate !== 'require') {
+		content = content.replace(/(ng-)?pattern="\/([^"]+)\/"/g, function (pattern, $1, $2) {
+			return `ng-pattern="/${$2.replace(/\\([dw])/g, '\\\\$1')}/"`;
+		});
 		content = compile('`' + content + '`').code;
 	} else {
 		content = JSON.stringify(content);
