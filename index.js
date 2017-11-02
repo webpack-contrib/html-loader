@@ -129,7 +129,7 @@ module.exports = function(content) {
 	}
 
 	if(config.interpolate && config.interpolate !== 'require') {
-		content = content.replace(/(ng-)?pattern="\/([^"]+)\/"/g, function (pattern, $1, $2) {
+		content = content.replace(/(ng-)?pattern=(["']?\/((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)\/["']?)/g, function (pattern, $1, $2) {
 			return `ng-pattern="/${$2.replace(/\\([dw])/g, '\\\\$1')}/"`;
 		});
 		content = compile('`' + content + '`').code;
