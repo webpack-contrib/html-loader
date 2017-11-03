@@ -129,8 +129,8 @@ module.exports = function(content) {
 	}
 
 	if(config.interpolate && config.interpolate !== 'require') {
-		content = content.replace(/(ng-)?pattern=(["']?\/((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)\/["']?)/g, function (pattern, $1, $2) {
-			return `ng-pattern=${$2.replace(/\\(.)/g, '\\\\$1')}`;
+		content = content.replace(/(?:(?:ng-)?pattern|ng-[^=]+)=(["']?\/((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)\/["']?)/g, function (pattern, $1, $2) {
+			return `${$1}=${$2.replace(/\\(.)/g, '\\\\$1')}`;
 		});
 		content = compile('`' + content + '`').code;
 	} else {
