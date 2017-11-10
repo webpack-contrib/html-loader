@@ -53,7 +53,7 @@ module.exports = function(content) {
 	content = [content];
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return;
-		
+
 		if (link.value.indexOf('mailto:') > -1 ) return;
 
 		var uri = url.parse(link.value);
@@ -129,6 +129,9 @@ module.exports = function(content) {
 	}
 
 	if(config.interpolate && config.interpolate !== 'require') {
+		// Double escape quotes so that they are not unescaped completely in the template string
+		content = content.replace(/\\"/g, "\\\\\"");
+		content = content.replace(/\\'/g, "\\\\\'");
 		content = compile('`' + content + '`').code;
 	} else {
 		content = JSON.stringify(content);

@@ -71,6 +71,11 @@ describe("loader", function() {
 			'module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\" + require("./image.png") + \" />";'
 		);
 	});
+	it("should preserve escaped quotes", function() {
+		loader.call({}, '<script>{"json": "with \\"quotes\\" in value"}</script>').should.be.eql(
+			'module.exports = "<script>{\\\"json\\\": \\\"with \\\\\\\"quotes\\\\\\\" in value\\\"}</script>";'
+		);
+	})
 
 	it("should preserve comments and white spaces when minimizing (via webpack config property)", function() {
 		loader.call({
@@ -167,6 +172,13 @@ describe("loader", function() {
 			'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\">";'
 		);
 	});
+	it("should not change handling of quotes when interpolation is enabled", function() {
+		loader.call({
+			query: "?interpolate"
+		}, '<script>{"json": "with \\"quotes\\" in value"}</script>').should.be.eql(
+			'module.exports = "<script>{\\\"json\\\": \\\"with \\\\\\\"quotes\\\\\\\" in value\\\"}</script>";'
+		);
+	})
 	it("should enable interpolations when using interpolate=require flag and only require function to be translate", function() {
 		loader.call({
 			query: "?interpolate=require"
