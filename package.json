@@ -40,5 +40,13 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:webpack/html-loader.git"
+  },
+  "license": "MIT",
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
