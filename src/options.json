@@ -1,17 +1,17 @@
 {
   "type": "object",
   "properties": {
-    "root": {
-      "type": "string"
+    "url": {
+      "type": "boolean"
     },
-    "attrs": {
-      "type": ["string", "array"]
+    "import": {
+      "type": "boolean"
+    },
+    "template": {
+      "type": [ "boolean", "string" ]
     },
     "minimize": {
-      "type": ["boolean", "object"]
-    },
-    "interpolate": {
-      "type": ["boolean", "string"]
+      "type": [ "boolean", "object" ]
     }
   },
   "additionalProperties": false
