@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Options url {Boolean} 1`] = `
+"// HTML URLs
+import HTML__URL__0 from './file.css';
+import HTML__URL__1 from '/file.css';
+import HTML__URL__2 from './file.png';
+import HTML__URL__3 from '/file.png';
+import HTML__URL__4 from './file.svg';
+import HTML__URL__5 from './file.png';
+import HTML__URL__6 from './file.mp4';
+import HTML__URL__7 from './file.ogg';
+import HTML__URL__8 from './file.mp3';
+import HTML__URL__9 from './file.wav';
+import HTML__URL__10 from './file.ogg';
+import HTML__URL__11 from './file.en.vtt';
+import HTML__URL__12 from './file.sv.vtt';
+
+// HTML
+export default \`<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"utf-8\\">
+  <title>HTML Loader</title>
+  <!-- Ignore -->
+  <link href=\\"//file.css\\">
+  <link href=\\"//cdn.com/file.css\\">
+  <link href=\\"http://cdn.com/file.css\\">
+  <link href=\\"https://cdn.com/file.css\\">
+  <!-- Transform -->
+  <link href=\\"\${HTML__URL__0}\\">
+  <link href=\\"\${HTML__URL__1}\\">
+</head>
+<body>
+  <!-- Ignore -->
+  <img src=\\"//file.png\\">
+  <img src=\\"//cdn.com/file.png\\">
+  <img src=\\"http://cdn.com/file.png\\">
+  <img src=\\"https://cdn.com/file.png\\">
+  <!-- Transform -->
+  <img src=\\"\${HTML__URL__2}\\">
+  <img src=\\"\${HTML__URL__3}\\">
+
+  ​<picture>
+    <source srcset=\\"\${HTML__URL__4}\\" type=\\"image/svg+xml\\">
+    <img src=\\"\${HTML__URL__5}\\" alt=\\"Image\\">
+  </picture>
+
+  <video width=\\"320\\" height=\\"240\\" controls=\\"\\">
+    <source src=\\"\${HTML__URL__6}\\" type=\\"video/mp4\\">
+    <source src=\\"\${HTML__URL__7}\\" type=\\"video/ogg\\">
+    Your browser does not support the <code>video<code> element.
+  </code></code></video>
+
+  <audio src=\\"\${HTML__URL__8}\\" autoplay=\\"\\"></audio>
+
+  <audio controls=\\"controls\\">
+    Your browser does not support the <code>audio</code> element.
+    <source src=\\"\${HTML__URL__9}\\" type=\\"audio/wav\\">
+  </audio>
+
+  <audio src=\\"\${HTML__URL__10}\\">
+    <track kind=\\"captions\\" src=\\"\${HTML__URL__11}\\" srclang=\\"en\\" label=\\"English\\">
+    <track kind=\\"captions\\" src=\\"\${HTML__URL__12}\\" srclang=\\"sv\\" label=\\"Svenska\\">
+  </audio>
+</body>
+</html>
+\`"
+`;

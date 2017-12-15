@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`E2E Templates 1`] = `
+"<div id=\\"app\\">
+  <!-- HTML Template -->
+  Hello World!
+  <!-- HTML Import -->
+  <div class=\\"import\\"></div>
+
+  <!-- HTML URL -->
+  <img src=\\"9c87cbf3ba33126ffd25ae7f2f6bbafb.png\\">
+</div>
+"
+`;

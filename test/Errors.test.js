@@ -1,31 +1,32 @@
-/* eslint-disable
-  no-eval,
-  import/order,
-  arrow-parens,
-  prefer-destructuring,
-*/
-import loader from '../src/';
-
-import webpack from './webpack';
-import { stats } from './helpers';
+/* eslint-disable */
+import loader from '../src';
+import webpack from './helpers/compiler';
 
 describe('Errors', () => {
-  test('ValidationError', () => {
-    const err = () => loader.call({ query: { root: 1 } }, '<html></html>');
+  test('Loader Error', async () => {
+    const config = {
+      loader: {
+        test: /\.html$/,
+        options: {
+          minimize: true
+        }
+      }
+    };
+
+    const stats = await webpack('error.js', config);
+    const { source } = stats.toJson().modules[1];
+
+    // eslint-disable-next-line
+    const err = () => eval(source);
 
     expect(err).toThrow();
     expect(err).toThrowErrorMatchingSnapshot();
   });
 
-  test('LoaderError', () => {
-    const config = {};
+  test('Validation Error', () => {
+    const err = () => loader.call({ query: { template: 1 } });
 
-    return webpack('index.js', config)
-      .then((result) => stats(result))
-      .then(({ loaders }) => {
-        expect(() => eval(loaders.err)).toThrow();
-        expect(() => eval(loaders.err)).toThrowErrorMatchingSnapshot();
-      })
-      .catch((err) => err);
+    expect(err).toThrow();
+    expect(err).toThrowErrorMatchingSnapshot();
   });
 });
