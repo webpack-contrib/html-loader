@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Errors Loader Error 1`] = `
+"Module build failed: HTML Loader: 
+
+tree.forEach is not a function
+"
+`;
+
+exports[`Errors Validation Error 1`] = `
+"HTML Loader Invalid Options
+
+options.template should be boolean,string
+"
+`;

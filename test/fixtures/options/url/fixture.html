@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HTML Loader</title>
+  <!-- Ignore -->
+  <link href="//file.css">
+  <link href="//cdn.com/file.css">
+  <link href="http://cdn.com/file.css">
+  <link href="https://cdn.com/file.css">
+  <!-- Transform -->
+  <link href="./file.css">
+  <link href="/file.css">
+</head>
+<body>
+  <!-- Ignore -->
+  <img src="//file.png">
+  <img src="//cdn.com/file.png">
+  <img src="http://cdn.com/file.png">
+  <img src="https://cdn.com/file.png">
+  <!-- Transform -->
+  <img src="./file.png">
+  <img src="/file.png">
+
+  ​<picture>
+    <source srcset="./file.svg" type="image/svg+xml">
+    <img src="./file.png" alt="Image">
+  </picture>
+
+  <video width="320" height="240" controls>
+    <source src="./file.mp4" type="video/mp4">
+    <source src="./file.ogg" type="video/ogg">
+    Your browser does not support the <code>video<code> element.
+  </video>
+
+  <audio src="./file.mp3" autoplay></audio>
+
+  <audio controls="controls">
+    Your browser does not support the <code>audio</code> element.
+    <source src="./file.wav" type="audio/wav">
+  </audio>
+
+  <audio src="./file.ogg">
+    <track kind="captions" src="./file.en.vtt" srclang="en" label="English">
+    <track kind="captions" src="./file.sv.vtt" srclang="sv" label="Svenska">
+  </audio>
+</body>
+</html>
