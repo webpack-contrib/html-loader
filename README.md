@@ -1,18 +1,19 @@
 [![npm][npm]][npm-url]
+[![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![test][test]][test-url]
 [![coverage][cover]][cover-url]
 [![chat][chat]][chat-url]
 
 <div align="center">
-  <img width="200" height="200"
+  <img width="180" height="180"
     src="https://worldvectorlogo.com/logos/html5.svg">
   <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200" vspace="" hspace="25"
-      src="https://worldvectorlogo.com/logos/webpack.svg">
+    <img width="200" height="200"
+      src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
   <h1>HTML Loader</h1>
-  <p>Exports HTML as string. HTML is minimized when the compiler demands.<p>
+  <p>Exports HTML as `{String}` or template `{Function}`</p>
 </div>
 
 <h2 align="center">Install</h2>
@@ -23,258 +24,280 @@ npm i -D html-loader
 
 <h2 align="center">Usage</h2>
 
-By default every local `<img src="image.png">` is required (`require('./image.png')`). You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
+By default all assets (`<img src="./image.png">`) are transpiled to their own module requests (`import HTML__URL__O from './image.png'`) to be correctly handled by `webpack` as an ES Module
 
-You can specify which tag-attribute combination should be processed by this loader via the query parameter `attrs`. Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attrs=img:src`)
+> ⚠️ You need to specify additional loaders for your assets (e.g images) separately in your `webpack.config.js`, like the `file-loader` or `url-loader`, to handle these requests
 
-If you use `<custom-elements>`, and lots of them make use of a `custom-src` attribute, you don't have to specify each combination `<tag>:<attribute>`: just specify an empty tag like `attrs=:custom-src` and it will match every element.
-
+**webpack.config.js**
 ```js
 {
-  test: /\.(html)$/,
+  test: /\.html$/,
   use: {
     loader: 'html-loader',
-    options: {
-      attrs: [':data-src']
-    }
+    options: {}
   }
 }
 ```
 
-To completely disable tag-attribute processing (for instance, if you're handling image loading on the client side) you can pass in `attrs=false`.
+### `Caching`
+
+If your application includes many HTML Components or certain HTML Components are of significant size, we highly recommend to use the [`cache-loader`](https://github.com/webpack-contrib/cache-loader) for persistent caching (faster rebuilds)
+
+**webpack.config.js**
+```js
+{
+  test: /\.html$/,
+  use: [
+    'cache-loader',
+    {
+      loader: 'html-loader',
+      options: {}
+    }
+  ]
+}
+```
+
+
+<h2 align="center">Options</h2>
+
+|Name|Type|Default|Description|
+|:--:|:--:|:-----:|:----------|
+|**[`url`](#url)**|`{Boolean}`|`true`| Enable/Disable HTML Assets (`<img src="./file.png">`)|
+|**[`import`](#import)** |`{Boolean}`|`true`| Enable/Disable HTML Imports (`<import src="./file.html">`)|
+|**[`template`](#template)**|`{Boolean\|String}`|`false`|Export HTML as a template `{Function}`. The template placeholder defaults to `<div>${ _.x }</div>` (`_`)|
+|**[`minimize`](#minimize)**|`{Boolean}`|`false`|Enable/Disable HTML Minification|
+
+### `url`
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    url: // TODO add URL filter method (#158 && #159)
+  }
+}
+```
+
+### `import`
+
+**import.html**
+```html
+<div class="import">Import</div>
+```
+
+**file.html**
+```html
+<div>
+  <import src="./import.html"></import>
+</div>
+```
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    import: // TODO add URL filter method (#158)
+  }
+}
+```
+
+### `template`
+
+#### `{Boolean}`
+
+**file.html**
+```html
+<div>
+  <p>${ _.txt }</p>
+</div>
+```
+
+**file.js**
+```js
+import template from './file.html'
+
+const html = template({ txt: 'Hello World!' })
+
+document.body.innerHTML = html
+```
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    template: true
+  }
+}
+```
+
+#### `{String}`
+
+Sets a custom placeholder for your template `{Function}`
+
+**file.html**
+```html
+<div>
+  <p>${ $.txt }</p>
+</div>
+```
+
+**file.js**
+```js
+import template from './file.html'
+
+const html = template({ txt: 'Hello World!' })
+
+document.body.innerHTML = html
+```
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    template: '$'
+  }
+}
+```
+
+### `minimize`
+
+#### `{Boolean}`
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    minimize: true
+  }
+}
+```
+
+#### `{Object}`
+
+Set custom [options](https://github.com/posthtml/htmlnano#modules) for minification
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    minimize: {...options}
+  }
+}
+```
 
 <h2 align="center">Examples</h2>
 
-With this configuration:
+### `HMR`
 
+**component.js**
 ```js
-{
-  module: {
-    rules: [
-      { test: /\.jpg$/, use: [ "file-loader" ] },
-      { test: /\.png$/, use: [ "url-loader?mimetype=image/png" ] }
-    ]
-  },
-  output: {
-    publicPath: "http://cdn.example.com/[hash]/"
-  }
+import template from "./component.html";
+
+const component = document.createElement('div')
+component.innerHTML = template({ hello: 'Hello World!' })
+
+document.body.appendChild(component);
+
+// HMR Interface
+if (module.hot) {
+  // Capture hot update
+  module.hot.accept('./component.html', () => {
+    // Replace old content with the hot loaded one
+    component.innerHTML = template({...locals})
+  })
 }
 ```
 
-``` html
-<!-- file.html -->
-<img src="image.png" data-src="image2x.png" >
-```
+### `Extract`
 
-```js
-require("html-loader!./file.html");
-
-// => '<img src="http://cdn.example.com/49eba9f/a992ca.png"
-//         data-src="image2x.png">'
-```
-
-```js
-require("html-loader?attrs=img:data-src!./file.html");
-
-// => '<img src="image.png" data-src="data:image/png;base64,..." >'
-```
-
-```js
-require("html-loader?attrs=img:src img:data-src!./file.html");
-require("html-loader?attrs[]=img:src&attrs[]=img:data-src!./file.html");
-
-// => '<img  src="http://cdn.example.com/49eba9f/a992ca.png"        
-//           data-src="data:image/png;base64,..." >'
-```
-
-```js
-require("html-loader?-attrs!./file.html");
-
-// => '<img  src="image.jpg"  data-src="image2x.png" >'
-```
-
-minimized by running `webpack --optimize-minimize`
-
-```html
-'<img src=http://cdn.example.com/49eba9f/a9f92ca.jpg
-      data-src=data:image/png;base64,...>'
-```
-
-or specify the `minimize` property in the rule's options in your `webpack.conf.js`
-
-```js
-module: {
-  rules: [{
-    test: /\.html$/,
-    use: [ {
-      loader: 'html-loader',
-      options: {
-        minimize: true
-      }
-    }],
-  }]
-}
-```
-
-The enabled rules for minimizing by default are the following ones:
- - removeComments
- - removeCommentsFromCDATA
- - removeCDATASectionsFromCDATA
- - collapseWhitespace
- - conservativeCollapse
- - removeAttributeQuotes
- - useShortDoctype
- - keepClosingSlash
- - minifyJS
- - minifyCSS
- - removeScriptTypeAttributes
- - removeStyleTypeAttributes
- 
- The rules can be disabled using the following options in your `webpack.conf.js`
-
-```js
-module: {
-  rules: [{
-    test: /\.html$/,
-    use: [ {
-      loader: 'html-loader',
-      options: {
-        minimize: true,
-        removeComments: false,
-        collapseWhitespace: false
-      }
-    }],
-  }]
-}
-```
-
-### 'Root-relative' URLs
-
-For urls that start with a `/`, the default behavior is to not translate them.
-If a `root` query parameter is set, however, it will be prepended to the url
-and then translated.
-
-With the same configuration as above:
-
-``` html
-<!-- file.html -->
-<img src="/image.jpg">
-```
-
-```js
-require("html-loader!./file.html");
-
-// => '<img  src="/image.jpg">'
-```
-
-```js
-require("html-loader?root=.!./file.html");
-
-// => '<img  src="http://cdn.example.com/49eba9f/a992ca.jpg">'
-```
-
-### Interpolation
-
-You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:
-
-```js
-require("html-loader?interpolate!./file.html");
-```
-
-```html
-<img src="${require(`./images/gallery.png`)}">
-
-<div>${require('./components/gallery.html')}</div>
-```
-And if you only want to use `require` in template and any other `${}` are not to be translated, you can set `interpolate` flag to `require`, like so:
-
-```js
-require("html-loader?interpolate=require!./file.ftl");
-```
-
-```html
-
-<#list list as list>
-  <a href="${list.href!}" />${list.name}</a>
-</#list>
-
-<img src="${require(`./images/gallery.png`)}">
-
-<div>${require('./components/gallery.html')}</div>
-```
-
-### Export formats
-
-There are different export formats available:
-
-+ ```module.exports``` (default, cjs format). "Hello world" becomes ```module.exports = "Hello world";```
-+ ```exports.default``` (when ```exportAsDefault``` param is set, es6to5 format). "Hello world" becomes ```exports.default = "Hello world";```
-+ ```export default``` (when ```exportAsEs6Default``` param is set, es6 format). "Hello world" becomes ```export default "Hello world";```
-
-### Advanced options
-
-If you need to pass [more advanced options](https://github.com/webpack/html-loader/pull/46), especially those which cannot be stringified, you can also define an `htmlLoader`-property on your `webpack.config.js`:
-
-```js
-var path = require('path')
-
-module.exports = {
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: [ "html-loader" ]
-      }
-    ]
-  },
-  htmlLoader: {
-    ignoreCustomFragments: [/\{\{.*?}}/],
-    root: path.resolve(__dirname, 'assets'),
-    attrs: ['img:src', 'link:href']
-  }
-};
-```
-
-If you need to define two different loader configs, you can also change the config's property name via `html-loader?config=otherHtmlLoaderConfig`:
-
-```js
-module.exports = {
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: [ "html-loader?config=otherHtmlLoaderConfig" ]
-      }
-    ]
-  },
-  otherHtmlLoaderConfig: {
-    ...
-  }
-};
-```
-
-### Export into HTML files
-
-A very common scenario is exporting the HTML into their own _.html_ file, to
+A very common scenario is exporting the HTML into their own `.html` file, to
 serve them directly instead of injecting with javascript. This can be achieved
-with a combination of 3 loaders:
+with a combination of following 3 loaders
 
 - [file-loader](https://github.com/webpack/file-loader)
 - [extract-loader](https://github.com/peerigon/extract-loader)
 - html-loader
 
-The html-loader will parse the URLs, require the images and everything you
-expect. The extract loader will parse the javascript back into a proper html
-file, ensuring images are required and point to proper path, and the file loader
-will write the _.html_ file for you. Example:
+The `html-loader` will parse the URLs, require the images and everything you
+expect. The `extract-loader` will parse the javascript back into a proper HTML
+file, ensuring images are required and point to the proper path, and finally the `file-loader` will write the `.html` file for you
 
+**webpack.config.js**
 ```js
 {
   test: /\.html$/,
-  use: [ 'file-loader?name=[path][name].[ext]!extract-loader!html-loader' ]
+  use: [
+    {
+      loader: 'file-loader'
+      options: { name: '[path][name].[ext]'}
+    },
+    'extract-loader'
+    'html-loader'
+  ]
 }
+```
+
+### `CSS Modules`
+
+**file.css**
+```css
+.container {
+  color: red;
+}
+```
+
+**file.html**
+```html
+<div class=${ _.container }></div>
+```
+
+**webpack.config.js**
+```js
+[
+  {
+    test: /\.html$/
+    use: {
+      loader: 'html-loader'
+      options: {
+        template: true
+      }
+    }
+  },
+  {
+    test: /\.css$/
+    use: [
+      'style-loader',
+      'css-loader'
+      {
+        loader: 'postcss-loader',
+        options: {
+          ident: 'postcss',
+          plugins () {
+            return [
+              require('postcss-modules')()
+            ]
+          }
+        }
+      }
+    ]
+  }
+]
+```
+
+**component.js**
+```js
+import * as styles from './file.css'
+import template from './file.html'
+
+const html = template({ ...styles })
+
+document.body.innerHTML = html
 ```
 
 <h2 align="center">Maintainers</h2>
@@ -338,14 +361,17 @@ will write the _.html_ file for you. Example:
 [npm]: https://img.shields.io/npm/v/html-loader.svg
 [npm-url]: https://npmjs.com/package/html-loader
 
-[deps]: https://david-dm.org/webpack/html-loader.svg
-[deps-url]: https://david-dm.org/webpack/html-loader
+[node]: https://img.shields.io/node/v/html-loader.svg
+[node-url]: https://nodejs.org
 
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[deps]: https://david-dm.org/webpack-contrib/html-loader.svg
+[deps-url]: https://david-dm.org/webpack-contrib/html-loader
+
+[test]: http://img.shields.io/travis/webpack-contrib/html-loader.svg
+[test-url]: https://travis-ci.org/webpack-contrib/html-loader
+
+[cover]: https://codecov.io/gh/webpack-contrib/html-loader/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack-contrib/html-loader
+
+[chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack
-
-[test]: http://img.shields.io/travis/webpack/html-loader.svg
-[test-url]: https://travis-ci.org/webpack/html-loader
-
-[cover]: https://codecov.io/gh/webpack/html-loader/branch/master/graph/badge.svg
-[cover-url]: https://codecov.io/gh/webpack/html-loader
