@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Options template {Boolean} 1`] = `
+"// HTML URLs
+import HTML__URL__0 from './urls/file.png';
+
+// HTML Imports
+import HTML__IMPORT__0 from './imports/import.html';
+
+// HTML
+export default function (_) { return \`<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"utf-8\\">
+  <title>HTML Loader</title>
+</head>
+<body>
+  <!-- HTML Template -->
+  <div id=\\"app\\">\${ _.hello }</div>
+  <!-- HTML Import -->
+  \${HTML__IMPORT__0(_)}
+  <!-- HTML URL -->
+  <img src=\\"\${HTML__URL__0}\\">
+</body>
+</html>
+\`; }"
+`;
+
+exports[`Options template {String} 1`] = `
+"// HTML URLs
+import HTML__URL__0 from './urls/file.png';
+
+// HTML Imports
+import HTML__IMPORT__0 from './imports/import.html';
+
+// HTML
+export default function ($) { return \`<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"utf-8\\">
+  <title>HTML Loader</title>
+</head>
+<body>
+  <!-- HTML Template -->
+  <div id=\\"app\\">\${ _.hello }</div>
+  <!-- HTML Import -->
+  \${HTML__IMPORT__0($)}
+  <!-- HTML URL -->
+  <img src=\\"\${HTML__URL__0}\\">
+</body>
+</html>
+\`; }"
+`;

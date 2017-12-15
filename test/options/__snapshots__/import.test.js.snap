@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Options import {Boolean} 1`] = `
+"// HTML Imports
+import HTML__IMPORT__0 from './1.html';
+import HTML__IMPORT__1 from '/2.html';
+import HTML__IMPORT__2 from './1.html';
+import HTML__IMPORT__3 from '/2.html';
+
+// HTML
+export default \`<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"utf-8\\">
+  <title>HTML Loader</title>
+</head>
+<body>
+  <!-- Ignore -->
+  
+  
+  
+  
+  <!-- Transform -->
+  \${HTML__IMPORT__0}
+  \${HTML__IMPORT__1}
+
+  \${HTML__IMPORT__2}
+  \${HTML__IMPORT__3}
+</body>
+</html>
+\`"
+`;
