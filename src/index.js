@@ -1,162 +1,100 @@
-/* eslint-disable
-  import/order,
-  import/first,
-  arrow-parens,
-  no-undefined,
-  no-param-reassign,
-  no-useless-escape,
-*/
-import LoaderError from './Error';
-import loaderUtils from 'loader-utils';
+/* eslint-disable */
+import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
-import url from 'url';
-import attrs from './lib/attrs';
-import minifier from 'html-minifier';
+import posthtml from 'posthtml';
+import urls from './lib/plugins/url';
+import imports from './lib/plugins/import';
+import minifier from 'htmlnano';
 
-const schema = require('./options');
+import schema from './options.json';
+import LoaderError from './lib/Error';
 
-function randomize() {
-  return `link__${Math.random()}`;
-}
+// Loader Defaults
+const defaults = {
+  url: true,
+  import: true,
+  minimize: false,
+  template: false,
+};
 
-export default function loader(html) {
-  const options = loaderUtils.getOptions(this) || {};
+export default function loader(html, map, meta) {
+  // Loader Options
+  const options = Object.assign(defaults, getOptions(this));
 
   validateOptions(schema, options, 'HTML Loader');
+  // Make the loader async
+  const cb = this.async();
+  const file = this.resourcePath;
 
-  // eslint-disable-next-line
-  const root = options.root;
+  // HACK add Module.type
+  this._module.type = 'text/html';
 
-  let attributes = ['img:src'];
+  const template = options.template
+    ? typeof options.template === 'string'
+      ? options.template
+      : '_'
+    : false;
 
-  if (options.attrs !== undefined) {
-    if (typeof options.attrs === 'string') attributes = options.attrs.split(' ');
-    else if (Array.isArray(options.attrs)) attributes = options.attrs;
-    else if (options.attrs === false) attributes = [];
-    else {
-      throw new LoaderError({
-        name: 'AttributesError',
-        message: 'Invalid attribute value found',
-      });
-    }
+  const plugins = [];
+
+  if (options.url) plugins.push(urls());
+  if (options.import) plugins.push(imports({ template }));
+  // TODO(michael-ciniawsky)
+  // <imports src=""./file.html"> aren't minified (#160)
+  if (options.minimize) plugins.push(minifier());
+
+  // Reuse HTML AST (PostHTML AST) if available
+  // (e.g posthtml-loader) to avoid HTML reparsing
+  if (meta && meta.ast && meta.ast.type === 'posthtml') {
+    html = meta.ast.root;
   }
 
-  const links = attrs(html, (tag, attr) => {
-    const item = `${tag}:${attr}`;
+  posthtml(plugins)
+    .process(html, { from: file, to: file })
+    .then(({ html, messages }) => {
+      let urls = messages[0];
+      let imports = messages[1];
 
-    const result = attributes.find((a) => item.indexOf(a) >= 0);
+      // TODO(michael-ciniawsky) revisit
+      // Ensure to cleanup/reset messages
+      // during recursive resolving of imports
+      messages.length = 0;
 
-    return !!result;
-  });
+      // <img src="./file.png">
+      // => import HTML__URL__${idx} from './file.png';
+      if (urls) {
+        urls = Object.keys(urls)
+          .map(url => `import ${url} from '${urls[url]}';`)
+          .join('\n');
+      }
+      // <import src="./file.html">
+      // => import HTML__IMPORT__${idx} from './file.html';
+      if (imports) {
+        imports = Object.keys(imports)
+          .map(i => `import ${i} from '${imports[i]}';`)
+          .join('\n');
+      }
 
-  links.reverse();
+      html = options.template
+        ? `function (${template}) { return \`${html}\`; }`
+        : `\`${html}\``;
 
-  const data = {};
+      const result = [
+        urls ? `// HTML URLs\n${urls}\n` : false,
+        imports ? `// HTML Imports\n${imports}\n` : false,
+        `// HTML\nexport default ${html}`,
+      ]
+        .filter(Boolean)
+        .join('\n');
 
-  html = [html];
+      cb(null, result);
 
-  links.forEach((link) => {
-    if (!loaderUtils.isUrlRequest(link.value, root)) return;
+      return null;
+    })
+    .catch((err) => {
+      cb(new LoaderError(err));
 
-    const uri = url.parse(link.value);
-
-    if (uri.hash !== null && uri.hash !== undefined) {
-      uri.hash = null;
-
-      link.value = uri.format();
-      link.length = link.value.length;
-    }
-
-    let ident;
-    do { ident = randomize(); } while (data[ident]);
-    data[ident] = link.value;
-
-    const item = html.pop();
-
-    html.push(item.substr(link.start + link.length));
-    // eslint-disable-next-line
-    html.push(ident);
-    html.push(item.substr(0, link.start));
-  });
-
-  html = html.reverse().join('');
-
-  if (options.interpolate === 'require') {
-    const regex = /\$\{require\([^)]*\)\}/g;
-    // eslint-disable-next-line
-    let result;
-
-    const requires = [];
-
-    // eslint-disable-next-line
-    while (result = regex.exec(html)) {
-      requires.push({
-        length: result[0].length,
-        start: result.index,
-        value: result[0],
-      });
-    }
-
-    requires.reverse();
-
-    html = [html];
-
-    requires.forEach((link) => {
-      const item = html.pop();
-
-      let ident;
-      do { ident = randomize(); } while (data[ident]);
-      data[ident] = link.value.substring(11, link.length - 3);
-
-      html.push(item.substr(link.start + link.length));
-      // eslint-disable-next-line
-      html.push(ident);
-      html.push(item.substr(0, link.start));
+      return null;
     });
-
-    html = html.reverse().join('');
-  }
-
-  if (options.minimize || this.minimize) {
-    let minimize = Object.create({
-      collapseWhitespace: true,
-      conservativeCollapse: true,
-      useShortDoctype: true,
-      keepClosingSlash: true,
-      minifyJS: true,
-      minifyCSS: true,
-      removeComments: true,
-      removeAttributeQuotes: true,
-      removeStyleTypeAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeCommentsFromCDATA: true,
-      removeCDATASectionsFromCDATA: true,
-    });
-
-    if (typeof options.minimize === 'object') {
-      minimize = Object.assign(minimize, options.minimize);
-    }
-
-    html = minifier.minify(html, minimize);
-  }
-
-  // TODO
-  // #120 - Support exporting a template function
-  //
-  // import template from 'file.html'
-  //
-  // const html = template({...locals})
-  if (options.interpolate && options.interpolate !== 'require') {
-    html = `${html}`;
-  } else {
-    html = JSON.stringify(html);
-  }
-
-  html = html.replace(/link__[0-9\.]+/g, (match) => {
-    if (!data[match]) return match;
-    return `"require('${JSON.stringify(loaderUtils.urlToRequest(data[match], root))}')"`;
-  });
-
-  return `export default ${html};`;
 }
