@@ -6,14 +6,14 @@ const TEST_URL = /^\w+:\/\//;
 // add filter method for urls (e.g `options.import`) (#158)
 const filter = (url, options) => {
   return TEST_URL.test(url) || url.startsWith('//');
-}
+};
 
-export default function (options = {}) {
-  return function (tree) {
+export default function(options = {}) {
+  return function(tree) {
     let idx = 0;
     const imports = {};
 
-    tree.match([ { tag: 'import' }, { tag: 'include' } ], (node) => {
+    tree.match([{ tag: 'import' }, { tag: 'include' }], (node) => {
       if (node.attrs && node.attrs.src) {
         // Remove <import>/<include> tag
         node.tag = false;
@@ -37,7 +37,7 @@ export default function (options = {}) {
     });
 
     // Add imports to result.messages
-    tree.messages.push(imports)
+    tree.messages.push(imports);
 
     return tree;
   };

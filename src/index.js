@@ -31,9 +31,7 @@ export default function loader(html, map, meta) {
   this._module.type = 'text/html';
 
   const template = options.template
-    ? typeof options.template === 'string'
-      ? options.template
-      : '_'
+    ? typeof options.template === 'string' ? options.template : '_'
     : false;
 
   const plugins = [];
@@ -65,14 +63,14 @@ export default function loader(html, map, meta) {
       // => import HTML__URL__${idx} from './file.png';
       if (urls) {
         urls = Object.keys(urls)
-          .map(url => `import ${url} from '${urls[url]}';`)
+          .map((url) => `import ${url} from '${urls[url]}';`)
           .join('\n');
       }
       // <import src="./file.html">
       // => import HTML__IMPORT__${idx} from './file.html';
       if (imports) {
         imports = Object.keys(imports)
-          .map(i => `import ${i} from '${imports[i]}';`)
+          .map((i) => `import ${i} from '${imports[i]}';`)
           .join('\n');
       }
 

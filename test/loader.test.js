@@ -1,13 +1,13 @@
 /* eslint-disable */
 import webpack from './helpers/compiler';
 
-describe("Loader", () => {
+describe('Loader', () => {
   test('Defaults', async () => {
     const config = {
       loader: {
         test: /\.html$/,
-        options: {}
-      }
+        options: {},
+      },
     };
 
     const stats = await webpack('fixture.js', config);

@@ -8,9 +8,9 @@ describe('Errors', () => {
       loader: {
         test: /\.html$/,
         options: {
-          minimize: true
-        }
-      }
+          minimize: true,
+        },
+      },
     };
 
     const stats = await webpack('error.js', config);
