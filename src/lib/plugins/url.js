@@ -8,17 +8,17 @@ const TEST_URL = /^\w+:\/\//;
 const MATCH_ATTRS = [
   { attrs: { src: true } },
   { attrs: { href: true } },
-  { attrs: { srcset: true } }
+  { attrs: { srcset: true } },
 ];
 
 // TODO(michael-ciniawsky)
 // add filter method for urls (e.g `options.url.filter`) (#158)
 const filter = (url, options) => {
   return TEST_URL.test(url) || url.startsWith('//');
-}
+};
 
-export default function (options = {}) {
-  return function (tree) {
+export default function(options = {}) {
+  return function(tree) {
     let idx = 0;
     const urls = {};
 

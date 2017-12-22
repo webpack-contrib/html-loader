@@ -16,14 +16,14 @@ const modules = (config) => {
       ? config.rules
       : config.loader
         ? [
-          {
-            test: config.loader.test || /\.txt$/,
-            use: {
-              loader: path.resolve(__dirname, '../../src'),
-              options: config.loader.options || {},
+            {
+              test: config.loader.test || /\.txt$/,
+              use: {
+                loader: path.resolve(__dirname, '../../src'),
+                options: config.loader.options || {},
+              },
             },
-          },
-        ]
+          ]
         : [],
   };
 };
@@ -39,14 +39,14 @@ const output = (config) => {
   return {
     path: path.resolve(
       __dirname,
-      `../outputs/${config.output ? config.output : ''}`,
+      `../outputs/${config.output ? config.output : ''}`
     ),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
   };
 };
 
-module.exports = function (fixture, config, options) {
+module.exports = function(fixture, config, options) {
   config = {
     devtool: config.devtool || 'sourcemap',
     context: path.resolve(__dirname, '..', 'fixtures'),
@@ -64,9 +64,11 @@ module.exports = function (fixture, config, options) {
 
   if (!options.output) compiler.outputFileSystem = new MemoryFS();
 
-  return new Promise((resolve, reject) => compiler.run((err, stats) => {
-    if (err) reject(err);
+  return new Promise((resolve, reject) =>
+    compiler.run((err, stats) => {
+      if (err) reject(err);
 
-    resolve(stats);
-  }));
+      resolve(stats);
+    })
+  );
 };

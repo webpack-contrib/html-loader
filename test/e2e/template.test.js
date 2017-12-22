@@ -12,15 +12,15 @@ describe('E2E', () => {
           use: [
             {
               loader: path.resolve('./src'),
-              options: { template: true }
-            }
-          ]
+              options: { template: true },
+            },
+          ],
         },
         {
           test: /\.png$/,
-          use: [ 'file-loader' ]
-        }
-      ]
+          use: ['file-loader'],
+        },
+      ],
     };
 
     const stats = await webpack('e2e/template.js', config);
@@ -28,11 +28,11 @@ describe('E2E', () => {
 
     const scripts = {
       main: assets['main.js'].source(),
-      runtime: assets['runtime.js'].source()
+      runtime: assets['runtime.js'].source(),
     };
 
-    const { window } = dom([ scripts.runtime, scripts.main ]);
+    const { window } = dom([scripts.runtime, scripts.main]);
 
     expect(window.document.body.innerHTML).toMatchSnapshot();
-  })
-})
+  });
+});

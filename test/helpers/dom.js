@@ -13,13 +13,13 @@ const html = (scripts) => `
   </body>
 </html>`;
 
-const virtualConsole = new VirtualConsole().sendTo(console)
+const virtualConsole = new VirtualConsole().sendTo(console);
 
-export default function (scripts) {
-  const dom = new JSDOM(
-    html(scripts),
-    { runScripts: "dangerously", virtualConsole }
-  );
+export default function(scripts) {
+  const dom = new JSDOM(html(scripts), {
+    runScripts: 'dangerously',
+    virtualConsole,
+  });
 
   return dom;
-};
+}

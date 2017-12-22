@@ -8,9 +8,9 @@ describe('Options', () => {
         loader: {
           test: /\.html$/,
           options: {
-            minimize: true
-          }
-        }
+            minimize: true,
+          },
+        },
       };
 
       const stats = await webpack('options/minimize/fixture.js', config);
