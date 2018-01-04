@@ -1,6 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Options import {Boolean} 1`] = `
+exports[`Options import {Boolean} - false 1`] = `
+"// HTML Imports
+
+
+// HTML Exports
+
+
+// HTML
+export default \`<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"utf-8\\">
+  <title>HTML Loader</title>
+</head>
+<body>
+  <!-- Ignore -->
+  <import src=\\"//file.html\\"></import>
+  <import src=\\"//cdn.com/file.html\\"></import>
+  <import src=\\"http://cdn.com/file.html\\"></import>
+  <import src=\\"https://cdn.com/file.html\\"></import>
+  <!-- Transform -->
+  <import src=\\"./1.html\\"></import>
+  <import src=\\"/2.html\\"></import>
+
+  <include src=\\"./1.html\\"></include>
+  <include src=\\"/2.html\\"></include>
+</body>
+</html>
+\`"
+`;
+
+exports[`Options import {Boolean} - true - default 1`] = `
 "// HTML Imports
 import HTML__IMPORT__0 from './1.html';
 import HTML__IMPORT__1 from '/2.html';
@@ -32,5 +63,71 @@ export default \`<!DOCTYPE html>
   \${HTML__IMPORT__3}
 </body>
 </html>
+\`"
+`;
+
+exports[`Options import {Function} 1`] = `
+"// HTML Imports
+import HTML__IMPORT__0 from './1.html';
+import HTML__IMPORT__1 from '/2.html';
+import HTML__IMPORT__2 from './1.html';
+import HTML__IMPORT__3 from '/2.html';
+
+
+// HTML Exports
+
+
+// HTML
+export default \`<!-- Ignore -->
+
+
+
+
+<!-- Transform -->
+\${HTML__IMPORT__0}
+\${HTML__IMPORT__1}
+<!-- Filter (Ignore) -->
+
+
+<!-- Transform -->
+\${HTML__IMPORT__2}
+\${HTML__IMPORT__3}
+<!-- Filter (Ignore) -->
+
+
+
+\`"
+`;
+
+exports[`Options import {RegExp} 1`] = `
+"// HTML Imports
+import HTML__IMPORT__0 from './1.html';
+import HTML__IMPORT__1 from '/2.html';
+import HTML__IMPORT__2 from './1.html';
+import HTML__IMPORT__3 from '/2.html';
+
+
+// HTML Exports
+
+
+// HTML
+export default \`<!-- Ignore -->
+
+
+
+
+<!-- Transform -->
+\${HTML__IMPORT__0}
+\${HTML__IMPORT__1}
+<!-- Filter (Ignore) -->
+
+
+<!-- Transform -->
+\${HTML__IMPORT__2}
+\${HTML__IMPORT__3}
+<!-- Filter (Ignore) -->
+
+
+
 \`"
 `;

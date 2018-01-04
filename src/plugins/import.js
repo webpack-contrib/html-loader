@@ -2,10 +2,25 @@
 // External URL (Protocol URL)
 const URL = /^\w+:\/\//;
 const TAGS = [ { tag: 'import' }, { tag: 'include' } ];
-// TODO(michael-ciniawsky)
-// add filter method for urls (e.g `options.import`) (#158)
-const filter = (url) => {
-  return URL.test(url) || url.startsWith('//');
+
+const filter = (url, options) => {
+  if (URL.test(url)) {
+    return true;
+  }
+
+  if (url.startsWith('//')) {
+    return true;
+  }
+
+  if (options.import instanceof RegExp) {
+    return options.import.test(url);
+  }
+
+  if (typeof options.import === 'function') {
+    return options.import(url);
+  }
+  
+  return false;
 };
 
 export default function (options = {}) {

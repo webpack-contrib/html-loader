@@ -5,7 +5,12 @@
       "type": "boolean"
     },
     "import": {
-      "type": "boolean"
+      "anyOf": [
+        { "type": "string" },
+        { "type": "boolean" },
+        { "instanceof": "RegExp" },
+        { "instanceof": "Function" }
+      ]
     },
     "template": {
       "type": [ "boolean", "string" ]
