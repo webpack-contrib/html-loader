@@ -116,6 +116,8 @@ module: {
 }
 ```
 
+See [html-minifier](https://github.com/kangax/html-minifier#options-quick-reference)'s documentation for more information on the available options.
+
 The enabled rules for minimizing by default are the following ones:
  - removeComments
  - removeCommentsFromCDATA
