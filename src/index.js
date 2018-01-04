@@ -39,7 +39,7 @@ export default function loader(html, map, meta) {
 
   // HTML URL Plugin
   if (options.url) {
-    plugins.push(urls());
+    plugins.push(urls(options));
   }
   
   // HTML IMPORT Plugin
@@ -49,7 +49,9 @@ export default function loader(html, map, meta) {
 
   // TODO(michael-ciniawsky)
   // <imports src=""./file.html"> aren't minified (options.template) (#160)
-  if (options.minimize) plugins.push(minifier());
+  if (options.minimize) {
+    plugins.push(minifier());
+  }
 
   // Reuse HTML AST (PostHTML AST)
   // (e.g posthtml-loader) to avoid HTML reparsing
