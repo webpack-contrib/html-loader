@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.4"></a>
+## [0.5.4](https://github.com/webpack-contrib/html-loader/compare/v0.5.1...v0.5.4) (2018-01-05)
+
+
+### Bug Fixes
+
+* ignore attribute if `mailto:` is present ([#145](https://github.com/webpack-contrib/html-loader/issues/145)) ([4b13d4c](https://github.com/webpack-contrib/html-loader/commit/4b13d4c))
+* **index:** escape double quotes correctly (`options.interpolate`) ([#154](https://github.com/webpack-contrib/html-loader/issues/154)) ([1ef5de4](https://github.com/webpack-contrib/html-loader/commit/1ef5de4))
+
+
+
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/webpack-contrib/html-loader/compare/v0.5.1...v0.5.3) (2018-01-05)
+
+
+### Bug Fixes
+
+* ignore attribute if `mailto:` is present ([#145](https://github.com/webpack-contrib/html-loader/issues/145)) ([4b13d4c](https://github.com/webpack-contrib/html-loader/commit/4b13d4c))
+* **index:** escape double quotes correctly (`options.interpolate`) ([#154](https://github.com/webpack-contrib/html-loader/issues/154)) ([1ef5de4](https://github.com/webpack-contrib/html-loader/commit/1ef5de4))
+
+
+
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/webpack-contrib/html-loader/compare/v0.5.1...v0.5.2) (2018-01-05)
+
+
+### Bug Fixes
+
+* ignore attribute if `mailto:` is present ([#145](https://github.com/webpack-contrib/html-loader/issues/145)) ([4b13d4c](https://github.com/webpack-contrib/html-loader/commit/4b13d4c))
+* **index:** escape double quotes correctly (`options.interpolate`) ([#154](https://github.com/webpack-contrib/html-loader/issues/154)) ([1ef5de4](https://github.com/webpack-contrib/html-loader/commit/1ef5de4))
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/webpack/html-loader/compare/v0.5.0...v0.5.1) (2017-08-08)
 

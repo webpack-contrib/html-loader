@@ -1,6 +1,6 @@
 {
   "name": "html-loader",
-  "version": "0.5.1",
+  "version": "0.5.4",
   "author": "Tobias Koppers @sokra",
   "description": "html loader module for webpack",
   "license": "MIT",
