@@ -1,13 +1,11 @@
-sudo: false
 language: node_js
-os:
-  - linux
+
 node_js:
   - node
   - "6"
   - "4"
 
-script: npm run travis
+script: npm run cover -- --report lcovonly
 
 after_success:
   - cat ./coverage/coverage.json | node_modules/codecov.io/bin/codecov.io.js
