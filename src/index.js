@@ -37,8 +37,16 @@ export default function loader(html, map, meta) {
 
   const plugins = [];
 
-  if (options.url) plugins.push(urls());
-  if (options.import) plugins.push(imports(options));
+  // HTML URL Plugin
+  if (options.url) {
+    plugins.push(urls());
+  }
+  
+  // HTML IMPORT Plugin
+  if (options.import) {
+    plugins.push(imports(options));
+  }
+
   // TODO(michael-ciniawsky)
   // <imports src=""./file.html"> aren't minified (options.template) (#160)
   if (options.minimize) plugins.push(minifier());
