@@ -5,9 +5,6 @@ exports[`Options minimize {Boolean} 1`] = `
 import HTML__URL__0 from './file.png';
 
 
-// HTML Exports
-
-
 // HTML
 export default \`<!DOCTYPE html><html lang=\\"en\\"><head><meta charset=\\"utf-8\\"><title>HTML Loader</title></head><body><div id=\\"app\\"></div><img src=\\"\${HTML__URL__0}\\"></body></html>\`"
 `;

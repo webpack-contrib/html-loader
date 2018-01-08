@@ -1,20 +1,31 @@
 /* eslint-disable */
 // External URL (Protocol URL)
 const URL = /^\w+:\/\//;
-// TODO(michael-ciniawsky)
-// extend with custom matchers
-// e.g <custom-element custom-src="">
-// (`options.url.filter`) (#159)
+// Attributes Matcher
 const ATTRS = [
   { attrs: { src: true } },
   { attrs: { href: true } },
   { attrs: { srcset: true } },
 ];
 
-// TODO(michael-ciniawsky)
-// add filter method for urls (e.g `options.url.filter`) (#158)
-const filter = (url) => {
-  return URL.test(url) || url.startsWith('//');
+const filter = (url, options) => {
+  if (URL.test(url)) {
+    return true;
+  }
+
+  if (url.startsWith('//')) {
+    return true;
+  }
+
+  if (options.url instanceof RegExp) {
+    return options.url.test(url);
+  }
+
+  if (typeof options.url === 'function') {
+    return options.url(url);
+  }
+  
+  return false;
 };
 
 export default function (options = {}) {
@@ -30,7 +41,7 @@ export default function (options = {}) {
         }
         
         // Ignore external && filtered urls
-        if (filter(node.attrs.src)) {
+        if (filter(node.attrs.src, options)) {
           return node;
         }
         
@@ -48,10 +59,11 @@ export default function (options = {}) {
 
         return node;
       }
+
       // <tag href="path/to/file.ext">
       if (node.attrs.href) {
         // Ignore external && filtered urls
-        if (filter(node.attrs.href)) {
+        if (filter(node.attrs.href, options)) {
           return node;
         }
 
@@ -72,7 +84,7 @@ export default function (options = {}) {
       // <tag srcset="path/to/file.ext">
       if (node.attrs.srcset) {
         // Ignore external && filtered urls
-        if (filter(node.attrs.srcset)) {
+        if (filter(node.attrs.srcset, options)) {
           return node;
         }
 

@@ -6,9 +6,6 @@ import HTML__URL__0 from './file.png';
 import HTML__IMPORT__0 from './file.html';
 
 
-// HTML Exports
-
-
 // HTML
 export default \`<!DOCTYPE html>
 <html lang=\\"en\\">

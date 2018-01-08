@@ -39,7 +39,7 @@ export default function loader(html, map, meta) {
 
   // HTML URL Plugin
   if (options.url) {
-    plugins.push(urls());
+    plugins.push(urls(options));
   }
   
   // HTML IMPORT Plugin
@@ -49,7 +49,9 @@ export default function loader(html, map, meta) {
 
   // TODO(michael-ciniawsky)
   // <imports src=""./file.html"> aren't minified (options.template) (#160)
-  if (options.minimize) plugins.push(minifier());
+  if (options.minimize) {
+    plugins.push(minifier());
+  }
 
   // Reuse HTML AST (PostHTML AST)
   // (e.g posthtml-loader) to avoid HTML reparsing
@@ -84,7 +86,7 @@ export default function loader(html, map, meta) {
           }
 
           return imports
-        }, '// HTML Imports\n')
+        }, '')
 
       const exports = messages
         .filter((msg) => msg.type === 'export' ? msg : false)
@@ -102,24 +104,25 @@ export default function loader(html, map, meta) {
           }
 
           return exports;
-        }, '// HTML Exports\n')
+        }, '')
       
       // TODO(michael-ciniawsky)
-      // replace with post5/core
-      // HACK
-      // Ensure to cleanup/reset messages
+      // replace posthtml with @post5/core
+      // HACK Ensure to cleanup/reset messages
       // during recursive resolving of imports
       messages.length = 0;
 
       html = options.template
-        ? `// HTML\nexport default function (${options.template}) { return \`${html}\`; }`
-        : `// HTML\nexport default \`${html}\``;
+        ? `function (${options.template}) { return \`${html}\`; }`
+        : `\`${html}\``;
 
       const result = [
-        `${imports}\n`,
-        `${exports}\n`,
-        html,
-      ].join('\n');
+        imports ? `// HTML Imports\n${imports}\n` : false,
+        exports ? `// HTML Exports\n${exports}\n` : false,
+        `// HTML\nexport default ${html}`,
+      ]
+        .filter(Boolean)
+        .join('\n');
 
       cb(null, result);
 

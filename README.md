@@ -69,12 +69,40 @@ If your application includes many HTML Components or certain HTML Components are
 
 ### `url`
 
+#### `{Boolean}`
+
 **webpack.config.js**
 ```js
 {
   loader: 'html-loader',
   options: {
-    url: // TODO add URL filter method (#158 && #159)
+    url: false
+  }
+}
+```
+
+#### `{RegExp}`
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    url: /filter/
+  }
+}
+```
+
+#### `{Function}`
+
+**webpack.config.js**
+```js
+{
+  loader: 'html-loader',
+  options: {
+    url (url) {
+      return /filter/.test(url)
+    }
   }
 }
 ```

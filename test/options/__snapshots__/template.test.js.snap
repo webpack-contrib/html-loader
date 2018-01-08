@@ -6,9 +6,6 @@ import HTML__URL__0 from './urls/file.png';
 import HTML__IMPORT__0 from './imports/import.html';
 
 
-// HTML Exports
-
-
 // HTML
 export default function (_) { return \`<!DOCTYPE html>
 <html lang=\\"en\\">
@@ -32,9 +29,6 @@ exports[`Options template {String} 1`] = `
 "// HTML Imports
 import HTML__URL__0 from './urls/file.png';
 import HTML__IMPORT__0 from './imports/import.html';
-
-
-// HTML Exports
 
 
 // HTML
