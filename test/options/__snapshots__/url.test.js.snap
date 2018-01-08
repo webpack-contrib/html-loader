@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Options url {Boolean} 1`] = `
-"// HTML URLs
+"// HTML Imports
 import HTML__URL__0 from './file.css';
 import HTML__URL__1 from '/file.css';
 import HTML__URL__2 from './file.png';
@@ -15,6 +15,10 @@ import HTML__URL__9 from './file.wav';
 import HTML__URL__10 from './file.ogg';
 import HTML__URL__11 from './file.en.vtt';
 import HTML__URL__12 from './file.sv.vtt';
+
+
+// HTML Exports
+
 
 // HTML
 export default \`<!DOCTYPE html>

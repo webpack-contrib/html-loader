@@ -1,17 +1,17 @@
 /* eslint-disable */
+import schema from './options.json';
 import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
 import posthtml from 'posthtml';
-import urls from './lib/plugins/url';
-import imports from './lib/plugins/import';
+import urls from './plugins/url';
+import imports from './plugins/import';
 import minifier from 'htmlnano';
 
-import schema from './options.json';
-import LoaderError from './lib/Error';
+import LoaderError from './Error';
 
 // Loader Defaults
-const defaults = {
+const DEFAULTS = {
   url: true,
   import: true,
   minimize: false,
@@ -20,71 +20,98 @@ const defaults = {
 
 export default function loader(html, map, meta) {
   // Loader Options
-  const options = Object.assign(defaults, getOptions(this));
+  const options = Object.assign(
+    {},
+    DEFAULTS, 
+    getOptions(this)
+  );
 
   validateOptions(schema, options, 'HTML Loader');
   // Make the loader async
   const cb = this.async();
   const file = this.resourcePath;
 
-  // HACK add Module.type
-  this._module.type = 'text/html';
-
-  const template = options.template
+  options.template = options.template
     ? typeof options.template === 'string' ? options.template : '_'
     : false;
 
   const plugins = [];
 
   if (options.url) plugins.push(urls());
-  if (options.import) plugins.push(imports({ template }));
+  if (options.import) plugins.push(imports(options));
   // TODO(michael-ciniawsky)
-  // <imports src=""./file.html"> aren't minified (#160)
+  // <imports src=""./file.html"> aren't minified (options.template) (#160)
   if (options.minimize) plugins.push(minifier());
 
-  // Reuse HTML AST (PostHTML AST) if available
+  // Reuse HTML AST (PostHTML AST)
   // (e.g posthtml-loader) to avoid HTML reparsing
-  if (meta && meta.ast && meta.ast.type === 'posthtml') {
-    html = meta.ast.root;
+  if (meta) { 
+    if (meta.ast && meta.ast.type === 'posthtml') {
+      const { ast } = meta.ast; 
+      
+      html = ast.root;
+    }
   }
 
   posthtml(plugins)
     .process(html, { from: file, to: file })
     .then(({ html, messages }) => {
-      let urls = messages[0];
-      let imports = messages[1];
+      if (meta && meta.messages) {
+        messages = messages.concat(meta.messages)
+      }
+    
+      const imports = messages
+        .filter((msg) => msg.type === 'import' ? msg : false)
+        .reduce((imports, msg) => {
+          try {
+            msg = typeof msg.import === 'function' 
+              ? msg.import() 
+              : msg.import  
 
-      // TODO(michael-ciniawsky) revisit
+            imports += msg;  
+          } catch (err) {
+            // TODO(michael-ciniawsky)
+            // revisit 
+            this.emitError(err)
+          }
+
+          return imports
+        }, '// HTML Imports\n')
+
+      const exports = messages
+        .filter((msg) => msg.type === 'export' ? msg : false)
+        .reduce((exports, msg) => { 
+          try { 
+            msg = typeof msg.export === 'function' 
+              ? msg.import() 
+              : msg.import     
+
+            exports += msg;
+          } catch (err) {
+            // TODO(michael-ciniawsky)
+            // revisit 
+            this.emitError(err)
+          }
+
+          return exports;
+        }, '// HTML Exports\n')
+      
+      // TODO(michael-ciniawsky)
+      // replace with post5/core
+      // HACK
       // Ensure to cleanup/reset messages
       // during recursive resolving of imports
       messages.length = 0;
 
-      // <img src="./file.png">
-      // => import HTML__URL__${idx} from './file.png';
-      if (urls) {
-        urls = Object.keys(urls)
-          .map((url) => `import ${url} from '${urls[url]}';`)
-          .join('\n');
-      }
-      // <import src="./file.html">
-      // => import HTML__IMPORT__${idx} from './file.html';
-      if (imports) {
-        imports = Object.keys(imports)
-          .map((i) => `import ${i} from '${imports[i]}';`)
-          .join('\n');
-      }
-
       html = options.template
-        ? `function (${template}) { return \`${html}\`; }`
-        : `\`${html}\``;
+        ? `// HTML\nexport default function (${options.template}) { return \`${html}\`; }`
+        : `// HTML\nexport default \`${html}\``;
 
       const result = [
-        urls ? `// HTML URLs\n${urls}\n` : false,
-        imports ? `// HTML Imports\n${imports}\n` : false,
-        `// HTML\nexport default ${html}`,
-      ]
-        .filter(Boolean)
-        .join('\n');
+        `${imports}\n`,
+        `${exports}\n`,
+        html,
+      ].join('\n');
 
       cb(null, result);
 
