@@ -156,7 +156,7 @@ module.exports = function(content) {
 			urlToRequest = loaderUtils.urlToRequest(data[match], root);
 		}
 		
-		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
+		return '" + require(' + JSON.stringify(urlToRequest) + ') + "';
 	}) + ";";
 
 }
