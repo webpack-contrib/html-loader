@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.5"></a>
+## [0.5.5](https://github.com/webpack-contrib/html-loader/compare/v0.5.4...v0.5.5) (2018-01-17)
+
+
+### Bug Fixes
+
+* **index:** don't prepend `./` to the URL on `interpolate=require` (`options.interpolate`) ([#165](https://github.com/webpack-contrib/html-loader/issues/165)) ([9515410](https://github.com/webpack-contrib/html-loader/commit/9515410))
+
+
+
 <a name="0.5.4"></a>
 ## [0.5.4](https://github.com/webpack-contrib/html-loader/compare/v0.5.1...v0.5.4) (2018-01-05)
 
