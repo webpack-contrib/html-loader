@@ -147,7 +147,16 @@ module.exports = function(content) {
 
  	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(data[match], root)) + ') + "';
+		
+		var urlToRequest;
+
+		if (config.interpolate === 'require') {
+			urlToRequest = data[match];
+		} else {
+			urlToRequest = loaderUtils.urlToRequest(data[match], root);
+		}
+		
+		return '" + require(' + JSON.stringify(urlToRequest) + ') + "';
 	}) + ";";
 
 }
