@@ -1,17 +1,15 @@
-/* eslint-disable */
 import schema from './options.json';
 import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
 import posthtml from 'posthtml';
-import urls from './plugins/url';
-import imports from './plugins/import';
+import { urls, imports } from '@posthtml/esm';
 import minifier from 'htmlnano';
 
 import LoaderError from './Error';
 
 // Loader Defaults
-const DEFAULTS = {
+const defaults = {
   url: true,
   import: true,
   minimize: false,
@@ -22,7 +20,7 @@ export default function loader(html, map, meta) {
   // Loader Options
   const options = Object.assign(
     {},
-    DEFAULTS, 
+    defaults, 
     getOptions(this)
   );
 
@@ -81,7 +79,7 @@ export default function loader(html, map, meta) {
             imports += msg;  
           } catch (err) {
             // TODO(michael-ciniawsky)
-            // revisit 
+            // revisit HTMLImportError
             this.emitError(err)
           }
 
@@ -99,7 +97,7 @@ export default function loader(html, map, meta) {
             exports += msg;
           } catch (err) {
             // TODO(michael-ciniawsky)
-            // revisit 
+            // revisit HTMLExportError
             this.emitError(err)
           }
 
@@ -107,9 +105,8 @@ export default function loader(html, map, meta) {
         }, '')
       
       // TODO(michael-ciniawsky)
-      // replace posthtml with @post5/core
-      // HACK Ensure to cleanup/reset messages
-      // during recursive resolving of imports
+      // HACK Ensure to cleanup/reset messages between files
+      // @see https://github.com/posthtml/posthtml/pull/250
       messages.length = 0;
 
       html = options.template
