@@ -1,6 +1,6 @@
 /* eslint-disable */
 import loader from '../src';
-import webpack from './helpers/compiler';
+import webpack from '@webpack-contrib/test-utils';
 
 describe('Errors', () => {
   test('Loader Error', async () => {
@@ -23,10 +23,19 @@ describe('Errors', () => {
     expect(err).toThrowErrorMatchingSnapshot();
   });
 
-  test('Validation Error', () => {
-    const err = () => loader.call({ query: { template: 1 } });
+  test('Validation Error', async () => {
+    const config = {
+      loader: {
+        test: /\.html$/,
+        options: {
+          template: 1,
+        },
+      },
+    };
 
-    expect(err).toThrow();
-    expect(err).toThrowErrorMatchingSnapshot();
+    const stats = await webpack('error.js', config);
+    const { errors } = stats.toJson()
+
+    errors.forEach((error) => expect(error).toMatchSnapshot());
   });
 });

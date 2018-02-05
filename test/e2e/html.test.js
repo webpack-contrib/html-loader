@@ -1,7 +1,6 @@
 /* eslint-disable */
 import path from 'path';
-import dom from '../helpers/dom';
-import webpack from '../helpers/compiler';
+import webpack, { dom } from '@webpack-contrib/test-utils';
 
 describe('E2E', () => {
   test('HTML', async () => {
@@ -28,7 +27,7 @@ describe('E2E', () => {
 
     const scripts = {
       main: assets['main.js'].source(),
-      runtime: assets['runtime.js'].source(),
+      runtime: assets['main-runtime.js'].source(),
     };
 
     const { window } = dom([scripts.runtime, scripts.main]);

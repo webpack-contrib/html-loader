@@ -14,10 +14,11 @@ export default \`<!DOCTYPE html>
   <title>HTML Loader</title>
 </head>
 <body>
-  <!-- HTML Content -->
   <div id=\\"app\\"></div>
+
   <!-- HTML Import -->
   \${HTML__IMPORT__0}
+
   <!-- HTML URL -->
   <img src=\\"\${HTML__URL__0}\\">
 </body>

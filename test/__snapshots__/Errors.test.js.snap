@@ -8,8 +8,10 @@ tree.forEach is not a function
 `;
 
 exports[`Errors Validation Error 1`] = `
-"HTML Loader Invalid Options
+"./fixture.html
+Module build failed: ValidationError: HTML Loader Invalid Options
 
 options.template should be boolean,string
-"
+
+ @ ./error.js 1:0-34 3:15-19"
 `;
