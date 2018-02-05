@@ -41,7 +41,7 @@ By default all assets (`<img src="./image.png">`) are transpiled to their own mo
 
 ### `Caching`
 
-If your application includes many HTML Components or certain HTML Components are of significant size, we highly recommend to use the [`cache-loader`](https://github.com/webpack-contrib/cache-loader) for persistent caching (faster rebuilds)
+If your application includes many HTML Components or certain HTML Components are of significant size, we highly recommend to use the [`cache-loader`](https://github.com/webpack-contrib/cache-loader) for persistent caching (faster initial builds)
 
 **webpack.config.js**
 ```js
@@ -68,6 +68,8 @@ If your application includes many HTML Components or certain HTML Components are
 |**[`minimize`](#minimize)**|`{Boolean}`|`false`|Enable/Disable HTML Minification|
 
 ### `url`
+
+It's possible to completely disable or filter certain URL's from resolving in case these assets shouldn't be handled by `webpack`. Protocol URL's like (`<img src="https://cnd.domain.com/image.png">`) are ignored by default
 
 #### `{Boolean}`
 
@@ -161,6 +163,8 @@ If your application includes many HTML Components or certain HTML Components are
 
 ### `template`
 
+When set to `true` the loader will export a template `{Function}` instead of a `{String}`. The `locals` param is configurable and defaults to `_`
+
 #### `{Boolean}`
 
 **file.html**
@@ -253,9 +257,10 @@ Set custom [options](https://github.com/posthtml/htmlnano#modules) for minificat
 
 **component.js**
 ```js
-import template from "./component.html";
+import template from './component.html';
 
 const component = document.createElement('div')
+
 component.innerHTML = template({ hello: 'Hello World!' })
 
 document.body.appendChild(component);
@@ -265,95 +270,56 @@ if (module.hot) {
   // Capture hot update
   module.hot.accept('./component.html', () => {
     // Replace old content with the hot loaded one
-    component.innerHTML = template({...locals})
+    component.innerHTML = template({ ...locals })
   })
 }
 ```
 
-### `Extract`
+### `npm Packages (Modules)`
 
-A very common scenario is exporting the HTML into their own `.html` file, to
-serve them directly instead of injecting with javascript. This can be achieved
-with a combination of following 3 loaders
+> :information_source: Any key matching with `resolve.mainFields` is valid and should work. `pkg.template` is just used as an example here.
 
-- [file-loader](https://github.com/webpack/file-loader)
-- [extract-loader](https://github.com/peerigon/extract-loader)
-- html-loader
-
-The `html-loader` will parse the URLs, require the images and everything you
-expect. The `extract-loader` will parse the javascript back into a proper HTML
-file, ensuring images are required and point to the proper path, and finally the `file-loader` will write the `.html` file for you
-
-**webpack.config.js**
-```js
+**package.json**
+```json
 {
-  test: /\.html$/,
-  use: [
-    {
-      loader: 'file-loader'
-      options: { name: '[path][name].[ext]'}
-    },
-    'extract-loader'
-    'html-loader'
-  ]
+  "name": "@package",
+  "version": "1.0.0",
+  "template": "path/to/component.html"
 }
-```
-
-### `CSS Modules`
-
-**file.css**
-```css
-.container {
-  color: red;
-}
-```
-
-**file.html**
-```html
-<div class=${ _.container }></div>
 ```
 
 **webpack.config.js**
 ```js
-[
-  {
-    test: /\.html$/
-    use: {
-      loader: 'html-loader'
-      options: {
-        template: true
-      }
-    }
-  },
-  {
-    test: /\.css$/
-    use: [
-      'style-loader',
-      'css-loader'
+const config = {
+  module: {
+    rules: [
       {
-        loader: 'postcss-loader',
-        options: {
-          ident: 'postcss',
-          plugins () {
-            return [
-              require('postcss-modules')()
-            ]
-          }
+        test: /\.html$/,
+        use: [ 'html-loader' ],
+        resolve: {
+          mainFields: [ 'template' ]
         }
       }
     ]
   }
-]
+}
+
+module.exports = config
+```
+
+**component.html**
+```html
+<import src="@package"></import>
+<div>...<div>
 ```
 
 **component.js**
 ```js
-import * as styles from './file.css'
-import template from './file.html'
+import html from './file.html'
 
-const html = template({ ...styles })
+const el = document.createElement('div')
 
-document.body.innerHTML = html
+el.innerHTML = html
 ```
 
 <h2 align="center">Maintainers</h2>
