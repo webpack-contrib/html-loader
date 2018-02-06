@@ -1,3 +1,9 @@
+/* eslint-disable
+  import/order,
+  import/first,
+  no-shadow,
+  no-param-reassign
+*/
 import schema from './options.json';
 import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
@@ -18,11 +24,7 @@ const defaults = {
 
 export default function loader(html, map, meta) {
   // Loader Options
-  const options = Object.assign(
-    {},
-    defaults, 
-    getOptions(this)
-  );
+  const options = Object.assign({}, defaults, getOptions(this));
 
   validateOptions(schema, options, 'HTML Loader');
   // Make the loader async
@@ -39,7 +41,7 @@ export default function loader(html, map, meta) {
   if (options.url) {
     plugins.push(urls(options));
   }
-  
+
   // HTML IMPORT Plugin
   if (options.import) {
     plugins.push(imports(options));
@@ -53,10 +55,10 @@ export default function loader(html, map, meta) {
 
   // Reuse HTML AST (PostHTML AST)
   // (e.g posthtml-loader) to avoid HTML reparsing
-  if (meta) { 
+  if (meta) {
     if (meta.ast && meta.ast.type === 'posthtml') {
-      const { ast } = meta.ast; 
-      
+      const { ast } = meta.ast;
+
       html = ast.root;
     }
   }
@@ -65,45 +67,41 @@ export default function loader(html, map, meta) {
     .process(html, { from: file, to: file })
     .then(({ html, messages }) => {
       if (meta && meta.messages) {
-        messages = messages.concat(meta.messages)
+        messages = messages.concat(meta.messages);
       }
-    
+
       const imports = messages
-        .filter((msg) => msg.type === 'import' ? msg : false)
+        .filter((msg) => (msg.type === 'import' ? msg : false))
         .reduce((imports, msg) => {
           try {
-            msg = typeof msg.import === 'function' 
-              ? msg.import() 
-              : msg.import  
+            msg = typeof msg.import === 'function' ? msg.import() : msg.import;
 
-            imports += msg;  
+            imports += msg;
           } catch (err) {
             // TODO(michael-ciniawsky)
             // revisit HTMLImportError
-            this.emitError(err)
+            this.emitError(err);
           }
 
-          return imports
-        }, '')
+          return imports;
+        }, '');
 
       const exports = messages
-        .filter((msg) => msg.type === 'export' ? msg : false)
-        .reduce((exports, msg) => { 
-          try { 
-            msg = typeof msg.export === 'function' 
-              ? msg.import() 
-              : msg.import     
+        .filter((msg) => (msg.type === 'export' ? msg : false))
+        .reduce((exports, msg) => {
+          try {
+            msg = typeof msg.export === 'function' ? msg.import() : msg.import;
 
             exports += msg;
           } catch (err) {
             // TODO(michael-ciniawsky)
             // revisit HTMLExportError
-            this.emitError(err)
+            this.emitError(err);
           }
 
           return exports;
-        }, '')
-      
+        }, '');
+
       // TODO(michael-ciniawsky)
       // HACK Ensure to cleanup/reset messages between files
       // @see https://github.com/posthtml/posthtml/pull/250
