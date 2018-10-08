@@ -15,6 +15,13 @@ describe("loader", function() {
 			'module.exports = "Text <script src=\\"" + require("./script.js") + "\\"><img src=\\"image.png\\">";'
 		);
 	});
+	it("should accept attrs for elements with number", function() {
+		loader.call({
+			query: "?attrs=ga2-img:src"
+		}, 'Text <ga2-img src="image.png"></ga2-img>').should.be.eql(
+			'module.exports = "Text <ga2-img src=\\"" + require("./image.png") + "\\"></ga2-img>";'
+		);
+	});
 	it("should accept attrs from query (space separated)", function() {
 		loader.call({
 			query: "?attrs=script:src img:src"
