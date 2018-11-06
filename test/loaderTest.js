@@ -179,6 +179,13 @@ describe("loader", function() {
 			'module.exports = "<script>{\\\"json\\\": \\\"with \\\\\\\"quotes\\\\\\\" in value\\\"}</script>";'
 		);
 	})
+	it("should allow to interpolate templates that contain backticks", function() {
+		loader.call({
+			query: "?interpolate"
+		}, '<p>Something about the ` character</p>').should.be.eql(
+			'module.exports = "<p>Something about the ` character</p>";'
+		);
+	})
 	it("should enable interpolations when using interpolate=require flag and only require function to be translate", function() {
 		loader.call({
 			query: "?interpolate=require"

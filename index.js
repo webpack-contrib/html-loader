@@ -132,6 +132,7 @@ module.exports = function(content) {
 		// Double escape quotes so that they are not unescaped completely in the template string
 		content = content.replace(/\\"/g, "\\\\\"");
 		content = content.replace(/\\'/g, "\\\\\'");
+		content = content.replace(/`/g, "\\`");
 		content = compile('`' + content + '`').code;
 	} else {
 		content = JSON.stringify(content);
@@ -147,7 +148,7 @@ module.exports = function(content) {
 
  	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		
+
 		var urlToRequest;
 
 		if (config.interpolate === 'require') {
@@ -155,7 +156,7 @@ module.exports = function(content) {
 		} else {
 			urlToRequest = loaderUtils.urlToRequest(data[match], root);
 		}
-		
+
 		return '" + require(' + JSON.stringify(urlToRequest) + ') + "';
 	}) + ";";
 
