@@ -220,4 +220,9 @@ describe("loader", function() {
 			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2x, " + require("./image@3x.png") + " 3x, " + require("./image.png") + "\\"> Text";'
 		);
 	});
+	it("should handle attributes with space and comma separated values without spaces after comma", function() {
+		loader.call({}, 'Text <img srcset="image.png 1x,image@2x.png 2x,image@3x.png 3x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x," + require("./image@2x.png") + " 2x," + require("./image@3x.png") + " 3x\\"> Text";'
+		);
+	});
 });
