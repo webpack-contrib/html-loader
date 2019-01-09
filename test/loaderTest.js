@@ -226,8 +226,13 @@ describe("loader", function() {
 		);
 	});
 	it("should handle attributes with space and comma separated values with float pointing value", function() {
-		loader.call({}, 'Text <img srcset="image@2x.png 2.5x,image@3x.png 3.5x"> Text').should.be.eql(
-			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2.5x," + require("./image@3x.png") + " 3.5x\\"> Text";'
+		loader.call({}, 'Text <img srcset="image@2x.png 2.5x ,image@3x.png 3.5x  "> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2.5x ," + require("./image@3x.png") + " 3.5x  \\"> Text";'
+		);
+	});
+	it("should handle attributes with space and comma separated values with float pointing value", function() {
+		loader.call({}, 'Text <img srcset="image@2x.png 2.5x ,~bootstrap-img 3.5x  "> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2.5x ," + require("bootstrap-img") + " 3.5x  \\"> Text";'
 		);
 	});
 });
