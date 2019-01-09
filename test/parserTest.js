@@ -5,10 +5,10 @@ var attrParse = require("../lib/attributesParser");
 function test(name, html, result) {
 	it("should parse " + name, function() {
 		attrParse(html, function(tag, attr) {
-			if(tag === "img" && attr === "src") return true;
-			if(tag === "link" && attr === "href") return true;
-			if(tag === "div" && attr === "data-videomp4") return true;
-			if(tag === "use" && attr === "xlink:href") return true;
+			if (tag === "img" && attr === "src") return true;
+			if (tag === "link" && attr === "href") return true;
+			if (tag === "div" && attr === "data-videomp4") return true;
+			if (tag === "use" && attr === "xlink:href") return true;
 			return false;
 		}).map(function(match) {
 			return match.value
@@ -45,5 +45,26 @@ describe("locations", function() {
 			length: 9,
 			value: "image.png"
 		}]);
+	});
+	it("should report correct locations for attributes with space and comma separated values", function() {
+		attrParse('<img srcset="img/image.png, img/image@2x.png 2x, img/image@3x.png 3x">', function() {
+			return true
+		}).should.be.eql([
+			{
+				start: 13,
+				length: 13,
+				value: "img/image.png"
+			},
+			{
+				start: 28,
+				length: 16,
+				value: "img/image@2x.png"
+			},
+			{
+				start: 49,
+				length: 16,
+				value: "img/image@3x.png"
+			},
+		]);
 	});
 });

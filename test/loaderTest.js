@@ -200,4 +200,24 @@ describe("loader", function() {
 			'export default "<p>Hello world!</p>";'
 		);
 	});
+	it("should handle attributes with space and comma separated values", function() {
+		loader.call({}, 'Text <img srcset="image.png 1x, image@2x.png 2x, image@3x.png 3x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + " 1x, " + require("./image@2x.png") + " 2x, " + require("./image@3x.png") + " 3x\\"> Text";'
+		);
+	});
+	it("should handle attributes with space and comma separated values without width or pixel density descriptor for first value", function() {
+		loader.call({}, 'Text <img srcset="image.png, image@2x.png 2x, image@3x.png 3x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image.png") + ", " + require("./image@2x.png") + " 2x, " + require("./image@3x.png") + " 3x\\"> Text";'
+		);
+	});
+	it("should handle attributes with space and comma separated values without width or pixel density descriptor for middle value", function() {
+		loader.call({}, 'Text <img srcset="image@2x.png 2x, image.png, image@3x.png 3x"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2x, " + require("./image.png") + ", " + require("./image@3x.png") + " 3x\\"> Text";'
+		);
+	});
+	it("should handle attributes with space and comma separated values without width or pixel density descriptor for last value", function() {
+		loader.call({}, 'Text <img srcset="image@2x.png 2x, image@3x.png 3x, image.png"> Text').should.be.eql(
+			'module.exports = "Text <img srcset=\\"" + require("./image@2x.png") + " 2x, " + require("./image@3x.png") + " 3x, " + require("./image.png") + "\\"> Text";'
+		);
+	});
 });
