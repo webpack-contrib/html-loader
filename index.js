@@ -52,9 +52,7 @@ module.exports = function(content) {
 	var data = {};
 	content = [content];
 	function processOther(link) {
-		try {
-			config.processOther && config.processOther(link.value);
-		} catch(e) {}
+		config.processOther && config.processOther(link.value);
 	}
 	links.forEach(function(link) {
 		if(!loaderUtils.isUrlRequest(link.value, root)) return processOther(link);
