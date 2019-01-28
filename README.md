@@ -83,7 +83,7 @@ require("html-loader?attrs=img:data-src!./file.html");
 require("html-loader?attrs=img:src img:data-src!./file.html");
 require("html-loader?attrs[]=img:src&attrs[]=img:data-src!./file.html");
 
-// => '<img  src="http://cdn.example.com/49eba9f/a992ca.png"        
+// => '<img  src="http://cdn.example.com/49eba9f/a992ca.png"
 //           data-src="data:image/png;base64,..." >'
 ```
 
@@ -253,6 +253,41 @@ module.exports = {
   },
   otherHtmlLoaderConfig: {
     ...
+  }
+};
+```
+
+### Processing non-webpack Resources
+
+The html-loader doesn't process resources that are external or `mailto:` or other unable to be handled by webapck. However, you can do what you like with these by adding a `processOther` function to the loader's options. For example, say you want to be warned about any external URLs that don't exist, you could use the following:
+
+```js
+var rp = require('request-promise')
+
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        use: {
+          loader: "html-loader",
+          options: {
+            processOther: function(url) {
+              if (url.indexOf('mailto:') < 0) {
+                rp.head(url).catch(function() {
+                  console.warn("Using a URL in html that doesn't exist: " + url))
+                })
+              }
+            },
+          }
+      }
+    ]
+  },
+  htmlLoader: {
+    ignoreCustomFragments: [/\{\{.*?}}/],
+    root: path.resolve(__dirname, 'assets'),
+    attrs: ['img:src', 'link:href']
   }
 };
 ```

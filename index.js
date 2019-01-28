@@ -51,10 +51,15 @@ module.exports = function(content) {
 	links.reverse();
 	var data = {};
 	content = [content];
+	function processOther(link) {
+		try {
+			config.processOther && config.processOther(link.value);
+		} catch(e) {}
+	}
 	links.forEach(function(link) {
-		if(!loaderUtils.isUrlRequest(link.value, root)) return;
+		if(!loaderUtils.isUrlRequest(link.value, root)) return processOther(link);
 
-		if (link.value.indexOf('mailto:') > -1 ) return;
+		if (link.value.indexOf('mailto:') > -1 ) return processOther(link);
 
 		var uri = url.parse(link.value);
 		if (uri.hash !== null && uri.hash !== undefined) {
@@ -147,7 +152,7 @@ module.exports = function(content) {
 
  	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
 		if(!data[match]) return match;
-		
+
 		var urlToRequest;
 
 		if (config.interpolate === 'require') {
@@ -155,7 +160,7 @@ module.exports = function(content) {
 		} else {
 			urlToRequest = loaderUtils.urlToRequest(data[match], root);
 		}
-		
+
 		return '" + require(' + JSON.stringify(urlToRequest) + ') + "';
 	}) + ";";
 
