@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@posthtml/esm": "^1.0.0",
-    "htmlnano": "^0.1.6",
+    "htmlnano": "^0.2.3",
     "loader-utils": "^1.1.0",
     "posthtml": "^0.11.2",
     "schema-utils": "^0.4.3"

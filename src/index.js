@@ -50,7 +50,7 @@ export default function loader(html, map, meta) {
   // TODO(michael-ciniawsky)
   // <imports src=""./file.html"> aren't minified (options.template) (#160)
   if (options.minimize) {
-    plugins.push(minifier());
+    plugins.push(minifier({ collapseWhitespace: 'all' }));
   }
 
   // Reuse HTML AST (PostHTML AST)
