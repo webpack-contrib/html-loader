@@ -1,34 +1,35 @@
-**Please check if the PR fulfills these requirements**
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been added / updated (for bug fixes / features)
+<!--
+  HOLY CRAP a Pull Request. We ❤️ those!
 
+  If you remove or skip this template, you'll make the 🐼 sad and the mighty god
+  of Github will appear and pile-drive the close button from a great height
+  while making animal noises.
 
-**What kind of change does this PR introduce?** (Bug fix, feature, docs update, ...)
-- [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, local variables)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Build related changes
-- [ ] CI related changes
-- [ ] Other... Please describe:
+  Please place an x (no spaces!) in all [ ] that apply
+-->
 
-**What is the current behavior?** (You can also link to an open issue here)
+This PR contains a:
 
+- [ ] **bugfix**
+- [ ] new **feature**
+- [ ] **code refactor**
+- [ ] **test update** <!-- if bug or feature is checked, this should be too -->
+- [ ] **typo fix**
+- [ ] **metadata update**
 
+### Motivation / Use-Case
 
-**What is the new behavior?**
+<!--
+  Please explain the motivation or use-case for your change.
+  What existing problem does the PR solve?
+  If this PR addresses an issue, please link to the issue.
+-->
 
+### Breaking Changes
 
+<!--
+  If this PR introduces a breaking change, please describe the impact and a
+  migration path for existing applications.
+-->
 
-**Does this PR introduce a breaking change?**
-- [ ] Yes
-- [ ] No
-
-If this PR contains a breaking change, please describe the following... 
-
-* Impact:
-* Migration path for existing applications: 
-* Github Issue(s) this is regarding:
-
-
-**Other information**:
+### Additional Info

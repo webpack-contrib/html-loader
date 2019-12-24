@@ -1,38 +1,86 @@
 {
   "name": "html-loader",
   "version": "0.5.5",
-  "author": "Tobias Koppers @sokra",
   "description": "html loader module for webpack",
   "license": "MIT",
-  "main": "index.js",
+  "repository": "ryanclark/html-loader",
+  "author": "Tobias Koppers @sokra",
+  "homepage": "https://github.com/ryanclark/html-loader",
+  "bugs": "https://github.com/ryanclark/html-loader/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/webpack"
+  },
+  "main": "dist/cjs.js",
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "scripts": {
+    "start": "npm run build -- -w",
+    "clean": "del-cli dist",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=production babel src -d dist --copy-files",
+    "commitlint": "commitlint --from=master",
+    "security": "npm audit",
+    "lint:prettier": "prettier \"{**/*,*}.{js,json,md,yml,css,ts}\" --list-different",
+    "lint:js": "eslint --cache .",
+    "lint": "npm-run-all -l -p \"lint:**\"",
+    "test:only": "cross-env NODE_ENV=test jest",
+    "test:watch": "npm run test:only -- --watch",
+    "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
+    "pretest": "npm run lint",
+    "test": "npm run test:coverage",
+    "prepare": "npm run build",
+    "release": "standard-version",
+    "defaults": "webpack-defaults"
+  },
   "files": [
     "lib"
   ],
-  "scripts": {
-    "lint": "eslint lib test",
-    "pretest": "npm run lint",
-    "test": "mocha --harmony --full-trace --check-leaks",
-    "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha",
-    "release": "standard-version"
+  "peerDependencies": {
+    "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
     "es6-templates": "^0.2.3",
     "fastparse": "^1.1.1",
     "html-minifier": "^3.5.8",
     "loader-utils": "^1.1.0",
-    "object-assign": "^4.1.1"
+    "object-assign": "^4.1.1",
+    "schema-utils": "^2.6.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@webpack-contrib/defaults": "^6.3.0",
+    "@webpack-contrib/eslint-config-webpack": "^3.0.0",
+    "babel-jest": "^24.9.0",
     "beautify-lint": "^1.0.4",
     "codecov.io": "^0.1.6",
+    "commitlint-azure-pipelines-cli": "^1.0.3",
+    "cross-env": "^6.0.3",
+    "del": "^5.1.0",
+    "del-cli": "^3.0.0",
     "eslint": "^3.1.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.19.1",
+    "husky": "^3.1.0",
     "istanbul": "^0.4.5",
+    "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
     "js-beautify": "^1.6.3",
+    "lint-staged": "^9.5.0",
+    "memfs": "^3.0.1",
     "mocha": "^2.5.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
     "should": "^10.0.0",
-    "standard-version": "^4.3.0"
+    "standard-version": "^4.3.0",
+    "webpack": "^4.41.4"
   },
-  "homepage": "https://github.com/webpack-contrib/html-loader",
-  "repository": "https://github.com/webpack-contrib/html-loader.git",
-  "bugs": "https://github.com/webpack-contrib/html-loader/issues"
+  "keywords": [
+    "webpack"
+  ]
 }
