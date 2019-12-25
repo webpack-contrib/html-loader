@@ -18,7 +18,6 @@ const parser = new Parser({
     '<!--.*?-->': true,
     '<![CDATA[.*?]]>': true,
     '<[!\\?].*?>': true,
-    // eslint-disable-next-line no-useless-escape
     '</[^>]+>': true,
     '<([a-zA-Z\\-:]+)\\s*': function matchTag(match, tagName) {
       this.currentTag = tagName;
