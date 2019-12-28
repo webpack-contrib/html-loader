@@ -148,9 +148,10 @@ module: {
         {
           loader: 'html-loader',
           options: {
-            minimize: true,
-            removeComments: false,
-            collapseWhitespace: false,
+            minimize: {
+              removeComments: false,
+              collapseWhitespace: false,
+            },
           },
         },
       ],

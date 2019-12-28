@@ -5,7 +5,7 @@ export const IDENT_REGEX = /xxxHTMLLINKxxx[0-9.]+xxx/g;
 
 export const REQUIRE_REGEX = /\${require\([^)]*\)}/g;
 
-export const SETTINGS = [
+export const MINIMIZE_SETTINGS = [
   'removeComments',
   'removeCommentsFromCDATA',
   'removeCDATASectionsFromCDATA',

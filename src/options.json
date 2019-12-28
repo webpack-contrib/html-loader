@@ -5,43 +5,50 @@
       "anyOf": [{ "type": "array" }, { "type": "string" }]
     },
     "minimize": {
-      "type": "boolean"
-    },
-    "removeComments": {
-      "type": "boolean"
-    },
-    "removeCommentsFromCDATA": {
-      "type": "boolean"
-    },
-    "removeCDATASectionsFromCDATA": {
-      "type": "boolean"
-    },
-    "collapseWhitespace": {
-      "type": "boolean"
-    },
-    "conservativeCollapse": {
-      "type": "boolean"
-    },
-    "removeAttributeQuotes": {
-      "type": "boolean"
-    },
-    "useShortDoctype": {
-      "type": "boolean"
-    },
-    "keepClosingSlash": {
-      "type": "boolean"
-    },
-    "minifyJS": {
-      "type": "boolean"
-    },
-    "minifyCSS": {
-      "type": "boolean"
-    },
-    "removeScriptTypeAttributes": {
-      "type": "boolean"
-    },
-    "removeStyleTypeAttributes": {
-      "type": "boolean"
+      "anyOf": [
+        { "type": "boolean" },
+        {
+          "type": "object",
+          "items": {
+            "removeComments": {
+              "type": "boolean"
+            },
+            "removeCommentsFromCDATA": {
+              "type": "boolean"
+            },
+            "removeCDATASectionsFromCDATA": {
+              "type": "boolean"
+            },
+            "collapseWhitespace": {
+              "type": "boolean"
+            },
+            "conservativeCollapse": {
+              "type": "boolean"
+            },
+            "removeAttributeQuotes": {
+              "type": "boolean"
+            },
+            "useShortDoctype": {
+              "type": "boolean"
+            },
+            "keepClosingSlash": {
+              "type": "boolean"
+            },
+            "minifyJS": {
+              "type": "boolean"
+            },
+            "minifyCSS": {
+              "type": "boolean"
+            },
+            "removeScriptTypeAttributes": {
+              "type": "boolean"
+            },
+            "removeStyleTypeAttributes": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
     },
     "root": {
       "type": "string"

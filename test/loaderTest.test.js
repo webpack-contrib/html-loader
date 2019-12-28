@@ -87,7 +87,7 @@ describe('loader', () => {
   it('should minimize', () => {
     const result = loader.call(
       {
-        minimize: true,
+        query: '?minimize',
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />'
     );
@@ -100,7 +100,7 @@ describe('loader', () => {
   it('should not remove attributes by default', () => {
     const result = loader.call(
       {
-        minimize: true,
+        query: '?minimize',
       },
       '<input type="text" />'
     );
@@ -112,8 +112,11 @@ describe('loader', () => {
   it('should preserve comments', () => {
     const result = loader.call(
       {
-        minimize: true,
-        query: '?-removeComments',
+        query: {
+          minimize: {
+            removeComments: false,
+          },
+        },
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />'
     );
@@ -137,9 +140,10 @@ describe('loader', () => {
     const result = loader.call(
       {
         query: {
-          minimize: true,
-          removeComments: false,
-          collapseWhitespace: false,
+          minimize: {
+            removeComments: false,
+            collapseWhitespace: false,
+          },
         },
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />'
@@ -154,9 +158,10 @@ describe('loader', () => {
     const result = loader.call(
       {
         query: {
-          minimize: true,
-          removeComments: false,
-          collapseWhitespace: false,
+          minimize: {
+            removeComments: false,
+            collapseWhitespace: false,
+          },
         },
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />'
@@ -170,8 +175,11 @@ describe('loader', () => {
   it('should treat attributes as case sensitive', () => {
     const result = loader.call(
       {
-        minimize: true,
-        query: '?caseSensitive',
+        query: {
+          minimize: {
+            caseSensitive: true,
+          },
+        },
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />'
     );

@@ -9,8 +9,8 @@ import validateOptions from 'schema-utils';
 import {
   GET_URL_CODE,
   IDENT_REGEX,
+  MINIMIZE_SETTINGS,
   REQUIRE_REGEX,
-  SETTINGS,
 } from './constants';
 import {
   convertMapToObject,
@@ -101,12 +101,10 @@ export default function htmlLoader(source) {
     }
   }
 
-  if (
-    typeof options.minimize === 'boolean' ? options.minimize : this.minimize
-  ) {
-    const minimizeOptions = new Map(Object.entries(options));
+  if (options.minimize) {
+    const minimizeOptions = new Map(Object.entries(options.minimize));
 
-    for (const setting of SETTINGS) {
+    for (const setting of MINIMIZE_SETTINGS) {
       if (!minimizeOptions.has(setting)) {
         minimizeOptions.set(setting, true);
       }
