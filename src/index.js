@@ -16,11 +16,10 @@ import {
   convertMapToObject,
   getAttributes,
   getExportsString,
+  getLinks,
   getUniqueIdent,
   replaceLinkWithIdent,
 } from './utils';
-
-import parseAttributes from './parseAttributes';
 
 import schema from './options.json';
 
@@ -37,18 +36,7 @@ export default function htmlLoader(source) {
   let content = source.toString();
 
   const attributes = getAttributes(options);
-
-  const links = parseAttributes(content, (tag, attr) => {
-    const res = attributes.find((a) => {
-      if (a.charAt(0) === ':') {
-        return attr === a.slice(1);
-      }
-
-      return `${tag}:${attr}` === a;
-    });
-
-    return Boolean(res);
-  });
+  const links = getLinks(content, attributes);
 
   const data = new Map();
 

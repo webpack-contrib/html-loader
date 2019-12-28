@@ -1,3 +1,5 @@
+import parseAttributes from './parseAttributes';
+
 function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
@@ -39,6 +41,20 @@ export function getExportsString(options) {
   }
 
   return 'module.exports = ';
+}
+
+export function getLinks(content, attributes) {
+  return parseAttributes(content, (tag, attr) => {
+    const res = attributes.find((a) => {
+      if (a.charAt(0) === ':') {
+        return attr === a.slice(1);
+      }
+
+      return `${tag}:${attr}` === a;
+    });
+
+    return Boolean(res);
+  });
 }
 
 export function getUniqueIdent(data) {
