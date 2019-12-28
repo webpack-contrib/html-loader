@@ -220,8 +220,7 @@ require('html-loader?interpolate=require!./file.ftl');
 There are different export formats available:
 
 - `module.exports` (default, cjs format). "Hello world" becomes `module.exports = "Hello world";`
-- `exports.default` (when `exportAsDefault` param is set, es6to5 format). "Hello world" becomes `exports.default = "Hello world";`
-- `export default` (when `exportAsEs6Default` param is set, es6 format). "Hello world" becomes `export default "Hello world";`
+- `export default` (when `esModule` param is set). "Hello world" becomes `export default "Hello world";`
 
 ### Export into HTML files
 

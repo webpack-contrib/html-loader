@@ -34,11 +34,7 @@ export function getAttributes(options) {
 }
 
 export function getExportsString(options) {
-  if (options.exportAsDefault) {
-    return 'exports.default = ';
-  }
-
-  if (options.exportAsEs6Default) {
+  if (options.esModule) {
     return 'export default ';
   }
 

@@ -49,10 +49,7 @@
     "interpolate": {
       "anyOf": [{ "type": "boolean" }, { "type": "string" }]
     },
-    "exportAsDefault": {
-      "type": "boolean"
-    },
-    "exportAsEs6Default": {
+    "esModule": {
       "type": "boolean"
     },
     "ignoreCustomFragments": {

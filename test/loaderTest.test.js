@@ -259,22 +259,10 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "<a href=\\"\${list.href}\\"><img src=\\"" + __url__(require("./test.jpg")) + "\\" /></a>";`
     );
   });
-  it('should export as default export for es6to5 transpilation', () => {
-    const result = loader.call(
-      {
-        query: '?exportAsDefault',
-      },
-      '<p>Hello world!</p>'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}exports.default = "<p>Hello world!</p>";`
-    );
-  });
   it('should export as es6 default export', () => {
     const result = loader.call(
       {
-        query: '?exportAsEs6Default',
+        query: '?esModule',
       },
       '<p>Hello world!</p>'
     );
