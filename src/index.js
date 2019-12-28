@@ -26,22 +26,8 @@ import schema from './options.json';
 
 export const raw = true;
 
-function getOptionsFromContext(context) {
-  if (context.options && context.options.htmlLoader) {
-    return context.options.htmlLoader;
-  }
-
-  const options = getOptions(context) || {};
-
-  if (options.config && context.options && context.options[options.config]) {
-    return context.options[options.config];
-  }
-
-  return options;
-}
-
 export default function htmlLoader(source) {
-  const options = getOptionsFromContext(this);
+  const options = getOptions(this) || {};
 
   validateOptions(schema, options, {
     name: 'HTML Loader',

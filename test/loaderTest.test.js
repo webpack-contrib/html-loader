@@ -136,12 +136,10 @@ describe('loader', () => {
   it('should preserve comments and white spaces when minimizing (via webpack config property)', () => {
     const result = loader.call(
       {
-        minimize: true,
-        options: {
-          htmlLoader: {
-            removeComments: false,
-            collapseWhitespace: false,
-          },
+        query: {
+          minimize: true,
+          removeComments: false,
+          collapseWhitespace: false,
         },
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />'
@@ -155,12 +153,10 @@ describe('loader', () => {
   it('should preserve comments and white spaces when minizing (via webpack config property)', () => {
     const result = loader.call(
       {
-        options: {
-          htmlLoader: {
-            minimize: true,
-            removeComments: false,
-            collapseWhitespace: false,
-          },
+        query: {
+          minimize: true,
+          removeComments: false,
+          collapseWhitespace: false,
         },
       },
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />'
@@ -182,41 +178,6 @@ describe('loader', () => {
 
     expect(result).toBe(
       `${GET_URL_CODE}module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=" + __url__(require("./image.png")) + " />";`
-    );
-  });
-  it('should accept complex options via a webpack config property', () => {
-    const result = loader.call(
-      {
-        minimize: true,
-        options: {
-          htmlLoader: {
-            ignoreCustomFragments: [/\{\{.*?}}/],
-          },
-        },
-      },
-      '<h3>{{ count <= 1 ? "foo" : "bar" }}</h3>'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h3>{{ count <= 1 ? \\"foo\\" : \\"bar\\" }}</h3>";`
-    );
-  });
-  it('should allow the webpack config property name to be configured', () => {
-    const result = loader.call(
-      {
-        minimize: true,
-        options: {
-          htmlLoaderSuperSpecialConfig: {
-            ignoreCustomFragments: [/\{\{.*?}}/],
-          },
-        },
-        query: '?config=htmlLoaderSuperSpecialConfig',
-      },
-      '<h3>{{ count <= 1 ? "foo" : "bar" }}</h3>'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h3>{{ count <= 1 ? \\"foo\\" : \\"bar\\" }}</h3>";`
     );
   });
   it('should not translate root-relative urls (without root query)', () => {
