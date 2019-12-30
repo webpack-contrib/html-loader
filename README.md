@@ -61,34 +61,34 @@ With this configuration:
 }
 ```
 
-``` html
+```html
 <!-- file.html -->
-<img src="image.png" data-src="image2x.png" >
+<img src="image.png" data-src="image2x.png" />
 ```
 
 ```js
-require("html-loader!./file.html");
+require('html-loader!./file.html');
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.png"
 //         data-src="image2x.png">'
 ```
 
 ```js
-require("html-loader?attrs=img:data-src!./file.html");
+require('html-loader?attrs=img:data-src!./file.html');
 
 // => '<img src="image.png" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require("html-loader?attrs=img:src img:data-src!./file.html");
-require("html-loader?attrs[]=img:src&attrs[]=img:data-src!./file.html");
+require('html-loader?attrs=img:src img:data-src!./file.html');
+require('html-loader?attrs[]=img:src&attrs[]=img:data-src!./file.html');
 
-// => '<img  src="http://cdn.example.com/49eba9f/a992ca.png"        
+// => '<img  src="http://cdn.example.com/49eba9f/a992ca.png"
 //           data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require("html-loader?-attrs!./file.html");
+require('html-loader?-attrs!./file.html');
 
 // => '<img  src="image.jpg"  data-src="image2x.png" >'
 ```
@@ -97,56 +97,66 @@ minimized by running `webpack --optimize-minimize`
 
 ```html
 '<img src=http://cdn.example.com/49eba9f/a9f92ca.jpg
-      data-src=data:image/png;base64,...>'
+data-src=data:image/png;base64,...>'
 ```
 
 or specify the `minimize` property in the rule's options in your `webpack.conf.js`
 
 ```js
 module: {
-  rules: [{
-    test: /\.html$/,
-    use: [ {
-      loader: 'html-loader',
-      options: {
-        minimize: true
-      }
-    }],
-  }]
+  rules: [
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: 'html-loader',
+          options: {
+            minimize: true,
+          },
+        },
+      ],
+    },
+  ];
 }
 ```
 
 See [html-minifier](https://github.com/kangax/html-minifier#options-quick-reference)'s documentation for more information on the available options.
 
 The enabled rules for minimizing by default are the following ones:
- - removeComments
- - removeCommentsFromCDATA
- - removeCDATASectionsFromCDATA
- - collapseWhitespace
- - conservativeCollapse
- - removeAttributeQuotes
- - useShortDoctype
- - keepClosingSlash
- - minifyJS
- - minifyCSS
- - removeScriptTypeAttributes
- - removeStyleTypeAttributes
 
- The rules can be disabled using the following options in your `webpack.conf.js`
+- removeComments
+- removeCommentsFromCDATA
+- removeCDATASectionsFromCDATA
+- collapseWhitespace
+- conservativeCollapse
+- removeAttributeQuotes
+- useShortDoctype
+- keepClosingSlash
+- minifyJS
+- minifyCSS
+- removeScriptTypeAttributes
+- removeStyleTypeAttributes
+
+The rules can be disabled using the following options in your `webpack.conf.js`
 
 ```js
 module: {
-  rules: [{
-    test: /\.html$/,
-    use: [ {
-      loader: 'html-loader',
-      options: {
-        minimize: true,
-        removeComments: false,
-        collapseWhitespace: false
-      }
-    }],
-  }]
+  rules: [
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: 'html-loader',
+          options: {
+            minimize: {
+              removeComments: false,
+              collapseWhitespace: false,
+            },
+          },
+        },
+      ],
+    },
+  ];
 }
 ```
 
@@ -158,19 +168,19 @@ and then translated.
 
 With the same configuration as above:
 
-``` html
+```html
 <!-- file.html -->
-<img src="/image.jpg">
+<img src="/image.jpg" />
 ```
 
 ```js
-require("html-loader!./file.html");
+require('html-loader!./file.html');
 
 // => '<img  src="/image.jpg">'
 ```
 
 ```js
-require("html-loader?root=.!./file.html");
+require('html-loader?root=.!./file.html');
 
 // => '<img  src="http://cdn.example.com/49eba9f/a992ca.jpg">'
 ```
@@ -180,18 +190,19 @@ require("html-loader?root=.!./file.html");
 You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:
 
 ```js
-require("html-loader?interpolate!./file.html");
+require('html-loader?interpolate!./file.html');
 ```
 
 ```html
-<img src="${require(`./images/gallery.png`)}">
+<img src="${require(`./images/gallery.png`)}" />
 
 <div>${require('./components/gallery.html')}</div>
 ```
+
 And if you only want to use `require` in template and any other `${}` are not to be translated, you can set `interpolate` flag to `require`, like so:
 
 ```js
-require("html-loader?interpolate=require!./file.ftl");
+require('html-loader?interpolate=require!./file.ftl');
 ```
 
 ```html
@@ -209,53 +220,8 @@ require("html-loader?interpolate=require!./file.ftl");
 
 There are different export formats available:
 
-+ ```module.exports``` (default, cjs format). "Hello world" becomes ```module.exports = "Hello world";```
-+ ```exports.default``` (when ```exportAsDefault``` param is set, es6to5 format). "Hello world" becomes ```exports.default = "Hello world";```
-+ ```export default``` (when ```exportAsEs6Default``` param is set, es6 format). "Hello world" becomes ```export default "Hello world";```
-
-### Advanced options
-
-If you need to pass [more advanced options](https://github.com/webpack/html-loader/pull/46), especially those which cannot be stringified, you can also define an `htmlLoader`-property on your `webpack.config.js`:
-
-```js
-var path = require('path')
-
-module.exports = {
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: [ "html-loader" ]
-      }
-    ]
-  },
-  htmlLoader: {
-    ignoreCustomFragments: [/\{\{.*?}}/],
-    root: path.resolve(__dirname, 'assets'),
-    attrs: ['img:src', 'link:href']
-  }
-};
-```
-
-If you need to define two different loader configs, you can also change the config's property name via `html-loader?config=otherHtmlLoaderConfig`:
-
-```js
-module.exports = {
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: [ "html-loader?config=otherHtmlLoaderConfig" ]
-      }
-    ]
-  },
-  otherHtmlLoaderConfig: {
-    ...
-  }
-};
-```
+- `module.exports` (default, cjs format). "Hello world" becomes `module.exports = "Hello world";`
+- `export default` (when `esModule` param is set). "Hello world" becomes `export default "Hello world";`
 
 ### Export into HTML files
 
@@ -336,18 +302,13 @@ will write the _.html_ file for you. Example:
   </tbody>
 </table>
 
-
 [npm]: https://img.shields.io/npm/v/html-loader.svg
 [npm-url]: https://npmjs.com/package/html-loader
-
 [deps]: https://david-dm.org/webpack/html-loader.svg
 [deps-url]: https://david-dm.org/webpack/html-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
-
 [test]: http://img.shields.io/travis/webpack/html-loader.svg
 [test-url]: https://travis-ci.org/webpack/html-loader
-
 [cover]: https://codecov.io/gh/webpack/html-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack/html-loader

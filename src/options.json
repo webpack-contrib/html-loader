@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "properties": {
+    "attrs": {
+      "anyOf": [{ "type": "array" }, { "type": "string" }]
+    },
+    "minimize": {
+      "anyOf": [
+        { "type": "boolean" },
+        {
+          "type": "object",
+          "items": {
+            "removeComments": {
+              "type": "boolean"
+            },
+            "removeCommentsFromCDATA": {
+              "type": "boolean"
+            },
+            "removeCDATASectionsFromCDATA": {
+              "type": "boolean"
+            },
+            "collapseWhitespace": {
+              "type": "boolean"
+            },
+            "conservativeCollapse": {
+              "type": "boolean"
+            },
+            "removeAttributeQuotes": {
+              "type": "boolean"
+            },
+            "useShortDoctype": {
+              "type": "boolean"
+            },
+            "keepClosingSlash": {
+              "type": "boolean"
+            },
+            "minifyJS": {
+              "type": "boolean"
+            },
+            "minifyCSS": {
+              "type": "boolean"
+            },
+            "removeScriptTypeAttributes": {
+              "type": "boolean"
+            },
+            "removeStyleTypeAttributes": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "root": {
+      "type": "string"
+    },
+    "interpolate": {
+      "anyOf": [{ "type": "boolean" }, { "type": "string" }]
+    },
+    "esModule": {
+      "type": "boolean"
+    },
+    "ignoreCustomFragments": {
+      "type": "array",
+      "items": {
+        "instanceof": "RegExp"
+      }
+    },
+    "config": {
+      "type": "string"
+    },
+    "caseSensitive": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}
