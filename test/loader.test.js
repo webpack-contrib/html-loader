@@ -7,13 +7,14 @@ describe('loader', () => {
   it('should convert to requires', () => {
     const result = loader.call(
       {},
-      'Text <img src="image.png"><img src="~bootstrap-img"> Text'
+      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src="">'
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("./image.png")) + "\\"><img src=\\"" + __url__(require("bootstrap-img")) + "\\"> Text";`
+      `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("./image.png")) + "\\"><img src=\\"" + __url__(require("bootstrap-img")) + "\\"> Text <img src=\\\"\\\">";`
     );
   });
+
   it('should accept attrs from query', () => {
     const result = loader.call(
       {
