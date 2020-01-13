@@ -244,6 +244,51 @@ will write the _.html_ file for you. Example:
   use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
 }
 ```
+### Passing parameters to html-loader
+
+The loader `prehtml-loader` enables to pass parameters to `html-loader`, as well as building HTML templates:
+```html
+<!-- foo.html -->
+${scope.w1} ${scope.w2}!
+```
+```js
+import './foo.html?w1=Hello&w2=World'
+// => Hello World!
+```
+
+```js
+<!-- webpack.config.js -->
+var path = require('path');
+
+module.exports = {
+
+	module: {
+		rules: [{
+			issuer: {test: /\.js$/},
+			enforce: 'post',
+			test: /\.html$/,
+			use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader?interpolate']
+		}, {
+			issuer: {exclude: /\.js$/},
+			enforce: 'post',
+			test: /\.html$/,
+			use: ['html-loader?interpolate']
+		}, {
+		    test: /\.html$/,
+		    use: 'prehtml-loader'
+		},
+	]},
+	entry: './foo.js',
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'foo.bundle.js'
+	}
+};
+```
+
+See `prehtml-loader` documentation for more features and details:
+https://github.com/denis-migdal/prehtml-loader
+
 
 <h2 align="center">Maintainers</h2>
 
