@@ -43,6 +43,7 @@ export default function htmlLoader(source) {
   let offset = 0;
   for (const link of links) {
     if (
+      link.value &&
       isUrlRequest(link.value, options.root) &&
       !link.value.includes('mailto:')
     ) {
