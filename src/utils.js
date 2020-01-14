@@ -46,7 +46,7 @@ export function getExportsString(options) {
 export function getLinks(content, attributes) {
   return parseAttributes(content, (tag, attr) => {
     const res = attributes.find((a) => {
-      if (a.charAt(0) === ':') {
+      if (a.startsWith(':')) {
         return attr === a.slice(1);
       }
 
