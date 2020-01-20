@@ -2,6 +2,18 @@ import loader from '../src';
 import { GET_URL_CODE } from '../src/constants';
 
 describe("'attributes' option", () => {
+  it('should work by default', () => {
+    const result = loader.call(
+      { mode: 'development' },
+      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src="">'
+    );
+
+    expect(result).toBe(
+      // eslint-disable-next-line no-useless-escape
+      `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("./image.png")) + "\\"><img src=\\"" + __url__(require("bootstrap-img")) + "\\"> Text <img src=\\\"\\\">";`
+    );
+  });
+
   it('should work with a "string" notation', () => {
     const result = loader.call(
       {
@@ -97,6 +109,28 @@ describe("'attributes' option", () => {
 
     expect(result).toBe(
       `${GET_URL_CODE}module.exports = "Text <script src=\\"script.js\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
+    );
+  });
+
+  it('should ignore hash fragments in URLs', () => {
+    const result = loader.call(
+      { mode: 'development' },
+      '<img src="icons.svg#hash">'
+    );
+
+    expect(result).toBe(
+      `${GET_URL_CODE}module.exports = "<img src=\\"" + __url__(require("./icons.svg")) + "#hash\\">";`
+    );
+  });
+
+  it('should ignore some anchor by default in attributes', () => {
+    const result = loader.call(
+      { mode: 'development' },
+      '<a href="mailto:username@exampledomain.com"></a>'
+    );
+
+    expect(result).toBe(
+      `${GET_URL_CODE}module.exports = "<a href=\\"mailto:username@exampledomain.com\\"></a>";`
     );
   });
 });
