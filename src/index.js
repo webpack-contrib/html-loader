@@ -2,17 +2,18 @@ import { parse } from 'url';
 
 import { compile } from 'es6-templates';
 import { minify } from 'html-minifier-terser';
-import { getOptions, isUrlRequest, urlToRequest } from 'loader-utils';
+import { getOptions, isUrlRequest } from 'loader-utils';
 
 import validateOptions from 'schema-utils';
 
-import { GET_URL_CODE, IDENT_REGEX, REQUIRE_REGEX } from './constants';
+import { REQUIRE_REGEX } from './constants';
 import {
-  getExportsString,
   getLinks,
   getUniqueIdent,
   replaceLinkWithIdent,
   isProductionMode,
+  getImportCode,
+  getExportCode,
 } from './utils';
 
 import schema from './options.json';
@@ -30,7 +31,7 @@ export default function htmlLoader(source) {
   let content = source.toString();
 
   const links = getLinks(content, options.attributes);
-  const data = new Map();
+  const replacers = new Map();
 
   let offset = 0;
   for (const link of links) {
@@ -47,9 +48,9 @@ export default function htmlLoader(source) {
         link.length = link.value.length;
       }
 
-      const ident = getUniqueIdent(data);
+      const ident = getUniqueIdent(replacers);
 
-      data.set(ident, link.value);
+      replacers.set(ident, link.value);
 
       content = replaceLinkWithIdent(content, link, ident, offset);
 
@@ -74,9 +75,9 @@ export default function htmlLoader(source) {
     reqList.reverse();
 
     for (const link of reqList) {
-      const ident = getUniqueIdent(data);
+      const ident = getUniqueIdent(replacers);
 
-      data.set(ident, link.value.substring(11, link.length - 3));
+      replacers.set(ident, link.value.substring(11, link.length - 3));
 
       content = replaceLinkWithIdent(content, link, ident);
     }
@@ -117,21 +118,8 @@ export default function htmlLoader(source) {
     content = JSON.stringify(content);
   }
 
-  const exportsString = getExportsString(options);
+  const importCode = getImportCode(replacers);
+  const exportCode = getExportCode(content, replacers, options);
 
-  return `${GET_URL_CODE +
-    exportsString +
-    content.replace(IDENT_REGEX, (match) => {
-      if (!data.has(match)) {
-        return match;
-      }
-
-      let request = urlToRequest(data.get(match), options.root);
-
-      if (options.interpolate === 'require') {
-        request = data.get(match);
-      }
-
-      return `" + __url__(require(${JSON.stringify(request)})) + "`;
-    })};`;
+  return `${importCode}${exportCode};`;
 }

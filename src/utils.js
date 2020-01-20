@@ -1,4 +1,7 @@
+import { urlToRequest } from 'loader-utils';
+
 import parseAttributes from './parseAttributes';
+import { GET_URL_CODE, IDENT_REGEX } from './constants';
 
 function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
@@ -56,14 +59,6 @@ export function getUniqueIdent(data) {
   return ident;
 }
 
-export function getExportsString(options) {
-  if (options.esModule) {
-    return 'export default ';
-  }
-
-  return 'module.exports = ';
-}
-
 export function replaceLinkWithIdent(source, link, ident, offset = 0) {
   return (
     source.substr(0, link.start + offset) +
@@ -74,4 +69,36 @@ export function replaceLinkWithIdent(source, link, ident, offset = 0) {
 
 export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
+}
+
+export function getImportCode(replacers) {
+  if (replacers.size === 0) {
+    return '';
+  }
+
+  return GET_URL_CODE;
+}
+
+export function getExportCode(content, replacers, options) {
+  let newContent = content;
+
+  newContent = content.replace(IDENT_REGEX, (match) => {
+    if (!replacers.has(match)) {
+      return match;
+    }
+
+    let request = urlToRequest(replacers.get(match), options.root);
+
+    if (options.interpolate === 'require') {
+      request = replacers.get(match);
+    }
+
+    return `" + __url__(require(${JSON.stringify(request)})) + "`;
+  });
+
+  if (options.esModule) {
+    return `export default ${newContent}`;
+  }
+
+  return `module.exports = ${newContent}`;
 }

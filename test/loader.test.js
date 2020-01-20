@@ -1,5 +1,4 @@
 import loader from '../src';
-import { GET_URL_CODE } from '../src/constants';
 
 describe('loader', () => {
   it('should not make bad things with templates', () => {
@@ -9,7 +8,7 @@ describe('loader', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";`
+      'module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";'
     );
   });
 
@@ -20,7 +19,7 @@ describe('loader', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>";`
+      'module.exports = "<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>";'
     );
   });
 });

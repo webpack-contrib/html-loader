@@ -84,7 +84,7 @@ describe("'attributes' option", () => {
     );
   });
 
-  it('should work with a "boolean" notation', () => {
+  it('should not handle attributes with a "boolean" notation equals "false"', () => {
     const result = loader.call(
       {
         mode: 'development',
@@ -94,11 +94,11 @@ describe("'attributes' option", () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"script.js\\"><img src=\\"image.png\\">";`
+      'module.exports = "Text <script src=\\"script.js\\"><img src=\\"image.png\\">";'
     );
   });
 
-  it('should work with a "boolean" notation', () => {
+  it('should handle attributes with a "boolean" notation equals "true"', () => {
     const result = loader.call(
       {
         mode: 'development',
@@ -130,7 +130,7 @@ describe("'attributes' option", () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<a href=\\"mailto:username@exampledomain.com\\"></a>";`
+      'module.exports = "<a href=\\"mailto:username@exampledomain.com\\"></a>";'
     );
   });
 });
