@@ -5,16 +5,16 @@ function randomIdent() {
 }
 
 export function getAttributes(options) {
-  if (typeof options.attrs !== 'undefined') {
-    if (typeof options.attrs === 'string') {
-      return options.attrs.split(' ');
+  if (typeof options.attributes !== 'undefined') {
+    if (typeof options.attributes === 'string') {
+      return options.attributes.split(' ');
     }
 
-    if (Array.isArray(options.attrs)) {
-      return options.attrs;
+    if (Array.isArray(options.attributes)) {
+      return options.attributes;
     }
 
-    if (options.attrs === false) {
+    if (options.attributes === false) {
       return [];
     }
 
@@ -33,13 +33,13 @@ export function getExportsString(options) {
 }
 
 export function getLinks(content, attributes) {
-  return parseAttributes(content, (tag, attr) => {
+  return parseAttributes(content, (tag, attribute) => {
     const res = attributes.find((a) => {
       if (a.startsWith(':')) {
-        return attr === a.slice(1);
+        return attribute === a.slice(1);
       }
 
-      return `${tag}:${attr}` === a;
+      return `${tag}:${attribute}` === a;
     });
 
     return Boolean(res);

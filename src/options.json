@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "attrs": {
+    "attributes": {
       "anyOf": [{ "type": "array" }, { "type": "string" }]
     },
     "root": {
