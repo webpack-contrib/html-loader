@@ -2,7 +2,11 @@
   "type": "object",
   "properties": {
     "attributes": {
-      "anyOf": [{ "type": "array" }, { "type": "string" }]
+      "anyOf": [
+        { "type": "boolean" },
+        { "type": "array" },
+        { "type": "string" }
+      ]
     },
     "root": {
       "type": "string"

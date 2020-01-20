@@ -71,4 +71,32 @@ describe("'attributes' option", () => {
       `${GET_URL_CODE}module.exports = "Text <custom-element custom-src=\\"" + __url__(require("./image1.png")) + "\\"><custom-img custom-src=\\"" + __url__(require("./image2.png")) + "\\"/></custom-element>";`
     );
   });
+
+  it('should work with a "boolean" notation', () => {
+    const result = loader.call(
+      {
+        mode: 'development',
+        query: '?attributes=false',
+      },
+      'Text <script src="script.js"><img src="image.png">'
+    );
+
+    expect(result).toBe(
+      `${GET_URL_CODE}module.exports = "Text <script src=\\"script.js\\"><img src=\\"image.png\\">";`
+    );
+  });
+
+  it('should work with a "boolean" notation', () => {
+    const result = loader.call(
+      {
+        mode: 'development',
+        query: '?attributes=true',
+      },
+      'Text <script src="script.js"><img src="image.png">'
+    );
+
+    expect(result).toBe(
+      `${GET_URL_CODE}module.exports = "Text <script src=\\"script.js\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
+    );
+  });
 });

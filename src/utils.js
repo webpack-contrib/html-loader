@@ -4,37 +4,37 @@ function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
 
-export function getAttributes(options) {
-  if (typeof options.attributes !== 'undefined') {
-    if (typeof options.attributes === 'string') {
-      return options.attributes.split(' ');
+export function getTagsAndAttributes(attributes) {
+  const defaultAttributes = ['img:src'];
+
+  if (typeof attributes !== 'undefined') {
+    if (typeof attributes === 'string') {
+      return attributes.split(' ');
     }
 
-    if (Array.isArray(options.attributes)) {
-      return options.attributes;
+    if (Array.isArray(attributes)) {
+      return attributes;
     }
 
-    if (options.attributes === false) {
+    if (attributes === false) {
       return [];
+    }
+
+    if (attributes === true) {
+      return defaultAttributes;
     }
 
     throw new Error('Invalid value to options parameter attrs');
   }
 
-  return ['img:src'];
-}
-
-export function getExportsString(options) {
-  if (options.esModule) {
-    return 'export default ';
-  }
-
-  return 'module.exports = ';
+  return defaultAttributes;
 }
 
 export function getLinks(content, attributes) {
+  const tagsAndAttributes = getTagsAndAttributes(attributes);
+
   return parseAttributes(content, (tag, attribute) => {
-    const res = attributes.find((a) => {
+    const res = tagsAndAttributes.find((a) => {
       if (a.startsWith(':')) {
         return attribute === a.slice(1);
       }
@@ -54,6 +54,14 @@ export function getUniqueIdent(data) {
   }
 
   return ident;
+}
+
+export function getExportsString(options) {
+  if (options.esModule) {
+    return 'export default ';
+  }
+
+  return 'module.exports = ';
 }
 
 export function replaceLinkWithIdent(source, link, ident, offset = 0) {
