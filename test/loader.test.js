@@ -6,7 +6,7 @@ import { GET_URL_CODE } from '../src/constants';
 describe('loader', () => {
   it('should convert to requires', () => {
     const result = loader.call(
-      {},
+      { mode: 'development' },
       'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src="">'
     );
 
@@ -18,6 +18,7 @@ describe('loader', () => {
   it('should accept attrs from query', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?attrs=script:src',
       },
       'Text <script src="script.js"><img src="image.png">'
@@ -30,6 +31,7 @@ describe('loader', () => {
   it('should accept attrs from query (space separated)', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?attrs=script:src img:src',
       },
       'Text <script src="script.js"><img src="image.png">'
@@ -42,6 +44,7 @@ describe('loader', () => {
   it('should accept attrs from query (multiple)', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?attrs[]=script:src&attrs[]=img:src',
       },
       'Text <script src="script.js"><img src="image.png">'
@@ -54,6 +57,7 @@ describe('loader', () => {
   it('should accept :attribute (empty tag) from query', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?attrs[]=:custom-src',
       },
       'Text <custom-element custom-src="image1.png"><custom-img custom-src="image2.png"/></custom-element>'
@@ -66,6 +70,7 @@ describe('loader', () => {
   it('should accept :attribute (empty tag) from query and not collide with similar attributes', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?attrs[]=:custom-src',
       },
       'Text <custom-element custom-src="image1.png" custom-src-other="other.png"><custom-img custom-src="image2.png"/></custom-element>'
@@ -77,7 +82,7 @@ describe('loader', () => {
   });
   it('should not make bad things with templates', () => {
     const result = loader.call(
-      {},
+      { mode: 'development' },
       '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>'
     );
 
@@ -88,7 +93,7 @@ describe('loader', () => {
 
   it('should preserve escaped quotes', () => {
     const result = loader.call(
-      {},
+      { mode: 'development' },
       '<script>{"json": "with \\"quotes\\" in value"}</script>'
     );
 
@@ -98,7 +103,10 @@ describe('loader', () => {
   });
 
   it('should not translate root-relative urls (without root query)', () => {
-    const result = loader.call({}, 'Text <img src="/image.png">');
+    const result = loader.call(
+      { mode: 'development' },
+      'Text <img src="/image.png">'
+    );
 
     expect(result).toBe(
       `${GET_URL_CODE}module.exports = "Text <img src=\\"/image.png\\">";`
@@ -107,6 +115,7 @@ describe('loader', () => {
   it('should accept root from query', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?root=/test',
       },
       'Text <img src="/image.png">'
@@ -117,7 +126,10 @@ describe('loader', () => {
     );
   });
   it('should ignore hash fragments in URLs', () => {
-    const result = loader.call({}, '<img src="icons.svg#hash">');
+    const result = loader.call(
+      { mode: 'development' },
+      '<img src="icons.svg#hash">'
+    );
 
     expect(result).toBe(
       `${GET_URL_CODE}module.exports = "<img src=\\"" + __url__(require("./icons.svg")) + "#hash\\">";`
@@ -125,7 +137,7 @@ describe('loader', () => {
   });
   it("should ignore anchor with 'mailto:' in the href attribute", () => {
     const result = loader.call(
-      {},
+      { mode: 'development' },
       '<a href="mailto:username@exampledomain.com"></a>'
     );
 
@@ -133,16 +145,22 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "<a href=\\"mailto:username@exampledomain.com\\"></a>";`
     );
   });
+
   it('should ignore interpolations by default', () => {
-    const result = loader.call({}, '<img src="${"Hello " + (1+1)}">');
+    const result = loader.call(
+      { mode: 'development' },
+      '<img src="${"Hello " + (1+1)}">'
+    );
 
     expect(result).toBe(
       `${GET_URL_CODE}module.exports = "<img src=\\"\${\\"Hello \\" + (1+1)}\\">";`
     );
   });
+
   it('should enable interpolations when using interpolate flag', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?interpolate',
       },
       '<img src="${"Hello " + (1+1)}">'
@@ -155,6 +173,7 @@ describe('loader', () => {
   it('should not change handling of quotes when interpolation is enabled', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?interpolate',
       },
       '<script>{"json": "with \\"quotes\\" in value"}</script>'
@@ -167,6 +186,7 @@ describe('loader', () => {
   it('should enable interpolations when using interpolate=require flag and only require function be translate', () => {
     const result = loader.call(
       {
+        mode: 'development',
         query: '?interpolate=require',
       },
       '<a href="${list.href}"><img src="${require("./test.jpg")}" /></a>'

@@ -6,19 +6,14 @@ import { getOptions, isUrlRequest, urlToRequest } from 'loader-utils';
 
 import validateOptions from 'schema-utils';
 
+import { GET_URL_CODE, IDENT_REGEX, REQUIRE_REGEX } from './constants';
 import {
-  GET_URL_CODE,
-  IDENT_REGEX,
-  MINIMIZE_SETTINGS,
-  REQUIRE_REGEX,
-} from './constants';
-import {
-  convertMapToObject,
   getAttributes,
   getExportsString,
   getLinks,
   getUniqueIdent,
   replaceLinkWithIdent,
+  isProductionMode,
 } from './utils';
 
 import schema from './options.json';
@@ -90,16 +85,29 @@ export default function htmlLoader(source) {
     }
   }
 
-  if (options.minimize) {
-    const minimizeOptions = new Map(Object.entries(options.minimize));
+  const minimize =
+    typeof options.minimize === 'undefined'
+      ? isProductionMode(this)
+      : options.minimize;
 
-    for (const setting of MINIMIZE_SETTINGS) {
-      if (!minimizeOptions.has(setting)) {
-        minimizeOptions.set(setting, true);
-      }
-    }
+  if (minimize) {
+    const minimizeOptions =
+      typeof minimize === 'boolean'
+        ? {
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            keepClosingSlash: true,
+            minifyCSS: true,
+            minifyJS: true,
+            removeAttributeQuotes: true,
+            removeComments: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: true,
+          }
+        : minimize;
 
-    content = minify(content, convertMapToObject(minimizeOptions));
+    content = minify(content, minimizeOptions);
   }
 
   if (options.interpolate && options.interpolate !== 'require') {
@@ -122,6 +130,7 @@ export default function htmlLoader(source) {
       }
 
       let request = urlToRequest(data.get(match), options.root);
+
       if (options.interpolate === 'require') {
         request = data.get(match);
       }
