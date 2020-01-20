@@ -89,7 +89,7 @@ describe('"minimize" option', () => {
     );
   });
 
-  it('should preserve comments', () => {
+  it('should support options for minimizer', () => {
     const result = loader.call(
       {
         query: {
@@ -115,56 +115,19 @@ describe('"minimize" option', () => {
     );
   });
 
-  it('should preserve comments and white spaces when minimizing', () => {
+  it('should support ES6 syntax', () => {
     const result = loader.call(
       {
         query: {
-          minimize: {
-            conservativeCollapse: true,
-            removeAttributeQuotes: true,
-            keepClosingSlash: true,
-            minifyJS: true,
-            minifyCSS: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true,
-            removeComments: false,
-            collapseWhitespace: false,
-          },
+          minimize: true,
         },
       },
-      '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src="image.png" />'
+      // eslint-disable-next-line no-template-curly-in-string
+      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p> <script>   console.log(1 + 2 + `${3 + 3}`)   </script>'
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p>    <!-- comment -->    <img src=" + __url__(require("./image.png")) + " />";`
-    );
-  });
-
-  it('should treat attributes as case sensitive', () => {
-    const result = loader.call(
-      {
-        query: {
-          minimize: {
-            removeComments: true,
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            removeAttributeQuotes: true,
-            keepClosingSlash: true,
-            minifyJS: true,
-            minifyCSS: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true,
-            caseSensitive: true,
-          },
-        },
-      },
-      '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h3 customAttr=\\"\\">#{number} {customer}</h3><p>{title}</p><img src=" + __url__(require("./image.png")) + " />";`
+      `${GET_URL_CODE}module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\"36\\")</script>";`
     );
   });
 });

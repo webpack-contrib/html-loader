@@ -1,7 +1,7 @@
 import { parse } from 'url';
 
 import { compile } from 'es6-templates';
-import { minify } from 'html-minifier';
+import { minify } from 'html-minifier-terser';
 import { getOptions, isUrlRequest, urlToRequest } from 'loader-utils';
 
 import validateOptions from 'schema-utils';
