@@ -13,7 +13,7 @@ describe('"minimize" option', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";`
+      'module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";'
     );
   });
 
@@ -27,7 +27,7 @@ describe('"minimize" option', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";`
+      'module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";'
     );
   });
 
@@ -41,7 +41,7 @@ describe('"minimize" option', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p>";`
+      'module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p>";'
     );
   });
 
@@ -71,7 +71,7 @@ describe('"minimize" option', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";`
+      'module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";'
     );
   });
 
@@ -84,9 +84,7 @@ describe('"minimize" option', () => {
       '<input type="text" />'
     );
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<input type=text />";`
-    );
+    expect(result).toBe('module.exports = "<input type=text />";');
   });
 
   it('should support options for minimizer', () => {
@@ -127,7 +125,7 @@ describe('"minimize" option', () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\"36\\")</script>";`
+      'module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\"36\\")</script>";'
     );
   });
 });

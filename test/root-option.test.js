@@ -8,9 +8,7 @@ describe("'root' option", () => {
       'Text <img src="/image.png">'
     );
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <img src=\\"/image.png\\">";`
-    );
+    expect(result).toBe('module.exports = "Text <img src=\\"/image.png\\">";');
   });
 
   it('should work', () => {

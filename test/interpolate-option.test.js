@@ -10,7 +10,8 @@ describe("'interpolate' option", () => {
     );
 
     expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<img src=\\"\${\\"Hello \\" + (1+1)}\\">";`
+      // eslint-disable-next-line no-template-curly-in-string
+      'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
     );
   });
 
@@ -26,7 +27,7 @@ describe("'interpolate' option", () => {
 
     expect(result).toBe(
       // eslint-disable-next-line no-useless-escape
-      `${GET_URL_CODE}module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\"><img src=\\"" + ("Hello " + (1 + 1)) + "\\"><p>Something about the \` character</p><script>{\\\"json\\\": \\\"with \\\\\\\"quotes\\\\\\\" in value\\\"}</script>";`
+      'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\"><img src=\\"" + ("Hello " + (1 + 1)) + "\\"><p>Something about the ` character</p><script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>";'
     );
   });
 
