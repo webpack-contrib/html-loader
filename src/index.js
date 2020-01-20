@@ -8,7 +8,6 @@ import validateOptions from 'schema-utils';
 
 import { GET_URL_CODE, IDENT_REGEX, REQUIRE_REGEX } from './constants';
 import {
-  getAttributes,
   getExportsString,
   getLinks,
   getUniqueIdent,
@@ -30,9 +29,7 @@ export default function htmlLoader(source) {
 
   let content = source.toString();
 
-  const attributes = getAttributes(options);
-  const links = getLinks(content, attributes);
-
+  const links = getLinks(content, options.attributes);
   const data = new Map();
 
   let offset = 0;

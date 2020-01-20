@@ -57,21 +57,21 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 |               Name                |        Type         |                   Default                    | Description                              |
 | :-------------------------------: | :-----------------: | :------------------------------------------: | :--------------------------------------- |
-|       **[`attrs`](#attrs)**       |  `{Array\|String}`  |                `['img:src']`                 | Enables/Disables attributes handling     |
+|  **[`attributes`](#attributes)**  |  `{Array\|String}`  |                `['img:src']`                 | Enables/Disables attributes handling     |
 |        **[`root`](#root)**        |     `{String}`      |                 `undefiend`                  | Allow to handle root-relative attributes |
 | **[`interpolate`](#interpolate)** | `{Boolean\|String}` |                   `false`                    | Allow to use expressions in HTML syntax  |
 |    **[`minimize`](#minimize)**    | `{Boolean\|Object}` | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML      |
 |    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                   `false`                    | Use ES modules syntax                    |
 
-### `attrs`
+### `attributes`
 
 Type: `Array|String`
 Default: `['img:src']`
 
-You can specify which tag-attribute combination should be processed by this loader via the query parameter `attrs`.
-Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attrs=img:src`)
+You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`.
+Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attributes=img:src`)
 
-If you use `<custom-elements>`, and lots of them make use of a `custom-src` attribute, you don't have to specify each combination `<tag>:<attribute>`: just specify an empty tag like `attrs=:custom-src` and it will match every element.
+If you use `<custom-elements>`, and lots of them make use of a `custom-src` attribute, you don't have to specify each combination `<tag>:<attribute>`: just specify an empty tag like `attributes=:custom-src` and it will match every element.
 
 **webpack.config.js**
 
@@ -83,7 +83,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attrs: [':data-src'],
+          attributes: [':data-src'],
         },
       },
     ],
@@ -323,20 +323,20 @@ require('html-loader!./file.html');
 ```
 
 ```js
-require('html-loader?attrs=img:data-src!./file.html');
+require('html-loader?attributes=img:data-src!./file.html');
 
 // => '<img src="image.png" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require('html-loader?attrs=img:src img:data-src!./file.html');
-require('html-loader?attrs[]=img:src&attrs[]=img:data-src!./file.html');
+require('html-loader?attributes=img:src img:data-src!./file.html');
+require('html-loader?attributes[]=img:src&attributes[]=img:data-src!./file.html');
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.png" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require('html-loader?-attrs!./file.html');
+require('html-loader?-attributes!./file.html');
 
 // => '<img src="image.jpg"  data-src="image2x.png" >'
 ```

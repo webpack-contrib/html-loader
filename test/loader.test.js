@@ -15,71 +15,6 @@ describe('loader', () => {
     );
   });
 
-  it('should accept attrs from query', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attrs=script:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"" + __url__(require("./script.js")) + "\\"><img src=\\"image.png\\">";`
-    );
-  });
-  it('should accept attrs from query (space separated)', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attrs=script:src img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"" + __url__(require("./script.js")) + "\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
-    );
-  });
-  it('should accept attrs from query (multiple)', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attrs[]=script:src&attrs[]=img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"" + __url__(require("./script.js")) + "\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
-    );
-  });
-  it('should accept :attribute (empty tag) from query', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attrs[]=:custom-src',
-      },
-      'Text <custom-element custom-src="image1.png"><custom-img custom-src="image2.png"/></custom-element>'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <custom-element custom-src=\\"" + __url__(require("./image1.png")) + "\\"><custom-img custom-src=\\"" + __url__(require("./image2.png")) + "\\"/></custom-element>";`
-    );
-  });
-  it('should accept :attribute (empty tag) from query and not collide with similar attributes', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attrs[]=:custom-src',
-      },
-      'Text <custom-element custom-src="image1.png" custom-src-other="other.png"><custom-img custom-src="image2.png"/></custom-element>'
-    );
-
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <custom-element custom-src=\\"" + __url__(require("./image1.png")) + "\\" custom-src-other=\\"other.png\\"><custom-img custom-src=\\"" + __url__(require("./image2.png")) + "\\"/></custom-element>";`
-    );
-  });
   it('should not make bad things with templates', () => {
     const result = loader.call(
       { mode: 'development' },
@@ -112,6 +47,7 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "Text <img src=\\"/image.png\\">";`
     );
   });
+
   it('should accept root from query', () => {
     const result = loader.call(
       {
@@ -125,6 +61,7 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("/test/image.png")) + "\\">";`
     );
   });
+
   it('should ignore hash fragments in URLs', () => {
     const result = loader.call(
       { mode: 'development' },
@@ -135,6 +72,7 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "<img src=\\"" + __url__(require("./icons.svg")) + "#hash\\">";`
     );
   });
+
   it("should ignore anchor with 'mailto:' in the href attribute", () => {
     const result = loader.call(
       { mode: 'development' },
@@ -170,6 +108,7 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\">";`
     );
   });
+
   it('should not change handling of quotes when interpolation is enabled', () => {
     const result = loader.call(
       {
@@ -183,6 +122,7 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "<script>{\\\"json\\\": \\\"with \\\\\\\"quotes\\\\\\\" in value\\\"}</script>";`
     );
   });
+
   it('should enable interpolations when using interpolate=require flag and only require function be translate', () => {
     const result = loader.call(
       {
@@ -196,6 +136,7 @@ describe('loader', () => {
       `${GET_URL_CODE}module.exports = "<a href=\\"\${list.href}\\"><img src=\\"" + __url__(require("./test.jpg")) + "\\" /></a>";`
     );
   });
+
   it('should export as es6 default export', () => {
     const result = loader.call(
       {

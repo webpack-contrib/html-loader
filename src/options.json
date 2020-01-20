@@ -1,8 +1,12 @@
 {
   "type": "object",
   "properties": {
-    "attrs": {
-      "anyOf": [{ "type": "array" }, { "type": "string" }]
+    "attributes": {
+      "anyOf": [
+        { "type": "boolean" },
+        { "type": "array" },
+        { "type": "string" }
+      ]
     },
     "root": {
       "type": "string"
