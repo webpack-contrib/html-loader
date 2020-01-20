@@ -55,13 +55,13 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ## Options
 
-|               Name                |        Type         |    Default    | Description                              |
-| :-------------------------------: | :-----------------: | :-----------: | :--------------------------------------- |
-|       **[`attrs`](#attrs)**       |  `{Array\|String}`  | `['img:src']` | Enables/Disables attributes handling     |
-|        **[`root`](#root)**        |     `{String}`      |  `undefiend`  | Allow to handle root-relative attributes |
-| **[`interpolate`](#interpolate)** | `{Boolean\|String}` |    `false`    | Allow to use expressions in HTML syntax  |
-|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |    `false`    | Tell `html-loader` to minimize HTML      |
-|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |    `false`    | Use ES modules syntax                    |
+|               Name                |        Type         |                   Default                    | Description                              |
+| :-------------------------------: | :-----------------: | :------------------------------------------: | :--------------------------------------- |
+|       **[`attrs`](#attrs)**       |  `{Array\|String}`  |                `['img:src']`                 | Enables/Disables attributes handling     |
+|        **[`root`](#root)**        |     `{String}`      |                 `undefiend`                  | Allow to handle root-relative attributes |
+| **[`interpolate`](#interpolate)** | `{Boolean\|String}` |                   `false`                    | Allow to use expressions in HTML syntax  |
+|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML      |
+|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                   `false`                    | Use ES modules syntax                    |
 
 ### `attrs`
 
@@ -197,11 +197,24 @@ This may be useful for template syntaxes. For example:
 ### `minimize`
 
 Type: `Boolean|Object`
-Default: `false`
+Default: `true` in production mode, otherwise `false`
 
 Tell `html-loader` to minimize HTML.
 
 #### `Boolean`
+
+The enabled rules for minimizing by default are the following ones:
+
+- collapseWhitespace
+- conservativeCollapse
+- keepClosingSlash
+- minifyCSS
+- minifyJS
+- removeAttributeQuotes
+- removeComments
+- removeScriptTypeAttributes
+- removeStyleTypeAttributes
+- useShortDoctype
 
 **webpack.config.js**
 
@@ -408,5 +421,3 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [chat-url]: https://gitter.im/webpack/webpack
 [size]: https://packagephobia.now.sh/badge?p=html-loader
 [size-url]: https://packagephobia.now.sh/result?p=html-loader
-
-[]: #interpolate

@@ -5,6 +5,8 @@ describe('"minimize" option', () => {
   it('should be turned off by default', () => {
     const result = loader.call(
       {
+        // By default developers uses the `development` mode
+        mode: 'development',
         query: '',
       },
       '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
@@ -12,6 +14,34 @@ describe('"minimize" option', () => {
 
     expect(result).toBe(
       `${GET_URL_CODE}module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";`
+    );
+  });
+
+  it('should be turned off in "development" mode', () => {
+    const result = loader.call(
+      {
+        mode: 'development',
+        query: '',
+      },
+      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
+    );
+
+    expect(result).toBe(
+      `${GET_URL_CODE}module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";`
+    );
+  });
+
+  it('should be turned on in "production" mode', () => {
+    const result = loader.call(
+      {
+        mode: 'production',
+        query: '',
+      },
+      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
+    );
+
+    expect(result).toBe(
+      `${GET_URL_CODE}module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p>";`
     );
   });
 
@@ -64,6 +94,15 @@ describe('"minimize" option', () => {
       {
         query: {
           minimize: {
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeAttributeQuotes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: true,
             removeComments: false,
           },
         },
@@ -81,6 +120,14 @@ describe('"minimize" option', () => {
       {
         query: {
           minimize: {
+            conservativeCollapse: true,
+            removeAttributeQuotes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: true,
             removeComments: false,
             collapseWhitespace: false,
           },
@@ -99,6 +146,16 @@ describe('"minimize" option', () => {
       {
         query: {
           minimize: {
+            removeComments: true,
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeAttributeQuotes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: true,
             caseSensitive: true,
           },
         },

@@ -4,17 +4,6 @@ function randomIdent() {
   return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
 }
 
-export function convertMapToObject(map) {
-  const obj = {};
-
-  for (const prop of map) {
-    // eslint-disable-next-line prefer-destructuring
-    obj[prop[0]] = prop[1];
-  }
-
-  return obj;
-}
-
 export function getAttributes(options) {
   if (typeof options.attrs !== 'undefined') {
     if (typeof options.attrs === 'string') {
@@ -73,4 +62,8 @@ export function replaceLinkWithIdent(source, link, ident, offset = 0) {
     ident +
     source.substr(link.start + link.length + offset)
   );
+}
+
+export function isProductionMode(loaderContext) {
+  return loaderContext.mode === 'production' || !loaderContext.mode;
 }
