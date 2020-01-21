@@ -1,3 +1,5 @@
+import path from 'path';
+
 import {
   compile,
   execute,
@@ -21,9 +23,31 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  // Todo test with file-loader - esModule: true and esModule: false
   it('should work by default with CommonJS module syntax', async () => {
-    const compiler = getCompiler('simple.js', { esModule: false });
+    const compiler = getCompiler(
+      'simple.js',
+      {},
+      {
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: false },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: false, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
+    );
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
@@ -35,7 +59,100 @@ describe("'attributes' option", () => {
   });
 
   it('should work by default with ES module syntax', async () => {
-    const compiler = getCompiler('simple.js', { esModule: true });
+    const compiler = getCompiler(
+      'simple.js',
+      {},
+      {
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: true },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: true, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work by default with ES module syntax from CommonJS module syntax from other loader', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
+      {
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: true },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: false, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work by default with CommonJS module syntax and ES module syntax from other loader', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
+      {
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: false },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: true, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
+    );
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
