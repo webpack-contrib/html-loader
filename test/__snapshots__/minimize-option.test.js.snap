@@ -12,6 +12,12 @@ exports[`"minimize" option should not work with a value equal to "false" 1`] = `
 
 exports[`"minimize" option should support ES6 syntax 1`] = `"module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\\\\\"36\\\\\\")</script>\\";"`;
 
-exports[`"minimize" option should support options for minimizer 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"<!-- comment --><h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\" + __url__(require(\\"./image.png\\")) + \\" />\\";"`;
+exports[`"minimize" option should support options for minimizer 1`] = `
+"function __url__(url) { return url.__esModule ? url.default : url; }
+module.exports = \\"<!-- comment --><h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\" + __url__(require(\\"./image.png\\")) + \\" />\\";"
+`;
 
-exports[`"minimize" option should work with a value equal to "true" 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"<h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3> <p> {title} </p> <img src=\\" + __url__(require(\\"./image.png\\")) + \\" />\\";"`;
+exports[`"minimize" option should work with a value equal to "true" 1`] = `
+"function __url__(url) { return url.__esModule ? url.default : url; }
+module.exports = \\"<h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3> <p> {title} </p> <img src=\\" + __url__(require(\\"./image.png\\")) + \\" />\\";"
+`;

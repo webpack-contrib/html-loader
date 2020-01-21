@@ -46,7 +46,7 @@ export function getLinks(content, attributes) {
 }
 
 export function getUniqueIdent(data) {
-  const ident = `___HTML_LOADER_IDENT_${Math.random()}${Math.random()}___`;
+  const ident = `___HTML_LOADER_IDENT_${data.size}___`;
 
   if (data.has(ident)) {
     return getUniqueIdent(data);
@@ -67,18 +67,20 @@ export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
 
-export function getImportCode(replacers) {
+export function getImportCode(content, replacers) {
   if (replacers.size === 0) {
     return '';
   }
 
-  return GET_URL_CODE;
+  const importCode = `${GET_URL_CODE}\n`;
+
+  return importCode;
 }
 
 export function getExportCode(content, replacers, options) {
-  let newContent = content;
+  let exportCode = content;
 
-  newContent = content.replace(IDENT_REGEX, (match) => {
+  exportCode = content.replace(IDENT_REGEX, (match) => {
     if (!replacers.has(match)) {
       return match;
     }
@@ -93,8 +95,8 @@ export function getExportCode(content, replacers, options) {
   });
 
   if (options.esModule) {
-    return `export default ${newContent}`;
+    return `export default ${exportCode}`;
   }
 
-  return `module.exports = ${newContent}`;
+  return `module.exports = ${exportCode}`;
 }
