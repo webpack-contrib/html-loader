@@ -1,9 +1,9 @@
 import { urlToRequest, stringifyRequest } from 'loader-utils';
+import Parser from 'fastparse';
 
-import parseAttributes from './parseAttributes';
 import { IDENT_REGEX } from './constants';
 
-export function getTagsAndAttributes(attributes) {
+function getTagsAndAttributes(attributes) {
   const defaultAttributes = ['img:src', 'source:srcset'];
 
   if (typeof attributes !== 'undefined') {
@@ -27,6 +27,49 @@ export function getTagsAndAttributes(attributes) {
   }
 
   return defaultAttributes;
+}
+
+export function parseAttributes(html, isRelevantTagAttr) {
+  function processMatch(match, strUntilValue, name, value, index) {
+    if (!this.isRelevantTagAttr(this.currentTag, name)) {
+      return;
+    }
+
+    this.results.push({
+      start: index + strUntilValue.length,
+      length: value.length,
+      value,
+    });
+  }
+
+  const parser = new Parser({
+    outside: {
+      '<!--.*?-->': true,
+      '<![CDATA[.*?]]>': true,
+      '<[!\\?].*?>': true,
+      '</[^>]+>': true,
+      '<([a-zA-Z\\-:]+)\\s*': function matchTag(match, tagName) {
+        this.currentTag = tagName;
+
+        return 'inside';
+      },
+    },
+    inside: {
+      // eat up whitespace
+      '\\s+': true,
+      // end of attributes
+      '>': 'outside',
+      '(([0-9a-zA-Z\\-:]+)\\s*=\\s*")([^"]*)"': processMatch,
+      "(([0-9a-zA-Z\\-:]+)\\s*=\\s*')([^']*)'": processMatch,
+      '(([0-9a-zA-Z\\-:]+)\\s*=\\s*)([^\\s>]+)': processMatch,
+    },
+  });
+
+  return parser.parse('outside', html, {
+    currentTag: null,
+    results: [],
+    isRelevantTagAttr,
+  }).results;
 }
 
 export function getLinks(content, attributes) {
