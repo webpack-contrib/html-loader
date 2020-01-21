@@ -3,10 +3,8 @@ import { parse } from 'url';
 import { compile } from 'es6-templates';
 import { minify } from 'html-minifier-terser';
 import { getOptions, isUrlRequest } from 'loader-utils';
-
 import validateOptions from 'schema-utils';
 
-import { REQUIRE_REGEX } from './constants';
 import {
   getLinks,
   getUniqueIdent,
@@ -17,6 +15,8 @@ import {
 } from './utils';
 
 import schema from './options.json';
+
+const REQUIRE_REGEX = /\${require\([^)]*\)}/g;
 
 export const raw = true;
 

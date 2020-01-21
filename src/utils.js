@@ -1,7 +1,7 @@
 import { urlToRequest, stringifyRequest } from 'loader-utils';
 import Parser from 'fastparse';
 
-import { IDENT_REGEX } from './constants';
+const IDENT_REGEX = /___HTML_LOADER_IDENT_[0-9.]+___/g;
 
 function getTagsAndAttributes(attributes) {
   const defaultAttributes = ['img:src', 'source:srcset'];
