@@ -1,7 +1,7 @@
 import { urlToRequest, stringifyRequest } from 'loader-utils';
 
 import parseAttributes from './parseAttributes';
-import { GET_URL_CODE, IDENT_REGEX } from './constants';
+import { IDENT_REGEX } from './constants';
 
 export function getTagsAndAttributes(attributes) {
   const defaultAttributes = ['img:src'];
@@ -68,7 +68,17 @@ export function getImportCode(loaderContext, content, replacers, options) {
 
   const importItems = [];
 
-  importItems.push(GET_URL_CODE);
+  importItems.push(
+    options.esModule
+      ? `import ___HTML_LOADER_GET_URL_IMPORT___ from ${stringifyRequest(
+          loaderContext,
+          require.resolve('./runtime/getUrl.js')
+        )}`
+      : `var ___HTML_LOADER_GET_URL_IMPORT___ = require(${stringifyRequest(
+          loaderContext,
+          require.resolve('./runtime/getUrl.js')
+        )});`
+  );
 
   const idents = replacers.keys();
 
@@ -95,7 +105,7 @@ export function getExportCode(content, replacers, options) {
       return match;
     }
 
-    return `" + __url__(${match}) + "`;
+    return `" + ___HTML_LOADER_GET_URL_IMPORT___(${match}) + "`;
   });
 
   if (options.esModule) {
