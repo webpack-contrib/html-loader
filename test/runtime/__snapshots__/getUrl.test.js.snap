@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getUrl should work 1`] = `true`;
+
+exports[`getUrl should work 2`] = `null`;
+
+exports[`getUrl should work 3`] = `undefined`;
+
+exports[`getUrl should work 4`] = `"image.png"`;
+
+exports[`getUrl should work 5`] = `"image.png"`;

@@ -43,10 +43,8 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
-    "es-check": "^5.1.0",
     "es6-templates": "^0.2.3",
     "fastparse": "^1.1.2",
-    "file-loader": "^5.0.2",
     "html-minifier-terser": "^5.0.2",
     "loader-utils": "^1.2.3",
     "schema-utils": "^2.6.4"
@@ -64,9 +62,11 @@
     "cross-env": "^6.0.3",
     "del": "^5.1.0",
     "del-cli": "^3.0.0",
+    "es-check": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.20.0",
+    "file-loader": "^5.0.2",
     "husky": "^4.0.10",
     "jest": "^24.9.0",
     "jest-junit": "^10.0.0",
