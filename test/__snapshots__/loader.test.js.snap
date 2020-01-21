@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should not make bad things with templates 1`] = `"module.exports = \\"<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\";"`;
+exports[`loader should not make bad things with templates 1`] = `
+"// Exports
+module.exports = \\"<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\";"
+`;
 
-exports[`loader should preserve escaped quotes 1`] = `"module.exports = \\"<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\";"`;
+exports[`loader should preserve escaped quotes 1`] = `
+"// Exports
+module.exports = \\"<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\";"
+`;

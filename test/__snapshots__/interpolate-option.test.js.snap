@@ -1,10 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`'interpolate' option should disabled by default 1`] = `"module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\";"`;
+exports[`'interpolate' option should disabled by default 1`] = `
+"// Exports
+module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\";"
+`;
 
-exports[`'interpolate' option should work with boolean notation 1`] = `"module.exports = \\"<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\"><img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\"><p>Something about the \` character</p><script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\";"`;
+exports[`'interpolate' option should work with boolean notation 1`] = `
+"// Exports
+module.exports = \\"<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\"><img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\"><p>Something about the \` character</p><script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\";"
+`;
 
 exports[`'interpolate' option should work with the "require" 1`] = `
-"function __url__(url) { return url.__esModule ? url.default : url; }
-module.exports = \\"<a href=\\\\\\"\${list.href}\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"./test.jpg\\")) + \\"\\\\\\" /></a>\\";"
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./test.jpg\\");
+// Exports
+module.exports = \\"<a href=\\\\\\"\${list.href}\\\\\\"><img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" /></a>\\";"
 `;

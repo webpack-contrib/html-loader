@@ -1,23 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`"minimize" option should be turned off by default 1`] = `"module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"`;
+exports[`"minimize" option should be turned off by default 1`] = `
+"// Exports
+module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"
+`;
 
-exports[`"minimize" option should be turned off in "development" mode 1`] = `"module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"`;
+exports[`"minimize" option should be turned off in "development" mode 1`] = `
+"// Exports
+module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"
+`;
 
-exports[`"minimize" option should be turned on in "production" mode 1`] = `"module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p>\\";"`;
+exports[`"minimize" option should be turned on in "production" mode 1`] = `
+"// Exports
+module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p>\\";"
+`;
 
-exports[`"minimize" option should not remove attributes by default 1`] = `"module.exports = \\"<input type=text />\\";"`;
+exports[`"minimize" option should not remove attributes by default 1`] = `
+"// Exports
+module.exports = \\"<input type=text />\\";"
+`;
 
-exports[`"minimize" option should not work with a value equal to "false" 1`] = `"module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"`;
+exports[`"minimize" option should not work with a value equal to "false" 1`] = `
+"// Exports
+module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"
+`;
 
-exports[`"minimize" option should support ES6 syntax 1`] = `"module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\\\\\"36\\\\\\")</script>\\";"`;
+exports[`"minimize" option should support ES6 syntax 1`] = `
+"// Exports
+module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\\\\\"36\\\\\\")</script>\\";"
+`;
 
 exports[`"minimize" option should support options for minimizer 1`] = `
-"function __url__(url) { return url.__esModule ? url.default : url; }
-module.exports = \\"<!-- comment --><h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\" + __url__(require(\\"./image.png\\")) + \\" />\\";"
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+// Exports
+module.exports = \\"<!-- comment --><h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\" />\\";"
 `;
 
 exports[`"minimize" option should work with a value equal to "true" 1`] = `
-"function __url__(url) { return url.__esModule ? url.default : url; }
-module.exports = \\"<h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3> <p> {title} </p> <img src=\\" + __url__(require(\\"./image.png\\")) + \\" />\\";"
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+// Exports
+module.exports = \\"<h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3> <p> {title} </p> <img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\" />\\";"
 `;

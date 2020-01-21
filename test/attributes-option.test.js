@@ -10,6 +10,20 @@ describe("'attributes' option", () => {
     expect(result).toMatchSnapshot();
   });
 
+  it('should work by default with ES module syntax', () => {
+    const result = loader.call(
+      {
+        mode: 'development',
+        query: {
+          esModule: true,
+        },
+      },
+      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src=""><img src="image.png">'
+    );
+
+    expect(result).toMatchSnapshot();
+  });
+
   it('should work with a "string" notation', () => {
     const result = loader.call(
       {

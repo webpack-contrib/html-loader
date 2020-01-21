@@ -119,7 +119,7 @@ export default function htmlLoader(source) {
     content = JSON.stringify(content);
   }
 
-  const importCode = getImportCode(content, replacers, options);
+  const importCode = getImportCode(this, content, replacers, options);
   const exportCode = getExportCode(content, replacers, options);
 
   return `${importCode}${exportCode};`;
