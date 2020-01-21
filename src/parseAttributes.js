@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape,line-comment-position */
 import Parser from 'fastparse';
 
 function processMatch(match, strUntilValue, name, value, index) {
@@ -26,8 +25,10 @@ const parser = new Parser({
     },
   },
   inside: {
-    '\\s+': true, // eat up whitespace
-    '>': 'outside', // end of attributes
+    // eat up whitespace
+    '\\s+': true,
+    // end of attributes
+    '>': 'outside',
     '(([0-9a-zA-Z\\-:]+)\\s*=\\s*")([^"]*)"': processMatch,
     "(([0-9a-zA-Z\\-:]+)\\s*=\\s*')([^']*)'": processMatch,
     '(([0-9a-zA-Z\\-:]+)\\s*=\\s*)([^\\s>]+)': processMatch,

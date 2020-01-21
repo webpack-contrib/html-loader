@@ -1,47 +1,253 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`"minimize" option should be turned off by default 1`] = `
-"// Exports
-module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"
-`;
+exports[`"minimize" option should be turned off by default: errors 1`] = `Array []`;
 
-exports[`"minimize" option should be turned off in "development" mode 1`] = `
-"// Exports
-module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"
-`;
-
-exports[`"minimize" option should be turned on in "production" mode 1`] = `
-"// Exports
-module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p>\\";"
-`;
-
-exports[`"minimize" option should not remove attributes by default 1`] = `
-"// Exports
-module.exports = \\"<input type=text />\\";"
-`;
-
-exports[`"minimize" option should not work with a value equal to "false" 1`] = `
-"// Exports
-module.exports = \\"<!-- comment --><h1>My First Heading</h1>\\\\n\\\\n<p>My first paragraph.</p>\\";"
-`;
-
-exports[`"minimize" option should support ES6 syntax 1`] = `
-"// Exports
-module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\\\\\"36\\\\\\")</script>\\";"
-`;
-
-exports[`"minimize" option should support options for minimizer 1`] = `
+exports[`"minimize" option should be turned off by default: module 1`] = `
 "// Imports
 function __url__(url) { return url.__esModule ? url.default : url; }
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
 // Exports
-module.exports = \\"<!-- comment --><h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\" />\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
 `;
 
-exports[`"minimize" option should work with a value equal to "true" 1`] = `
+exports[`"minimize" option should be turned off by default: result 1`] = `
+"<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"/webpack/public/path/alias-image.png\\">
+<img src=\\"\\">
+<img src=\\"/webpack/public/path/image.png\\">
+
+<script src=\\"script.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"/webpack/public/path/icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+"
+`;
+
+exports[`"minimize" option should be turned off by default: warnings 1`] = `Array []`;
+
+exports[`"minimize" option should be turned off in "development" mode: errors 1`] = `Array []`;
+
+exports[`"minimize" option should be turned off in "development" mode: module 1`] = `
 "// Imports
 function __url__(url) { return url.__esModule ? url.default : url; }
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
 // Exports
-module.exports = \\"<h3 customattr=\\\\\\"\\\\\\">#{number} {customer}</h3> <p> {title} </p> <img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\" />\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
 `;
+
+exports[`"minimize" option should be turned off in "development" mode: result 1`] = `
+"<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"/webpack/public/path/alias-image.png\\">
+<img src=\\"\\">
+<img src=\\"/webpack/public/path/image.png\\">
+
+<script src=\\"script.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"/webpack/public/path/icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+"
+`;
+
+exports[`"minimize" option should be turned off in "development" mode: warnings 1`] = `Array []`;
+
+exports[`"minimize" option should be turned on in "production" mode: errors 1`] = `Array []`;
+
+exports[`"minimize" option should be turned on in "production" mode: module 1`] = `
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+// Exports
+module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> <script>console.log({json:'with \\\\\\"quotes\\\\\\" in value'})</script> <div>Foo</div> <div>BAR</div> <input type=text /> <script>console.log(\\\\\\"36\\\\\\")</script> <img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"> <img src=\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"> <img src=/image.png> <img src=\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"> <img src=\\\\\\"\\\\\\"> <img src=\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"> <script src=script.js></script> <custom-element custom-src=image.png /> <custom-img custom-src=image.png /> <img src=\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash> <a href=mailto:username@exampledomain.com></a> \\";"
+`;
+
+exports[`"minimize" option should be turned on in "production" mode: result 1`] = `"<h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> <script>console.log({json:'with \\"quotes\\" in value'})</script> <div>Foo</div> <div>BAR</div> <input type=text /> <script>console.log(\\"36\\")</script> <img src=/webpack/public/path/image.png> <img src=/webpack/public/path/image.png> <img src=/image.png> <img src=/webpack/public/path/alias-image.png> <img src=\\"\\"> <img src=/webpack/public/path/image.png> <script src=script.js></script> <custom-element custom-src=image.png /> <custom-img custom-src=image.png /> <img src=/webpack/public/path/icons.svg#hash> <a href=mailto:username@exampledomain.com></a> "`;
+
+exports[`"minimize" option should be turned on in "production" mode: warnings 1`] = `Array []`;
+
+exports[`"minimize" option should not work with a value equal to "false": errors 1`] = `Array []`;
+
+exports[`"minimize" option should not work with a value equal to "false": module 1`] = `
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+// Exports
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+`;
+
+exports[`"minimize" option should not work with a value equal to "false": result 1`] = `
+"<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"/webpack/public/path/alias-image.png\\">
+<img src=\\"\\">
+<img src=\\"/webpack/public/path/image.png\\">
+
+<script src=\\"script.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"/webpack/public/path/icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+"
+`;
+
+exports[`"minimize" option should not work with a value equal to "false": warnings 1`] = `Array []`;
+
+exports[`"minimize" option should support options for minimizer: errors 1`] = `Array []`;
+
+exports[`"minimize" option should support options for minimizer: module 1`] = `
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+// Exports
+module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> <script>console.log({json:'with \\\\\\"quotes\\\\\\" in value'})</script> <!-- comment --> <div>Foo</div> <div>BAR</div> <input type=text /> <script>console.log(\\\\\\"36\\\\\\")</script> <img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"> <img src=\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"> <img src=/image.png> <img src=\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"> <img src=\\\\\\"\\\\\\"> <img src=\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"> <script src=script.js></script> <custom-element custom-src=image.png /> <custom-img custom-src=image.png /> <img src=\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash> <a href=mailto:username@exampledomain.com></a> \\";"
+`;
+
+exports[`"minimize" option should support options for minimizer: result 1`] = `"<h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> <script>console.log({json:'with \\"quotes\\" in value'})</script> <!-- comment --> <div>Foo</div> <div>BAR</div> <input type=text /> <script>console.log(\\"36\\")</script> <img src=/webpack/public/path/image.png> <img src=/webpack/public/path/image.png> <img src=/image.png> <img src=/webpack/public/path/alias-image.png> <img src=\\"\\"> <img src=/webpack/public/path/image.png> <script src=script.js></script> <custom-element custom-src=image.png /> <custom-img custom-src=image.png /> <img src=/webpack/public/path/icons.svg#hash> <a href=mailto:username@exampledomain.com></a> "`;
+
+exports[`"minimize" option should support options for minimizer: warnings 1`] = `Array []`;
+
+exports[`"minimize" option should work with a value equal to "true": errors 1`] = `Array []`;
+
+exports[`"minimize" option should work with a value equal to "true": module 1`] = `
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+// Exports
+module.exports = \\"<h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> <script>console.log({json:'with \\\\\\"quotes\\\\\\" in value'})</script> <div>Foo</div> <div>BAR</div> <input type=text /> <script>console.log(\\\\\\"36\\\\\\")</script> <img src=\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"> <img src=\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"> <img src=/image.png> <img src=\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"> <img src=\\\\\\"\\\\\\"> <img src=\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"> <script src=script.js></script> <custom-element custom-src=image.png /> <custom-img custom-src=image.png /> <img src=\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash> <a href=mailto:username@exampledomain.com></a> \\";"
+`;
+
+exports[`"minimize" option should work with a value equal to "true": result 1`] = `"<h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> <script>console.log({json:'with \\"quotes\\" in value'})</script> <div>Foo</div> <div>BAR</div> <input type=text /> <script>console.log(\\"36\\")</script> <img src=/webpack/public/path/image.png> <img src=/webpack/public/path/image.png> <img src=/image.png> <img src=/webpack/public/path/alias-image.png> <img src=\\"\\"> <img src=/webpack/public/path/image.png> <script src=script.js></script> <custom-element custom-src=image.png /> <custom-img custom-src=image.png /> <img src=/webpack/public/path/icons.svg#hash> <a href=mailto:username@exampledomain.com></a> "`;
+
+exports[`"minimize" option should work with a value equal to "true": warnings 1`] = `Array []`;

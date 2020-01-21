@@ -1,24 +1,35 @@
-import loader from '../src';
+import {
+  compile,
+  execute,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  readAsset,
+} from './helpers';
 
 describe("'root' option", () => {
-  it('should not translate root-relative urls by default', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      'Text <img src="/image.png">'
-    );
+  it('should not translate root-relative urls by default', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?root=/test',
-      },
-      'Text <img src="/image.png">'
-    );
+  it('should work', async () => {
+    const compiler = getCompiler('simple.js', { root: '.' });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 });

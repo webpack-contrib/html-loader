@@ -1,128 +1,136 @@
-import loader from '../src';
+import {
+  compile,
+  execute,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  readAsset,
+} from './helpers';
 
 describe("'attributes' option", () => {
-  it('should work by default', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src=""><img src="image.png">'
-    );
+  it('should work by default', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work by default with ES module syntax', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: {
-          esModule: true,
-        },
-      },
-      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src=""><img src="image.png">'
-    );
+  // Todo test with file-loader - esModule: true and esModule: false
+  it('should work by default with CommonJS module syntax', async () => {
+    const compiler = getCompiler('simple.js', { esModule: false });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with a "string" notation', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes=script:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work by default with ES module syntax', async () => {
+    const compiler = getCompiler('simple.js', { esModule: true });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with multiple a "string" notations', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes=script:src img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work with a "string" notation', async () => {
+    const compiler = getCompiler('simple.js', { attributes: 'img:src' });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with an "array" notations', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes[]=img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work with multiple a "string" notations', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: 'img:src script:src',
+    });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with multiple an "array" notations', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes[]=script:src&attributes[]=img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work with an "array" notations', async () => {
+    const compiler = getCompiler('simple.js', { attributes: ['img:src'] });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with a custom attribute', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes[]=:custom-src',
-      },
-      'Text <custom-element custom-src="image1.png"><custom-img custom-src="image2.png"/></custom-element>'
-    );
+  it('should work with multiple an "array" notations', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: ['img:src', 'script:src'],
+    });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should not handle attributes with a "boolean" notation equals "false"', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes=false',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work with only attributes', async () => {
+    const compiler = getCompiler('simple.js', { attributes: ':custom-src' });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle attributes with a "boolean" notation equals "true"', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes=true',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should not handle attributes with a "boolean" notation equals "false"', async () => {
+    const compiler = getCompiler('simple.js', { attributes: false });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should ignore hash fragments in URLs', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      '<img src="icons.svg#hash">'
-    );
+  it('should handle attributes with a "boolean" notation equals "true"', async () => {
+    const compiler = getCompiler('simple.js', { attributes: true });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should ignore some anchor by default in attributes', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      '<a href="mailto:username@exampledomain.com"></a>'
-    );
-
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 });

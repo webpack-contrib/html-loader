@@ -1,14 +1,134 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`'root' option should not translate root-relative urls by default 1`] = `
-"// Exports
-module.exports = \\"Text <img src=\\\\\\"/image.png\\\\\\">\\";"
-`;
+exports[`'root' option should not translate root-relative urls by default: errors 1`] = `Array []`;
 
-exports[`'root' option should work 1`] = `
+exports[`'root' option should not translate root-relative urls by default: module 1`] = `
 "// Imports
 function __url__(url) { return url.__esModule ? url.default : url; }
-var ___HTML_LOADER_IDENT_0___ = require(\\"/test/image.png\\");
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
 // Exports
-module.exports = \\"Text <img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
 `;
+
+exports[`'root' option should not translate root-relative urls by default: result 1`] = `
+"<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"/webpack/public/path/alias-image.png\\">
+<img src=\\"\\">
+<img src=\\"/webpack/public/path/image.png\\">
+
+<script src=\\"script.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"/webpack/public/path/icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+"
+`;
+
+exports[`'root' option should not translate root-relative urls by default: warnings 1`] = `Array []`;
+
+exports[`'root' option should work: errors 1`] = `Array []`;
+
+exports[`'root' option should work: module 1`] = `
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_3___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./icons.svg\\");
+// Exports
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_4___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_5___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+`;
+
+exports[`'root' option should work: result 1`] = `
+"<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/image.png\\">
+<img src=\\"/webpack/public/path/alias-image.png\\">
+<img src=\\"\\">
+<img src=\\"/webpack/public/path/image.png\\">
+
+<script src=\\"script.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"/webpack/public/path/icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+"
+`;
+
+exports[`'root' option should work: warnings 1`] = `Array []`;

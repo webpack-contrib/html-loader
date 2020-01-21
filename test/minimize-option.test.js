@@ -1,116 +1,100 @@
-import loader from '../src';
+/**
+ * @jest-environment node
+ */
+
+import {
+  compile,
+  execute,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  readAsset,
+} from './helpers';
 
 describe('"minimize" option', () => {
-  it('should be turned off by default', () => {
-    const result = loader.call(
-      {
-        // By default developers uses the `development` mode
-        mode: 'development',
-        query: '',
-      },
-      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
-    );
+  it('should be turned off by default', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should be turned off in "development" mode', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '',
-      },
-      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
-    );
+  it('should be turned off in "development" mode', async () => {
+    const compiler = getCompiler('simple.js', {}, { mode: 'development' });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should be turned on in "production" mode', () => {
-    const result = loader.call(
-      {
-        mode: 'production',
-        query: '',
-      },
-      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
-    );
+  it('should be turned on in "production" mode', async () => {
+    const compiler = getCompiler('simple.js', {}, { mode: 'production' });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with a value equal to "true"', () => {
-    const result = loader.call(
-      {
-        query: {
-          minimize: true,
-        },
-      },
-      '<!-- comment --><h3 customAttr="">#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />'
-    );
+  it('should not work with a value equal to "false"', async () => {
+    const compiler = getCompiler('simple.js', { minimize: false });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should not work with a value equal to "false"', () => {
-    const result = loader.call(
-      {
-        query: {
-          minimize: false,
-        },
-      },
-      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
-    );
+  it('should work with a value equal to "true"', async () => {
+    const compiler = getCompiler('simple.js', { minimize: true });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  // https://github.com/webpack/webpack/issues/752
-  it('should not remove attributes by default', () => {
-    const result = loader.call(
-      {
-        query: '?minimize',
+  it('should support options for minimizer', async () => {
+    const compiler = getCompiler('simple.js', {
+      minimize: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        removeAttributeQuotes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        removeComments: false,
       },
-      '<input type="text" />'
-    );
+    });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should support options for minimizer', () => {
-    const result = loader.call(
-      {
-        query: {
-          minimize: {
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            removeAttributeQuotes: true,
-            keepClosingSlash: true,
-            minifyJS: true,
-            minifyCSS: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true,
-            removeComments: false,
-          },
-        },
-      },
-      '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />'
-    );
-
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should support ES6 syntax', () => {
-    const result = loader.call(
-      {
-        query: {
-          minimize: true,
-        },
-      },
-      // eslint-disable-next-line no-template-curly-in-string
-      '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p> <script>   console.log(1 + 2 + `${3 + 3}`)   </script>'
-    );
-
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 });

@@ -43,6 +43,7 @@
   "dependencies": {
     "es6-templates": "^0.2.3",
     "fastparse": "^1.1.2",
+    "file-loader": "^5.0.2",
     "html-minifier-terser": "^5.0.2",
     "loader-utils": "^1.2.3",
     "schema-utils": "^2.6.4"

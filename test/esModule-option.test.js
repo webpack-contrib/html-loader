@@ -1,27 +1,47 @@
-import loader from '../src';
+import {
+  compile,
+  execute,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  readAsset,
+} from './helpers';
 
 describe("'esModule' option", () => {
-  it('should use a CommonJS export by default', () => {
-    const result = loader.call({ query: '' }, '<p>Hello world!</p>');
+  it('should use a CommonJS export by default', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should use a CommonJS export when the value is "false"', () => {
-    const result = loader.call(
-      { query: '?esModule=false' },
-      '<p>Hello world!</p>'
-    );
+  it('should use a CommonJS export when the value is "false"', async () => {
+    const compiler = getCompiler('simple.js', { esModule: false });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should use an ES module export when the value is "true"', () => {
-    const result = loader.call(
-      { query: '?esModule=true' },
-      '<p>Hello world!</p>'
-    );
+  it('should use an ES module export when the value is "true"', async () => {
+    const compiler = getCompiler('simple.js', { esModule: true });
+    const stats = await compile(compiler);
 
-    expect(result).toMatchSnapshot();
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 });
