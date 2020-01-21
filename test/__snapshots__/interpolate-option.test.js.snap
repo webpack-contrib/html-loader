@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`'interpolate' option should disabled by default: errors 1`] = `Array []`;
+
+exports[`'interpolate' option should disabled by default: module 1`] = `
+"// Exports
+module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\\\n<img src=\\\\\\"\${\`Hello \` + (1+1)}\\\\\\">\\\\n<p>Something about the \\\\\\\\\` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\${require(\\\\\\"./image.png\\\\\\")}\\\\\\" /></a>\\\\n\\";"
+`;
+
+exports[`'interpolate' option should disabled by default: result 1`] = `
+"<img src=\\"\${\\"Hello \\" + (1+1)}\\">
+<img src=\\"\${\`Hello \` + (1+1)}\\">
+<p>Something about the \\\\\` character</p>
+<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>
+<h3>#{number} {customer}</h3>
+<p>   {title}   </p>
+<img src=\\"\${require(\\"./image.png\\")}\\" /></a>
+"
+`;
+
+exports[`'interpolate' option should disabled by default: warnings 1`] = `Array []`;
+
+exports[`'interpolate' option should work with boolean notation: errors 1`] = `Array []`;
+
+exports[`'interpolate' option should work with boolean notation: module 1`] = `
+"// Exports
+module.exports = \\"<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\">\\\\n<p>Something about the \` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\\" + require(\\"./image.png\\") + \\"\\\\\\" /></a>\\\\n\\";"
+`;
+
+exports[`'interpolate' option should work with boolean notation: result 1`] = `
+"<img src=\\"Hello 2\\">
+<img src=\\"Hello 2\\">
+<p>Something about the \` character</p>
+<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>
+<h3>#{number} {customer}</h3>
+<p>   {title}   </p>
+<img src=\\"[object Module]\\" /></a>
+"
+`;
+
+exports[`'interpolate' option should work with boolean notation: warnings 1`] = `Array []`;
+
+exports[`'interpolate' option should work with the "require": errors 1`] = `Array []`;
+
+exports[`'interpolate' option should work with the "require": module 1`] = `
+"// Imports
+function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
+// Exports
+module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\\\n<img src=\\\\\\"\${\`Hello \` + (1+1)}\\\\\\">\\\\n<p>Something about the \\\\\\\\\` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" /></a>\\\\n\\";"
+`;
+
+exports[`'interpolate' option should work with the "require": result 1`] = `
+"<img src=\\"\${\\"Hello \\" + (1+1)}\\">
+<img src=\\"\${\`Hello \` + (1+1)}\\">
+<p>Something about the \\\\\` character</p>
+<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>
+<h3>#{number} {customer}</h3>
+<p>   {title}   </p>
+<img src=\\"/webpack/public/path/image.png\\" /></a>
+"
+`;
+
+exports[`'interpolate' option should work with the "require": warnings 1`] = `Array []`;

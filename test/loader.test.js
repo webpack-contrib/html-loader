@@ -1,25 +1,35 @@
-import loader from '../src';
+import {
+  compile,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  execute,
+  readAsset,
+} from './helpers';
 
 describe('loader', () => {
-  it('should not make bad things with templates', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>'
-    );
+  it('should work', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      'module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";'
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should preserve escaped quotes', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      '<script>{"json": "with \\"quotes\\" in value"}</script>'
-    );
+  it('should not make bad things with templates', async () => {
+    const compiler = getCompiler('template.js');
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      'module.exports = "<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>";'
-    );
+    expect(getModuleSource('./template.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 });

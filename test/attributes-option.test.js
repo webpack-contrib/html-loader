@@ -1,136 +1,253 @@
-import loader from '../src';
-import { GET_URL_CODE } from '../src/constants';
+import path from 'path';
+
+import {
+  compile,
+  execute,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  readAsset,
+} from './helpers';
 
 describe("'attributes' option", () => {
-  it('should work by default', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src="">'
-    );
+  it('should work by default', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      // eslint-disable-next-line no-useless-escape
-      `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("./image.png")) + "\\"><img src=\\"" + __url__(require("bootstrap-img")) + "\\"> Text <img src=\\\"\\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with a "string" notation', () => {
-    const result = loader.call(
+  it('should work by default with CommonJS module syntax', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
       {
-        mode: 'development',
-        query: '?attributes=script:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: false },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: false, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
     );
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"" + __url__(require("./script.js")) + "\\"><img src=\\"image.png\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with multiple a "string" notations', () => {
-    const result = loader.call(
+  it('should work by default with ES module syntax', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
       {
-        mode: 'development',
-        query: '?attributes=script:src img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: true },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: true, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
     );
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"" + __url__(require("./script.js")) + "\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with an "array" notations', () => {
-    const result = loader.call(
+  it('should work by default with ES module syntax from CommonJS module syntax from other loader', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
       {
-        mode: 'development',
-        query: '?attributes[]=img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: true },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: false, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
     );
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"script.js\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with multiple an "array" notations', () => {
-    const result = loader.call(
+  it('should work by default with CommonJS module syntax and ES module syntax from other loader', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
       {
-        mode: 'development',
-        query: '?attributes[]=script:src&attributes[]=img:src',
-      },
-      'Text <script src="script.js"><img src="image.png">'
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { esModule: false },
+                },
+              ],
+            },
+            {
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              loader: 'file-loader',
+              options: { esModule: true, name: '[name].[ext]' },
+            },
+          ],
+        },
+      }
     );
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"" + __url__(require("./script.js")) + "\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with a custom attribute', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes[]=:custom-src',
-      },
-      'Text <custom-element custom-src="image1.png"><custom-img custom-src="image2.png"/></custom-element>'
-    );
+  it('should work with a "string" notation', async () => {
+    const compiler = getCompiler('simple.js', { attributes: 'img:src' });
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <custom-element custom-src=\\"" + __url__(require("./image1.png")) + "\\"><custom-img custom-src=\\"" + __url__(require("./image2.png")) + "\\"/></custom-element>";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should not handle attributes with a "boolean" notation equals "false"', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes=false',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work with multiple a "string" notations', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: 'img:src script:src',
+    });
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      'module.exports = "Text <script src=\\"script.js\\"><img src=\\"image.png\\">";'
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle attributes with a "boolean" notation equals "true"', () => {
-    const result = loader.call(
-      {
-        mode: 'development',
-        query: '?attributes=true',
-      },
-      'Text <script src="script.js"><img src="image.png">'
-    );
+  it('should work with an "array" notations', async () => {
+    const compiler = getCompiler('simple.js', { attributes: ['img:src'] });
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "Text <script src=\\"script.js\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should ignore hash fragments in URLs', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      '<img src="icons.svg#hash">'
-    );
+  it('should work with multiple an "array" notations', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: ['img:src', 'script:src'],
+    });
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<img src=\\"" + __url__(require("./icons.svg")) + "#hash\\">";`
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should ignore some anchor by default in attributes', () => {
-    const result = loader.call(
-      { mode: 'development' },
-      '<a href="mailto:username@exampledomain.com"></a>'
-    );
+  it('should work with only attributes', async () => {
+    const compiler = getCompiler('simple.js', { attributes: ':custom-src' });
+    const stats = await compile(compiler);
 
-    expect(result).toBe(
-      'module.exports = "<a href=\\"mailto:username@exampledomain.com\\"></a>";'
-    );
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should not handle attributes with a "boolean" notation equals "false"', async () => {
+    const compiler = getCompiler('simple.js', { attributes: false });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle attributes with a "boolean" notation equals "true"', async () => {
+    const compiler = getCompiler('simple.js', { attributes: true });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 });

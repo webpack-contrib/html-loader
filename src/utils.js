@@ -1,11 +1,7 @@
-import { urlToRequest } from 'loader-utils';
+import { urlToRequest, stringifyRequest } from 'loader-utils';
 
 import parseAttributes from './parseAttributes';
 import { GET_URL_CODE, IDENT_REGEX } from './constants';
-
-function randomIdent() {
-  return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
-}
 
 export function getTagsAndAttributes(attributes) {
   const defaultAttributes = ['img:src'];
@@ -50,13 +46,7 @@ export function getLinks(content, attributes) {
 }
 
 export function getUniqueIdent(data) {
-  const ident = randomIdent();
-
-  if (data.has(ident)) {
-    return getUniqueIdent(data);
-  }
-
-  return ident;
+  return `___HTML_LOADER_IDENT_${data.size}___`;
 }
 
 export function replaceLinkWithIdent(source, link, ident, offset = 0) {
@@ -71,34 +61,46 @@ export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
 
-export function getImportCode(replacers) {
+export function getImportCode(loaderContext, content, replacers, options) {
   if (replacers.size === 0) {
     return '';
   }
 
-  return GET_URL_CODE;
+  const importItems = [];
+
+  importItems.push(GET_URL_CODE);
+
+  const idents = replacers.keys();
+
+  for (const ident of idents) {
+    const url = replacers.get(ident);
+    const request = urlToRequest(url, options.root);
+    const stringifiedRequest = stringifyRequest(loaderContext, request);
+
+    if (options.esModule) {
+      importItems.push(`import ${ident} from ${stringifiedRequest};`);
+    } else {
+      importItems.push(`var ${ident} = require(${stringifiedRequest});`);
+    }
+  }
+
+  const importCode = importItems.join('\n');
+
+  return `// Imports\n${importCode}\n`;
 }
 
 export function getExportCode(content, replacers, options) {
-  let newContent = content;
-
-  newContent = content.replace(IDENT_REGEX, (match) => {
+  const exportCode = content.replace(IDENT_REGEX, (match) => {
     if (!replacers.has(match)) {
       return match;
     }
 
-    let request = urlToRequest(replacers.get(match), options.root);
-
-    if (options.interpolate === 'require') {
-      request = replacers.get(match);
-    }
-
-    return `" + __url__(require(${JSON.stringify(request)})) + "`;
+    return `" + __url__(${match}) + "`;
   });
 
   if (options.esModule) {
-    return `export default ${newContent}`;
+    return `// Exports\nexport default ${exportCode}`;
   }
 
-  return `module.exports = ${newContent}`;
+  return `// Exports\nmodule.exports = ${exportCode}`;
 }
