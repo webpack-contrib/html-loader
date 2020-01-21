@@ -10,8 +10,13 @@ var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should handle attributes with a "boolean" notation equals "true": result 1`] = `
@@ -61,6 +66,15 @@ exports[`'attributes' option should handle attributes with a "boolean" notation 
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -70,7 +84,7 @@ exports[`'attributes' option should not handle attributes with a "boolean" notat
 
 exports[`'attributes' option should not handle attributes with a "boolean" notation equals "false": module 1`] = `
 "// Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should not handle attributes with a "boolean" notation equals "false": result 1`] = `
@@ -120,6 +134,15 @@ exports[`'attributes' option should not handle attributes with a "boolean" notat
 <img src=\\"./icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -135,8 +158,13 @@ var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work by default with CommonJS module syntax and ES module syntax from other loader: result 1`] = `
@@ -186,6 +214,15 @@ exports[`'attributes' option should work by default with CommonJS module syntax 
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -201,8 +238,13 @@ var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work by default with CommonJS module syntax: result 1`] = `
@@ -252,6 +294,15 @@ exports[`'attributes' option should work by default with CommonJS module syntax:
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -267,8 +318,13 @@ import ___HTML_LOADER_IDENT_1___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_2___ from \\"aliasImg\\";
 import ___HTML_LOADER_IDENT_3___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_4___ from \\"./icons.svg\\";
+import ___HTML_LOADER_IDENT_5___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_6___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_7___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_8___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_9___ from \\"./image.png\\";
 // Exports
-export default \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+export default \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work by default with ES module syntax from CommonJS module syntax from other loader: result 1`] = `
@@ -318,6 +374,15 @@ exports[`'attributes' option should work by default with ES module syntax from C
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -333,8 +398,13 @@ import ___HTML_LOADER_IDENT_1___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_2___ from \\"aliasImg\\";
 import ___HTML_LOADER_IDENT_3___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_4___ from \\"./icons.svg\\";
+import ___HTML_LOADER_IDENT_5___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_6___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_7___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_8___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_9___ from \\"./image.png\\";
 // Exports
-export default \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+export default \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work by default with ES module syntax: result 1`] = `
@@ -384,6 +454,15 @@ exports[`'attributes' option should work by default with ES module syntax: resul
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -399,8 +478,13 @@ var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work by default: result 1`] = `
@@ -450,6 +534,15 @@ exports[`'attributes' option should work by default: result 1`] = `
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"/webpack/public/path/image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -465,8 +558,11 @@ var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work with a "string" notation: result 1`] = `
@@ -516,6 +612,15 @@ exports[`'attributes' option should work with a "string" notation: result 1`] = 
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -531,8 +636,11 @@ var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work with an "array" notations: result 1`] = `
@@ -582,6 +690,15 @@ exports[`'attributes' option should work with an "array" notations: result 1`] =
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -598,8 +715,11 @@ var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./script.js\\");
 var ___HTML_LOADER_IDENT_5___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work with multiple a "string" notations: result 1`] = `
@@ -649,6 +769,15 @@ exports[`'attributes' option should work with multiple a "string" notations: res
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -665,8 +794,11 @@ var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./script.js\\");
 var ___HTML_LOADER_IDENT_5___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work with multiple an "array" notations: result 1`] = `
@@ -716,6 +848,15 @@ exports[`'attributes' option should work with multiple an "array" notations: res
 <img src=\\"/webpack/public/path/icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 
@@ -729,7 +870,7 @@ var ___HTML_LOADER_GET_URL_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\"
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'attributes' option should work with only attributes: result 1`] = `
@@ -779,6 +920,15 @@ exports[`'attributes' option should work with only attributes: result 1`] = `
 <img src=\\"./icons.svg#hash\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
 "
 `;
 

@@ -44,3 +44,12 @@
 <img src="./icons.svg#hash">
 
 <a href="mailto:username@exampledomain.com"></a>
+
+<img srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="   image.png   480w   ,   image.png   800w   " sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+
+<picture>
+  <source media="(min-width: 650px)" srcset="image.png">
+  <source media="(min-width: 465px)" srcset="image.png">
+  <img src="image.png" alt="Flowers" style="width:auto;">
+</picture>

@@ -4,7 +4,7 @@ import parseAttributes from './parseAttributes';
 import { IDENT_REGEX } from './constants';
 
 export function getTagsAndAttributes(attributes) {
-  const defaultAttributes = ['img:src'];
+  const defaultAttributes = ['img:src', 'source:srcset'];
 
   if (typeof attributes !== 'undefined') {
     if (typeof attributes === 'string') {
