@@ -1,5 +1,4 @@
 import loader from '../src';
-import { GET_URL_CODE } from '../src/constants';
 
 describe("'interpolate' option", () => {
   it('should disabled by default', () => {
@@ -9,10 +8,7 @@ describe("'interpolate' option", () => {
       '<img src="${"Hello " + (1+1)}">'
     );
 
-    expect(result).toBe(
-      // eslint-disable-next-line no-template-curly-in-string
-      'module.exports = "<img src=\\"${\\"Hello \\" + (1+1)}\\">";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should work with boolean notation', () => {
@@ -25,10 +21,7 @@ describe("'interpolate' option", () => {
       '<img src="${"Hello " + (1+1)}"><img src="${`Hello ` + (1+1)}"><p>Something about the \\` character</p><script>{"json": "with \\"quotes\\" in value"}</script>'
     );
 
-    expect(result).toBe(
-      // eslint-disable-next-line no-useless-escape
-      'module.exports = "<img src=\\"" + ("Hello " + (1 + 1)) + "\\"><img src=\\"" + ("Hello " + (1 + 1)) + "\\"><p>Something about the ` character</p><script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should work with the "require"', () => {
@@ -41,8 +34,6 @@ describe("'interpolate' option", () => {
       '<a href="${list.href}"><img src="${require("./test.jpg")}" /></a>'
     );
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<a href=\\"\${list.href}\\"><img src=\\"" + __url__(require("./test.jpg")) + "\\" /></a>";`
-    );
+    expect(result).toMatchSnapshot();
   });
 });

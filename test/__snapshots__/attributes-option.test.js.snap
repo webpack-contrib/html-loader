@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`'attributes' option should handle attributes with a "boolean" notation equals "true" 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <script src=\\\\\\"script.js\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"./image.png\\")) + \\"\\\\\\">\\";"`;
+
+exports[`'attributes' option should ignore hash fragments in URLs 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"<img src=\\\\\\"\\" + __url__(require(\\"./icons.svg\\")) + \\"#hash\\\\\\">\\";"`;
+
+exports[`'attributes' option should ignore some anchor by default in attributes 1`] = `"module.exports = \\"<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\";"`;
+
+exports[`'attributes' option should not handle attributes with a "boolean" notation equals "false" 1`] = `"module.exports = \\"Text <script src=\\\\\\"script.js\\\\\\"><img src=\\\\\\"image.png\\\\\\">\\";"`;
+
+exports[`'attributes' option should work by default 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <img src=\\\\\\"\\" + __url__(require(\\"./image.png\\")) + \\"\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"bootstrap-img\\")) + \\"\\\\\\"> Text <img src=\\\\\\"\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"./image.png\\")) + \\"\\\\\\">\\";"`;
+
+exports[`'attributes' option should work with a "string" notation 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <script src=\\\\\\"\\" + __url__(require(\\"./script.js\\")) + \\"\\\\\\"><img src=\\\\\\"image.png\\\\\\">\\";"`;
+
+exports[`'attributes' option should work with a custom attribute 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <custom-element custom-src=\\\\\\"\\" + __url__(require(\\"./image1.png\\")) + \\"\\\\\\"><custom-img custom-src=\\\\\\"\\" + __url__(require(\\"./image2.png\\")) + \\"\\\\\\"/></custom-element>\\";"`;
+
+exports[`'attributes' option should work with an "array" notations 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <script src=\\\\\\"script.js\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"./image.png\\")) + \\"\\\\\\">\\";"`;
+
+exports[`'attributes' option should work with multiple a "string" notations 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <script src=\\\\\\"\\" + __url__(require(\\"./script.js\\")) + \\"\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"./image.png\\")) + \\"\\\\\\">\\";"`;
+
+exports[`'attributes' option should work with multiple an "array" notations 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <script src=\\\\\\"\\" + __url__(require(\\"./script.js\\")) + \\"\\\\\\"><img src=\\\\\\"\\" + __url__(require(\\"./image.png\\")) + \\"\\\\\\">\\";"`;

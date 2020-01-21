@@ -4,7 +4,7 @@ describe("'esModule' option", () => {
   it('should use a CommonJS export by default', () => {
     const result = loader.call({ query: '' }, '<p>Hello world!</p>');
 
-    expect(result).toBe(`module.exports = "<p>Hello world!</p>";`);
+    expect(result).toMatchSnapshot();
   });
 
   it('should use a CommonJS export when the value is "false"', () => {
@@ -13,7 +13,7 @@ describe("'esModule' option", () => {
       '<p>Hello world!</p>'
     );
 
-    expect(result).toBe(`module.exports = "<p>Hello world!</p>";`);
+    expect(result).toMatchSnapshot();
   });
 
   it('should use an ES module export when the value is "true"', () => {
@@ -22,6 +22,6 @@ describe("'esModule' option", () => {
       '<p>Hello world!</p>'
     );
 
-    expect(result).toBe(`export default "<p>Hello world!</p>";`);
+    expect(result).toMatchSnapshot();
   });
 });

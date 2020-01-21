@@ -7,9 +7,7 @@ describe('loader', () => {
       '<h3>#{number} {customer}</h3>\n<p>   {title}   </p>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<h3>#{number} {customer}</h3>\\n<p>   {title}   </p>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should preserve escaped quotes', () => {
@@ -18,8 +16,6 @@ describe('loader', () => {
       '<script>{"json": "with \\"quotes\\" in value"}</script>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 });

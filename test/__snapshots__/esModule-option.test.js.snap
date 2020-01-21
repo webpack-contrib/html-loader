@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`'esModule' option should use a CommonJS export by default 1`] = `"module.exports = \\"<p>Hello world!</p>\\";"`;
+
+exports[`'esModule' option should use a CommonJS export when the value is "false" 1`] = `"module.exports = \\"<p>Hello world!</p>\\";"`;
+
+exports[`'esModule' option should use an ES module export when the value is "true" 1`] = `"export default \\"<p>Hello world!</p>\\";"`;

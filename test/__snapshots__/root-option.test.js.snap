@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`'root' option should not translate root-relative urls by default 1`] = `"module.exports = \\"Text <img src=\\\\\\"/image.png\\\\\\">\\";"`;
+
+exports[`'root' option should work 1`] = `"function __url__(url) { return url.__esModule ? url.default : url; }module.exports = \\"Text <img src=\\\\\\"\\" + __url__(require(\\"/test/image.png\\")) + \\"\\\\\\">\\";"`;

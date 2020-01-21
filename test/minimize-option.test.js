@@ -1,5 +1,4 @@
 import loader from '../src';
-import { GET_URL_CODE } from '../src/constants';
 
 describe('"minimize" option', () => {
   it('should be turned off by default', () => {
@@ -12,9 +11,7 @@ describe('"minimize" option', () => {
       '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should be turned off in "development" mode', () => {
@@ -26,9 +23,7 @@ describe('"minimize" option', () => {
       '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should be turned on in "production" mode', () => {
@@ -40,9 +35,7 @@ describe('"minimize" option', () => {
       '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should work with a value equal to "true"', () => {
@@ -55,9 +48,7 @@ describe('"minimize" option', () => {
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3>\n<p>   {title}   </p>\n\t <!-- comment --> <img src="image.png" />'
     );
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<h3 customattr=\\"\\">#{number} {customer}</h3> <p> {title} </p> <img src=" + __url__(require("./image.png")) + " />";`
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should not work with a value equal to "false"', () => {
@@ -70,9 +61,7 @@ describe('"minimize" option', () => {
       '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<!-- comment --><h1>My First Heading</h1>\\n\\n<p>My first paragraph.</p>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 
   // https://github.com/webpack/webpack/issues/752
@@ -84,7 +73,7 @@ describe('"minimize" option', () => {
       '<input type="text" />'
     );
 
-    expect(result).toBe('module.exports = "<input type=text />";');
+    expect(result).toMatchSnapshot();
   });
 
   it('should support options for minimizer', () => {
@@ -108,9 +97,7 @@ describe('"minimize" option', () => {
       '<!-- comment --><h3 customAttr="">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src="image.png" />'
     );
 
-    expect(result).toBe(
-      `${GET_URL_CODE}module.exports = "<!-- comment --><h3 customattr=\\"\\">#{number} {customer}</h3><p>{title}</p><!-- comment --><img src=" + __url__(require("./image.png")) + " />";`
-    );
+    expect(result).toMatchSnapshot();
   });
 
   it('should support ES6 syntax', () => {
@@ -124,8 +111,6 @@ describe('"minimize" option', () => {
       '<!-- comment --><h1>My First Heading</h1>\n\n<p>My first paragraph.</p> <script>   console.log(1 + 2 + `${3 + 3}`)   </script>'
     );
 
-    expect(result).toBe(
-      'module.exports = "<h1>My First Heading</h1> <p>My first paragraph.</p> <script>console.log(\\"36\\")</script>";'
-    );
+    expect(result).toMatchSnapshot();
   });
 });
