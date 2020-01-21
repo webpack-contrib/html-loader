@@ -3,10 +3,6 @@ import { urlToRequest } from 'loader-utils';
 import parseAttributes from './parseAttributes';
 import { GET_URL_CODE, IDENT_REGEX } from './constants';
 
-function randomIdent() {
-  return `xxxHTMLLINKxxx${Math.random()}${Math.random()}xxx`;
-}
-
 export function getTagsAndAttributes(attributes) {
   const defaultAttributes = ['img:src'];
 
@@ -50,7 +46,7 @@ export function getLinks(content, attributes) {
 }
 
 export function getUniqueIdent(data) {
-  const ident = randomIdent();
+  const ident = `___HTML_LOADER_IDENT_${Math.random()}${Math.random()}___`;
 
   if (data.has(ident)) {
     return getUniqueIdent(data);

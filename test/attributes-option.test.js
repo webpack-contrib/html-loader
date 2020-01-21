@@ -5,12 +5,12 @@ describe("'attributes' option", () => {
   it('should work by default', () => {
     const result = loader.call(
       { mode: 'development' },
-      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src="">'
+      'Text <img src="image.png"><img src="~bootstrap-img"> Text <img src=""><img src="image.png">'
     );
 
     expect(result).toBe(
       // eslint-disable-next-line no-useless-escape
-      `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("./image.png")) + "\\"><img src=\\"" + __url__(require("bootstrap-img")) + "\\"> Text <img src=\\\"\\\">";`
+      `${GET_URL_CODE}module.exports = "Text <img src=\\"" + __url__(require("./image.png")) + "\\"><img src=\\"" + __url__(require("bootstrap-img")) + "\\"> Text <img src=\\\"\\\"><img src=\\"" + __url__(require("./image.png")) + "\\">";`
     );
   });
 

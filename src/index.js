@@ -34,6 +34,7 @@ export default function htmlLoader(source) {
   const replacers = new Map();
 
   let offset = 0;
+
   for (const link of links) {
     if (
       link.value &&
