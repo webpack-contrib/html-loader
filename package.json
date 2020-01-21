@@ -18,8 +18,10 @@
   "scripts": {
     "start": "npm run build -- -w",
     "clean": "del-cli dist",
+    "validate:runtime": "es-check es5 \"dist/runtime/**/*.js\"",
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production babel src -d dist --copy-files",
+    "postbuild": "npm run validate:runtime",
     "commitlint": "commitlint --from=master",
     "security": "npm audit",
     "lint:prettier": "prettier \"{**/*,*}.{js,json,md,yml,css,ts}\" --list-different",
@@ -41,6 +43,7 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
+    "es-check": "^5.1.0",
     "es6-templates": "^0.2.3",
     "fastparse": "^1.1.2",
     "file-loader": "^5.0.2",

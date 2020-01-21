@@ -44,10 +44,10 @@ exports[`'interpolate' option should work with the "require": errors 1`] = `Arra
 
 exports[`'interpolate' option should work with the "require": module 1`] = `
 "// Imports
-function __url__(url) { return url.__esModule ? url.default : url; }
+var ___HTML_LOADER_GET_URL_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\\\n<img src=\\\\\\"\${\`Hello \` + (1+1)}\\\\\\">\\\\n<p>Something about the \\\\\\\\\` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\\" + __url__(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" /></a>\\\\n\\";"
+module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\\\n<img src=\\\\\\"\${\`Hello \` + (1+1)}\\\\\\">\\\\n<p>Something about the \\\\\\\\\` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" /></a>\\\\n\\";"
 `;
 
 exports[`'interpolate' option should work with the "require": result 1`] = `
