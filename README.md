@@ -24,7 +24,7 @@ Exports HTML as string. HTML is minimized when the compiler demands.
 To begin, you'll need to install `html-loader`:
 
 ```console
-npm install --save-dev css-loader
+npm install --save-dev html-loader
 ```
 
 Then add the plugin to your `webpack` config. For example:
