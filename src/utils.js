@@ -13,6 +13,7 @@ function getTagsAndAttributes(attributes) {
     'embed:src',
     'source:src',
     'input:src',
+    'object:data',
   ];
 
   if (typeof attributes !== 'undefined') {
