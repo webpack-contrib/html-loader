@@ -346,7 +346,26 @@ function parseSrcset(input) {
   }
 }
 
-export function parseAttributes(html, isRelevantTagAttr) {
+export function getLinks(content, attributes) {
+  if (attributes === false) {
+    return [];
+  }
+
+  const tagsAndAttributes =
+    typeof attributes === 'undefined' || attributes === true
+      ? [
+          ':srcset',
+          'img:src',
+          'audio:src',
+          'video:src',
+          'track:src',
+          'embed:src',
+          'source:src',
+          'input:src',
+          'object:data',
+        ]
+      : attributes;
+
   function processMatch(match, strUntilValue, name, value, index) {
     if (!this.isRelevantTagAttr(this.currentTag, name)) {
       return;
@@ -406,44 +425,21 @@ export function parseAttributes(html, isRelevantTagAttr) {
     },
   });
 
-  return parser.parse('outside', html, {
+  return parser.parse('outside', content, {
     currentTag: null,
     results: [],
-    isRelevantTagAttr,
+    isRelevantTagAttr: (tag, attribute) => {
+      const res = tagsAndAttributes.find((a) => {
+        if (a.startsWith(':')) {
+          return attribute === a.slice(1);
+        }
+
+        return `${tag}:${attribute}` === a;
+      });
+
+      return Boolean(res);
+    },
   }).results;
-}
-
-export function getLinks(content, attributes) {
-  if (attributes === false) {
-    return [];
-  }
-
-  const tagsAndAttributes =
-    typeof attributes === 'undefined' || attributes === true
-      ? [
-          ':srcset',
-          'img:src',
-          'audio:src',
-          'video:src',
-          'track:src',
-          'embed:src',
-          'source:src',
-          'input:src',
-          'object:data',
-        ]
-      : attributes;
-
-  return parseAttributes(content, (tag, attribute) => {
-    const res = tagsAndAttributes.find((a) => {
-      if (a.startsWith(':')) {
-        return attribute === a.slice(1);
-      }
-
-      return `${tag}:${attribute}` === a;
-    });
-
-    return Boolean(res);
-  });
 }
 
 export function getUniqueIdent(data) {
