@@ -28,7 +28,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           ],
         },
         {
-          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt)$/i,
           loader: 'file-loader',
           options: { name: '[name].[ext]' },
         },
