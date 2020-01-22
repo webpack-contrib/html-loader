@@ -1,4 +1,4 @@
-import parseAttributes from '../src/parseAttributes';
+import { parseAttributes } from '../src/utils';
 
 function test(name, html, expected) {
   it(`should parse ${name}`, () => {

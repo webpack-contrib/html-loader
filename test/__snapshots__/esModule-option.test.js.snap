@@ -7,16 +7,50 @@ exports[`'esModule' option should use a CommonJS export by default: module 1`] =
 var ___HTML_LOADER_GET_URL_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
-var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
-var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
-var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./icons.svg\\");
 var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_10___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_11___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_12___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_13___ = require(\\"./image.png?foo=bar,baz\\");
+var ___HTML_LOADER_IDENT_14___ = require(\\"./image.png?bar=baz,foo\\");
+var ___HTML_LOADER_IDENT_15___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_16___ = require(\\"./image.png?foo=bar,baz\\");
+var ___HTML_LOADER_IDENT_17___ = require(\\"./image.png?bar=baz,foo\\");
+var ___HTML_LOADER_IDENT_18___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_19___ = require(\\"./image.png?foo=bar,baz\\");
+var ___HTML_LOADER_IDENT_20___ = require(\\"./image.png?bar=baz,foo\\");
+var ___HTML_LOADER_IDENT_21___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_22___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_23___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_24___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_25___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_26___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_27___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_28___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_29___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_30___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_31___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_32___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_33___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_34___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_35___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_36___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_37___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_38___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_39___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_40___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_41___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_42___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_43___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src='\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"'>\\\\n<img src=\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->\\\\n<img srcset=\\\\\\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_10___) + \\" 480w, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_11___) + \\" 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_12___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_13___) + \\" 480w, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_14___) + \\" 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_15___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_16___) + \\" 480h, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_17___) + \\" 800h\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_18___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_19___) + \\", \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_20___) + \\"\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_21___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_22___) + \\",\\\\n             \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_23___) + \\" 1.5x,\\\\n             \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_24___) + \\" 2x\\\\\\"\\\\n     src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_25___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_26___) + \\"   480w   ,   \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_27___) + \\"   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_28___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_29___) + \\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_30___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_31___) + \\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_32___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_33___) + \\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_34___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png 480w 2x broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_35___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_36___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\n\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_37___) + \\",\\\\n\\\\n  \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_38___) + \\"   1.5x,\\\\n\\\\n\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_39___) + \\" 2x\\\\n\\\\n\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_40___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_41___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_42___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_43___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'esModule' option should use a CommonJS export by default: result 1`] = `
@@ -52,6 +86,8 @@ exports[`'esModule' option should use a CommonJS export by default: result 1`] =
 <script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
 
 <img src=\\"/webpack/public/path/image.png\\">
+<img src='/webpack/public/path/image.png'>
+<img src=/webpack/public/path/image.png>
 <img src=\\"/webpack/public/path/image.png\\">
 <img src=\\"/image.png\\">
 <img src=\\"/webpack/public/path/alias-image.png\\">
@@ -67,8 +103,33 @@ exports[`'esModule' option should use a CommonJS export by default: result 1`] =
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
 
-<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->
+<img srcset=\\"\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",,,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480w, /webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480w, /webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480h, /webpack/public/path/image.png 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png, /webpack/public/path/image.png\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,
+             /webpack/public/path/image.png 1.5x,
+             /webpack/public/path/image.png 2x\\"
+     src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   /webpack/public/path/image.png   480w   ,   /webpack/public/path/image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,,,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png 480w 2x broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+
+/webpack/public/path/image.png,
+
+  /webpack/public/path/image.png   1.5x,
+
+/webpack/public/path/image.png 2x
+
+\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 
 <picture>
   <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
@@ -87,16 +148,50 @@ exports[`'esModule' option should use a CommonJS export when the value is "false
 var ___HTML_LOADER_GET_URL_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
-var ___HTML_LOADER_IDENT_2___ = require(\\"aliasImg\\");
+var ___HTML_LOADER_IDENT_2___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
-var ___HTML_LOADER_IDENT_4___ = require(\\"./icons.svg\\");
+var ___HTML_LOADER_IDENT_4___ = require(\\"aliasImg\\");
 var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
-var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./icons.svg\\");
 var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_10___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_11___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_12___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_13___ = require(\\"./image.png?foo=bar,baz\\");
+var ___HTML_LOADER_IDENT_14___ = require(\\"./image.png?bar=baz,foo\\");
+var ___HTML_LOADER_IDENT_15___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_16___ = require(\\"./image.png?foo=bar,baz\\");
+var ___HTML_LOADER_IDENT_17___ = require(\\"./image.png?bar=baz,foo\\");
+var ___HTML_LOADER_IDENT_18___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_19___ = require(\\"./image.png?foo=bar,baz\\");
+var ___HTML_LOADER_IDENT_20___ = require(\\"./image.png?bar=baz,foo\\");
+var ___HTML_LOADER_IDENT_21___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_22___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_23___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_24___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_25___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_26___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_27___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_28___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_29___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_30___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_31___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_32___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_33___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_34___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_35___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_36___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_37___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_38___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_39___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_40___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_41___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_42___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_43___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
+module.exports = \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src='\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"'>\\\\n<img src=\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->\\\\n<img srcset=\\\\\\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_10___) + \\" 480w, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_11___) + \\" 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_12___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_13___) + \\" 480w, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_14___) + \\" 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_15___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_16___) + \\" 480h, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_17___) + \\" 800h\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_18___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_19___) + \\", \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_20___) + \\"\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_21___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_22___) + \\",\\\\n             \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_23___) + \\" 1.5x,\\\\n             \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_24___) + \\" 2x\\\\\\"\\\\n     src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_25___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_26___) + \\"   480w   ,   \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_27___) + \\"   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_28___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_29___) + \\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_30___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_31___) + \\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_32___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_33___) + \\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_34___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png 480w 2x broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_35___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_36___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\n\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_37___) + \\",\\\\n\\\\n  \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_38___) + \\"   1.5x,\\\\n\\\\n\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_39___) + \\" 2x\\\\n\\\\n\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_40___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_41___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_42___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_43___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'esModule' option should use a CommonJS export when the value is "false": result 1`] = `
@@ -132,6 +227,8 @@ exports[`'esModule' option should use a CommonJS export when the value is "false
 <script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
 
 <img src=\\"/webpack/public/path/image.png\\">
+<img src='/webpack/public/path/image.png'>
+<img src=/webpack/public/path/image.png>
 <img src=\\"/webpack/public/path/image.png\\">
 <img src=\\"/image.png\\">
 <img src=\\"/webpack/public/path/alias-image.png\\">
@@ -147,8 +244,33 @@ exports[`'esModule' option should use a CommonJS export when the value is "false
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
 
-<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->
+<img srcset=\\"\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",,,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480w, /webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480w, /webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480h, /webpack/public/path/image.png 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png, /webpack/public/path/image.png\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,
+             /webpack/public/path/image.png 1.5x,
+             /webpack/public/path/image.png 2x\\"
+     src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   /webpack/public/path/image.png   480w   ,   /webpack/public/path/image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,,,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png 480w 2x broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+
+/webpack/public/path/image.png,
+
+  /webpack/public/path/image.png   1.5x,
+
+/webpack/public/path/image.png 2x
+
+\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 
 <picture>
   <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
@@ -167,16 +289,50 @@ exports[`'esModule' option should use an ES module export when the value is "tru
 import ___HTML_LOADER_GET_URL_IMPORT___ from \\"../../src/runtime/getUrl.js\\"
 import ___HTML_LOADER_IDENT_0___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_1___ from \\"./image.png\\";
-import ___HTML_LOADER_IDENT_2___ from \\"aliasImg\\";
+import ___HTML_LOADER_IDENT_2___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_3___ from \\"./image.png\\";
-import ___HTML_LOADER_IDENT_4___ from \\"./icons.svg\\";
+import ___HTML_LOADER_IDENT_4___ from \\"aliasImg\\";
 import ___HTML_LOADER_IDENT_5___ from \\"./image.png\\";
-import ___HTML_LOADER_IDENT_6___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_6___ from \\"./icons.svg\\";
 import ___HTML_LOADER_IDENT_7___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_8___ from \\"./image.png\\";
 import ___HTML_LOADER_IDENT_9___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_10___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_11___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_12___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_13___ from \\"./image.png?foo=bar,baz\\";
+import ___HTML_LOADER_IDENT_14___ from \\"./image.png?bar=baz,foo\\";
+import ___HTML_LOADER_IDENT_15___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_16___ from \\"./image.png?foo=bar,baz\\";
+import ___HTML_LOADER_IDENT_17___ from \\"./image.png?bar=baz,foo\\";
+import ___HTML_LOADER_IDENT_18___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_19___ from \\"./image.png?foo=bar,baz\\";
+import ___HTML_LOADER_IDENT_20___ from \\"./image.png?bar=baz,foo\\";
+import ___HTML_LOADER_IDENT_21___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_22___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_23___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_24___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_25___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_26___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_27___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_28___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_29___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_30___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_31___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_32___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_33___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_34___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_35___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_36___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_37___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_38___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_39___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_40___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_41___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_42___ from \\"./image.png\\";
+import ___HTML_LOADER_IDENT_43___ from \\"./image.png\\";
 // Exports
-export default \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
+export default \\"<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\n<img src='\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"'>\\\\n<img src=\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\">\\\\n\\\\n<script src=\\\\\\"script.js\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->\\\\n<img srcset=\\\\\\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_10___) + \\" 480w, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_11___) + \\" 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_12___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_13___) + \\" 480w, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_14___) + \\" 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_15___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_16___) + \\" 480h, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_17___) + \\" 800h\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_18___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_19___) + \\", \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_20___) + \\"\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_21___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_22___) + \\",\\\\n             \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_23___) + \\" 1.5x,\\\\n             \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_24___) + \\" 2x\\\\\\"\\\\n     src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_25___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_26___) + \\"   480w   ,   \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_27___) + \\"   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_28___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_29___) + \\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_30___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_31___) + \\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_32___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_33___) + \\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_34___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png 480w 2x broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_35___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_36___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\n\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_37___) + \\",\\\\n\\\\n  \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_38___) + \\"   1.5x,\\\\n\\\\n\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_39___) + \\" 2x\\\\n\\\\n\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_40___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_41___) + \\"\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_42___) + \\"\\\\\\">\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_43___) + \\"\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\";"
 `;
 
 exports[`'esModule' option should use an ES module export when the value is "true": result 1`] = `
@@ -212,6 +368,8 @@ exports[`'esModule' option should use an ES module export when the value is "tru
 <script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
 
 <img src=\\"/webpack/public/path/image.png\\">
+<img src='/webpack/public/path/image.png'>
+<img src=/webpack/public/path/image.png>
 <img src=\\"/webpack/public/path/image.png\\">
 <img src=\\"/image.png\\">
 <img src=\\"/webpack/public/path/alias-image.png\\">
@@ -227,8 +385,33 @@ exports[`'esModule' option should use an ES module export when the value is "tru
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
 
-<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->
+<img srcset=\\"\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",,,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480w, /webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480w, /webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png 480h, /webpack/public/path/image.png 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png, /webpack/public/path/image.png\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,
+             /webpack/public/path/image.png 1.5x,
+             /webpack/public/path/image.png 2x\\"
+     src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   /webpack/public/path/image.png   480w   ,   /webpack/public/path/image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png,,,\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png 480w 2x broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+
+/webpack/public/path/image.png,
+
+  /webpack/public/path/image.png   1.5x,
+
+/webpack/public/path/image.png 2x
+
+\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 
 <picture>
   <source media=\\"(min-width: 650px)\\" srcset=\\"/webpack/public/path/image.png\\">
