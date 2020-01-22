@@ -106,7 +106,11 @@ export default function htmlLoader(source) {
           }
         : minimize;
 
-    content = minify(content, minimizeOptions);
+    try {
+      content = minify(content, minimizeOptions);
+    } catch (error) {
+      this.emitError(error);
+    }
   }
 
   if (options.interpolate && options.interpolate !== 'require') {
