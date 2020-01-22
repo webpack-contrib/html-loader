@@ -4,7 +4,16 @@ import Parser from 'fastparse';
 const IDENT_REGEX = /___HTML_LOADER_IDENT_[0-9.]+___/g;
 
 function getTagsAndAttributes(attributes) {
-  const defaultAttributes = ['img:src', ':srcset'];
+  const defaultAttributes = [
+    ':srcset',
+    'img:src',
+    'audio:src',
+    'video:src',
+    'track:src',
+    'embed:src',
+    'source:src',
+    'input:src',
+  ];
 
   if (typeof attributes !== 'undefined') {
     if (typeof attributes === 'string') {
@@ -378,7 +387,7 @@ export function parseAttributes(html, isRelevantTagAttr) {
       return;
     }
 
-    if (this.currentTag === 'img' && name === 'srcset') {
+    if (name === 'srcset') {
       let sourceSet;
 
       try {

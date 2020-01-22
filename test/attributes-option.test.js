@@ -40,7 +40,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt)$/i,
               loader: 'file-loader',
               options: { esModule: false, name: '[name].[ext]' },
             },
@@ -75,7 +75,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt)$/i,
               loader: 'file-loader',
               options: { esModule: true, name: '[name].[ext]' },
             },
@@ -110,7 +110,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt)$/i,
               loader: 'file-loader',
               options: { esModule: false, name: '[name].[ext]' },
             },
@@ -145,7 +145,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt)$/i,
               loader: 'file-loader',
               options: { esModule: true, name: '[name].[ext]' },
             },

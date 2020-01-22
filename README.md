@@ -55,18 +55,18 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ## Options
 
-|               Name                |        Type         |                   Default                    | Description                              |
-| :-------------------------------: | :-----------------: | :------------------------------------------: | :--------------------------------------- |
-|  **[`attributes`](#attributes)**  |  `{Array\|String}`  |           `['img:src', ':srcset']`           | Enables/Disables attributes handling     |
-|        **[`root`](#root)**        |     `{String}`      |                 `undefiend`                  | Allow to handle root-relative attributes |
-| **[`interpolate`](#interpolate)** | `{Boolean\|String}` |                   `false`                    | Allow to use expressions in HTML syntax  |
-|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML      |
-|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                   `false`                    | Use ES modules syntax                    |
+|               Name                |        Type         |                                                Default                                                 | Description                              |
+| :-------------------------------: | :-----------------: | :----------------------------------------------------------------------------------------------------: | :--------------------------------------- |
+|  **[`attributes`](#attributes)**  |  `{Array\|String}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src']` | Enables/Disables attributes handling     |
+|        **[`root`](#root)**        |     `{String}`      |                                              `undefiend`                                               | Allow to handle root-relative attributes |
+| **[`interpolate`](#interpolate)** | `{Boolean\|String}` |                                                `false`                                                 | Allow to use expressions in HTML syntax  |
+|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                              `true` in production mode, otherwise `false`                              | Tell `html-loader` to minimize HTML      |
+|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                `false`                                                 | Use ES modules syntax                    |
 
 ### `attributes`
 
 Type: `Array|String`
-Default: `['img:src', ':srcset']`
+Default: `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src']`
 
 You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`.
 Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attributes=img:src`)
