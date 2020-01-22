@@ -163,32 +163,6 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with a "string" notation', async () => {
-    const compiler = getCompiler('simple.js', { attributes: 'img:src' });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
-  it('should work with multiple a "string" notations', async () => {
-    const compiler = getCompiler('simple.js', {
-      attributes: 'img:src script:src',
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
   it('should work with an "array" notations', async () => {
     const compiler = getCompiler('simple.js', { attributes: ['img:src'] });
     const stats = await compile(compiler);
@@ -216,7 +190,7 @@ describe("'attributes' option", () => {
   });
 
   it('should work with only attributes', async () => {
-    const compiler = getCompiler('simple.js', { attributes: ':custom-src' });
+    const compiler = getCompiler('simple.js', { attributes: [':custom-src'] });
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
