@@ -1,9 +1,7 @@
 <div align="center">
-  <img width="200" height="200"
-    src="https://worldvectorlogo.com/logos/html5.svg">
+  <img width="200" height="200" src="https://worldvectorlogo.com/logos/html5.svg" alt="html-loader">
   <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200" vspace="" hspace="25"
-      src="https://worldvectorlogo.com/logos/webpack.svg">
+    <img width="200" height="200" vspace="" hspace="25" src="https://worldvectorlogo.com/logos/webpack.svg" alt="webpack">
   </a>
 </div>
 
@@ -57,7 +55,7 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 |               Name                |        Type         |                                                        Default                                                        | Description                              |
 | :-------------------------------: | :-----------------: | :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
-|  **[`attributes`](#attributes)**  |  `{Array\|String}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data']` | Enables/Disables attributes handling     |
+|  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data']` | Enables/Disables attributes handling     |
 |        **[`root`](#root)**        |     `{String}`      |                                                      `undefiend`                                                      | Allow to handle root-relative attributes |
 | **[`interpolate`](#interpolate)** | `{Boolean\|String}` |                                                        `false`                                                        | Allow to use expressions in HTML syntax  |
 |    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                     `true` in production mode, otherwise `false`                                      | Tell `html-loader` to minimize HTML      |
@@ -65,13 +63,12 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ### `attributes`
 
-Type: `Array|String`
+Type: `Boolean|Array`
 Default: `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src', 'input:src', 'object:data']`
 
-You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`.
-Pass an array or a space-separated list of `<tag>:<attribute>` combinations. (Default: `attributes=img:src`)
+#### `Boolean`
 
-If you use `<custom-elements>`, and lots of them make use of a `custom-src` attribute, you don't have to specify each combination `<tag>:<attribute>`: just specify an empty tag like `attributes=:custom-src` and it will match every element.
+The `true` value enables processing of all default elements and attributes, the `false` disable processing of all attributes.
 
 **webpack.config.js**
 
@@ -83,7 +80,32 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: [':data-src'],
+          // Disables tags and attributes processing
+          attributes: false,
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `Array`
+
+Allows you to specify which tags and attributes to process.
+Pass an array of `<tag>:<attribute>` or `:<attribute>` combinations.
+You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`, for example:
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: [':data-src', 'custom-elements:data-src'],
         },
       },
     ],
@@ -323,13 +345,12 @@ require('html-loader!./file.html');
 ```
 
 ```js
-require('html-loader?attributes=img:data-src!./file.html');
+require('html-loader?attributes[]=img:data-src!./file.html');
 
 // => '<img src="image.png" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require('html-loader?attributes=img:src img:data-src!./file.html');
 require('html-loader?attributes[]=img:src&attributes[]=img:data-src!./file.html');
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.png" data-src="data:image/png;base64,..." >'

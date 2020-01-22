@@ -3,42 +3,6 @@ import Parser from 'fastparse';
 
 const IDENT_REGEX = /___HTML_LOADER_IDENT_[0-9.]+___/g;
 
-function getTagsAndAttributes(attributes) {
-  const defaultAttributes = [
-    ':srcset',
-    'img:src',
-    'audio:src',
-    'video:src',
-    'track:src',
-    'embed:src',
-    'source:src',
-    'input:src',
-    'object:data',
-  ];
-
-  if (typeof attributes !== 'undefined') {
-    if (typeof attributes === 'string') {
-      return attributes.split(' ');
-    }
-
-    if (Array.isArray(attributes)) {
-      return attributes;
-    }
-
-    if (attributes === false) {
-      return [];
-    }
-
-    if (attributes === true) {
-      return defaultAttributes;
-    }
-
-    throw new Error('Invalid value to options parameter attrs');
-  }
-
-  return defaultAttributes;
-}
-
 function parseSrcset(input) {
   // 1. Let input be the value passed to this algorithm.
   // Manual is faster than RegEx
@@ -382,7 +346,26 @@ function parseSrcset(input) {
   }
 }
 
-export function parseAttributes(html, isRelevantTagAttr) {
+export function getLinks(content, attributes) {
+  if (attributes === false) {
+    return [];
+  }
+
+  const tagsAndAttributes =
+    typeof attributes === 'undefined' || attributes === true
+      ? [
+          ':srcset',
+          'img:src',
+          'audio:src',
+          'video:src',
+          'track:src',
+          'embed:src',
+          'source:src',
+          'input:src',
+          'object:data',
+        ]
+      : attributes;
+
   function processMatch(match, strUntilValue, name, value, index) {
     if (!this.isRelevantTagAttr(this.currentTag, name)) {
       return;
@@ -442,27 +425,21 @@ export function parseAttributes(html, isRelevantTagAttr) {
     },
   });
 
-  return parser.parse('outside', html, {
+  return parser.parse('outside', content, {
     currentTag: null,
     results: [],
-    isRelevantTagAttr,
+    isRelevantTagAttr: (tag, attribute) => {
+      const res = tagsAndAttributes.find((a) => {
+        if (a.startsWith(':')) {
+          return attribute === a.slice(1);
+        }
+
+        return `${tag}:${attribute}` === a;
+      });
+
+      return Boolean(res);
+    },
   }).results;
-}
-
-export function getLinks(content, attributes) {
-  const tagsAndAttributes = getTagsAndAttributes(attributes);
-
-  return parseAttributes(content, (tag, attribute) => {
-    const res = tagsAndAttributes.find((a) => {
-      if (a.startsWith(':')) {
-        return attribute === a.slice(1);
-      }
-
-      return `${tag}:${attribute}` === a;
-    });
-
-    return Boolean(res);
-  });
 }
 
 export function getUniqueIdent(data) {

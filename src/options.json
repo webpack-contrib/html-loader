@@ -4,8 +4,12 @@
     "attributes": {
       "anyOf": [
         { "type": "boolean" },
-        { "type": "array" },
-        { "type": "string" }
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       ]
     },
     "root": {
