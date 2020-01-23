@@ -3,24 +3,23 @@ import { parse } from 'url';
 import { isUrlRequest } from 'loader-utils';
 import Parser from 'fastparse';
 
+function isASCIIWhitespace(character) {
+  return (
+    // Horizontal tab
+    character === '\u0009' ||
+    // New line
+    character === '\u000A' ||
+    // Form feed
+    character === '\u000C' ||
+    // Carriage return
+    character === '\u000D' ||
+    // Space
+    character === '\u0020'
+  );
+}
+
 function parseSrcset(input) {
   // 1. Let input be the value passed to this algorithm.
-  // Manual is faster than RegEx
-  function isSpace(c) {
-    return (
-      // space
-      c === '\u0020' ||
-      // horizontal tab
-      c === '\u0009' ||
-      // new line
-      c === '\u000A' ||
-      // form feed
-      c === '\u000C' ||
-      // carriage return
-      c === '\u000D'
-    );
-  }
-
   const inputLength = input.length;
 
   // (Don't use \s, to avoid matching non-breaking space)
@@ -136,7 +135,7 @@ function parseSrcset(input) {
         // If current descriptor is not empty, append current descriptor to
         // descriptors and let current descriptor be the empty string.
         // Set state to after descriptor.
-        if (isSpace(c)) {
+        if (isASCIIWhitespace(c)) {
           if (currentDescriptor) {
             descriptors.push(currentDescriptor);
             currentDescriptor = '';
@@ -207,7 +206,7 @@ function parseSrcset(input) {
       // After descriptor
       else if (state === 'after descriptor') {
         // Do the following, depending on the value of c:
-        if (isSpace(c)) {
+        if (isASCIIWhitespace(c)) {
           // Space character: Stay in this state.
         }
         // EOF: Jump to the step labeled descriptor parser.
@@ -346,8 +345,43 @@ function parseSrcset(input) {
   }
 }
 
+function parseSrc(input) {
+  let startUrlPosition = 0;
+
+  for (let position = 0; position < input.length; position++) {
+    const character = input.charAt(position);
+
+    if (!isASCIIWhitespace(character)) {
+      startUrlPosition = position;
+
+      break;
+    }
+  }
+
+  let endUrlPosition = input.length;
+
+  for (let position = input.length - 1; position >= 0; position--) {
+    const character = input.charAt(position);
+
+    if (!isASCIIWhitespace(character)) {
+      endUrlPosition = position;
+
+      break;
+    }
+  }
+
+  return {
+    value: input.substring(startUrlPosition, endUrlPosition + 1),
+    start: startUrlPosition,
+  };
+}
+
 function processMatch(match, strUntilValue, name, value, index) {
   if (!this.isRelevantTagAttribute(this.currentTag, name)) {
+    return;
+  }
+
+  if (/^\s*$/.test(value)) {
     return;
   }
 
@@ -375,10 +409,12 @@ function processMatch(match, strUntilValue, name, value, index) {
     return;
   }
 
+  const source = parseSrc(value);
+
   this.results.push({
-    start: index + strUntilValue.length,
-    length: value.length,
-    value,
+    start: index + strUntilValue.length + source.start,
+    length: source.value.length,
+    value: source.value,
   });
 }
 
@@ -440,7 +476,7 @@ export default (options) =>
     let index = 0;
 
     for (const source of sources) {
-      if (source.value && isUrlRequest(source.value, options.root)) {
+      if (isUrlRequest(source.value, options.root)) {
         const uri = parse(source.value);
 
         if (typeof uri.hash !== 'undefined') {
