@@ -407,7 +407,6 @@ function processMatch(match, strUntilValue, name, value, index) {
 
       this.results.push({
         start: index + strUntilValue.length + source.start,
-        length: source.value.length,
         value: source.value,
       });
     });
@@ -423,7 +422,6 @@ function processMatch(match, strUntilValue, name, value, index) {
 
   this.results.push({
     start: index + strUntilValue.length + source.start,
-    length: source.value.length,
     value: source.value,
   });
 }
@@ -496,7 +494,6 @@ export default (options) =>
         uri.hash = null;
 
         source.value = uri.format();
-        source.length = source.value.length;
       }
 
       const replacementName = `___HTML_LOADER_IDENT_${index}___`;
@@ -514,9 +511,9 @@ export default (options) =>
       html =
         html.substr(0, source.start + offset) +
         replacementName +
-        html.substr(source.start + source.length + offset);
+        html.substr(source.start + source.value.length + offset);
 
-      offset += replacementName.length - source.length;
+      offset += replacementName.length - source.value.length;
       index += 1;
     }
 
