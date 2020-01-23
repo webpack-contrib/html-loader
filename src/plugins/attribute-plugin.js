@@ -385,7 +385,7 @@ function processMatch(match, strUntilValue, name, value, index) {
     return;
   }
 
-  if (name === 'srcset') {
+  if (name.toLowerCase() === 'srcset') {
     let sourceSet;
 
     try {
