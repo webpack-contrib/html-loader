@@ -346,9 +346,45 @@ function parseSrcset(input) {
   }
 }
 
-function getLinks(content, attributes) {
+function processMatch(match, strUntilValue, name, value, index) {
+  if (!this.isRelevantTagAttribute(this.currentTag, name)) {
+    return;
+  }
+
+  if (name === 'srcset') {
+    let sourceSet;
+
+    try {
+      sourceSet = parseSrcset(value);
+    } catch (_error) {
+      // Throw warning
+    }
+
+    if (!sourceSet) {
+      return;
+    }
+
+    sourceSet.forEach((source) => {
+      this.results.push({
+        start: index + strUntilValue.length + source.url.start,
+        length: source.url.value.length,
+        value: source.url.value,
+      });
+    });
+
+    return;
+  }
+
+  this.results.push({
+    start: index + strUntilValue.length,
+    length: value.length,
+    value,
+  });
+}
+
+export default (content, replacers, options) => {
   const tagsAndAttributes =
-    typeof attributes === 'undefined' || attributes === true
+    typeof options.attributes === 'undefined' || options.attributes === true
       ? [
           ':srcset',
           'img:src',
@@ -360,43 +396,7 @@ function getLinks(content, attributes) {
           'input:src',
           'object:data',
         ]
-      : attributes;
-
-  function processMatch(match, strUntilValue, name, value, index) {
-    if (!this.isRelevantTagAttribute(this.currentTag, name)) {
-      return;
-    }
-
-    if (name === 'srcset') {
-      let sourceSet;
-
-      try {
-        sourceSet = parseSrcset(value);
-      } catch (_error) {
-        // Throw warning
-      }
-
-      if (!sourceSet) {
-        return;
-      }
-
-      sourceSet.forEach((source) => {
-        this.results.push({
-          start: index + strUntilValue.length + source.url.start,
-          length: source.url.value.length,
-          value: source.url.value,
-        });
-      });
-
-      return;
-    }
-
-    this.results.push({
-      start: index + strUntilValue.length,
-      length: value.length,
-      value,
-    });
-  }
+      : options.attributes;
 
   const parser = new Parser({
     outside: {
@@ -421,7 +421,7 @@ function getLinks(content, attributes) {
     },
   });
 
-  return parser.parse('outside', content, {
+  const sources = parser.parse('outside', content, {
     currentTag: null,
     results: [],
     isRelevantTagAttribute: (tag, attribute) => {
@@ -434,39 +434,30 @@ function getLinks(content, attributes) {
       });
     },
   }).results;
-}
-
-function replaceLinkWithIdent(source, link, ident, offset = 0) {
-  return (
-    source.substr(0, link.start + offset) +
-    ident +
-    source.substr(link.start + link.length + offset)
-  );
-}
-
-export default (content, replacers, options) => {
-  const links = getLinks(content, options.attributes);
 
   let offset = 0;
 
-  for (const link of links) {
-    if (link.value && isUrlRequest(link.value, options.root)) {
-      const uri = parse(link.value);
+  for (const source of sources) {
+    if (source.value && isUrlRequest(source.value, options.root)) {
+      const uri = parse(source.value);
 
       if (typeof uri.hash !== 'undefined') {
         uri.hash = null;
-        link.value = uri.format();
-        link.length = link.value.length;
+        source.value = uri.format();
+        source.length = source.value.length;
       }
 
       const ident = `___HTML_LOADER_IDENT_${replacers.size}___`;
 
-      replacers.set(ident, link.value);
+      replacers.set(ident, source.value);
 
       // eslint-disable-next-line no-param-reassign
-      content = replaceLinkWithIdent(content, link, ident, offset);
+      content =
+        content.substr(0, source.start + offset) +
+        ident +
+        content.substr(source.start + source.length + offset);
 
-      offset += ident.length - link.length;
+      offset += ident.length - source.length;
     }
   }
 
