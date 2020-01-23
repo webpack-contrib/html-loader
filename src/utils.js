@@ -367,7 +367,7 @@ export function getLinks(content, attributes) {
       : attributes;
 
   function processMatch(match, strUntilValue, name, value, index) {
-    if (!this.isRelevantTagAttr(this.currentTag, name)) {
+    if (!this.isRelevantTagAttribute(this.currentTag, name)) {
       return;
     }
 
@@ -428,16 +428,14 @@ export function getLinks(content, attributes) {
   return parser.parse('outside', content, {
     currentTag: null,
     results: [],
-    isRelevantTagAttr: (tag, attribute) => {
-      const res = tagsAndAttributes.find((a) => {
-        if (a.startsWith(':')) {
-          return attribute === a.slice(1);
-        }
+    isRelevantTagAttribute: (tag, attribute) => {
+      return tagsAndAttributes.some((item) => {
+        const pattern = new RegExp(`^${item}$`, 'i');
 
-        return `${tag}:${attribute}` === a;
+        return (
+          pattern.test(`${tag}:${attribute}`) || pattern.test(`:${attribute}`)
+        );
       });
-
-      return Boolean(res);
     },
   }).results;
 }
