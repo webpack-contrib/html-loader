@@ -32,4 +32,18 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should not failed contain invisible spaces', async () => {
+    const compiler = getCompiler('invisible-space.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./invisible-space.html', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });
