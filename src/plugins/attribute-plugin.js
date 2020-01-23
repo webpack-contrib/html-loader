@@ -322,7 +322,7 @@ function parseSrcset(input) {
     // URL is url, associated with a width width if not absent and a pixel
     // density density if not absent. Otherwise, there is a parse error.
     if (!pError) {
-      candidate.url = { value: url, start: startUrlPosition };
+      candidate.source = { value: url, start: startUrlPosition };
 
       if (w) {
         candidate.width = { value: w };
@@ -398,11 +398,17 @@ function processMatch(match, strUntilValue, name, value, index) {
       return;
     }
 
-    sourceSet.forEach((source) => {
+    sourceSet.forEach((sourceItem) => {
+      const { source } = sourceItem;
+
+      if (!this.filter(source.value)) {
+        return;
+      }
+
       this.results.push({
-        start: index + strUntilValue.length + source.url.start,
-        length: source.url.value.length,
-        value: source.url.value,
+        start: index + strUntilValue.length + source.start,
+        length: source.value.length,
+        value: source.value,
       });
     });
 
@@ -410,6 +416,10 @@ function processMatch(match, strUntilValue, name, value, index) {
   }
 
   const source = parseSrc(value);
+
+  if (!this.filter(source.value)) {
+    return;
+  }
 
   this.results.push({
     start: index + strUntilValue.length + source.start,
@@ -461,6 +471,9 @@ export default (options) =>
     const sources = parser.parse('outside', html, {
       currentTag: null,
       results: [],
+      filter: (value) => {
+        return isUrlRequest(value, options.root);
+      },
       isRelevantTagAttribute: (tag, attribute) => {
         return tagsAndAttributes.some((item) => {
           const pattern = new RegExp(`^${item}$`, 'i');
@@ -476,31 +489,29 @@ export default (options) =>
     let index = 0;
 
     for (const source of sources) {
-      if (isUrlRequest(source.value, options.root)) {
-        const uri = parse(source.value);
+      const uri = parse(source.value);
 
-        if (typeof uri.hash !== 'undefined') {
-          uri.hash = null;
-          source.value = uri.format();
-          source.length = source.value.length;
-        }
-
-        const replacementName = `___HTML_LOADER_IDENT_${index}___`;
-
-        result.messages.push({
-          type: 'replacer',
-          value: { type: 'attribute', replacementName, source: source.value },
-        });
-
-        // eslint-disable-next-line no-param-reassign
-        html =
-          html.substr(0, source.start + offset) +
-          replacementName +
-          html.substr(source.start + source.length + offset);
-
-        offset += replacementName.length - source.length;
-        index += 1;
+      if (typeof uri.hash !== 'undefined') {
+        uri.hash = null;
+        source.value = uri.format();
+        source.length = source.value.length;
       }
+
+      const replacementName = `___HTML_LOADER_IDENT_${index}___`;
+
+      result.messages.push({
+        type: 'replacer',
+        value: { type: 'attribute', replacementName, source: source.value },
+      });
+
+      // eslint-disable-next-line no-param-reassign
+      html =
+        html.substr(0, source.start + offset) +
+        replacementName +
+        html.substr(source.start + source.length + offset);
+
+      offset += replacementName.length - source.length;
+      index += 1;
     }
 
     return html;
