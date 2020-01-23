@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`loader should not failed contain invisible spaces: errors 1`] = `Array []`;
+
+exports[`loader should not failed contain invisible spaces: module 1`] = `
+"// Exports
+module.exports = \\"<ul>\\\\n  <li> \\\\\\\\u2028 -   </li>\\\\n  <li> \\\\\\\\u2029 -   </li>\\\\n</ul>\\\\n\\";"
+`;
+
+exports[`loader should not failed contain invisible spaces: result 1`] = `
+"<ul>
+  <li> \\\\u2028 -   </li>
+  <li> \\\\u2029 -   </li>
+</ul>
+"
+`;
+
+exports[`loader should not failed contain invisible spaces: warnings 1`] = `Array []`;
+
 exports[`loader should not make bad things with templates: errors 1`] = `Array []`;
 
 exports[`loader should not make bad things with templates: module 1`] = `
