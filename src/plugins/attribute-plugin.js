@@ -489,10 +489,12 @@ export default (options) =>
     let index = 0;
 
     for (const source of sources) {
+      // Todo migrate on URL
       const uri = parse(source.value);
 
       if (typeof uri.hash !== 'undefined') {
         uri.hash = null;
+
         source.value = uri.format();
         source.length = source.value.length;
       }
@@ -501,7 +503,11 @@ export default (options) =>
 
       result.messages.push({
         type: 'replacer',
-        value: { type: 'attribute', replacementName, source: source.value },
+        value: {
+          type: 'attribute',
+          replacementName,
+          source: decodeURIComponent(source.value),
+        },
       });
 
       // eslint-disable-next-line no-param-reassign

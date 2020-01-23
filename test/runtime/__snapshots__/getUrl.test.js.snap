@@ -8,32 +8,32 @@ exports[`getUrl should work 3`] = `undefined`;
 
 exports[`getUrl should work 4`] = `"image.png"`;
 
-exports[`getUrl should work 5`] = `"\\"image	image.png\\""`;
+exports[`getUrl should work 5`] = `"image	image.png"`;
 
 exports[`getUrl should work 6`] = `
-"\\"image
-image.png\\""
+"image
+image.png"
 `;
 
-exports[`getUrl should work 7`] = `"\\"imageimage.png\\""`;
+exports[`getUrl should work 7`] = `"imageimage.png"`;
 
 exports[`getUrl should work 8`] = `
-"\\"image
-image.png\\""
+"image
+image.png"
 `;
 
-exports[`getUrl should work 9`] = `"\\"image image.png\\""`;
+exports[`getUrl should work 9`] = `"image image.png"`;
 
-exports[`getUrl should work 10`] = `"\\"image\\"image.png\\""`;
+exports[`getUrl should work 10`] = `"image\\"image.png"`;
 
-exports[`getUrl should work 11`] = `"\\"image'image.png\\""`;
+exports[`getUrl should work 11`] = `"image'image.png"`;
 
-exports[`getUrl should work 12`] = `"\\"image=image.png\\""`;
+exports[`getUrl should work 12`] = `"image=image.png"`;
 
-exports[`getUrl should work 13`] = `"\\"image>image.png\\""`;
+exports[`getUrl should work 13`] = `"image>image.png"`;
 
-exports[`getUrl should work 14`] = `"\\"image<image.png\\""`;
+exports[`getUrl should work 14`] = `"image<image.png"`;
 
-exports[`getUrl should work 15`] = `"\\"image\`image.png\\""`;
+exports[`getUrl should work 15`] = `"image\`image.png"`;
 
 exports[`getUrl should work 16`] = `"image.png"`;
