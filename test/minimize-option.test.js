@@ -98,7 +98,7 @@ describe('"minimize" option', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work emit an error on broken HTML syntax', async () => {
+  it('should emit an error on broken HTML syntax', async () => {
     const compiler = getCompiler('broken-html-syntax.js', { minimize: true });
     const stats = await compile(compiler);
 
