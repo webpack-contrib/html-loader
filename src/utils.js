@@ -347,10 +347,6 @@ function parseSrcset(input) {
 }
 
 export function getLinks(content, attributes) {
-  if (attributes === false) {
-    return [];
-  }
-
   const tagsAndAttributes =
     typeof attributes === 'undefined' || attributes === true
       ? [

@@ -1,18 +1,9 @@
-import { parse } from 'url';
-
-import { compile } from 'es6-templates';
-import { minify } from 'html-minifier-terser';
-import { getOptions, isUrlRequest } from 'loader-utils';
+import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
-import {
-  getLinks,
-  getUniqueIdent,
-  replaceLinkWithIdent,
-  isProductionMode,
-  getImportCode,
-  getExportCode,
-} from './utils';
+import { attributePlugin, interpolatePlugin, minimizerPlugin } from './plugins';
+
+import { isProductionMode, getImportCode, getExportCode } from './utils';
 
 import schema from './options.json';
 
@@ -28,29 +19,12 @@ export default function htmlLoader(source) {
 
   let content = source.toString();
 
-  const links = getLinks(content, options.attributes);
+  const attributes =
+    typeof options.attributes === 'undefined' ? true : options.attributes;
   const replacers = new Map();
 
-  let offset = 0;
-
-  for (const link of links) {
-    if (link.value && isUrlRequest(link.value, options.root)) {
-      const uri = parse(link.value);
-
-      if (typeof uri.hash !== 'undefined') {
-        uri.hash = null;
-        link.value = uri.format();
-        link.length = link.value.length;
-      }
-
-      const ident = getUniqueIdent(replacers);
-
-      replacers.set(ident, link.value);
-
-      content = replaceLinkWithIdent(content, link, ident, offset);
-
-      offset += ident.length - link.length;
-    }
+  if (attributes) {
+    content = attributePlugin(content, replacers, options);
   }
 
   const minimize =
@@ -59,35 +33,18 @@ export default function htmlLoader(source) {
       : options.minimize;
 
   if (minimize) {
-    const minimizeOptions =
-      typeof minimize === 'boolean'
-        ? {
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            keepClosingSlash: true,
-            minifyCSS: true,
-            minifyJS: true,
-            removeAttributeQuotes: true,
-            removeComments: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true,
-          }
-        : minimize;
-
     try {
-      content = minify(content, minimizeOptions);
+      content = minimizerPlugin(content, options);
     } catch (error) {
       this.emitError(error);
     }
   }
 
-  if (options.interpolate) {
+  const { interpolate } = options;
+
+  if (interpolate) {
     try {
-      // Double escape quotes so that they are not unescaped completely in the template string
-      content = compile(
-        `\`${content.replace(/\\"/g, '\\\\"').replace(/\\'/g, "\\\\\\'")}\``
-      ).code;
+      content = interpolatePlugin(content);
     } catch (error) {
       this.emitError(error);
 
