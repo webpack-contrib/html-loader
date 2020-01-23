@@ -1,14 +1,11 @@
-import { parse } from 'url';
-
-import { compile } from 'es6-templates';
-import { minify } from 'html-minifier-terser';
-import { getOptions, isUrlRequest } from 'loader-utils';
+import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
+import { attributePlugin, interpolatePlugin, minimizerPlugin } from './plugins';
+import Warning from './Warning';
+
 import {
-  getLinks,
-  getUniqueIdent,
-  replaceLinkWithIdent,
+  pluginRunner,
   isProductionMode,
   getImportCode,
   getExportCode,
@@ -16,9 +13,7 @@ import {
 
 import schema from './options.json';
 
-export const raw = true;
-
-export default function htmlLoader(source) {
+export default function htmlLoader(content) {
   const options = getOptions(this) || {};
 
   validateOptions(schema, options, {
@@ -26,31 +21,13 @@ export default function htmlLoader(source) {
     baseDataPath: 'options',
   });
 
-  let content = source.toString();
+  const plugins = [];
 
-  const links = getLinks(content, options.attributes);
-  const replacers = new Map();
+  const attributes =
+    typeof options.attributes === 'undefined' ? true : options.attributes;
 
-  let offset = 0;
-
-  for (const link of links) {
-    if (link.value && isUrlRequest(link.value, options.root)) {
-      const uri = parse(link.value);
-
-      if (typeof uri.hash !== 'undefined') {
-        uri.hash = null;
-        link.value = uri.format();
-        link.length = link.value.length;
-      }
-
-      const ident = getUniqueIdent(replacers);
-
-      replacers.set(ident, link.value);
-
-      content = replaceLinkWithIdent(content, link, ident, offset);
-
-      offset += ident.length - link.length;
-    }
+  if (attributes) {
+    plugins.push(attributePlugin(options));
   }
 
   const minimize =
@@ -59,46 +36,40 @@ export default function htmlLoader(source) {
       : options.minimize;
 
   if (minimize) {
-    const minimizeOptions =
-      typeof minimize === 'boolean'
-        ? {
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            keepClosingSlash: true,
-            minifyCSS: true,
-            minifyJS: true,
-            removeAttributeQuotes: true,
-            removeComments: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true,
-          }
-        : minimize;
+    plugins.push(minimizerPlugin(options));
+  }
 
-    try {
-      content = minify(content, minimizeOptions);
-    } catch (error) {
-      this.emitError(error);
+  const { interpolate } = options;
+
+  if (interpolate) {
+    plugins.push(interpolatePlugin(options));
+  }
+
+  const { html, messages, warnings, errors } = pluginRunner(plugins).process(
+    content
+  );
+
+  for (const warning of warnings) {
+    this.emitWarning(new Warning(warning));
+  }
+
+  for (const error of errors) {
+    this.emitError(new Error(error));
+  }
+
+  const replacers = [];
+
+  for (const message of messages) {
+    // eslint-disable-next-line default-case
+    switch (message.type) {
+      case 'replacer':
+        replacers.push(message.value);
+        break;
     }
   }
 
-  if (options.interpolate) {
-    try {
-      // Double escape quotes so that they are not unescaped completely in the template string
-      content = compile(
-        `\`${content.replace(/\\"/g, '\\\\"').replace(/\\'/g, "\\\\\\'")}\``
-      ).code;
-    } catch (error) {
-      this.emitError(error);
-
-      content = JSON.stringify(content);
-    }
-  } else {
-    content = JSON.stringify(content);
-  }
-
-  const importCode = getImportCode(this, content, replacers, options);
-  const exportCode = getExportCode(content, replacers, options);
+  const importCode = getImportCode(this, html, replacers, options);
+  const exportCode = getExportCode(html, replacers, options);
 
   return `${importCode}${exportCode};`;
 }

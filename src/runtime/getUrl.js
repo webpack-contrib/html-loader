@@ -6,9 +6,9 @@ module.exports = (url) => {
     return url;
   }
 
-  if (/[\t\n\f\r "'=<>`]/.test(url)) {
-    return `"${url}"`;
-  }
+  // if (/[\t\n\f\r "'=<>`]/.test(url)) {
+  //  return `"${url}"`;
+  // }
 
   return url;
 };
