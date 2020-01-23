@@ -33,18 +33,6 @@ describe("'interpolate' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with the "require"', async () => {
-    const compiler = getCompiler('template.js', { interpolate: 'require' });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./template.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
   it('should emit an error on broken interpolation syntax', async () => {
     const compiler = getCompiler('broken-interpolation-syntax.js', {
       interpolate: true,

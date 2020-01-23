@@ -16,8 +16,6 @@ import {
 
 import schema from './options.json';
 
-const REQUIRE_REGEX = /\${require\([^)]*\)}/g;
-
 export const raw = true;
 
 export default function htmlLoader(source) {
@@ -55,31 +53,6 @@ export default function htmlLoader(source) {
     }
   }
 
-  if (options.interpolate === 'require') {
-    const reqList = [];
-
-    let result = REQUIRE_REGEX.exec(content);
-    while (result) {
-      reqList.push({
-        length: result[0].length,
-        start: result.index,
-        value: result[0],
-      });
-
-      result = REQUIRE_REGEX.exec(content);
-    }
-
-    reqList.reverse();
-
-    for (const link of reqList) {
-      const ident = getUniqueIdent(replacers);
-
-      replacers.set(ident, link.value.substring(11, link.length - 3));
-
-      content = replaceLinkWithIdent(content, link, ident);
-    }
-  }
-
   const minimize =
     typeof options.minimize === 'undefined'
       ? isProductionMode(this)
@@ -109,7 +82,7 @@ export default function htmlLoader(source) {
     }
   }
 
-  if (options.interpolate && options.interpolate !== 'require') {
+  if (options.interpolate) {
     try {
       // Double escape quotes so that they are not unescaped completely in the template string
       content = compile(
