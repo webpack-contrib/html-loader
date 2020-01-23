@@ -20,6 +20,25 @@ exports[`'interpolate' option should disabled by default: result 1`] = `
 
 exports[`'interpolate' option should disabled by default: warnings 1`] = `Array []`;
 
+exports[`'interpolate' option should emit an error on broken interpolation syntax: errors 1`] = `
+Array [
+  "ModuleError: Module Error (from /path/to/file.js):
+Line 1: Unexpected token |",
+]
+`;
+
+exports[`'interpolate' option should emit an error on broken interpolation syntax: module 1`] = `
+"// Exports
+module.exports = \\"<div>\${broken|||test}</div>\\\\n\\";"
+`;
+
+exports[`'interpolate' option should emit an error on broken interpolation syntax: result 1`] = `
+"<div>\${broken|||test}</div>
+"
+`;
+
+exports[`'interpolate' option should emit an error on broken interpolation syntax: warnings 1`] = `Array []`;
+
 exports[`'interpolate' option should work with boolean notation: errors 1`] = `Array []`;
 
 exports[`'interpolate' option should work with boolean notation: module 1`] = `

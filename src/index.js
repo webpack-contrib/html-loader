@@ -110,11 +110,16 @@ export default function htmlLoader(source) {
   }
 
   if (options.interpolate && options.interpolate !== 'require') {
-    // Double escape quotes so that they are not unescaped completely in the template string
-    content = content.replace(/\\"/g, '\\\\"');
-    content = content.replace(/\\'/g, "\\\\\\'");
+    try {
+      // Double escape quotes so that they are not unescaped completely in the template string
+      content = compile(
+        `\`${content.replace(/\\"/g, '\\\\"').replace(/\\'/g, "\\\\\\'")}\``
+      ).code;
+    } catch (error) {
+      this.emitError(error);
 
-    content = compile(`\`${content}\``).code;
+      content = JSON.stringify(content);
+    }
   } else {
     content = JSON.stringify(content);
   }

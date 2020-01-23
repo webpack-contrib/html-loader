@@ -44,4 +44,20 @@ describe("'interpolate' option", () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should emit an error on broken interpolation syntax', async () => {
+    const compiler = getCompiler('broken-interpolation-syntax.js', {
+      interpolate: true,
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./broken-interpolation-syntax.html', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });
