@@ -48,7 +48,7 @@ module.exports = {
 };
 ```
 
-By default every local `<img src="image.png">` is required (`require('./image.png')`).
+By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
 You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
 
 ## Options
@@ -57,7 +57,7 @@ You may need to specify loaders for images in your configuration (recommended `f
 | :-------------------------------: | :-----------------: | :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
 |  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data']` | Enables/Disables attributes handling     |
 |        **[`root`](#root)**        |     `{String}`      |                                                      `undefiend`                                                      | Allow to handle root-relative attributes |
-| **[`interpolate`](#interpolate)** | `{Boolean\|String}` |                                                        `false`                                                        | Allow to use expressions in HTML syntax  |
+| **[`interpolate`](#interpolate)** |     `{Boolean}`     |                                                        `false`                                                        | Allow to use expressions in HTML syntax  |
 |    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                     `true` in production mode, otherwise `false`                                      | Tell `html-loader` to minimize HTML      |
 |    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                        `false`                                                        | Use ES modules syntax                    |
 
@@ -147,9 +147,6 @@ Type: `Boolean|String`
 Default: `false`
 
 Allow to use expressions in HTML syntax.
-
-#### `Boolean`
-
 You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:
 
 ```js
@@ -157,12 +154,13 @@ require('html-loader?interpolate!./file.html');
 ```
 
 ```html
-<img src="${require(`./images/gallery.png`)}" />
+<img src="${require(`./images/gallery.png`).default}" />
 
-<div>${require('./components/gallery.html')}</div>
+<div>${require('./components/gallery.html').default}</div>
 ```
 
-#### `Boolean`
+> ⚠ By default `file-loader` or `url-loader` use ES module syntax so you need use the `default` property.
+> You should not use the `default` property if you setup the `esModule` option to `false` value for `file-loader` or `url-loader`.
 
 **webpack.config.js**
 
@@ -180,40 +178,6 @@ module.exports = {
     ],
   },
 };
-```
-
-#### `String`
-
-If you only want to use `require` in template and any other `${}` are not to be translated, you can set `interpolate` flag to `require`, like so:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          interpolate: 'require',
-        },
-      },
-    ],
-  },
-};
-```
-
-This may be useful for template syntaxes. For example:
-
-```html
-<#list list as list>
-  <a href="${list.href!}" />${list.name}</a>
-</#list>
-
-<img src="${require(`./images/gallery.png`)}">
-
-<div>${require('./components/gallery.html')}</div>
 ```
 
 ### `minimize`

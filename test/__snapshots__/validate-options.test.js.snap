@@ -17,11 +17,7 @@ exports[`validate options should throw an error on the "esModule" option with "t
 
 exports[`validate options should throw an error on the "interpolate" option with "1" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.interpolate should be one of these:
-   boolean | string
-   Details:
-    * options.interpolate should be a boolean.
-    * options.interpolate should be a string."
+ - options.interpolate should be a boolean."
 `;
 
 exports[`validate options should throw an error on the "root" option with "true" value 1`] = `
