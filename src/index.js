@@ -2,14 +2,18 @@ import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
 import { attributePlugin, interpolatePlugin, minimizerPlugin } from './plugins';
+import Warning from './Warning';
 
-import { isProductionMode, getImportCode, getExportCode } from './utils';
+import {
+  pluginRunner,
+  isProductionMode,
+  getImportCode,
+  getExportCode,
+} from './utils';
 
 import schema from './options.json';
 
-export const raw = true;
-
-export default function htmlLoader(source) {
+export default function htmlLoader(content) {
   const options = getOptions(this) || {};
 
   validateOptions(schema, options, {
@@ -17,14 +21,13 @@ export default function htmlLoader(source) {
     baseDataPath: 'options',
   });
 
-  let content = source.toString();
+  const plugins = [];
 
   const attributes =
     typeof options.attributes === 'undefined' ? true : options.attributes;
-  const replacers = new Map();
 
   if (attributes) {
-    content = attributePlugin(content, replacers, options);
+    plugins.push(attributePlugin(options));
   }
 
   const minimize =
@@ -33,29 +36,40 @@ export default function htmlLoader(source) {
       : options.minimize;
 
   if (minimize) {
-    try {
-      content = minimizerPlugin(content, options);
-    } catch (error) {
-      this.emitError(error);
-    }
+    plugins.push(minimizerPlugin(options));
   }
 
   const { interpolate } = options;
 
   if (interpolate) {
-    try {
-      content = interpolatePlugin(content);
-    } catch (error) {
-      this.emitError(error);
-
-      content = JSON.stringify(content);
-    }
-  } else {
-    content = JSON.stringify(content);
+    plugins.push(interpolatePlugin(options));
   }
 
-  const importCode = getImportCode(this, content, replacers, options);
-  const exportCode = getExportCode(content, replacers, options);
+  const { html, messages, warnings, errors } = pluginRunner(plugins).process(
+    content
+  );
+
+  for (const warning of warnings) {
+    this.emitWarning(new Warning(warning));
+  }
+
+  for (const error of errors) {
+    this.emitError(new Error(error));
+  }
+
+  const replacers = [];
+
+  for (const message of messages) {
+    // eslint-disable-next-line default-case
+    switch (message.type) {
+      case 'replacer':
+        replacers.push(message.value);
+        break;
+    }
+  }
+
+  const importCode = getImportCode(this, html, replacers, options);
+  const exportCode = getExportCode(html, replacers, options);
 
   return `${importCode}${exportCode};`;
 }

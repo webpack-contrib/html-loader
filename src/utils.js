@@ -1,11 +1,28 @@
 import { urlToRequest, stringifyRequest } from 'loader-utils';
 
+export function pluginRunner(plugins) {
+  return {
+    process: (content) => {
+      const result = { messages: [], warnings: [], errors: [] };
+
+      for (const plugin of plugins) {
+        // eslint-disable-next-line no-param-reassign
+        content = plugin(content, result);
+      }
+
+      result.html = content;
+
+      return result;
+    },
+  };
+}
+
 export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
 
-export function getImportCode(loaderContext, content, replacers, options) {
-  if (replacers.size === 0) {
+export function getImportCode(loaderContext, html, replacers, options) {
+  if (replacers.length === 0) {
     return '';
   }
 
@@ -23,17 +40,17 @@ export function getImportCode(loaderContext, content, replacers, options) {
         )});`
   );
 
-  const idents = replacers.keys();
-
-  for (const ident of idents) {
-    const url = replacers.get(ident);
-    const request = urlToRequest(url, options.root);
+  for (const replacer of replacers) {
+    const { replacementName, source } = replacer;
+    const request = urlToRequest(source, options.root);
     const stringifiedRequest = stringifyRequest(loaderContext, request);
 
     if (options.esModule) {
-      importItems.push(`import ${ident} from ${stringifiedRequest};`);
+      importItems.push(`import ${replacementName} from ${stringifiedRequest};`);
     } else {
-      importItems.push(`var ${ident} = require(${stringifiedRequest});`);
+      importItems.push(
+        `var ${replacementName} = require(${stringifiedRequest});`
+      );
     }
   }
 
@@ -42,17 +59,22 @@ export function getImportCode(loaderContext, content, replacers, options) {
   return `// Imports\n${importCode}\n`;
 }
 
-export function getExportCode(content, replacers, options) {
-  const exportCode = content.replace(
-    /___HTML_LOADER_IDENT_[0-9.]+___/g,
-    (match) => {
-      if (!replacers.has(match)) {
-        return match;
-      }
+export function getExportCode(html, replacers, options) {
+  let exportCode = html;
 
-      return `" + ___HTML_LOADER_GET_URL_IMPORT___(${match}) + "`;
-    }
-  );
+  if (!options.interpolate) {
+    // eslint-disable-next-line no-param-reassign
+    exportCode = JSON.stringify(exportCode);
+  }
+
+  for (const replacer of replacers) {
+    const { replacementName } = replacer;
+
+    exportCode = exportCode.replace(
+      new RegExp(replacementName, 'g'),
+      () => `" + ___HTML_LOADER_GET_URL_IMPORT___(${replacementName}) + "`
+    );
+  }
 
   if (options.esModule) {
     return `// Exports\nexport default ${exportCode}`;

@@ -1,9 +1,19 @@
 import { compile } from 'es6-templates';
 
-export default (content) => {
-  // Double escape quotes so that they are not unescaped completely in the template string
+export default () =>
+  function process(html, result) {
+    try {
+      // eslint-disable-next-line no-param-reassign
+      html = compile(
+        // Double escape quotes so that they are not unescaped completely in the template string
+        `\`${html.replace(/\\"/g, '\\\\"').replace(/\\'/g, "\\\\\\'")}\``
+      ).code;
+    } catch (error) {
+      // eslint-disable-next-line no-param-reassign
+      html = JSON.stringify(html);
 
-  return compile(
-    `\`${content.replace(/\\"/g, '\\\\"').replace(/\\'/g, "\\\\\\'")}\``
-  ).code;
-};
+      result.errors.push(error);
+    }
+
+    return html;
+  };

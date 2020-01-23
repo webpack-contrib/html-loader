@@ -382,84 +382,90 @@ function processMatch(match, strUntilValue, name, value, index) {
   });
 }
 
-export default (content, replacers, options) => {
-  const tagsAndAttributes =
-    typeof options.attributes === 'undefined' || options.attributes === true
-      ? [
-          ':srcset',
-          'img:src',
-          'audio:src',
-          'video:src',
-          'track:src',
-          'embed:src',
-          'source:src',
-          'input:src',
-          'object:data',
-        ]
-      : options.attributes;
+export default (options) =>
+  function process(html, result) {
+    const tagsAndAttributes =
+      typeof options.attributes === 'undefined' || options.attributes === true
+        ? [
+            ':srcset',
+            'img:src',
+            'audio:src',
+            'video:src',
+            'track:src',
+            'embed:src',
+            'source:src',
+            'input:src',
+            'object:data',
+          ]
+        : options.attributes;
 
-  const parser = new Parser({
-    outside: {
-      '<!--.*?-->': true,
-      '<![CDATA[.*?]]>': true,
-      '<[!\\?].*?>': true,
-      '</[^>]+>': true,
-      '<([a-zA-Z\\-:]+)\\s*': function matchTag(match, tagName) {
-        this.currentTag = tagName;
+    const parser = new Parser({
+      outside: {
+        '<!--.*?-->': true,
+        '<![CDATA[.*?]]>': true,
+        '<[!\\?].*?>': true,
+        '</[^>]+>': true,
+        '<([a-zA-Z\\-:]+)\\s*': function matchTag(match, tagName) {
+          this.currentTag = tagName;
 
-        return 'inside';
+          return 'inside';
+        },
       },
-    },
-    inside: {
-      // eat up whitespace
-      '\\s+': true,
-      // end of attributes
-      '>': 'outside',
-      '(([0-9a-zA-Z\\-:]+)\\s*=\\s*")([^"]*)"': processMatch,
-      "(([0-9a-zA-Z\\-:]+)\\s*=\\s*')([^']*)'": processMatch,
-      '(([0-9a-zA-Z\\-:]+)\\s*=\\s*)([^\\s>]+)': processMatch,
-    },
-  });
+      inside: {
+        // eat up whitespace
+        '\\s+': true,
+        // end of attributes
+        '>': 'outside',
+        '(([0-9a-zA-Z\\-:]+)\\s*=\\s*")([^"]*)"': processMatch,
+        "(([0-9a-zA-Z\\-:]+)\\s*=\\s*')([^']*)'": processMatch,
+        '(([0-9a-zA-Z\\-:]+)\\s*=\\s*)([^\\s>]+)': processMatch,
+      },
+    });
 
-  const sources = parser.parse('outside', content, {
-    currentTag: null,
-    results: [],
-    isRelevantTagAttribute: (tag, attribute) => {
-      return tagsAndAttributes.some((item) => {
-        const pattern = new RegExp(`^${item}$`, 'i');
+    const sources = parser.parse('outside', html, {
+      currentTag: null,
+      results: [],
+      isRelevantTagAttribute: (tag, attribute) => {
+        return tagsAndAttributes.some((item) => {
+          const pattern = new RegExp(`^${item}$`, 'i');
 
-        return (
-          pattern.test(`${tag}:${attribute}`) || pattern.test(`:${attribute}`)
-        );
-      });
-    },
-  }).results;
+          return (
+            pattern.test(`${tag}:${attribute}`) || pattern.test(`:${attribute}`)
+          );
+        });
+      },
+    }).results;
 
-  let offset = 0;
+    let offset = 0;
+    let index = 0;
 
-  for (const source of sources) {
-    if (source.value && isUrlRequest(source.value, options.root)) {
-      const uri = parse(source.value);
+    for (const source of sources) {
+      if (source.value && isUrlRequest(source.value, options.root)) {
+        const uri = parse(source.value);
 
-      if (typeof uri.hash !== 'undefined') {
-        uri.hash = null;
-        source.value = uri.format();
-        source.length = source.value.length;
+        if (typeof uri.hash !== 'undefined') {
+          uri.hash = null;
+          source.value = uri.format();
+          source.length = source.value.length;
+        }
+
+        const replacementName = `___HTML_LOADER_IDENT_${index}___`;
+
+        result.messages.push({
+          type: 'replacer',
+          value: { type: 'attribute', replacementName, source: source.value },
+        });
+
+        // eslint-disable-next-line no-param-reassign
+        html =
+          html.substr(0, source.start + offset) +
+          replacementName +
+          html.substr(source.start + source.length + offset);
+
+        offset += replacementName.length - source.length;
+        index += 1;
       }
-
-      const ident = `___HTML_LOADER_IDENT_${replacers.size}___`;
-
-      replacers.set(ident, source.value);
-
-      // eslint-disable-next-line no-param-reassign
-      content =
-        content.substr(0, source.start + offset) +
-        ident +
-        content.substr(source.start + source.length + offset);
-
-      offset += ident.length - source.length;
     }
-  }
 
-  return content;
-};
+    return html;
+  };
