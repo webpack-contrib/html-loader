@@ -321,7 +321,7 @@ require('html-loader?attributes[]=img:src&attributes[]=img:data-src!./file.html'
 ```
 
 ```js
-require('html-loader?-attributes!./file.html');
+require('html-loader?attributes!./file.html');
 
 // => '<img src="image.jpg"  data-src="image2x.png" >'
 ```
