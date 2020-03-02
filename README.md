@@ -331,6 +331,70 @@ require('html-loader?-attributes!./file.html');
 data-src=data:image/png;base64,...>'
 ```
 
+### Process `script` and `link` tags
+
+**script.file.js**
+
+```js
+console.log(document);
+```
+
+**style.file.css**
+
+```css
+a {
+  color: red;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title of the document</title>
+    <link rel="stylesheet" type="text/css" href="./style.file.css" />
+  </head>
+  <body>
+    Content of the document......
+    <script src="./script.file.js"></script>
+  </body>
+</html>
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
+      },
+      {
+        test: /\.js$/i,
+        exclude: /\.file.js$/i,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.file.js$/i,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.css$/i,
+        exclude: /\.file.css$/i,
+        loader: 'css-loader',
+      },
+      {
+        test: /\.file.css$/i,
+        loader: 'file-loader',
+      },
+    ],
+  },
+};
+```
+
 ### 'Root-relative' URLs
 
 With the same configuration as above:
