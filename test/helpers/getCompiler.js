@@ -32,6 +32,24 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           loader: 'file-loader',
           options: { name: '[name].[ext]' },
         },
+        {
+          test: /\.file.css$/i,
+          rules: [
+            {
+              loader: 'file-loader',
+              options: { name: '[name].[ext]' },
+            },
+          ],
+        },
+        {
+          test: /\.file.js$/i,
+          rules: [
+            {
+              loader: 'file-loader',
+              options: { name: '[name].[ext]' },
+            },
+          ],
+        },
       ],
     },
     resolve: {

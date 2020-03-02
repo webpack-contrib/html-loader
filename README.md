@@ -53,18 +53,18 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ## Options
 
-|               Name                |        Type         |                                                        Default                                                        | Description                              |
-| :-------------------------------: | :-----------------: | :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
-|  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data']` | Enables/Disables attributes handling     |
-|        **[`root`](#root)**        |     `{String}`      |                                                      `undefiend`                                                      | Allow to handle root-relative attributes |
-| **[`interpolate`](#interpolate)** |     `{Boolean}`     |                                                        `false`                                                        | Allow to use expressions in HTML syntax  |
-|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                     `true` in production mode, otherwise `false`                                      | Tell `html-loader` to minimize HTML      |
-|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                        `false`                                                        | Use ES modules syntax                    |
+|               Name                |        Type         |                                                               Default                                                               | Description                              |
+| :-------------------------------: | :-----------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
+|  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
+|        **[`root`](#root)**        |     `{String}`      |                                                             `undefiend`                                                             | Allow to handle root-relative attributes |
+| **[`interpolate`](#interpolate)** |     `{Boolean}`     |                                                               `false`                                                               | Allow to use expressions in HTML syntax  |
+|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                            `true` in production mode, otherwise `false`                                             | Tell `html-loader` to minimize HTML      |
+|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                               `false`                                                               | Use ES modules syntax                    |
 
 ### `attributes`
 
 Type: `Boolean|Array`
-Default: `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src', 'input:src', 'object:data']`
+Default: `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src', 'input:src', 'object:data', 'script:src']`
 
 #### `Boolean`
 
@@ -329,6 +329,70 @@ require('html-loader?-attributes!./file.html');
 ```html
 '<img src=http://cdn.example.com/49eba9f/a9f92ca.jpg
 data-src=data:image/png;base64,...>'
+```
+
+### Process `script` and `link` tags
+
+**script.file.js**
+
+```js
+console.log(document);
+```
+
+**style.file.css**
+
+```css
+a {
+  color: red;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title of the document</title>
+    <link rel="stylesheet" type="text/css" href="./style.file.css" />
+  </head>
+  <body>
+    Content of the document......
+    <script src="./script.file.js"></script>
+  </body>
+</html>
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
+      },
+      {
+        test: /\.js$/i,
+        exclude: /\.file.js$/i,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.file.js$/i,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.css$/i,
+        exclude: /\.file.css$/i,
+        loader: 'css-loader',
+      },
+      {
+        test: /\.file.css$/i,
+        loader: 'file-loader',
+      },
+    ],
+  },
+};
 ```
 
 ### 'Root-relative' URLs

@@ -440,6 +440,7 @@ export default (options) =>
             'source:src',
             'input:src',
             'object:data',
+            'script:src',
           ]
         : options.attributes;
 
