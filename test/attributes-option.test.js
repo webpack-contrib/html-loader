@@ -164,7 +164,22 @@ describe("'attributes' option", () => {
   });
 
   it('should work with an "array" notations', async () => {
-    const compiler = getCompiler('simple.js', { attributes: ['img:src'] });
+    const compiler = getCompiler('simple.js', {
+      attributes: [
+        'img:src',
+        'flag-icon:src',
+        'MyStrangeTag13:src',
+        'a-:src',
+        'a-.:src',
+        'a--:src',
+        'aÀ-豈:src',
+        'aÀ-Ⰰ:src',
+        // Should not work
+        'INVALID_TAG_NAME:src',
+        // Should not work
+        'invalid-CUSTOM-TAG:src',
+      ],
+    });
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
@@ -177,7 +192,21 @@ describe("'attributes' option", () => {
 
   it('should work with multiple an "array" notations', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: ['img:src', 'script:src'],
+      attributes: [
+        'img:src',
+        'script:src',
+        'flag-icon:src',
+        'MyStrangeTag13:src',
+        'a-:src',
+        'a-.:src',
+        'a--:src',
+        'aÀ-豈:src',
+        'aÀ-Ⰰ:src',
+        // Should not work
+        'INVALID_TAG_NAME:src',
+        // Should not work
+        'invalid-CUSTOM-TAG:src',
+      ],
     });
     const stats = await compile(compiler);
 
