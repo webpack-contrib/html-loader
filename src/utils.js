@@ -63,8 +63,11 @@ export function getExportCode(html, replacers, options) {
   let exportCode = html;
 
   if (!options.interpolate) {
-    // eslint-disable-next-line no-param-reassign
-    exportCode = JSON.stringify(exportCode);
+    exportCode = JSON.stringify(exportCode)
+      // Invalid in JavaScript but valid HTML
+      .replace(/[\u2028\u2029]/g, (str) =>
+        str === '\u2029' ? '\\u2029' : '\\u2028'
+      );
   }
 
   for (const replacer of replacers) {
