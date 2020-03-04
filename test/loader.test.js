@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 import {
   compile,
   getCompiler,
@@ -34,12 +37,19 @@ describe('loader', () => {
   });
 
   it('should not failed contain invisible spaces', async () => {
+    const source = fs.readFileSync(
+      path.resolve(__dirname, './fixtures/invisible-space.html')
+    );
+
+    expect(/[\u2028\u2029]/.test(source)).toBe(true);
+
     const compiler = getCompiler('invisible-space.js');
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./invisible-space.html', stats)).toMatchSnapshot(
-      'module'
-    );
+    const moduleSource = getModuleSource('./invisible-space.html', stats);
+
+    expect(moduleSource).toMatchSnapshot('module');
+    expect(/[\u2028\u2029]/.test(moduleSource)).toBe(false);
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
