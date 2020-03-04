@@ -253,4 +253,18 @@ describe("'attributes' option", () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should emit error on invalid attributes', async () => {
+    const compiler = getCompiler('broken-srcset.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./broken-srcset.html', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });
