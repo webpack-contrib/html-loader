@@ -714,13 +714,18 @@ var ___HTML_LOADER_GET_URL_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\"
 var ___HTML_LOADER_IDENT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_1___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"Text < img src=\\\\\\"image.png\\\\\\" >\\\\nText <<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\nText ><img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n\\";"
+module.exports = \\"Text < img src=\\\\\\"image.png\\\\\\" >\\\\nText <<img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\">\\\\nText ><img src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\">\\\\n\\\\n<a foo><bar></a><!-- --><![CDATA[]]]><?foo?><!bar><boo/>boohay\\\\n<<<<>foo\\\\n<!-->>><<foo\\\\n&;122222222222222222222222222222\\\\n\\";"
 `;
 
 exports[`"minimize" option should emit an error on broken HTML syntax: result 1`] = `
 "Text < img src=\\"image.png\\" >
 Text <<img src=\\"/webpack/public/path/image.png\\">
 Text ><img src=\\"/webpack/public/path/image.png\\">
+
+<a foo><bar></a><!-- --><![CDATA[]]]><?foo?><!bar><boo/>boohay
+<<<<>foo
+<!-->>><<foo
+&;122222222222222222222222222222
 "
 `;
 
