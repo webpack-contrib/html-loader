@@ -71,11 +71,14 @@ export function getExportCode(html, replacers, options) {
   }
 
   for (const replacer of replacers) {
-    const { replacementName } = replacer;
+    const { replacementName, unquoted } = replacer;
 
     exportCode = exportCode.replace(
       new RegExp(replacementName, 'g'),
-      () => `" + ___HTML_LOADER_GET_URL_IMPORT___(${replacementName}) + "`
+      () =>
+        `" + ___HTML_LOADER_GET_URL_IMPORT___(${replacementName}${
+          unquoted ? ', true' : ''
+        }) + "`
     );
   }
 

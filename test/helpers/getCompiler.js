@@ -54,7 +54,11 @@ export default (fixture, loaderOptions = {}, config = {}) => {
     },
     resolve: {
       alias: {
-        aliasImg: path.resolve(__dirname, '../fixtures/alias-image.png'),
+        aliasImg: path.resolve(__dirname, '../fixtures/image.png'),
+        aliasImageWithSpace: path.resolve(
+          __dirname,
+          '../fixtures/image image.png'
+        ),
       },
     },
     plugins: [],
