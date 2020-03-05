@@ -210,3 +210,17 @@ image.png
 <script>
   function test() {}
 </script>
+
+<img src=image.png />
+<img src="image image.png" />
+<img src='image image.png' />
+<img src=~aliasImageWithSpace />
+<img srcset=image.png />
+<img srcset="image%20image.png" />
+<img srcset='image%20image.png' />
+<img srcset=~aliasImageWithSpace />
+<img srcset="image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img src      =       image.png />
+<img src      =      ~aliasImageWithSpace      />
+<img src      =      "~aliasImageWithSpace"      />
+<img src      =      '~aliasImageWithSpace'      />

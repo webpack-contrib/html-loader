@@ -37,3 +37,33 @@ exports[`getUrl should work 14`] = `"image<image.png"`;
 exports[`getUrl should work 15`] = `"image\`image.png"`;
 
 exports[`getUrl should work 16`] = `"image.png"`;
+
+exports[`getUrl should work 17`] = `"\\"image	image.png\\""`;
+
+exports[`getUrl should work 18`] = `
+"\\"image
+image.png\\""
+`;
+
+exports[`getUrl should work 19`] = `"\\"imageimage.png\\""`;
+
+exports[`getUrl should work 20`] = `
+"\\"image
+image.png\\""
+`;
+
+exports[`getUrl should work 21`] = `"\\"image image.png\\""`;
+
+exports[`getUrl should work 22`] = `"\\"image\\"image.png\\""`;
+
+exports[`getUrl should work 23`] = `"\\"image'image.png\\""`;
+
+exports[`getUrl should work 24`] = `"\\"image=image.png\\""`;
+
+exports[`getUrl should work 25`] = `"\\"image>image.png\\""`;
+
+exports[`getUrl should work 26`] = `"\\"image<image.png\\""`;
+
+exports[`getUrl should work 27`] = `"\\"image\`image.png\\""`;
+
+exports[`getUrl should work 28`] = `"image.png"`;

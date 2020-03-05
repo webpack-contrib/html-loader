@@ -415,15 +415,20 @@ export default (options) =>
       {
         attributesMeta: {},
         onattribute(name, value) {
-          this.attributesMeta[name] = {
-            // eslint-disable-next-line no-underscore-dangle
-            startIndex: parser._tokenizer._index - value.length,
-          };
+          // eslint-disable-next-line no-underscore-dangle
+          const endIndex = parser._tokenizer._index;
+          const startIndex = endIndex - value.length;
+          const unquoted = html[endIndex] !== '"' && html[endIndex] !== "'";
+
+          this.attributesMeta[name] = { startIndex, unquoted };
         },
         onopentag(tag, attributes) {
           Object.keys(attributes).forEach((attribute) => {
             const value = attributes[attribute];
-            const valueStartIndex = this.attributesMeta[attribute].startIndex;
+            const {
+              startIndex: valueStartIndex,
+              unquoted,
+            } = this.attributesMeta[attribute];
 
             // TODO use code frame for errors
 
@@ -458,7 +463,7 @@ export default (options) =>
 
                 const startIndex = valueStartIndex + source.startIndex;
 
-                sources.push({ startIndex, value: source.value });
+                sources.push({ startIndex, value: source.value, unquoted });
               });
 
               return;
@@ -484,7 +489,7 @@ export default (options) =>
 
             const startIndex = valueStartIndex + source.startIndex;
 
-            sources.push({ startIndex, value: source.value });
+            sources.push({ startIndex, value: source.value, unquoted });
           });
 
           this.attributesMeta = {};
@@ -510,7 +515,8 @@ export default (options) =>
     let index = 0;
 
     for (const source of sources) {
-      const uri = parse(source.value);
+      const { value, startIndex, unquoted } = source;
+      const uri = parse(value);
 
       if (typeof uri.hash !== 'undefined') {
         uri.hash = null;
@@ -526,16 +532,17 @@ export default (options) =>
           type: 'attribute',
           replacementName,
           source: decodeURIComponent(source.value),
+          unquoted,
         },
       });
 
       // eslint-disable-next-line no-param-reassign
       html =
-        html.substr(0, source.startIndex + offset) +
+        html.substr(0, startIndex + offset) +
         replacementName +
-        html.substr(source.startIndex + source.value.length + offset);
+        html.substr(startIndex + value.length + offset);
 
-      offset += replacementName.length - source.value.length;
+      offset += replacementName.length - value.length;
       index += 1;
     }
 
