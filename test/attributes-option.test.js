@@ -253,4 +253,16 @@ describe("'attributes' option", () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should handle "src" and "srcset"  tags correctly', async () => {
+    const compiler = getCompiler('sources.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./sources.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });

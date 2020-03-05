@@ -1,7 +1,7 @@
 import { parse } from 'url';
 
+import { Parser } from 'htmlparser2';
 import { isUrlRequest } from 'loader-utils';
-import Parser from 'fastparse';
 
 function isASCIIWhitespace(character) {
   return (
@@ -18,26 +18,26 @@ function isASCIIWhitespace(character) {
   );
 }
 
+// (Don't use \s, to avoid matching non-breaking space)
+// eslint-disable-next-line no-control-regex
+const regexLeadingSpaces = /^[ \t\n\r\u000c]+/;
+// eslint-disable-next-line no-control-regex
+const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000c]+/;
+// eslint-disable-next-line no-control-regex
+const regexLeadingNotSpaces = /^[^ \t\n\r\u000c]+/;
+const regexTrailingCommas = /[,]+$/;
+const regexNonNegativeInteger = /^\d+$/;
+
+// ( Positive or negative or unsigned integers or decimals, without or without exponents.
+// Must include at least one digit.
+// According to spec tests any decimal point must be followed by a digit.
+// No leading plus sign is allowed.)
+// https://html.spec.whatwg.org/multipage/infrastructure.html#valid-floating-point-number
+const regexFloatingPoint = /^-?(?:[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
+
 function parseSrcset(input) {
   // 1. Let input be the value passed to this algorithm.
   const inputLength = input.length;
-
-  // (Don't use \s, to avoid matching non-breaking space)
-  // eslint-disable-next-line no-control-regex
-  const regexLeadingSpaces = /^[ \t\n\r\u000c]+/;
-  // eslint-disable-next-line no-control-regex
-  const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000c]+/;
-  // eslint-disable-next-line no-control-regex
-  const regexLeadingNotSpaces = /^[^ \t\n\r\u000c]+/;
-  const regexTrailingCommas = /[,]+$/;
-  const regexNonNegativeInteger = /^\d+$/;
-
-  // ( Positive or negative or unsigned integers or decimals, without or without exponents.
-  // Must include at least one digit.
-  // According to spec tests any decimal point must be followed by a digit.
-  // No leading plus sign is allowed.)
-  // https://html.spec.whatwg.org/multipage/infrastructure.html#valid-floating-point-number
-  const regexFloatingPoint = /^-?(?:[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
 
   let url;
   let descriptors;
@@ -75,6 +75,10 @@ function parseSrcset(input) {
 
     // 5. If position is past the end of input, return candidates and abort these steps.
     if (position >= inputLength) {
+      if (candidates.length === 0) {
+        throw new Error('Must contain one or more image candidate strings');
+      }
+
       // (we're done, this is the sole return path)
       return candidates;
     }
@@ -322,7 +326,7 @@ function parseSrcset(input) {
     // URL is url, associated with a width width if not absent and a pixel
     // density density if not absent. Otherwise, there is a parse error.
     if (!pError) {
-      candidate.source = { value: url, start: startUrlPosition };
+      candidate.source = { value: url, startIndex: startUrlPosition };
 
       if (w) {
         candidate.width = { value: w };
@@ -339,137 +343,48 @@ function parseSrcset(input) {
       candidates.push(candidate);
     } else {
       throw new Error(
-        `Invalid srcset descriptor found in '${input}' at '${desc}'.`
+        `Invalid srcset descriptor found in '${input}' at '${desc}'`
       );
     }
   }
 }
 
 function parseSrc(input) {
-  let startUrlPosition = 0;
+  let startIndex = 0;
+
+  if (!input) {
+    throw new Error('Must be non-empty');
+  }
 
   for (let position = 0; position < input.length; position++) {
     const character = input.charAt(position);
 
-    if (!isASCIIWhitespace(character)) {
-      startUrlPosition = position;
-
+    if (isASCIIWhitespace(character)) {
+      startIndex = position;
+    } else {
       break;
     }
   }
 
-  let endUrlPosition = input.length;
+  if (startIndex === input.length - 1) {
+    throw new Error('Must be non-empty');
+  }
+
+  let endIndex = input.length;
 
   for (let position = input.length - 1; position >= 0; position--) {
     const character = input.charAt(position);
 
-    if (!isASCIIWhitespace(character)) {
-      endUrlPosition = position;
-
+    if (isASCIIWhitespace(character)) {
+      endIndex = position;
+    } else {
       break;
     }
   }
 
-  return {
-    value: input.substring(startUrlPosition, endUrlPosition + 1),
-    start: startUrlPosition,
-  };
-}
+  const value = input.slice(startIndex, endIndex + 1);
 
-function processMatch(match, strUntilValue, name, value, index) {
-  if (!this.isRelevantTagAttribute(this.currentTag, name)) {
-    return;
-  }
-
-  if (/^\s*$/.test(value)) {
-    return;
-  }
-
-  if (name.toLowerCase() === 'srcset') {
-    let sourceSet;
-
-    try {
-      sourceSet = parseSrcset(value);
-    } catch (_error) {
-      // Throw warning
-    }
-
-    if (!sourceSet) {
-      return;
-    }
-
-    sourceSet.forEach((sourceItem) => {
-      const { source } = sourceItem;
-
-      if (!this.filter(source.value)) {
-        return;
-      }
-
-      this.results.push({
-        start: index + strUntilValue.length + source.start,
-        value: source.value,
-      });
-    });
-
-    return;
-  }
-
-  const source = parseSrc(value);
-
-  if (!this.filter(source.value)) {
-    return;
-  }
-
-  this.results.push({
-    start: index + strUntilValue.length + source.start,
-    value: source.value,
-  });
-}
-
-// https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-name
-const validTagName = '[A-Za-z0-9]+';
-// https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name
-const validCustomElementName =
-  '[a-z](?:[-.0-9_a-z\xB7\xC0-\xD6\xD8-\xF6\xF8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]|[\uD800-\uDB7F][\uDC00-\uDFFF])*-(?:[-.0-9_a-z\xB7\xC0-\xD6\xD8-\xF6\xF8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]|[\uD800-\uDB7F][\uDC00-\uDFFF])*';
-
-const matchTagRegExp = `<((?:${validCustomElementName})|(?:${validTagName}))\\s+`;
-
-// https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
-const controls = '\u007F-\u009F';
-const invalid = ' "\'>/=';
-const noncharacter = '\uFDD0-\uFDEF\uFFFE\uFFFF\uD800-\uDFFF';
-const validAttribute = `[^${controls}${invalid}${noncharacter}]+`;
-
-const validAttributeRegExp1 = `((${validAttribute})\\s*=\\s*")([^"]*)"`;
-const validAttributeRegExp2 = `((${validAttribute})\\s*=\\s*')([^']*)'`;
-const validAttributeRegExp3 = `((${validAttribute})\\s*=\\s*)([^\\s>]+)`;
-
-function getParser() {
-  const outside = {
-    '<!--.*?-->': true,
-    '<![CDATA[.*?]]>': true,
-    '<[!\\?].*?>': true,
-    '</[^>]+>': true,
-  };
-
-  outside[matchTagRegExp] = function matchTag(match, tagName) {
-    this.currentTag = tagName;
-
-    return 'inside';
-  };
-
-  const inside = {
-    // eat up whitespace
-    '\\s+': true,
-    // end of attributes
-    '>': 'outside',
-  };
-
-  inside[validAttributeRegExp1] = processMatch;
-  inside[validAttributeRegExp2] = processMatch;
-  inside[validAttributeRegExp3] = processMatch;
-
-  return new Parser({ outside, inside });
+  return { value, startIndex };
 }
 
 export default (options) =>
@@ -490,34 +405,111 @@ export default (options) =>
           ]
         : options.attributes;
 
-    const parser = getParser();
-    const sources = parser.parse('outside', html, {
-      currentTag: null,
-      results: [],
-      filter: (value) => {
-        return isUrlRequest(value, options.root);
-      },
-      isRelevantTagAttribute: (tag, attribute) => {
-        // eslint-disable-next-line no-param-reassign
-        tag = tag.trim();
-        // eslint-disable-next-line no-param-reassign
-        attribute = attribute.trim();
+    const sources = [];
+    const onOpenTagFilter = new RegExp(
+      `^(${tagsAndAttributes.join('|')})$`,
+      'i'
+    );
+    const filter = (value) => isUrlRequest(value, options.root);
+    const parser = new Parser(
+      {
+        attributesMeta: {},
+        onattribute(name, value) {
+          this.attributesMeta[name] = {
+            // eslint-disable-next-line no-underscore-dangle
+            startIndex: parser._tokenizer._index - value.length,
+          };
+        },
+        onopentag(tag, attributes) {
+          Object.keys(attributes).forEach((attribute) => {
+            const value = attributes[attribute];
+            const valueStartIndex = this.attributesMeta[attribute].startIndex;
 
-        return tagsAndAttributes.some((item) => {
-          const pattern = new RegExp(`^${item}$`, 'i');
+            // TODO use code frame for errors
 
-          return (
-            pattern.test(`${tag}:${attribute}`) || pattern.test(`:${attribute}`)
-          );
-        });
+            if (
+              !onOpenTagFilter.test(`:${attribute}`) &&
+              !onOpenTagFilter.test(`${tag}:${attribute}`)
+            ) {
+              return;
+            }
+
+            if (attribute.toLowerCase() === 'srcset') {
+              let sourceSet;
+
+              try {
+                sourceSet = parseSrcset(value);
+              } catch (error) {
+                result.errors.push(
+                  new Error(
+                    `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`
+                  )
+                );
+
+                return;
+              }
+
+              sourceSet.forEach((sourceItem) => {
+                const { source } = sourceItem;
+
+                if (!filter(source.value)) {
+                  return;
+                }
+
+                const startIndex = valueStartIndex + source.startIndex;
+
+                sources.push({ startIndex, value: source.value });
+              });
+
+              return;
+            }
+
+            let source;
+
+            try {
+              source = parseSrc(value);
+            } catch (error) {
+              result.errors.push(
+                new Error(
+                  `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`
+                )
+              );
+
+              return;
+            }
+
+            if (!filter(source.value)) {
+              return;
+            }
+
+            const startIndex = valueStartIndex + source.startIndex;
+
+            sources.push({ startIndex, value: source.value });
+          });
+
+          this.attributesMeta = {};
+        },
+        /* istanbul ignore next */
+        onerror(error) {
+          result.errors.push(error);
+        },
       },
-    }).results;
+      {
+        decodeEntities: false,
+        lowerCaseTags: false,
+        lowerCaseAttributeNames: false,
+        recognizeCDATA: true,
+        recognizeSelfClosing: true,
+      }
+    );
+
+    parser.write(html);
+    parser.end();
 
     let offset = 0;
     let index = 0;
 
     for (const source of sources) {
-      // Todo migrate on URL
       const uri = parse(source.value);
 
       if (typeof uri.hash !== 'undefined') {
@@ -539,9 +531,9 @@ export default (options) =>
 
       // eslint-disable-next-line no-param-reassign
       html =
-        html.substr(0, source.start + offset) +
+        html.substr(0, source.startIndex + offset) +
         replacementName +
-        html.substr(source.start + source.value.length + offset);
+        html.substr(source.startIndex + source.value.length + offset);
 
       offset += replacementName.length - source.value.length;
       index += 1;
