@@ -254,7 +254,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should emit error on invalid attributes', async () => {
+  it('should handle "src" and "srcset"  tags correctly', async () => {
     const compiler = getCompiler('broken-sources.js');
     const stats = await compile(compiler);
 
