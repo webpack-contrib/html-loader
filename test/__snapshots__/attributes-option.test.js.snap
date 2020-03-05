@@ -25,9 +25,405 @@ Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty
   "ModuleError: Module Error (from /path/to/file.js):
 Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
   "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in ',a foo' at 'foo'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'a (,' at '(,'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1680;1w' at '&#x1680;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1680;1x' at '&#x1680;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1;1w' at '&#x1;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1;1x' at '&#x1;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2000;1w' at '&#x2000;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2000;1x' at '&#x2000;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2001;1w' at '&#x2001;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2001;1x' at '&#x2001;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2002;1w' at '&#x2002;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2002;1x' at '&#x2002;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2003;1w' at '&#x2003;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2003;1x' at '&#x2003;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2004;1w' at '&#x2004;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2004;1x' at '&#x2004;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2005;1w' at '&#x2005;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2005;1x' at '&#x2005;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2006;1w' at '&#x2006;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2006;1x' at '&#x2006;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2007;1w' at '&#x2007;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2007;1x' at '&#x2007;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2008;1w' at '&#x2008;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2008;1x' at '&#x2008;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2009;1w' at '&#x2009;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2009;1x' at '&#x2009;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200A;1w' at '&#x200A;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200A;1x' at '&#x200A;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200C;1w' at '&#x200C;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200C;1x' at '&#x200C;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200D;1w' at '&#x200D;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200D;1x' at '&#x200D;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x202F;1w' at '&#x202F;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x202F;1x' at '&#x202F;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x205F;1w' at '&#x205F;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x205F;1x' at '&#x205F;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x3000;1w' at '&#x3000;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x3000;1x' at '&#x3000;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#xFEFF;1w' at '&#xFEFF;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#xFEFF;1x' at '&#xFEFF;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &nbsp;1w' at '&nbsp;1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &nbsp;1x' at '&nbsp;1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a ( , data:,b 1x, ), data:,c' at '( , data:,b 1x, )'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a ((( , data:,b 1x, ), data:,c' at '((( , data:,b 1x, )'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a (, data:,b' at '(, data:,b'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a +1x' at '+1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -.x' at '-.x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -1w' at '-1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -1x' at '-1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -x' at '-x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a .x' at '.x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a /*, data:,b, data:,c */' at '/*'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a //, data:,b' at '//'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0X1h' at '0X1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0X1x' at '0X1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0w' at '0w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1h' at '0x1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1w' at '0x1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1x' at '0x1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1680;w' at '1&#x1680;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1680;x' at '1&#x1680;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1;w' at '1&#x1;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1;x' at '1&#x1;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2000;w' at '1&#x2000;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2000;x' at '1&#x2000;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2001;w' at '1&#x2001;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2001;x' at '1&#x2001;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2002;w' at '1&#x2002;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2002;x' at '1&#x2002;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2003;w' at '1&#x2003;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2003;x' at '1&#x2003;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2004;w' at '1&#x2004;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2004;x' at '1&#x2004;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2005;w' at '1&#x2005;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2005;x' at '1&#x2005;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2006;w' at '1&#x2006;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2006;x' at '1&#x2006;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2007;w' at '1&#x2007;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2007;x' at '1&#x2007;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2008;w' at '1&#x2008;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2008;x' at '1&#x2008;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2009;w' at '1&#x2009;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2009;x' at '1&#x2009;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200A;w' at '1&#x200A;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200A;x' at '1&#x200A;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200C;w' at '1&#x200C;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200C;x' at '1&#x200C;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200D;w' at '1&#x200D;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200D;x' at '1&#x200D;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x202F;w' at '1&#x202F;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x202F;x' at '1&#x202F;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x205F;w' at '1&#x205F;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x205F;x' at '1&#x205F;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x3000;w' at '1&#x3000;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x3000;x' at '1&#x3000;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#xFEFF;w' at '1&#xFEFF;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#xFEFF;x' at '1&#xFEFF;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&nbsp;w' at '1&nbsp;w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&nbsp;x' at '1&nbsp;x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1.0w' at '1.0w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1.x' at '1.x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1W' at '1W'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1X' at '1X'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1e0w' at '1e0w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1h' at '1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1w 1x' at '1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1x' at '1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h foo' at 'foo'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x1680;1h' at '&#x1680;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x1;1h' at '&#x1;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2000;1h' at '&#x2000;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2001;1h' at '&#x2001;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2002;1h' at '&#x2002;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2003;1h' at '&#x2003;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2004;1h' at '&#x2004;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2005;1h' at '&#x2005;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2006;1h' at '&#x2006;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2007;1h' at '&#x2007;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2008;1h' at '&#x2008;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2009;1h' at '&#x2009;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200A;1h' at '&#x200A;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200C;1h' at '&#x200C;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200D;1h' at '&#x200D;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x202F;1h' at '&#x202F;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x205F;1h' at '&#x205F;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x3000;1h' at '&#x3000;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#xFEFF;1h' at '&#xFEFF;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &nbsp;1h' at '&nbsp;1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w +1w' at '+1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w -1h' at '-1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w -1w' at '-1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 0h' at '0h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x1680;h' at '1&#x1680;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x1;h' at '1&#x1;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2000;h' at '1&#x2000;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2001;h' at '1&#x2001;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2002;h' at '1&#x2002;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2003;h' at '1&#x2003;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2004;h' at '1&#x2004;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2005;h' at '1&#x2005;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2006;h' at '1&#x2006;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2007;h' at '1&#x2007;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2008;h' at '1&#x2008;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2009;h' at '1&#x2009;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200A;h' at '1&#x200A;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200C;h' at '1&#x200C;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200D;h' at '1&#x200D;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x202F;h' at '1&#x202F;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x205F;h' at '1&#x205F;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x3000;h' at '1&#x3000;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#xFEFF;h' at '1&#xFEFF;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&nbsp;h' at '1&nbsp;h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1.0h' at '1.0h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1.0w' at '1.0w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1H' at '1H'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1W' at '1W'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1e0h' at '1e0h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1e0w' at '1e0w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1hhh' at '1hhh'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1w' at '1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1www' at '1www'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1x' at '1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w Infinityh' at 'Infinityh'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w Infinityw' at 'Infinityw'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w NaNh' at 'NaNh'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w NaNw' at 'NaNw'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1www' at '1www'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x -0x' at '-0x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x -1x' at '-1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1.0x' at '1.0x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1.5e1x' at '1.5e1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1e1.5x' at '1e1.5x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1w 1h' at '1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1w' at '1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1x' at '1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a Infinityw' at 'Infinityw'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a Infinityx' at 'Infinityx'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a NaNw' at 'NaNw'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a NaNx' at 'NaNx'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a [ , data:,b 1x, ], data:,c' at '['",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a \\\\\\\\,data:;\\\\\\\\,b, data:,c' at '\\\\\\\\'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1h' at '1h'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1w foo' at 'foo'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1w' at '1w'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1x foo' at 'foo'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1x' at '1x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo foo' at 'foo'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo' at 'foo'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a { , data:,b 1x, }, data:,c' at '{'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (  ' at '(  '",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (' at '('",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b ()' at '()'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (,' at '(,'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (x' at '(x'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png 0h, image.png 800w' at '0h'",
+  "ModuleError: Module Error (from /path/to/file.js):
 Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png 480w 2x broken' at 'broken'",
   "ModuleError: Module Error (from /path/to/file.js):
 Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png broken' at 'broken'",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+  "ModuleError: Module Error (from /path/to/file.js):
+Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
   "ModuleError: Module Error (from /path/to/file.js):
 Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
   "ModuleError: Module Error (from /path/to/file.js):
@@ -58,8 +454,13 @@ var ___HTML_LOADER_IDENT_2___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_3___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_4___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IDENT_5___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_6___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_7___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_8___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_9___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IDENT_10___ = require(\\"./image.png\\");
 // Exports
-module.exports = \\"<img srcset=\\\\\\"image.png 480w 2x broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src srcset>\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img srcset=\\\\\\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"   \\\\\\">\\\\n<img srcset=\\\\\\"   \\\\\\" src=\\\\\\"   \\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"\\\\n\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\\\" src=\\\\\\"\\\\n\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\\\n,\\\\n,\\\\n,\\\\n\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\\\n\\\\\\">\\\\n<img src=\\\\\\"   \\\\\\" alt=\\\\\\"\\\\\\">\\\\n\\";"
+module.exports = \\"<img srcset=\\\\\\"image.png 480w 2x broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_0___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png broken\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_1___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_2___) + \\"\\\\\\">\\\\n<img src srcset>\\\\n<img src=\\\\\\"\\\\\\">\\\\n<img srcset=\\\\\\"\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_3___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_4___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",,,\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_5___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"   \\\\\\">\\\\n<img srcset=\\\\\\"   \\\\\\" src=\\\\\\"   \\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"\\\\n\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\\\" src=\\\\\\"\\\\n\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\\\n,\\\\n,\\\\n,\\\\n\\\\\\">\\\\n<img src=\\\\\\"\\\\\\" srcset=\\\\\\"\\\\n\\\\\\">\\\\n<img src=\\\\\\"   \\\\\\" alt=\\\\\\"\\\\\\">\\\\n<img srcset=\\\\\\"image.png 0h, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_6___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_7___) + \\", \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_8___) + \\" 0x, \\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_9___) + \\" 2x\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_GET_URL_IMPORT___(___HTML_LOADER_IDENT_10___) + \\"\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\",a foo\\\\\\">\\\\n<img srcset=\\\\\\"a (,\\\\\\" alt=\\\\\\"\\\\\\">\\\\n\\\\n\\\\n<img srcset=\\\\\\"\\\\\\">\\\\n<img srcset=\\\\\\",\\\\\\">\\\\n<img srcset=\\\\\\",,,\\\\\\">\\\\n<img srcset=\\\\\\"&#x9;&#x9;data:,a&#x9;&#x9;1x&#x9;&#x9;\\\\\\">\\\\n<img srcset=\\\\\\"&#xA;&#xA;data:,a&#xA;&#xA;1x&#xA;&#xA;\\\\\\">\\\\n<img srcset=\\\\\\"&#xB;&#xB;data:,a&#xB;&#xB;1x&#xB;&#xB;\\\\\\">\\\\n<img srcset=\\\\\\"&#xC;&#xC;data:,a&#xC;&#xC;1x&#xC;&#xC;\\\\\\">\\\\n<img srcset=\\\\\\"&#xD;&#xD;data:,a&#xD;&#xD;1x&#xD;&#xD;\\\\\\">\\\\n<img srcset=\\\\\\"&#xE;&#xE;data:,a&#xE;&#xE;1x&#xE;&#xE;\\\\\\">\\\\n<img srcset=\\\\\\"&#xF;&#xF;data:,a&#xF;&#xF;1x&#xF;&#xF;\\\\\\">\\\\n<img srcset=\\\\\\"&#x10;&#x10;data:,a&#x10;&#x10;1x&#x10;&#x10;\\\\\\">\\\\n<img srcset=\\\\\\"data:,a\\\\\\">\\\\n<img srcset=\\\\\\"data:,a \\\\\\">\\\\n<img srcset=\\\\\\"data:,a ,\\\\\\">\\\\n<img srcset=\\\\\\"data:,a,\\\\\\">\\\\n<img srcset=\\\\\\"data:,a, \\\\\\">\\\\n<img srcset=\\\\\\"data:,a,,,\\\\\\">\\\\n<img srcset=\\\\\\"data:,a,, , \\\\\\">\\\\n<img srcset=\\\\\\" data:,a\\\\\\">\\\\n<img srcset=\\\\\\",,,data:,a\\\\\\">\\\\n<img srcset=\\\\\\" , ,,data:,a\\\\\\">\\\\n<img srcset=\\\\\\"&nbsp;data:,a\\\\\\">\\\\n<img srcset=\\\\\\"data:,a&nbsp;\\\\\\">\\\\n\\\\n<img srcset=\\\\\\"data:,a 1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x \\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x,\\\\\\">\\\\n<img srcset=\\\\\\"data:,a ( , data:,b 1x, ), data:,c\\\\\\">\\\\n<img srcset=\\\\\\"data:,a ((( , data:,b 1x, ), data:,c\\\\\\">\\\\n<img srcset=\\\\\\"data:,a [ , data:,b 1x, ], data:,c\\\\\\">\\\\n<img srcset=\\\\\\"data:,a { , data:,b 1x, }, data:,c\\\\\\">\\\\n<!-- <img srcset=\\\\\\"data:,a \\\\\\" , data:,b 1x, \\\\\\", data:,c\\\\\\"> -->\\\\n<img srcset=\\\\\\"data:,a \\\\\\\\\\\\\\\\,data:;\\\\\\\\\\\\\\\\,b, data:,c\\\\\\">\\\\n<img srcset=\\\\\\"data:,a, data:,b (\\\\\\">\\\\n<img srcset=\\\\\\"data:,a, data:,b (  \\\\\\">\\\\n<img srcset=\\\\\\"data:,a, data:,b (,\\\\\\">\\\\n<img srcset=\\\\\\"data:,a, data:,b (x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a, data:,b ()\\\\\\">\\\\n<img srcset=\\\\\\"data:,a (, data:,b\\\\\\">\\\\n<img srcset=\\\\\\"data:,a /*, data:,b, data:,c */\\\\\\">\\\\n<img srcset=\\\\\\"data:,a //, data:,b\\\\\\">\\\\n\\\\n<img srcset=\\\\\\"data:,a foo\\\\\\">\\\\n<img srcset=\\\\\\"data:,a foo foo\\\\\\">\\\\n<img srcset=\\\\\\"data:,a foo 1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a foo 1x foo\\\\\\">\\\\n<img srcset=\\\\\\"data:,a foo 1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a foo 1w foo\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x 1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1h 1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x 1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1h 1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1h 1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1h 1w 1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x 1w 1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1h foo\\\\\\">\\\\n<img srcset=\\\\\\"data:,a foo 1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a -1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w -1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1.0w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1.0w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1e0w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1e0w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1www\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1www\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w +1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1W\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1W\\\\\\">\\\\n<img srcset=\\\\\\"data:,a Infinityw\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w Infinityw\\\\\\">\\\\n<img srcset=\\\\\\"data:,a NaNw\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w NaNw\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0x1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x1;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&nbsp;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x1680;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2000;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2001;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2002;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2003;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2004;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2005;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2006;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2007;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2008;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2009;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x200A;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x200C;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x200D;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x202F;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x205F;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x3000;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#xFEFF;w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x1;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &nbsp;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x1680;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2000;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2001;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2002;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2003;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2004;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2005;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2006;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2007;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2008;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2009;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x200A;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x200C;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x200D;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x202F;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x205F;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x3000;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#xFEFF;1w\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a -0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x -0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a -1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x -1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1e0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1E0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1e-1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1.5e1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a -x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a .x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a -.x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1.x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a .5x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a .5e1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x 1.5e1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x 1e1.5x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1.0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1x 1.0x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a +1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1X\\\\\\">\\\\n<img srcset=\\\\\\"data:,a Infinityx\\\\\\">\\\\n<img srcset=\\\\\\"data:,a NaNx\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0x1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0X1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x1;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&nbsp;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x1680;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2000;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2001;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2002;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2003;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2004;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2005;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2006;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2007;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2008;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x2009;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x200A;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x200C;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x200D;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x202F;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x205F;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#x3000;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1&#xFEFF;x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x1;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &nbsp;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x1680;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2000;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2001;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2002;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2003;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2004;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2005;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2006;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2007;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2008;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x2009;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x200A;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x200C;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x200D;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x202F;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x205F;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#x3000;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a &#xFEFF;1x\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 0h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w -1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1.0h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1e0h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1hhh\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1H\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w Infinityh\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w NaNh\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0x1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 0X1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x1;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&nbsp;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x1680;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2000;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2001;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2002;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2003;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2004;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2005;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2006;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2007;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2008;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x2009;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x200A;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x200C;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x200D;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x202F;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x205F;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#x3000;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w 1&#xFEFF;h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x1;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &nbsp;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x1680;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2000;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2001;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2002;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2003;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2004;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2005;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2006;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2007;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2008;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x2009;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x200A;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x200C;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x200D;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x202F;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x205F;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#x3000;1h\\\\\\">\\\\n<img srcset=\\\\\\"data:,a 1w &#xFEFF;1h\\\\\\">\\\\n\\";"
 `;
 
 exports[`'attributes' option should emit error on invalid attributes: result 1`] = `
@@ -87,6 +488,244 @@ exports[`'attributes' option should emit error on invalid attributes: result 1`]
 <img src=\\"\\" srcset=\\"
 \\">
 <img src=\\"   \\" alt=\\"\\">
+<img srcset=\\"image.png 0h, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"/webpack/public/path/image.png, /webpack/public/path/image.png 0x, /webpack/public/path/image.png 2x\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\",a foo\\">
+<img srcset=\\"a (,\\" alt=\\"\\">
+
+
+<img srcset=\\"\\">
+<img srcset=\\",\\">
+<img srcset=\\",,,\\">
+<img srcset=\\"&#x9;&#x9;data:,a&#x9;&#x9;1x&#x9;&#x9;\\">
+<img srcset=\\"&#xA;&#xA;data:,a&#xA;&#xA;1x&#xA;&#xA;\\">
+<img srcset=\\"&#xB;&#xB;data:,a&#xB;&#xB;1x&#xB;&#xB;\\">
+<img srcset=\\"&#xC;&#xC;data:,a&#xC;&#xC;1x&#xC;&#xC;\\">
+<img srcset=\\"&#xD;&#xD;data:,a&#xD;&#xD;1x&#xD;&#xD;\\">
+<img srcset=\\"&#xE;&#xE;data:,a&#xE;&#xE;1x&#xE;&#xE;\\">
+<img srcset=\\"&#xF;&#xF;data:,a&#xF;&#xF;1x&#xF;&#xF;\\">
+<img srcset=\\"&#x10;&#x10;data:,a&#x10;&#x10;1x&#x10;&#x10;\\">
+<img srcset=\\"data:,a\\">
+<img srcset=\\"data:,a \\">
+<img srcset=\\"data:,a ,\\">
+<img srcset=\\"data:,a,\\">
+<img srcset=\\"data:,a, \\">
+<img srcset=\\"data:,a,,,\\">
+<img srcset=\\"data:,a,, , \\">
+<img srcset=\\" data:,a\\">
+<img srcset=\\",,,data:,a\\">
+<img srcset=\\" , ,,data:,a\\">
+<img srcset=\\"&nbsp;data:,a\\">
+<img srcset=\\"data:,a&nbsp;\\">
+
+<img srcset=\\"data:,a 1x\\">
+<img srcset=\\"data:,a 1x \\">
+<img srcset=\\"data:,a 1x,\\">
+<img srcset=\\"data:,a ( , data:,b 1x, ), data:,c\\">
+<img srcset=\\"data:,a ((( , data:,b 1x, ), data:,c\\">
+<img srcset=\\"data:,a [ , data:,b 1x, ], data:,c\\">
+<img srcset=\\"data:,a { , data:,b 1x, }, data:,c\\">
+<!-- <img srcset=\\"data:,a \\" , data:,b 1x, \\", data:,c\\"> -->
+<img srcset=\\"data:,a \\\\\\\\,data:;\\\\\\\\,b, data:,c\\">
+<img srcset=\\"data:,a, data:,b (\\">
+<img srcset=\\"data:,a, data:,b (  \\">
+<img srcset=\\"data:,a, data:,b (,\\">
+<img srcset=\\"data:,a, data:,b (x\\">
+<img srcset=\\"data:,a, data:,b ()\\">
+<img srcset=\\"data:,a (, data:,b\\">
+<img srcset=\\"data:,a /*, data:,b, data:,c */\\">
+<img srcset=\\"data:,a //, data:,b\\">
+
+<img srcset=\\"data:,a foo\\">
+<img srcset=\\"data:,a foo foo\\">
+<img srcset=\\"data:,a foo 1x\\">
+<img srcset=\\"data:,a foo 1x foo\\">
+<img srcset=\\"data:,a foo 1w\\">
+<img srcset=\\"data:,a foo 1w foo\\">
+<img srcset=\\"data:,a 1x 1x\\">
+<img srcset=\\"data:,a 1w 1w\\">
+<img srcset=\\"data:,a 1h 1h\\">
+<img srcset=\\"data:,a 1w 1x\\">
+<img srcset=\\"data:,a 1x 1w\\">
+<img srcset=\\"data:,a 1w 1h\\">
+<img srcset=\\"data:,a 1h 1w\\">
+<img srcset=\\"data:,a 1h 1x\\">
+<img srcset=\\"data:,a 1h 1w 1x\\">
+<img srcset=\\"data:,a 1x 1w 1h\\">
+<img srcset=\\"data:,a 1h foo\\">
+<img srcset=\\"data:,a foo 1h\\">
+<img srcset=\\"data:,a 0w\\">
+<img srcset=\\"data:,a -1w\\">
+<img srcset=\\"data:,a 1w -1w\\">
+<img srcset=\\"data:,a 1.0w\\">
+<img srcset=\\"data:,a 1w 1.0w\\">
+<img srcset=\\"data:,a 1e0w\\">
+<img srcset=\\"data:,a 1w 1e0w\\">
+<img srcset=\\"data:,a 1www\\">
+<img srcset=\\"data:,a 1w 1www\\">
+<img srcset=\\"data:,a 1w +1w\\">
+<img srcset=\\"data:,a 1W\\">
+<img srcset=\\"data:,a 1w 1W\\">
+<img srcset=\\"data:,a Infinityw\\">
+<img srcset=\\"data:,a 1w Infinityw\\">
+<img srcset=\\"data:,a NaNw\\">
+<img srcset=\\"data:,a 1w NaNw\\">
+<img srcset=\\"data:,a 0x1w\\">
+<img srcset=\\"data:,a 1&#x1;w\\">
+<img srcset=\\"data:,a 1&nbsp;w\\">
+<img srcset=\\"data:,a 1&#x1680;w\\">
+<img srcset=\\"data:,a 1&#x2000;w\\">
+<img srcset=\\"data:,a 1&#x2001;w\\">
+<img srcset=\\"data:,a 1&#x2002;w\\">
+<img srcset=\\"data:,a 1&#x2003;w\\">
+<img srcset=\\"data:,a 1&#x2004;w\\">
+<img srcset=\\"data:,a 1&#x2005;w\\">
+<img srcset=\\"data:,a 1&#x2006;w\\">
+<img srcset=\\"data:,a 1&#x2007;w\\">
+<img srcset=\\"data:,a 1&#x2008;w\\">
+<img srcset=\\"data:,a 1&#x2009;w\\">
+<img srcset=\\"data:,a 1&#x200A;w\\">
+<img srcset=\\"data:,a 1&#x200C;w\\">
+<img srcset=\\"data:,a 1&#x200D;w\\">
+<img srcset=\\"data:,a 1&#x202F;w\\">
+<img srcset=\\"data:,a 1&#x205F;w\\">
+<img srcset=\\"data:,a 1&#x3000;w\\">
+<img srcset=\\"data:,a 1&#xFEFF;w\\">
+<img srcset=\\"data:,a &#x1;1w\\">
+<img srcset=\\"data:,a &nbsp;1w\\">
+<img srcset=\\"data:,a &#x1680;1w\\">
+<img srcset=\\"data:,a &#x2000;1w\\">
+<img srcset=\\"data:,a &#x2001;1w\\">
+<img srcset=\\"data:,a &#x2002;1w\\">
+<img srcset=\\"data:,a &#x2003;1w\\">
+<img srcset=\\"data:,a &#x2004;1w\\">
+<img srcset=\\"data:,a &#x2005;1w\\">
+<img srcset=\\"data:,a &#x2006;1w\\">
+<img srcset=\\"data:,a &#x2007;1w\\">
+<img srcset=\\"data:,a &#x2008;1w\\">
+<img srcset=\\"data:,a &#x2009;1w\\">
+<img srcset=\\"data:,a &#x200A;1w\\">
+<img srcset=\\"data:,a &#x200C;1w\\">
+<img srcset=\\"data:,a &#x200D;1w\\">
+<img srcset=\\"data:,a &#x202F;1w\\">
+<img srcset=\\"data:,a &#x205F;1w\\">
+<img srcset=\\"data:,a &#x3000;1w\\">
+<img srcset=\\"data:,a &#xFEFF;1w\\">
+<img srcset=\\"data:,a 0x\\">
+<img srcset=\\"data:,a -0x\\">
+<img srcset=\\"data:,a 1x -0x\\">
+<img srcset=\\"data:,a -1x\\">
+<img srcset=\\"data:,a 1x -1x\\">
+<img srcset=\\"data:,a 1e0x\\">
+<img srcset=\\"data:,a 1E0x\\">
+<img srcset=\\"data:,a 1e-1x\\">
+<img srcset=\\"data:,a 1.5e1x\\">
+<img srcset=\\"data:,a -x\\">
+<img srcset=\\"data:,a .x\\">
+<img srcset=\\"data:,a -.x\\">
+<img srcset=\\"data:,a 1.x\\">
+<img srcset=\\"data:,a .5x\\">
+<img srcset=\\"data:,a .5e1x\\">
+<img srcset=\\"data:,a 1x 1.5e1x\\">
+<img srcset=\\"data:,a 1x 1e1.5x\\">
+<img srcset=\\"data:,a 1.0x\\">
+<img srcset=\\"data:,a 1x 1.0x\\">
+<img srcset=\\"data:,a +1x\\">
+<img srcset=\\"data:,a 1X\\">
+<img srcset=\\"data:,a Infinityx\\">
+<img srcset=\\"data:,a NaNx\\">
+<img srcset=\\"data:,a 0x1x\\">
+<img srcset=\\"data:,a 0X1x\\">
+<img srcset=\\"data:,a 1&#x1;x\\">
+<img srcset=\\"data:,a 1&nbsp;x\\">
+<img srcset=\\"data:,a 1&#x1680;x\\">
+<img srcset=\\"data:,a 1&#x2000;x\\">
+<img srcset=\\"data:,a 1&#x2001;x\\">
+<img srcset=\\"data:,a 1&#x2002;x\\">
+<img srcset=\\"data:,a 1&#x2003;x\\">
+<img srcset=\\"data:,a 1&#x2004;x\\">
+<img srcset=\\"data:,a 1&#x2005;x\\">
+<img srcset=\\"data:,a 1&#x2006;x\\">
+<img srcset=\\"data:,a 1&#x2007;x\\">
+<img srcset=\\"data:,a 1&#x2008;x\\">
+<img srcset=\\"data:,a 1&#x2009;x\\">
+<img srcset=\\"data:,a 1&#x200A;x\\">
+<img srcset=\\"data:,a 1&#x200C;x\\">
+<img srcset=\\"data:,a 1&#x200D;x\\">
+<img srcset=\\"data:,a 1&#x202F;x\\">
+<img srcset=\\"data:,a 1&#x205F;x\\">
+<img srcset=\\"data:,a 1&#x3000;x\\">
+<img srcset=\\"data:,a 1&#xFEFF;x\\">
+<img srcset=\\"data:,a &#x1;1x\\">
+<img srcset=\\"data:,a &nbsp;1x\\">
+<img srcset=\\"data:,a &#x1680;1x\\">
+<img srcset=\\"data:,a &#x2000;1x\\">
+<img srcset=\\"data:,a &#x2001;1x\\">
+<img srcset=\\"data:,a &#x2002;1x\\">
+<img srcset=\\"data:,a &#x2003;1x\\">
+<img srcset=\\"data:,a &#x2004;1x\\">
+<img srcset=\\"data:,a &#x2005;1x\\">
+<img srcset=\\"data:,a &#x2006;1x\\">
+<img srcset=\\"data:,a &#x2007;1x\\">
+<img srcset=\\"data:,a &#x2008;1x\\">
+<img srcset=\\"data:,a &#x2009;1x\\">
+<img srcset=\\"data:,a &#x200A;1x\\">
+<img srcset=\\"data:,a &#x200C;1x\\">
+<img srcset=\\"data:,a &#x200D;1x\\">
+<img srcset=\\"data:,a &#x202F;1x\\">
+<img srcset=\\"data:,a &#x205F;1x\\">
+<img srcset=\\"data:,a &#x3000;1x\\">
+<img srcset=\\"data:,a &#xFEFF;1x\\">
+<img srcset=\\"data:,a 1w 0h\\">
+<img srcset=\\"data:,a 1w -1h\\">
+<img srcset=\\"data:,a 1w 1.0h\\">
+<img srcset=\\"data:,a 1w 1e0h\\">
+<img srcset=\\"data:,a 1w 1hhh\\">
+<img srcset=\\"data:,a 1w 1H\\">
+<img srcset=\\"data:,a 1w Infinityh\\">
+<img srcset=\\"data:,a 1w NaNh\\">
+<img srcset=\\"data:,a 0x1h\\">
+<img srcset=\\"data:,a 0X1h\\">
+<img srcset=\\"data:,a 1w 1&#x1;h\\">
+<img srcset=\\"data:,a 1w 1&nbsp;h\\">
+<img srcset=\\"data:,a 1w 1&#x1680;h\\">
+<img srcset=\\"data:,a 1w 1&#x2000;h\\">
+<img srcset=\\"data:,a 1w 1&#x2001;h\\">
+<img srcset=\\"data:,a 1w 1&#x2002;h\\">
+<img srcset=\\"data:,a 1w 1&#x2003;h\\">
+<img srcset=\\"data:,a 1w 1&#x2004;h\\">
+<img srcset=\\"data:,a 1w 1&#x2005;h\\">
+<img srcset=\\"data:,a 1w 1&#x2006;h\\">
+<img srcset=\\"data:,a 1w 1&#x2007;h\\">
+<img srcset=\\"data:,a 1w 1&#x2008;h\\">
+<img srcset=\\"data:,a 1w 1&#x2009;h\\">
+<img srcset=\\"data:,a 1w 1&#x200A;h\\">
+<img srcset=\\"data:,a 1w 1&#x200C;h\\">
+<img srcset=\\"data:,a 1w 1&#x200D;h\\">
+<img srcset=\\"data:,a 1w 1&#x202F;h\\">
+<img srcset=\\"data:,a 1w 1&#x205F;h\\">
+<img srcset=\\"data:,a 1w 1&#x3000;h\\">
+<img srcset=\\"data:,a 1w 1&#xFEFF;h\\">
+<img srcset=\\"data:,a 1w &#x1;1h\\">
+<img srcset=\\"data:,a 1w &nbsp;1h\\">
+<img srcset=\\"data:,a 1w &#x1680;1h\\">
+<img srcset=\\"data:,a 1w &#x2000;1h\\">
+<img srcset=\\"data:,a 1w &#x2001;1h\\">
+<img srcset=\\"data:,a 1w &#x2002;1h\\">
+<img srcset=\\"data:,a 1w &#x2003;1h\\">
+<img srcset=\\"data:,a 1w &#x2004;1h\\">
+<img srcset=\\"data:,a 1w &#x2005;1h\\">
+<img srcset=\\"data:,a 1w &#x2006;1h\\">
+<img srcset=\\"data:,a 1w &#x2007;1h\\">
+<img srcset=\\"data:,a 1w &#x2008;1h\\">
+<img srcset=\\"data:,a 1w &#x2009;1h\\">
+<img srcset=\\"data:,a 1w &#x200A;1h\\">
+<img srcset=\\"data:,a 1w &#x200C;1h\\">
+<img srcset=\\"data:,a 1w &#x200D;1h\\">
+<img srcset=\\"data:,a 1w &#x202F;1h\\">
+<img srcset=\\"data:,a 1w &#x205F;1h\\">
+<img srcset=\\"data:,a 1w &#x3000;1h\\">
+<img srcset=\\"data:,a 1w &#xFEFF;1h\\">
 "
 `;
 
