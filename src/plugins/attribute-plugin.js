@@ -18,26 +18,26 @@ function isASCIIWhitespace(character) {
   );
 }
 
+// (Don't use \s, to avoid matching non-breaking space)
+// eslint-disable-next-line no-control-regex
+const regexLeadingSpaces = /^[ \t\n\r\u000c]+/;
+// eslint-disable-next-line no-control-regex
+const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000c]+/;
+// eslint-disable-next-line no-control-regex
+const regexLeadingNotSpaces = /^[^ \t\n\r\u000c]+/;
+const regexTrailingCommas = /[,]+$/;
+const regexNonNegativeInteger = /^\d+$/;
+
+// ( Positive or negative or unsigned integers or decimals, without or without exponents.
+// Must include at least one digit.
+// According to spec tests any decimal point must be followed by a digit.
+// No leading plus sign is allowed.)
+// https://html.spec.whatwg.org/multipage/infrastructure.html#valid-floating-point-number
+const regexFloatingPoint = /^-?(?:[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
+
 function parseSrcset(input) {
   // 1. Let input be the value passed to this algorithm.
   const inputLength = input.length;
-
-  // (Don't use \s, to avoid matching non-breaking space)
-  // eslint-disable-next-line no-control-regex
-  const regexLeadingSpaces = /^[ \t\n\r\u000c]+/;
-  // eslint-disable-next-line no-control-regex
-  const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000c]+/;
-  // eslint-disable-next-line no-control-regex
-  const regexLeadingNotSpaces = /^[^ \t\n\r\u000c]+/;
-  const regexTrailingCommas = /[,]+$/;
-  const regexNonNegativeInteger = /^\d+$/;
-
-  // ( Positive or negative or unsigned integers or decimals, without or without exponents.
-  // Must include at least one digit.
-  // According to spec tests any decimal point must be followed by a digit.
-  // No leading plus sign is allowed.)
-  // https://html.spec.whatwg.org/multipage/infrastructure.html#valid-floating-point-number
-  const regexFloatingPoint = /^-?(?:[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
 
   let url;
   let descriptors;
@@ -75,6 +75,10 @@ function parseSrcset(input) {
 
     // 5. If position is past the end of input, return candidates and abort these steps.
     if (position >= inputLength) {
+      if (candidates.length === 0) {
+        throw new Error('Must contain one or more image candidate strings');
+      }
+
       // (we're done, this is the sole return path)
       return candidates;
     }
@@ -339,41 +343,48 @@ function parseSrcset(input) {
       candidates.push(candidate);
     } else {
       throw new Error(
-        `Invalid srcset descriptor found in '${input}' at '${desc}'.`
+        `Invalid srcset descriptor found in '${input}' at '${desc}'`
       );
     }
   }
 }
 
 function parseSrc(input) {
-  let startUrlPosition = 0;
+  let startIndex = 0;
+
+  if (!input) {
+    throw new Error('Must be non-empty');
+  }
 
   for (let position = 0; position < input.length; position++) {
     const character = input.charAt(position);
 
-    if (!isASCIIWhitespace(character)) {
-      startUrlPosition = position;
-
+    if (isASCIIWhitespace(character)) {
+      startIndex = position;
+    } else {
       break;
     }
   }
 
-  let endUrlPosition = input.length;
+  if (startIndex === input.length - 1) {
+    throw new Error('Must be non-empty');
+  }
+
+  let endIndex = input.length;
 
   for (let position = input.length - 1; position >= 0; position--) {
     const character = input.charAt(position);
 
-    if (!isASCIIWhitespace(character)) {
-      endUrlPosition = position;
-
+    if (isASCIIWhitespace(character)) {
+      endIndex = position;
+    } else {
       break;
     }
   }
 
-  return {
-    value: input.substring(startUrlPosition, endUrlPosition + 1),
-    startIndex: startUrlPosition,
-  };
+  const value = input.slice(startIndex, endIndex + 1);
+
+  return { value, startIndex };
 }
 
 export default (options) =>
@@ -414,15 +425,12 @@ export default (options) =>
             const value = attributes[attribute];
             const valueStartIndex = this.attributesMeta[attribute].startIndex;
 
+            // TODO use code frame for errors
+
             if (
               !onOpenTagFilter.test(`:${attribute}`) &&
               !onOpenTagFilter.test(`${tag}:${attribute}`)
             ) {
-              return;
-            }
-
-            // TODO emit error?
-            if (/^\s*$/.test(value)) {
               return;
             }
 
@@ -432,11 +440,12 @@ export default (options) =>
               try {
                 sourceSet = parseSrcset(value);
               } catch (error) {
-                // TODO use code frame
-                result.errors.push(error);
-              }
+                result.errors.push(
+                  new Error(
+                    `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`
+                  )
+                );
 
-              if (!sourceSet) {
                 return;
               }
 
@@ -455,8 +464,19 @@ export default (options) =>
               return;
             }
 
-            // TODO throw error on invalid syntax syntax and improve error
-            const source = parseSrc(value);
+            let source;
+
+            try {
+              source = parseSrc(value);
+            } catch (error) {
+              result.errors.push(
+                new Error(
+                  `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`
+                )
+              );
+
+              return;
+            }
 
             if (!filter(source.value)) {
               return;

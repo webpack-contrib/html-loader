@@ -255,10 +255,10 @@ describe("'attributes' option", () => {
   });
 
   it('should emit error on invalid attributes', async () => {
-    const compiler = getCompiler('broken-srcset.js');
+    const compiler = getCompiler('broken-sources.js');
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./broken-srcset.html', stats)).toMatchSnapshot(
+    expect(getModuleSource('./broken-sources.html', stats)).toMatchSnapshot(
       'module'
     );
     expect(
