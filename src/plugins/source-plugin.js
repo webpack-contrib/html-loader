@@ -516,13 +516,19 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { value, startIndex, unquoted } = source;
-      const uri = parse(value);
+      const { startIndex, unquoted } = source;
+      let { value } = source;
+      const URLObject = parse(value);
 
-      if (typeof uri.hash !== 'undefined') {
-        uri.hash = null;
+      if (typeof URLObject.hash !== 'undefined') {
+        const { hash } = URLObject;
 
-        source.value = uri.format();
+        URLObject.hash = null;
+        source.value = URLObject.format();
+
+        if (hash) {
+          value = value.slice(0, value.length - hash.length);
+        }
       }
 
       const importKey = urlToRequest(
