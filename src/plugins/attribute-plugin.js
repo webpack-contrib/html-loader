@@ -532,7 +532,7 @@ export default (options) =>
       let importName = importsMap.get(importKey);
 
       if (!importName) {
-        importName = `___HTML_LOADER_IDENT_SOURCE_${importsMap.size}___`;
+        importName = `___HTML_LOADER_IMPORT_${importsMap.size}___`;
         importsMap.set(importKey, importName);
 
         result.messages.push({
@@ -549,7 +549,7 @@ export default (options) =>
       let replacerName = replacersMap.get(replacerKey);
 
       if (!replacerName) {
-        replacerName = `___HTML_LOADER_IDENT_REPLACER_${replacersMap.size}___`;
+        replacerName = `___HTML_LOADER_REPLACER_${replacersMap.size}___`;
         replacersMap.set(replacerKey, replacerName);
 
         result.messages.push({

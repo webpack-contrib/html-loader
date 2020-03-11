@@ -1,5 +1,7 @@
 import { stringifyRequest } from 'loader-utils';
 
+const GET_SOURCE_FROM_IMPORT_NAME = '___HTML_LOADER_GET_SOURCE_FROM_IMPORT___';
+
 export function pluginRunner(plugins) {
   return {
     process: (content) => {
@@ -33,16 +35,16 @@ export function getImportCode(html, importedMessages, codeOptions) {
   );
 
   let code = esModule
-    ? `import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from ${stringifiedHelperRequest};\n`
-    : `var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(${stringifiedHelperRequest});\n`;
+    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
+    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${stringifiedHelperRequest});\n`;
 
   for (const item of importedMessages) {
     const { importName, source } = item;
-    const stringifiedRequest = stringifyRequest(loaderContext, source);
+    const stringifiedSourceRequest = stringifyRequest(loaderContext, source);
 
     code += esModule
-      ? `import ${importName} from ${stringifiedRequest};\n`
-      : `var ${importName} = require(${stringifiedRequest});\n`;
+      ? `import ${importName} from ${stringifiedSourceRequest};\n`
+      : `var ${importName} = require(${stringifiedSourceRequest});\n`;
   }
 
   return `// Imports\n${code}`;
@@ -64,7 +66,7 @@ export function getModuleCode(html, replaceableMessages, codeOptions) {
   for (const item of replaceableMessages) {
     const { importName, replacerName, unquoted } = item;
 
-    replacersCode += `var ${replacerName} = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(${importName}${
+    replacersCode += `var ${replacerName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${
       unquoted ? ', true' : ''
     });\n`;
 
