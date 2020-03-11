@@ -24,6 +24,18 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should work with an empty file', async () => {
+    const compiler = getCompiler('empty.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./empty.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it('should not make bad things with templates', async () => {
     const compiler = getCompiler('template.js');
     const stats = await compile(compiler);

@@ -76,7 +76,7 @@ export function getModuleCode(html, replaceableMessages, codeOptions) {
     );
   }
 
-  return `// Module\n${replacersCode}var code = ${code};`;
+  return `// Module\n${replacersCode}var code = ${code};\n`;
 }
 
 export function getExportCode(html, exportedMessages, codeOptions) {
