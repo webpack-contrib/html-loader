@@ -1,7 +1,7 @@
 import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
-import { attributePlugin, interpolatePlugin, minimizerPlugin } from './plugins';
+import { sourcePlugin, interpolatePlugin, minimizerPlugin } from './plugins';
 import Warning from './Warning';
 
 import {
@@ -28,7 +28,7 @@ export default function htmlLoader(content) {
     typeof options.attributes === 'undefined' ? true : options.attributes;
 
   if (attributes) {
-    plugins.push(attributePlugin(options));
+    plugins.push(sourcePlugin(options));
   }
 
   const minimize =
