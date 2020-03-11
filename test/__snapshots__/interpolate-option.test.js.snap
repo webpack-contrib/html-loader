@@ -3,8 +3,11 @@
 exports[`'interpolate' option should disabled by default: errors 1`] = `Array []`;
 
 exports[`'interpolate' option should disabled by default: module 1`] = `
-"// Exports
-module.exports = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\\\n<img src=\\\\\\"\${\`Hello \` + (1+1)}\\\\\\">\\\\n<p>Something about the \\\\\\\\\` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\${require(\\\\\\"./image.png\\\\\\")}\\\\\\" /></a>\\\\n\\";"
+"// Module
+
+var code = \\"<img src=\\\\\\"\${\\\\\\"Hello \\\\\\" + (1+1)}\\\\\\">\\\\n<img src=\\\\\\"\${\`Hello \` + (1+1)}\\\\\\">\\\\n<p>Something about the \\\\\\\\\` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\${require(\\\\\\"./image.png\\\\\\")}\\\\\\" /></a>\\\\n\\";
+// Exports
+module.exports = code"
 `;
 
 exports[`'interpolate' option should disabled by default: result 1`] = `
@@ -28,8 +31,11 @@ Error: Line 1: Unexpected token |",
 `;
 
 exports[`'interpolate' option should emit an error on broken interpolation syntax: module 1`] = `
-"// Exports
-module.exports = \\"<div>\${broken|||test}</div>\\\\n\\";"
+"// Module
+
+var code = \\"<div>\${broken|||test}</div>\\\\n\\";
+// Exports
+module.exports = code"
 `;
 
 exports[`'interpolate' option should emit an error on broken interpolation syntax: result 1`] = `
@@ -42,8 +48,11 @@ exports[`'interpolate' option should emit an error on broken interpolation synta
 exports[`'interpolate' option should work with boolean notation: errors 1`] = `Array []`;
 
 exports[`'interpolate' option should work with boolean notation: module 1`] = `
-"// Exports
-module.exports = \\"<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\">\\\\n<p>Something about the \` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\\" + require(\\"./image.png\\") + \\"\\\\\\" /></a>\\\\n\\";"
+"// Module
+
+var code = \\"<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\">\\\\n<img src=\\\\\\"\\" + (\\"Hello \\" + (1 + 1)) + \\"\\\\\\">\\\\n<p>Something about the \` character</p>\\\\n<script>{\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"}</script>\\\\n<h3>#{number} {customer}</h3>\\\\n<p>   {title}   </p>\\\\n<img src=\\\\\\"\\" + require(\\"./image.png\\") + \\"\\\\\\" /></a>\\\\n\\";
+// Exports
+module.exports = code"
 `;
 
 exports[`'interpolate' option should work with boolean notation: result 1`] = `

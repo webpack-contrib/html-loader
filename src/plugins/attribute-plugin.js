@@ -1,7 +1,7 @@
 import { parse } from 'url';
 
 import { Parser } from 'htmlparser2';
-import { isUrlRequest } from 'loader-utils';
+import { isUrlRequest, urlToRequest } from 'loader-utils';
 
 function isASCIIWhitespace(character) {
   return (
@@ -511,8 +511,9 @@ export default (options) =>
     parser.write(html);
     parser.end();
 
+    const importsMap = new Map();
+    const replacersMap = new Map();
     let offset = 0;
-    let index = 0;
 
     for (const source of sources) {
       const { value, startIndex, unquoted } = source;
@@ -524,26 +525,51 @@ export default (options) =>
         source.value = uri.format();
       }
 
-      const replacementName = `___HTML_LOADER_IDENT_${index}___`;
+      const importKey = urlToRequest(
+        decodeURIComponent(source.value),
+        options.root
+      );
+      let importName = importsMap.get(importKey);
 
-      result.messages.push({
-        type: 'replacer',
-        value: {
-          type: 'attribute',
-          replacementName,
-          source: decodeURIComponent(source.value),
-          unquoted,
-        },
-      });
+      if (!importName) {
+        importName = `___HTML_LOADER_IDENT_SOURCE_${importsMap.size}___`;
+        importsMap.set(importKey, importName);
+
+        result.messages.push({
+          type: 'import',
+          value: {
+            type: 'source',
+            source: importKey,
+            importName,
+          },
+        });
+      }
+
+      const replacerKey = JSON.stringify({ importKey, unquoted });
+      let replacerName = replacersMap.get(replacerKey);
+
+      if (!replacerName) {
+        replacerName = `___HTML_LOADER_IDENT_REPLACER_${replacersMap.size}___`;
+        replacersMap.set(replacerKey, replacerName);
+
+        result.messages.push({
+          type: 'replacer',
+          value: {
+            type: 'source',
+            importName,
+            replacerName,
+            unquoted,
+          },
+        });
+      }
 
       // eslint-disable-next-line no-param-reassign
       html =
         html.substr(0, startIndex + offset) +
-        replacementName +
+        replacerName +
         html.substr(startIndex + value.length + offset);
 
-      offset += replacementName.length - value.length;
-      index += 1;
+      offset += replacerName.length - value.length;
     }
 
     return html;
