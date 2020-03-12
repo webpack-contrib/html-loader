@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 import {
   compile,
   getCompiler,
@@ -21,6 +24,18 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should work with an empty file', async () => {
+    const compiler = getCompiler('empty.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./empty.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it('should not make bad things with templates', async () => {
     const compiler = getCompiler('template.js');
     const stats = await compile(compiler);
@@ -34,10 +49,31 @@ describe('loader', () => {
   });
 
   it('should not failed contain invisible spaces', async () => {
+    const source = fs.readFileSync(
+      path.resolve(__dirname, './fixtures/invisible-space.html')
+    );
+
+    expect(/[\u2028\u2029]/.test(source)).toBe(true);
+
     const compiler = getCompiler('invisible-space.js');
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./invisible-space.html', stats)).toMatchSnapshot(
+    const moduleSource = getModuleSource('./invisible-space.html', stats);
+
+    expect(moduleSource).toMatchSnapshot('module');
+    expect(/[\u2028\u2029]/.test(moduleSource)).toBe(false);
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should emit an error on broken HTML syntax', async () => {
+    const compiler = getCompiler('broken-html-syntax.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./broken-html-syntax.html', stats)).toMatchSnapshot(
       'module'
     );
     expect(

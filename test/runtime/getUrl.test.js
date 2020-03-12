@@ -18,6 +18,18 @@ describe('getUrl', () => {
     expect(getUrl('image>image.png')).toMatchSnapshot();
     expect(getUrl('image<image.png')).toMatchSnapshot();
     expect(getUrl('image`image.png')).toMatchSnapshot();
+    expect(getUrl('image.png', true)).toMatchSnapshot();
+    expect(getUrl('image\timage.png', true)).toMatchSnapshot();
+    expect(getUrl('image\nimage.png', true)).toMatchSnapshot();
+    expect(getUrl('image\fimage.png', true)).toMatchSnapshot();
+    expect(getUrl('image\rimage.png', true)).toMatchSnapshot();
+    expect(getUrl('image image.png', true)).toMatchSnapshot();
+    expect(getUrl('image"image.png', true)).toMatchSnapshot();
+    expect(getUrl("image'image.png", true)).toMatchSnapshot();
+    expect(getUrl('image=image.png', true)).toMatchSnapshot();
+    expect(getUrl('image>image.png', true)).toMatchSnapshot();
+    expect(getUrl('image<image.png', true)).toMatchSnapshot();
+    expect(getUrl('image`image.png', true)).toMatchSnapshot();
     expect(
       getUrl({ default: 'image.png', __esModule: true })
     ).toMatchSnapshot();

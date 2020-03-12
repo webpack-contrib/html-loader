@@ -1,4 +1,6 @@
-import { urlToRequest, stringifyRequest } from 'loader-utils';
+import { stringifyRequest } from 'loader-utils';
+
+const GET_SOURCE_FROM_IMPORT_NAME = '___HTML_LOADER_GET_SOURCE_FROM_IMPORT___';
 
 export function pluginRunner(plugins) {
   return {
@@ -21,64 +23,66 @@ export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
 
-export function getImportCode(loaderContext, html, replacers, options) {
-  if (replacers.length === 0) {
+export function getImportCode(html, importedMessages, codeOptions) {
+  if (importedMessages.length === 0) {
     return '';
   }
 
-  const importItems = [];
-
-  importItems.push(
-    options.esModule
-      ? `import ___HTML_LOADER_GET_URL_IMPORT___ from ${stringifyRequest(
-          loaderContext,
-          require.resolve('./runtime/getUrl.js')
-        )}`
-      : `var ___HTML_LOADER_GET_URL_IMPORT___ = require(${stringifyRequest(
-          loaderContext,
-          require.resolve('./runtime/getUrl.js')
-        )});`
+  const { loaderContext, esModule } = codeOptions;
+  const stringifiedHelperRequest = stringifyRequest(
+    loaderContext,
+    require.resolve('./runtime/getUrl.js')
   );
 
-  for (const replacer of replacers) {
-    const { replacementName, source } = replacer;
-    const request = urlToRequest(source, options.root);
-    const stringifiedRequest = stringifyRequest(loaderContext, request);
+  let code = esModule
+    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
+    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${stringifiedHelperRequest});\n`;
 
-    if (options.esModule) {
-      importItems.push(`import ${replacementName} from ${stringifiedRequest};`);
-    } else {
-      importItems.push(
-        `var ${replacementName} = require(${stringifiedRequest});`
-      );
-    }
+  for (const item of importedMessages) {
+    const { importName, source } = item;
+    const stringifiedSourceRequest = stringifyRequest(loaderContext, source);
+
+    code += esModule
+      ? `import ${importName} from ${stringifiedSourceRequest};\n`
+      : `var ${importName} = require(${stringifiedSourceRequest});\n`;
   }
 
-  const importCode = importItems.join('\n');
-
-  return `// Imports\n${importCode}\n`;
+  return `// Imports\n${code}`;
 }
 
-export function getExportCode(html, replacers, options) {
-  let exportCode = html;
+export function getModuleCode(html, replaceableMessages, codeOptions) {
+  let code = html;
 
-  if (!options.interpolate) {
-    // eslint-disable-next-line no-param-reassign
-    exportCode = JSON.stringify(exportCode);
+  if (!codeOptions.interpolate) {
+    code = JSON.stringify(code)
+      // Invalid in JavaScript but valid HTML
+      .replace(/[\u2028\u2029]/g, (str) =>
+        str === '\u2029' ? '\\u2029' : '\\u2028'
+      );
   }
 
-  for (const replacer of replacers) {
-    const { replacementName } = replacer;
+  let replacersCode = '';
 
-    exportCode = exportCode.replace(
-      new RegExp(replacementName, 'g'),
-      () => `" + ___HTML_LOADER_GET_URL_IMPORT___(${replacementName}) + "`
+  for (const item of replaceableMessages) {
+    const { importName, replacerName, unquoted } = item;
+
+    replacersCode += `var ${replacerName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${
+      unquoted ? ', true' : ''
+    });\n`;
+
+    code = code.replace(
+      new RegExp(replacerName, 'g'),
+      () => `" + ${replacerName} + "`
     );
   }
 
-  if (options.esModule) {
-    return `// Exports\nexport default ${exportCode}`;
+  return `// Module\n${replacersCode}var code = ${code};\n`;
+}
+
+export function getExportCode(html, exportedMessages, codeOptions) {
+  if (codeOptions.esModule) {
+    return `// Exports\nexport default code;`;
   }
 
-  return `// Exports\nmodule.exports = ${exportCode}`;
+  return `// Exports\nmodule.exports = code`;
 }

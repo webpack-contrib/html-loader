@@ -37,13 +37,12 @@
 <img src="./image.png">
 <img src="/image.png">
 <img src="~aliasImg">
-<img src="">
 <img src="image.png">
 <IMG src="image.png">
 <img SRC="image.png">
 <IMG SRC="image.png">
 
-<script src="script.js"></script>
+<script src="./script.file.js"></script>
 
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
@@ -52,10 +51,6 @@
 
 <a href="mailto:username@exampledomain.com"></a>
 
-<!-- https://github.com/albell/parse-srcset/blob/master/tests/unit/ps.js Need more tests -->
-<img srcset="" src="image.png" alt="Elva dressed as a fairy">
-<img srcset="," src="image.png" alt="Elva dressed as a fairy">
-<img srcset=",,," src="image.png" alt="Elva dressed as a fairy">
 <img srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 <IMG srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 <img SRCSET="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
@@ -71,8 +66,6 @@
 <img srcset="image.png" src="image.png" alt="Elva dressed as a fairy">
 <img srcset="image.png," src="image.png" alt="Elva dressed as a fairy">
 <img srcset="image.png,,," src="image.png" alt="Elva dressed as a fairy">
-<img srcset="image.png 480w 2x broken" src="image.png" alt="Elva dressed as a fairy">
-<img srcset="image.png broken" src="image.png" alt="Elva dressed as a fairy">
 <img srcset="
 
 image.png,
@@ -104,7 +97,7 @@ image.png 2x
   <input type="image" src="image.png" alt="Submit">
 </form>
 
-<script src="script.js"></script>
+<script src="https://domain.org/script.js"></script>
 
 <audio controls>
   <source src="example.ogg" type="audio/ogg">
@@ -134,7 +127,16 @@ T ex t  <img 	  src =   "image.png"   >  <img
 
 <![CDATA[<img src="image.png">]]><img src="image.png">
 
-<link type="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="icon" href="./image.png" sizes="16x16">
+<link rel="apple-touch-icon" href="./image.png">
+<link rel="apple-touch-startup-image" href="./image.png">
+<link rel="shortlink" type="text/html" href="http://flic.kr/p/6XuLyD">
+<link type="text/css" href="./style.css">
+<link rel="pingback" href="http://bob.example.net/xmlrpcserver">
+<a rel="author" href="./simple.html">link text</a>
+
+<a href="tel:1-408-555-5555">Call me</a>
 
 <!----><img src="image.png">-->
 <!--><img src="image.png">-->
@@ -168,13 +170,6 @@ or
 <img src="foobar:test">Start Chat</img>
 <img src="javascript:alert('Hello');">Start Chat</img>
 
-<img src="   ">
-<img srcset="   " src="   " alt="Elva dressed as a fairy">
-<img src="
-">
-<img srcset="
-" src="
-" alt="Elva dressed as a fairy">
 <img src="   image.png   ">
 <img src="
 image.png
@@ -188,3 +183,70 @@ image.png
 
 <img srcset="#test" src="#test" alt="Elva dressed as a fairy">
 <img src="image%20image.png" alt="Test">
+
+<flag-icon src="image.png"></flag-icon>
+<MyStrangeTag13 src="image.png" alt="Smiley face" />
+<MyStrangeTag13 src="image.png" alt="Smiley face"> Test </MyStrangeTag13>
+<a- src="image.png"></a->
+<a-. src="image.png">test</a-.>
+<a-- src="image.png">test</a-->
+<aÀ-豈 src="image.png">test</aÀ-豈>
+<aÀ-Ⰰ src="image.png" />
+
+<INVALID_TAG_NAME src="image.png" />
+<invalid-CUSTOM-TAG src="image.png" />
+
+<p>Text</p>
+<p >Text</p>
+<p   >Text</p>
+
+<img src="image.png" src="image.png" />
+
+<script type="module" src="module.file.js"></script>
+<script nomodule src="fallback.file.js"></script>
+<script type="module">
+  function test() {}
+</script>
+<script>
+  function test() {}
+</script>
+
+<img src=image.png />
+<img src="image image.png" />
+<img src='image image.png' />
+<img src=~aliasImageWithSpace />
+<img srcset=image.png />
+<img srcset="image%20image.png" />
+<img srcset='image%20image.png' />
+<img srcset=~aliasImageWithSpace />
+<img srcset="image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img src      =       image.png />
+<img src      =      ~aliasImageWithSpace      />
+<img src      =      "~aliasImageWithSpace"      />
+<img src      =      '~aliasImageWithSpace'      />
+
+<img src="#hash" />
+<img src="javascript:void(0)" />
+<img src='image.png#hash' />
+<img src=image.png#hash />
+<img src=image.png# />
+<img srcset="image.png#hash" />
+<img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png#baz" alt="Elva dressed as a fairy">
+<img src="#" alt="test"/>
+<img src="#" srcset="#" alt="test" />
+<img src="###" srcset="#" alt="test" />
+<img src="   #   " alt="test"/>
+<img src="
+
+
+#
+
+
+" alt="test"/>
+<img src=
+
+
+       image.png
+
+
+/>

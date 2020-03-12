@@ -164,7 +164,22 @@ describe("'attributes' option", () => {
   });
 
   it('should work with an "array" notations', async () => {
-    const compiler = getCompiler('simple.js', { attributes: ['img:src'] });
+    const compiler = getCompiler('simple.js', {
+      attributes: [
+        'img:src',
+        'flag-icon:src',
+        'MyStrangeTag13:src',
+        'a-:src',
+        'a-.:src',
+        'a--:src',
+        'aÀ-豈:src',
+        'aÀ-Ⰰ:src',
+        // Should not work
+        'INVALID_TAG_NAME:src',
+        // Should not work
+        'invalid-CUSTOM-TAG:src',
+      ],
+    });
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
@@ -177,7 +192,21 @@ describe("'attributes' option", () => {
 
   it('should work with multiple an "array" notations', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: ['img:src', 'script:src'],
+      attributes: [
+        'img:src',
+        'script:src',
+        'flag-icon:src',
+        'MyStrangeTag13:src',
+        'a-:src',
+        'a-.:src',
+        'a--:src',
+        'aÀ-豈:src',
+        'aÀ-Ⰰ:src',
+        // Should not work
+        'INVALID_TAG_NAME:src',
+        // Should not work
+        'invalid-CUSTOM-TAG:src',
+      ],
     });
     const stats = await compile(compiler);
 
@@ -218,6 +247,18 @@ describe("'attributes' option", () => {
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle "src" and "srcset"  tags correctly', async () => {
+    const compiler = getCompiler('sources.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./sources.html', stats)).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');

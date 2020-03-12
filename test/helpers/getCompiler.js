@@ -32,11 +32,33 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           loader: 'file-loader',
           options: { name: '[name].[ext]' },
         },
+        {
+          test: /\.file.css$/i,
+          rules: [
+            {
+              loader: 'file-loader',
+              options: { name: '[name].[ext]' },
+            },
+          ],
+        },
+        {
+          test: /\.file.js$/i,
+          rules: [
+            {
+              loader: 'file-loader',
+              options: { name: '[name].[ext]' },
+            },
+          ],
+        },
       ],
     },
     resolve: {
       alias: {
-        aliasImg: path.resolve(__dirname, '../fixtures/alias-image.png'),
+        aliasImg: path.resolve(__dirname, '../fixtures/image.png'),
+        aliasImageWithSpace: path.resolve(
+          __dirname,
+          '../fixtures/image image.png'
+        ),
       },
     },
     plugins: [],
