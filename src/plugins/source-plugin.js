@@ -350,39 +350,25 @@ function parseSrcset(input) {
 }
 
 function parseSrc(input) {
-  let startIndex = 0;
-
   if (!input) {
     throw new Error('Must be non-empty');
   }
 
-  for (let position = 0; position < input.length; position++) {
-    const character = input.charAt(position);
+  let startIndex = 0;
+  let value = input;
 
-    if (isASCIIWhitespace(character)) {
-      startIndex = position;
-    } else {
-      break;
-    }
+  while (isASCIIWhitespace(value.substring(0, 1))) {
+    startIndex += 1;
+    value = value.substring(1, value.length);
   }
 
-  if (startIndex === input.length - 1) {
+  while (isASCIIWhitespace(value.substring(value.length - 1, value.length))) {
+    value = value.substring(0, value.length - 1);
+  }
+
+  if (!value) {
     throw new Error('Must be non-empty');
   }
-
-  let endIndex = input.length;
-
-  for (let position = input.length - 1; position >= 0; position--) {
-    const character = input.charAt(position);
-
-    if (isASCIIWhitespace(character)) {
-      endIndex = position;
-    } else {
-      break;
-    }
-  }
-
-  const value = input.slice(startIndex, endIndex + 1);
 
   return { value, startIndex };
 }
