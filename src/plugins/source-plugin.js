@@ -506,7 +506,7 @@ export default (options) =>
       let { value } = source;
       const URLObject = parse(value);
 
-      if (typeof URLObject.hash !== 'undefined') {
+      if (URLObject.hash) {
         const { hash } = URLObject;
 
         URLObject.hash = null;
