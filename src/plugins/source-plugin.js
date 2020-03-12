@@ -378,8 +378,9 @@ export default (options) =>
     const tagsAndAttributes =
       typeof options.attributes === 'undefined' || options.attributes === true
         ? [
-            ':srcset',
+            'source:srcset',
             'img:src',
+            'img:srcset',
             'audio:src',
             'video:src',
             'track:src',
