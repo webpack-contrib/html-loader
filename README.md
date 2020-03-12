@@ -325,6 +325,7 @@ require('html-loader?-attributes!./file.html');
 
 // => '<img src="image.jpg"  data-src="image2x.png" >'
 ```
+> :warning: `-attributes` it is set attributes: false
 
 ```html
 '<img src=http://cdn.example.com/49eba9f/a9f92ca.jpg
