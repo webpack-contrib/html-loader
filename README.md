@@ -53,18 +53,18 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ## Options
 
-|               Name                |        Type         |                                                               Default                                                               | Description                              |
-| :-------------------------------: | :-----------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
-|  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
-|        **[`root`](#root)**        |     `{String}`      |                                                             `undefiend`                                                             | Allow to handle root-relative attributes |
-| **[`interpolate`](#interpolate)** |     `{Boolean}`     |                                                               `false`                                                               | Allow to use expressions in HTML syntax  |
-|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                            `true` in production mode, otherwise `false`                                             | Tell `html-loader` to minimize HTML      |
-|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                               `false`                                                               | Use ES modules syntax                    |
+|               Name                |        Type         |                                                                         Default                                                                         | Description                              |
+| :-------------------------------: | :-----------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
+|  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
+|        **[`root`](#root)**        |     `{String}`      |                                                                       `undefiend`                                                                       | Allow to handle root-relative attributes |
+| **[`interpolate`](#interpolate)** |     `{Boolean}`     |                                                                         `false`                                                                         | Allow to use expressions in HTML syntax  |
+|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                                      `true` in production mode, otherwise `false`                                                       | Tell `html-loader` to minimize HTML      |
+|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                                         `false`                                                                         | Use ES modules syntax                    |
 
 ### `attributes`
 
 Type: `Boolean|Array`
-Default: `[':srcset', 'img:src', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src', 'input:src', 'object:data', 'script:src']`
+Default: `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']`
 
 #### `Boolean`
 
