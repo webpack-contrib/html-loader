@@ -3,11 +3,13 @@
 exports[`validate options should throw an error on the "attributes" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.attributes should be one of these:
-   boolean | [string, ...]
+   boolean | [string, ...] | object { root?, list? }
    Details:
     * options.attributes should be a boolean.
     * options.attributes should be an array:
-      [string, ...]"
+      [string, ...]
+    * options.attributes should be an object:
+      object { root?, list? }"
 `;
 
 exports[`validate options should throw an error on the "esModule" option with "true" value 1`] = `
@@ -15,55 +17,50 @@ exports[`validate options should throw an error on the "esModule" option with "t
  - options.esModule should be a boolean."
 `;
 
-exports[`validate options should throw an error on the "root" option with "true" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.root should be a string."
-`;
-
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "[]" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{"foo":"bar"}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "1" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "false" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "test" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { attributes?, root?, minimize?, esModule? }"
+   object { attributes?, minimize?, esModule? }"
 `;

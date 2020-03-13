@@ -373,31 +373,44 @@ function parseSrc(input) {
   return { value, startIndex };
 }
 
+const defaultAttributes = [
+  'source:srcset',
+  'img:src',
+  'img:srcset',
+  'audio:src',
+  'video:src',
+  'track:src',
+  'embed:src',
+  'source:src',
+  'input:src',
+  'object:data',
+  'script:src',
+];
+
 export default (options) =>
   function process(html, result) {
-    const tagsAndAttributes =
-      typeof options.attributes === 'undefined' || options.attributes === true
-        ? [
-            'source:srcset',
-            'img:src',
-            'img:srcset',
-            'audio:src',
-            'video:src',
-            'track:src',
-            'embed:src',
-            'source:src',
-            'input:src',
-            'object:data',
-            'script:src',
-          ]
-        : options.attributes;
+    let tagsAndAttributes;
+    let root;
+
+    if (
+      typeof options.attributes === 'undefined' ||
+      options.attributes === true
+    ) {
+      tagsAndAttributes = defaultAttributes;
+    } else if (Array.isArray(options.attributes)) {
+      tagsAndAttributes = options.attributes;
+    } else {
+      tagsAndAttributes = options.attributes.list || defaultAttributes;
+      // eslint-disable-next-line no-undefined
+      root = options.attributes.root ? options.attributes.root : undefined;
+    }
 
     const sources = [];
     const onOpenTagFilter = new RegExp(
       `^(${tagsAndAttributes.join('|')})$`,
       'i'
     );
-    const filter = (value) => isUrlRequest(value, options.root);
+    const filter = (value) => isUrlRequest(value, root);
     const parser = new Parser(
       {
         attributesMeta: {},
@@ -518,10 +531,7 @@ export default (options) =>
         }
       }
 
-      const importKey = urlToRequest(
-        decodeURIComponent(source.value),
-        options.root
-      );
+      const importKey = urlToRequest(decodeURIComponent(source.value), root);
       let importName = importsMap.get(importKey);
 
       if (!importName) {

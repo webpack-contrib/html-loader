@@ -9,11 +9,23 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "root": {
+              "type": "string"
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
         }
       ]
-    },
-    "root": {
-      "type": "string"
     },
     "minimize": {
       "anyOf": [{ "type": "boolean" }, { "type": "object" }]
