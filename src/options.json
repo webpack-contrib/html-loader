@@ -15,9 +15,6 @@
     "root": {
       "type": "string"
     },
-    "interpolate": {
-      "anyOf": [{ "type": "boolean" }]
-    },
     "minimize": {
       "anyOf": [{ "type": "boolean" }, { "type": "object" }]
     },

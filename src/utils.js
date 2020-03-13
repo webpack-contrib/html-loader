@@ -50,16 +50,12 @@ export function getImportCode(html, importedMessages, codeOptions) {
   return `// Imports\n${code}`;
 }
 
-export function getModuleCode(html, replaceableMessages, codeOptions) {
-  let code = html;
-
-  if (!codeOptions.interpolate) {
-    code = JSON.stringify(code)
-      // Invalid in JavaScript but valid HTML
-      .replace(/[\u2028\u2029]/g, (str) =>
-        str === '\u2029' ? '\\u2029' : '\\u2028'
-      );
-  }
+export function getModuleCode(html, replaceableMessages) {
+  let code = JSON.stringify(html)
+    // Invalid in JavaScript but valid HTML
+    .replace(/[\u2028\u2029]/g, (str) =>
+      str === '\u2029' ? '\\u2029' : '\\u2028'
+    );
 
   let replacersCode = '';
 

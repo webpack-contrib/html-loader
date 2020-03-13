@@ -12,10 +12,6 @@ describe('validate options', () => {
       ],
       failure: [true],
     },
-    interpolate: {
-      success: [false /* true */],
-      failure: [1],
-    },
     esModule: {
       success: [true, false],
       failure: ['true'],

@@ -43,7 +43,6 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
-    "es6-templates": "^0.2.3",
     "html-minifier-terser": "^5.0.4",
     "htmlparser2": "^4.1.0",
     "loader-utils": "^1.4.0",

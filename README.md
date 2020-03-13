@@ -53,13 +53,12 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ## Options
 
-|               Name                |        Type         |                                                                         Default                                                                         | Description                              |
-| :-------------------------------: | :-----------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
-|  **[`attributes`](#attributes)**  | `{Boolean\/Array}`  | `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
-|        **[`root`](#root)**        |     `{String}`      |                                                                       `undefiend`                                                                       | Allow to handle root-relative attributes |
-| **[`interpolate`](#interpolate)** |     `{Boolean}`     |                                                                         `false`                                                                         | Allow to use expressions in HTML syntax  |
-|    **[`minimize`](#minimize)**    | `{Boolean\|Object}` |                                                      `true` in production mode, otherwise `false`                                                       | Tell `html-loader` to minimize HTML      |
-|    **[`esModule`](#esmodule)**    |     `{Boolean}`     |                                                                         `false`                                                                         | Use ES modules syntax                    |
+|              Name               |        Type         |                                                                         Default                                                                         | Description                              |
+| :-----------------------------: | :-----------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
+| **[`attributes`](#attributes)** | `{Boolean\/Array}`  | `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
+|       **[`root`](#root)**       |     `{String}`      |                                                                       `undefiend`                                                                       | Allow to handle root-relative attributes |
+|   **[`minimize`](#minimize)**   | `{Boolean\|Object}` |                                                      `true` in production mode, otherwise `false`                                                       | Tell `html-loader` to minimize HTML      |
+|   **[`esModule`](#esmodule)**   |     `{Boolean}`     |                                                                         `false`                                                                         | Use ES modules syntax                    |
 
 ### `attributes`
 
@@ -141,45 +140,6 @@ module.exports = {
 };
 ```
 
-### `interpolate`
-
-Type: `Boolean|String`
-Default: `false`
-
-Allow to use expressions in HTML syntax.
-You can use `interpolate` flag to enable interpolation syntax for ES6 template strings, like so:
-
-```js
-require('html-loader?interpolate!./file.html');
-```
-
-```html
-<img src="${require(`./images/gallery.png`).default}" />
-
-<div>${require('./components/gallery.html').default}</div>
-```
-
-> ⚠ By default `file-loader` or `url-loader` use ES module syntax so you need use the `default` property.
-> You should not use the `default` property if you setup the `esModule` option to `false` value for `file-loader` or `url-loader`.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          interpolate: true,
-        },
-      },
-    ],
-  },
-};
-```
-
 ### `minimize`
 
 Type: `Boolean|Object`
@@ -224,7 +184,7 @@ module.exports = {
 
 **webpack.config.js**
 
-See [html-minifier](https://github.com/kangax/html-minifier#options-quick-reference)'s documentation for more information on the available options.
+See [html-minifier-terser](https://github.com/DanielRuf/html-minifier-terser)'s documentation for more information on the available options.
 
 The rules can be disabled using the following options in your `webpack.conf.js`
 
@@ -347,6 +307,8 @@ a {
 }
 ```
 
+**file.html**
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -399,16 +361,21 @@ module.exports = {
 
 With the same configuration as above:
 
+**file.html**
+
 ```html
-<!-- file.html -->
 <img src="/image.jpg" />
 ```
+
+**scripts.js**
 
 ```js
 require('html-loader!./file.html');
 
 // => '<img src="/image.jpg">'
 ```
+
+**other-scripts.js**
 
 ```js
 require('html-loader?root=.!./file.html');

@@ -1,7 +1,7 @@
 import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
-import { sourcePlugin, interpolatePlugin, minimizerPlugin } from './plugins';
+import { sourcePlugin, minimizerPlugin } from './plugins';
 import Warning from './Warning';
 
 import {
@@ -38,12 +38,6 @@ export default function htmlLoader(content) {
 
   if (minimize) {
     plugins.push(minimizerPlugin(options));
-  }
-
-  const { interpolate } = options;
-
-  if (interpolate) {
-    plugins.push(interpolatePlugin(options));
   }
 
   const { html, messages, warnings, errors } = pluginRunner(plugins).process(
