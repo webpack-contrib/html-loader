@@ -117,7 +117,7 @@ To completely disable tag-attribute processing (for instance, if you're handling
 #### `Object`
 
 Type: `Array`
-Default: `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']`
+Default: `{ list: ['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src'], root: undefined }`
 
 Allows you to specify which tags and attributes to process.
 Pass an array of `<tag>:<attribute>` or `:<attribute>` combinations.
@@ -134,7 +134,10 @@ module.exports = {
         loader: 'html-loader',
         options: {
           attributes: {
+            // May be omitted
             list: [':data-src', 'custom-elements:data-src'],
+            // May be omitted
+            root: '.',
           },
         },
       },

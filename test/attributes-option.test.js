@@ -115,6 +115,20 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should work with an empty "object" notations', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {},
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it('should translate root-relative sources', async () => {
     const compiler = getCompiler('simple.js', { attributes: { root: '.' } });
     const stats = await compile(compiler);
