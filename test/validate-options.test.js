@@ -3,14 +3,17 @@ import { getCompiler, compile } from './helpers';
 describe('validate options', () => {
   const tests = {
     attributes: {
-      success: [true, false, [], ['img:src'], ['img:src', ':srcset']],
-      failure: ['true'],
-    },
-    root: {
       success: [
-        /* 'index.html' */
+        true,
+        false,
+        [],
+        ['img:src'],
+        ['img:src', ':srcset'],
+        { root: '.' },
+        { list: ['img:src'], root: '.' },
+        { list: ['img:src'] },
       ],
-      failure: [true],
+      failure: ['true'],
     },
     esModule: {
       success: [true, false],

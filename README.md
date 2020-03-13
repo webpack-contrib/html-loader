@@ -53,12 +53,12 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 ## Options
 
-|              Name               |        Type         |                                                                         Default                                                                         | Description                              |
-| :-----------------------------: | :-----------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
-| **[`attributes`](#attributes)** | `{Boolean\/Array}`  | `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
-|       **[`root`](#root)**       |     `{String}`      |                                                                       `undefiend`                                                                       | Allow to handle root-relative attributes |
-|   **[`minimize`](#minimize)**   | `{Boolean\|Object}` |                                                      `true` in production mode, otherwise `false`                                                       | Tell `html-loader` to minimize HTML      |
-|   **[`esModule`](#esmodule)**   |     `{Boolean}`     |                                                                         `false`                                                                         | Use ES modules syntax                    |
+|              Name               |            Type            |                                                                         Default                                                                         | Description                              |
+| :-----------------------------: | :------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
+| **[`attributes`](#attributes)** | `{Boolean\/Array\/Object}` | `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
+|       **[`root`](#root)**       |         `{String}`         |                                                                       `undefiend`                                                                       | Allow to handle root-relative attributes |
+|   **[`minimize`](#minimize)**   |    `{Boolean\|Object}`     |                                                      `true` in production mode, otherwise `false`                                                       | Tell `html-loader` to minimize HTML      |
+|   **[`esModule`](#esmodule)**   |        `{Boolean}`         |                                                                         `false`                                                                         | Use ES modules syntax                    |
 
 ### `attributes`
 
@@ -114,7 +114,39 @@ module.exports = {
 
 To completely disable tag-attribute processing (for instance, if you're handling image loading on the client side) you can pass set `false` value.
 
-### `root`
+#### `Object`
+
+Type: `Array`
+Default: `{ list: ['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src'], root: undefined }`
+
+Allows you to specify which tags and attributes to process.
+Pass an array of `<tag>:<attribute>` or `:<attribute>` combinations.
+You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`, for example:
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            // May be omitted
+            list: [':data-src', 'custom-elements:data-src'],
+            // May be omitted
+            root: '.',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `root`
 
 Type: `String`
 Default: `undefined`
@@ -132,7 +164,9 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          root: './file.html',
+          attributes: {
+            root: '.',
+          },
         },
       },
     ],
@@ -285,6 +319,7 @@ require('html-loader?-attributes!./file.html');
 
 // => '<img src="image.jpg"  data-src="image2x.png" >'
 ```
+
 > :warning: `-attributes` it is set attributes: false
 
 ```html
