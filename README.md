@@ -48,22 +48,36 @@ module.exports = {
 };
 ```
 
-By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
-You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
-
 ## Options
 
-|              Name               |            Type            |                                                                         Default                                                                         | Description                              |
-| :-----------------------------: | :------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------- |
-| **[`attributes`](#attributes)** | `{Boolean\/Array\/Object}` | `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']` | Enables/Disables attributes handling     |
-|       **[`root`](#root)**       |         `{String}`         |                                                                       `undefiend`                                                                       | Allow to handle root-relative attributes |
-|   **[`minimize`](#minimize)**   |    `{Boolean\|Object}`     |                                                      `true` in production mode, otherwise `false`                                                       | Tell `html-loader` to minimize HTML      |
-|   **[`esModule`](#esmodule)**   |        `{Boolean}`         |                                                                         `false`                                                                         | Use ES modules syntax                    |
+|              Name               |            Type            |                   Default                    | Description                              |
+| :-----------------------------: | :------------------------: | :------------------------------------------: | :--------------------------------------- |
+| **[`attributes`](#attributes)** | `{Boolean\/Array\/Object}` |                    `true`                    | Enables/Disables attributes handling     |
+|       **[`root`](#root)**       |         `{String}`         |                 `undefiend`                  | Allow to handle root-relative attributes |
+|   **[`minimize`](#minimize)**   |    `{Boolean\|Object}`     | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML      |
+|   **[`esModule`](#esmodule)**   |        `{Boolean}`         |                   `false`                    | Use ES modules syntax                    |
 
 ### `attributes`
 
-Type: `Boolean|Array`
-Default: `['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src']`
+Type: `Boolean|Array|Object`
+Default: `true`
+
+By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
+You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
+
+Supported tags and attributes:
+
+- `source:srcset`
+- `img:srcset`
+- `img:src`
+- `audio:src`
+- `video:src`
+- `track:src`
+- `embed:src`
+- `source:src`
+- `input:src`
+- `object:data`
+- `script:src`
 
 #### `Boolean`
 
@@ -112,16 +126,10 @@ module.exports = {
 };
 ```
 
-To completely disable tag-attribute processing (for instance, if you're handling image loading on the client side) you can pass set `false` value.
-
 #### `Object`
 
-Type: `Array`
-Default: `{ list: ['source:srcset', 'img:src', 'img:srcset', 'audio:src', 'video:src', 'track:src', 'embed:src', 'source:src','input:src', 'object:data', 'script:src'], root: undefined }`
-
-Allows you to specify which tags and attributes to process.
-Pass an array of `<tag>:<attribute>` or `:<attribute>` combinations.
-You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`, for example:
+Allows you to specify which tags and attributes to process, filter them and process sources starts with `/`.
+For example:
 
 **webpack.config.js**
 
@@ -134,10 +142,82 @@ module.exports = {
         loader: 'html-loader',
         options: {
           attributes: {
-            // May be omitted
             list: [':data-src', 'custom-elements:data-src'],
-            // May be omitted
+            filter: (attribute, value, resourcePath) => {
+              // The `attribute` argument contains a name of the HTML attribute.
+              // The `value` argument contains a value of the HTML attribute.
+              // The `resourcePath` argument contains a path to the loaded HTML file.
+
+              if (value.includes('example')) {
+                return false;
+              }
+
+              return true;
+            },
             root: '.',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `list`
+
+Type: `String`
+Default: https://github.com/webpack-contrib/html-loader#attributes
+
+For example:
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            list: [':data-src', 'custom-elements:data-src'],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `filter`
+
+Type: `Function`
+Default: `undefined`
+
+Allow to filter sources. All filtered sources will not be resolved (left in the code as they were written).
+All non requestable sources (for example `<img src="javascript:void(0)">`) do not handle by default.
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            filter: (attribute, value, resourcePath) => {
+              // The `attribute` argument contains a name of the HTML attribute.
+              // The `value` argument contains a value of the HTML attribute.
+              // The `resourcePath` argument contains a path to the loaded HTML file.
+
+              if (value.includes('example')) {
+                return false;
+              }
+
+              return true;
+            },
           },
         },
       },
@@ -185,16 +265,16 @@ Tell `html-loader` to minimize HTML.
 
 The enabled rules for minimizing by default are the following ones:
 
-- collapseWhitespace
-- conservativeCollapse
-- keepClosingSlash
-- minifyCSS
-- minifyJS
-- removeAttributeQuotes
-- removeComments
-- removeScriptTypeAttributes
-- removeStyleTypeAttributes
-- useShortDoctype
+- `collapseWhitespace`
+- `conservativeCollapse`
+- `keepClosingSlash`
+- `minifyCSS`
+- `minifyJS`
+- `removeAttributeQuotes`
+- `removeComments`
+- `removeScriptTypeAttributes`
+- `removeStyleTypeAttributes`
+- `useShortDoctype`
 
 **webpack.config.js**
 
