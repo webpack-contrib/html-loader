@@ -19,6 +19,20 @@ export function pluginRunner(plugins) {
   };
 }
 
+export function getFilter(filter, defaultFilter = null) {
+  return (attribute, value, resourcePath) => {
+    if (defaultFilter && !defaultFilter(value)) {
+      return false;
+    }
+
+    if (typeof filter === 'function') {
+      return filter(attribute, value, resourcePath);
+    }
+
+    return true;
+  };
+}
+
 export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }

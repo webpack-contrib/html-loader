@@ -3,6 +3,8 @@ import { parse } from 'url';
 import { Parser } from 'htmlparser2';
 import { isUrlRequest, urlToRequest } from 'loader-utils';
 
+import { getFilter } from '../utils';
+
 function isASCIIWhitespace(character) {
   return (
     // Horizontal tab
@@ -389,28 +391,31 @@ const defaultAttributes = [
 
 export default (options) =>
   function process(html, result) {
-    let tagsAndAttributes;
+    let possibleAttributes;
+    let maybeFilter;
     let root;
 
     if (
       typeof options.attributes === 'undefined' ||
       options.attributes === true
     ) {
-      tagsAndAttributes = defaultAttributes;
+      possibleAttributes = defaultAttributes;
     } else if (Array.isArray(options.attributes)) {
-      tagsAndAttributes = options.attributes;
+      possibleAttributes = options.attributes;
     } else {
-      tagsAndAttributes = options.attributes.list || defaultAttributes;
+      possibleAttributes = options.attributes.list || defaultAttributes;
+      // eslint-disable-next-line no-undefined
+      maybeFilter = options.attributes.filter || undefined;
       // eslint-disable-next-line no-undefined
       root = options.attributes.root ? options.attributes.root : undefined;
     }
 
     const sources = [];
     const onOpenTagFilter = new RegExp(
-      `^(${tagsAndAttributes.join('|')})$`,
+      `^(${possibleAttributes.join('|')})$`,
       'i'
     );
-    const filter = (value) => isUrlRequest(value, root);
+    const filter = getFilter(maybeFilter, (value) => isUrlRequest(value, root));
     const parser = new Parser(
       {
         attributesMeta: {},
@@ -457,7 +462,7 @@ export default (options) =>
               sourceSet.forEach((sourceItem) => {
                 const { source } = sourceItem;
 
-                if (!filter(source.value)) {
+                if (!filter(attribute, source.value, options.resourcePath)) {
                   return;
                 }
 
@@ -483,7 +488,7 @@ export default (options) =>
               return;
             }
 
-            if (!filter(source.value)) {
+            if (!filter(attribute, source.value, options.resourcePath)) {
               return;
             }
 
