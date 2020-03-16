@@ -13,14 +13,17 @@
         {
           "type": "object",
           "properties": {
-            "root": {
-              "type": "string"
-            },
             "list": {
               "type": "array",
               "items": {
                 "type": "string"
               }
+            },
+            "filter": {
+              "instanceof": "Function"
+            },
+            "root": {
+              "type": "string"
             }
           },
           "additionalProperties": false

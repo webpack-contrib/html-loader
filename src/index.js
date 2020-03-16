@@ -28,7 +28,7 @@ export default function htmlLoader(content) {
     typeof options.attributes === 'undefined' ? true : options.attributes;
 
   if (attributes) {
-    plugins.push(sourcePlugin(options));
+    plugins.push(sourcePlugin({ attributes, resourcePath: this.resourcePath }));
   }
 
   const minimize =
@@ -37,7 +37,7 @@ export default function htmlLoader(content) {
       : options.minimize;
 
   if (minimize) {
-    plugins.push(minimizerPlugin(options));
+    plugins.push(minimizerPlugin({ minimize }));
   }
 
   const { html, messages, warnings, errors } = pluginRunner(plugins).process(
