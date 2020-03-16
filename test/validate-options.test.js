@@ -6,7 +6,6 @@ describe('validate options', () => {
       success: [
         true,
         false,
-        [],
         ['img:src'],
         ['img:src', ':srcset'],
         { root: '.' },
@@ -16,7 +15,15 @@ describe('validate options', () => {
         { list: ['img:src'], root: '.' },
         { list: ['img:src'], root: '.', filter: () => true },
       ],
-      failure: ['true'],
+      failure: [
+        'true',
+        [],
+        [':src', ':src'],
+        { list: [] },
+        { list: [':src', ':src'] },
+        { filter: false },
+        { root: false },
+      ],
     },
     esModule: {
       success: [true, false],

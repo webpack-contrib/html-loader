@@ -8,7 +8,9 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
         {
           "type": "object",
@@ -17,7 +19,9 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "minItems": 1,
+              "uniqueItems": true
             },
             "filter": {
               "instanceof": "Function"

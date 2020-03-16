@@ -1,15 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`validate options should throw an error on the "attributes" option with "[":src",":src"]" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes should not contain the item ':src' twice."
+`;
+
+exports[`validate options should throw an error on the "attributes" option with "[]" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes should be an non-empty array."
+`;
+
+exports[`validate options should throw an error on the "attributes" option with "{"filter":false}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes.filter should be an instance of function."
+`;
+
+exports[`validate options should throw an error on the "attributes" option with "{"list":[":src",":src"]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes.list should not contain the item ':src' twice."
+`;
+
+exports[`validate options should throw an error on the "attributes" option with "{"list":[]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes.list should be an non-empty array."
+`;
+
+exports[`validate options should throw an error on the "attributes" option with "{"root":false}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes.root should be a string."
+`;
+
 exports[`validate options should throw an error on the "attributes" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.attributes should be one of these:
-   boolean | [string, ...] | object { root?, list? }
+   boolean | [string, ...] (should not have fewer than 1 item, should not have duplicate items) | object { list?, filter?, root? }
    Details:
     * options.attributes should be a boolean.
     * options.attributes should be an array:
-      [string, ...]
+      [string, ...] (should not have fewer than 1 item, should not have duplicate items)
     * options.attributes should be an object:
-      object { root?, list? }"
+      object { list?, filter?, root? }"
 `;
 
 exports[`validate options should throw an error on the "esModule" option with "true" value 1`] = `
