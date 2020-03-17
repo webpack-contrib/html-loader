@@ -15,7 +15,7 @@ import {
 import schema from './options.json';
 
 export default function htmlLoader(content) {
-  const options = getOptions(this) || {};
+  const options = getOptions(this);
 
   validateOptions(schema, options, {
     name: 'HTML Loader',
