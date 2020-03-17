@@ -534,7 +534,6 @@ export default (options) =>
 
           this.attributesMeta = {};
         },
-        /* istanbul ignore next */
         onerror(error) {
           result.messages.push({
             type: 'error',
