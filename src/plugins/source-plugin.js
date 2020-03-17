@@ -3,6 +3,7 @@ import { parse } from 'url';
 import { Parser } from 'htmlparser2';
 import { isUrlRequest, urlToRequest } from 'loader-utils';
 
+import HtmlSourceError from '../HtmlSourceError';
 import { getFilter } from '../utils';
 
 function isASCIIWhitespace(character) {
@@ -448,8 +449,6 @@ export default (options) =>
               unquoted,
             } = this.attributesMeta[attribute];
 
-            // TODO use code frame for errors
-
             if (
               !onOpenTagFilter.test(`:${attribute}`) &&
               !onOpenTagFilter.test(`${tag}:${attribute}`)
@@ -478,9 +477,15 @@ export default (options) =>
               try {
                 sourceSet = parseSrcset(value);
               } catch (error) {
-                error.message = `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`;
-
-                result.messages.push({ type: 'error', value: error });
+                result.messages.push({
+                  type: 'error',
+                  value: new HtmlSourceError(
+                    `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
+                    parser.startIndex,
+                    parser.endIndex,
+                    html
+                  ),
+                });
 
                 return;
               }
@@ -505,9 +510,15 @@ export default (options) =>
             try {
               source = parseSrc(value);
             } catch (error) {
-              error.message = `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`;
-
-              result.messages.push({ type: 'error', value: error });
+              result.messages.push({
+                type: 'error',
+                value: new HtmlSourceError(
+                  `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
+                  parser.startIndex,
+                  parser.endIndex,
+                  html
+                ),
+              });
 
               return;
             }
@@ -525,7 +536,10 @@ export default (options) =>
         },
         /* istanbul ignore next */
         onerror(error) {
-          result.messages.push({ type: 'error', value: error });
+          result.messages.push({
+            type: 'error',
+            value: error,
+          });
         },
       },
       {

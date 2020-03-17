@@ -62,7 +62,7 @@ export default function htmlLoader(content) {
   }
 
   for (const error of errors) {
-    this.emitError(new Error(error));
+    this.emitError(error instanceof Error ? error : new Error(error));
   }
 
   const codeOptions = { ...options, loaderContext: this };

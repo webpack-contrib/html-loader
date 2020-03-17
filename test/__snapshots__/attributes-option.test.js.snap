@@ -3,443 +3,443 @@
 exports[`'attributes' option should handle "src" and "srcset" tags correctly: errors 1`] = `
 Array [
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 10, column 1; to line 10, column 15)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 11, column 1; to line 11, column 58)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 12, column 1; to line 13, column 2)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 14, column 1; to line 16, column 32)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 17, column 1; to line 21, column 2)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 22, column 1; to line 23, column 2)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 24, column 1; to line 24, column 22)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 3, column 1; to line 3, column 22)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 4, column 1; to line 4, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 5, column 1; to line 5, column 16)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty",
+HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 6, column 1; to line 6, column 12)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in ',a foo' at 'foo'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in ',a foo' at 'foo' (From line 27, column 1; to line 27, column 21)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'a (,' at '(,'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'a (,' at '(,' (From line 28, column 1; to line 28, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1680;1w' at '&#x1680;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1680;1w' at '&#x1680;1w' (From line 130, column 1; to line 130, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1680;1x' at '&#x1680;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1680;1x' at '&#x1680;1x' (From line 195, column 1; to line 195, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1;1w' at '&#x1;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1;1w' at '&#x1;1w' (From line 128, column 1; to line 128, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1;1x' at '&#x1;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x1;1x' at '&#x1;1x' (From line 193, column 1; to line 193, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2000;1w' at '&#x2000;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2000;1w' at '&#x2000;1w' (From line 131, column 1; to line 131, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2000;1x' at '&#x2000;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2000;1x' at '&#x2000;1x' (From line 196, column 1; to line 196, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2001;1w' at '&#x2001;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2001;1w' at '&#x2001;1w' (From line 132, column 1; to line 132, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2001;1x' at '&#x2001;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2001;1x' at '&#x2001;1x' (From line 197, column 1; to line 197, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2002;1w' at '&#x2002;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2002;1w' at '&#x2002;1w' (From line 133, column 1; to line 133, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2002;1x' at '&#x2002;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2002;1x' at '&#x2002;1x' (From line 198, column 1; to line 198, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2003;1w' at '&#x2003;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2003;1w' at '&#x2003;1w' (From line 134, column 1; to line 134, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2003;1x' at '&#x2003;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2003;1x' at '&#x2003;1x' (From line 199, column 1; to line 199, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2004;1w' at '&#x2004;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2004;1w' at '&#x2004;1w' (From line 135, column 1; to line 135, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2004;1x' at '&#x2004;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2004;1x' at '&#x2004;1x' (From line 200, column 1; to line 200, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2005;1w' at '&#x2005;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2005;1w' at '&#x2005;1w' (From line 136, column 1; to line 136, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2005;1x' at '&#x2005;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2005;1x' at '&#x2005;1x' (From line 201, column 1; to line 201, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2006;1w' at '&#x2006;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2006;1w' at '&#x2006;1w' (From line 137, column 1; to line 137, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2006;1x' at '&#x2006;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2006;1x' at '&#x2006;1x' (From line 202, column 1; to line 202, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2007;1w' at '&#x2007;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2007;1w' at '&#x2007;1w' (From line 138, column 1; to line 138, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2007;1x' at '&#x2007;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2007;1x' at '&#x2007;1x' (From line 203, column 1; to line 203, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2008;1w' at '&#x2008;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2008;1w' at '&#x2008;1w' (From line 139, column 1; to line 139, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2008;1x' at '&#x2008;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2008;1x' at '&#x2008;1x' (From line 204, column 1; to line 204, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2009;1w' at '&#x2009;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2009;1w' at '&#x2009;1w' (From line 140, column 1; to line 140, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2009;1x' at '&#x2009;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x2009;1x' at '&#x2009;1x' (From line 205, column 1; to line 205, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200A;1w' at '&#x200A;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200A;1w' at '&#x200A;1w' (From line 141, column 1; to line 141, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200A;1x' at '&#x200A;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200A;1x' at '&#x200A;1x' (From line 206, column 1; to line 206, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200C;1w' at '&#x200C;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200C;1w' at '&#x200C;1w' (From line 142, column 1; to line 142, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200C;1x' at '&#x200C;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200C;1x' at '&#x200C;1x' (From line 207, column 1; to line 207, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200D;1w' at '&#x200D;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200D;1w' at '&#x200D;1w' (From line 143, column 1; to line 143, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200D;1x' at '&#x200D;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x200D;1x' at '&#x200D;1x' (From line 208, column 1; to line 208, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x202F;1w' at '&#x202F;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x202F;1w' at '&#x202F;1w' (From line 144, column 1; to line 144, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x202F;1x' at '&#x202F;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x202F;1x' at '&#x202F;1x' (From line 209, column 1; to line 209, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x205F;1w' at '&#x205F;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x205F;1w' at '&#x205F;1w' (From line 145, column 1; to line 145, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x205F;1x' at '&#x205F;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x205F;1x' at '&#x205F;1x' (From line 210, column 1; to line 210, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x3000;1w' at '&#x3000;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x3000;1w' at '&#x3000;1w' (From line 146, column 1; to line 146, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x3000;1x' at '&#x3000;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#x3000;1x' at '&#x3000;1x' (From line 211, column 1; to line 211, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#xFEFF;1w' at '&#xFEFF;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#xFEFF;1w' at '&#xFEFF;1w' (From line 147, column 1; to line 147, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#xFEFF;1x' at '&#xFEFF;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &#xFEFF;1x' at '&#xFEFF;1x' (From line 212, column 1; to line 212, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &nbsp;1w' at '&nbsp;1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &nbsp;1w' at '&nbsp;1w' (From line 129, column 1; to line 129, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &nbsp;1x' at '&nbsp;1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a &nbsp;1x' at '&nbsp;1x' (From line 194, column 1; to line 194, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a ( , data:,b 1x, ), data:,c' at '( , data:,b 1x, )'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a ( , data:,b 1x, ), data:,c' at '( , data:,b 1x, )' (From line 58, column 1; to line 58, column 49)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a ((( , data:,b 1x, ), data:,c' at '((( , data:,b 1x, )'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a ((( , data:,b 1x, ), data:,c' at '((( , data:,b 1x, )' (From line 59, column 1; to line 59, column 51)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a (, data:,b' at '(, data:,b'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a (, data:,b' at '(, data:,b' (From line 69, column 1; to line 69, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a +1x' at '+1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a +1x' at '+1x' (From line 167, column 1; to line 167, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -.x' at '-.x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -.x' at '-.x' (From line 159, column 1; to line 159, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -1w' at '-1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -1w' at '-1w' (From line 92, column 1; to line 92, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -1x' at '-1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -1x' at '-1x' (From line 151, column 1; to line 151, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -x' at '-x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a -x' at '-x' (From line 157, column 1; to line 157, column 25)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a .x' at '.x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a .x' at '.x' (From line 158, column 1; to line 158, column 25)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a /*, data:,b, data:,c */' at '/*'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a /*, data:,b, data:,c */' at '/*' (From line 70, column 1; to line 70, column 46)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a //, data:,b' at '//'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a //, data:,b' at '//' (From line 71, column 1; to line 71, column 34)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0X1h' at '0X1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0X1h' at '0X1h' (From line 222, column 1; to line 222, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0X1x' at '0X1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0X1x' at '0X1x' (From line 172, column 1; to line 172, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0w' at '0w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0w' at '0w' (From line 91, column 1; to line 91, column 25)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1h' at '0x1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1h' at '0x1h' (From line 221, column 1; to line 221, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1w' at '0x1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1w' at '0x1w' (From line 107, column 1; to line 107, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1x' at '0x1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 0x1x' at '0x1x' (From line 171, column 1; to line 171, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1680;w' at '1&#x1680;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1680;w' at '1&#x1680;w' (From line 110, column 1; to line 110, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1680;x' at '1&#x1680;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1680;x' at '1&#x1680;x' (From line 175, column 1; to line 175, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1;w' at '1&#x1;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1;w' at '1&#x1;w' (From line 108, column 1; to line 108, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1;x' at '1&#x1;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x1;x' at '1&#x1;x' (From line 173, column 1; to line 173, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2000;w' at '1&#x2000;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2000;w' at '1&#x2000;w' (From line 111, column 1; to line 111, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2000;x' at '1&#x2000;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2000;x' at '1&#x2000;x' (From line 176, column 1; to line 176, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2001;w' at '1&#x2001;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2001;w' at '1&#x2001;w' (From line 112, column 1; to line 112, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2001;x' at '1&#x2001;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2001;x' at '1&#x2001;x' (From line 177, column 1; to line 177, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2002;w' at '1&#x2002;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2002;w' at '1&#x2002;w' (From line 113, column 1; to line 113, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2002;x' at '1&#x2002;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2002;x' at '1&#x2002;x' (From line 178, column 1; to line 178, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2003;w' at '1&#x2003;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2003;w' at '1&#x2003;w' (From line 114, column 1; to line 114, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2003;x' at '1&#x2003;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2003;x' at '1&#x2003;x' (From line 179, column 1; to line 179, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2004;w' at '1&#x2004;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2004;w' at '1&#x2004;w' (From line 115, column 1; to line 115, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2004;x' at '1&#x2004;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2004;x' at '1&#x2004;x' (From line 180, column 1; to line 180, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2005;w' at '1&#x2005;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2005;w' at '1&#x2005;w' (From line 116, column 1; to line 116, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2005;x' at '1&#x2005;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2005;x' at '1&#x2005;x' (From line 181, column 1; to line 181, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2006;w' at '1&#x2006;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2006;w' at '1&#x2006;w' (From line 117, column 1; to line 117, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2006;x' at '1&#x2006;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2006;x' at '1&#x2006;x' (From line 182, column 1; to line 182, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2007;w' at '1&#x2007;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2007;w' at '1&#x2007;w' (From line 118, column 1; to line 118, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2007;x' at '1&#x2007;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2007;x' at '1&#x2007;x' (From line 183, column 1; to line 183, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2008;w' at '1&#x2008;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2008;w' at '1&#x2008;w' (From line 119, column 1; to line 119, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2008;x' at '1&#x2008;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2008;x' at '1&#x2008;x' (From line 184, column 1; to line 184, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2009;w' at '1&#x2009;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2009;w' at '1&#x2009;w' (From line 120, column 1; to line 120, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2009;x' at '1&#x2009;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x2009;x' at '1&#x2009;x' (From line 185, column 1; to line 185, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200A;w' at '1&#x200A;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200A;w' at '1&#x200A;w' (From line 121, column 1; to line 121, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200A;x' at '1&#x200A;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200A;x' at '1&#x200A;x' (From line 186, column 1; to line 186, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200C;w' at '1&#x200C;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200C;w' at '1&#x200C;w' (From line 122, column 1; to line 122, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200C;x' at '1&#x200C;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200C;x' at '1&#x200C;x' (From line 187, column 1; to line 187, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200D;w' at '1&#x200D;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200D;w' at '1&#x200D;w' (From line 123, column 1; to line 123, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200D;x' at '1&#x200D;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x200D;x' at '1&#x200D;x' (From line 188, column 1; to line 188, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x202F;w' at '1&#x202F;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x202F;w' at '1&#x202F;w' (From line 124, column 1; to line 124, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x202F;x' at '1&#x202F;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x202F;x' at '1&#x202F;x' (From line 189, column 1; to line 189, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x205F;w' at '1&#x205F;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x205F;w' at '1&#x205F;w' (From line 125, column 1; to line 125, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x205F;x' at '1&#x205F;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x205F;x' at '1&#x205F;x' (From line 190, column 1; to line 190, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x3000;w' at '1&#x3000;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x3000;w' at '1&#x3000;w' (From line 126, column 1; to line 126, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x3000;x' at '1&#x3000;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#x3000;x' at '1&#x3000;x' (From line 191, column 1; to line 191, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#xFEFF;w' at '1&#xFEFF;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#xFEFF;w' at '1&#xFEFF;w' (From line 127, column 1; to line 127, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#xFEFF;x' at '1&#xFEFF;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&#xFEFF;x' at '1&#xFEFF;x' (From line 192, column 1; to line 192, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&nbsp;w' at '1&nbsp;w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&nbsp;w' at '1&nbsp;w' (From line 109, column 1; to line 109, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&nbsp;x' at '1&nbsp;x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1&nbsp;x' at '1&nbsp;x' (From line 174, column 1; to line 174, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1.0w' at '1.0w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1.0w' at '1.0w' (From line 94, column 1; to line 94, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1.x' at '1.x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1.x' at '1.x' (From line 160, column 1; to line 160, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1W' at '1W'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1W' at '1W' (From line 101, column 1; to line 101, column 25)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1X' at '1X'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1X' at '1X' (From line 168, column 1; to line 168, column 25)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1e0w' at '1e0w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1e0w' at '1e0w' (From line 96, column 1; to line 96, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1h' at '1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1h' at '1h' (From line 81, column 1; to line 81, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1w 1x' at '1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1w 1x' at '1x' (From line 87, column 1; to line 87, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1x' at '1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h 1x' at '1x' (From line 86, column 1; to line 86, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h foo' at 'foo'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1h foo' at 'foo' (From line 89, column 1; to line 89, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x1680;1h' at '&#x1680;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x1680;1h' at '&#x1680;1h' (From line 245, column 1; to line 245, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x1;1h' at '&#x1;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x1;1h' at '&#x1;1h' (From line 243, column 1; to line 243, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2000;1h' at '&#x2000;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2000;1h' at '&#x2000;1h' (From line 246, column 1; to line 246, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2001;1h' at '&#x2001;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2001;1h' at '&#x2001;1h' (From line 247, column 1; to line 247, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2002;1h' at '&#x2002;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2002;1h' at '&#x2002;1h' (From line 248, column 1; to line 248, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2003;1h' at '&#x2003;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2003;1h' at '&#x2003;1h' (From line 249, column 1; to line 249, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2004;1h' at '&#x2004;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2004;1h' at '&#x2004;1h' (From line 250, column 1; to line 250, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2005;1h' at '&#x2005;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2005;1h' at '&#x2005;1h' (From line 251, column 1; to line 251, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2006;1h' at '&#x2006;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2006;1h' at '&#x2006;1h' (From line 252, column 1; to line 252, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2007;1h' at '&#x2007;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2007;1h' at '&#x2007;1h' (From line 253, column 1; to line 253, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2008;1h' at '&#x2008;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2008;1h' at '&#x2008;1h' (From line 254, column 1; to line 254, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2009;1h' at '&#x2009;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x2009;1h' at '&#x2009;1h' (From line 255, column 1; to line 255, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200A;1h' at '&#x200A;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200A;1h' at '&#x200A;1h' (From line 256, column 1; to line 256, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200C;1h' at '&#x200C;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200C;1h' at '&#x200C;1h' (From line 257, column 1; to line 257, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200D;1h' at '&#x200D;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x200D;1h' at '&#x200D;1h' (From line 258, column 1; to line 258, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x202F;1h' at '&#x202F;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x202F;1h' at '&#x202F;1h' (From line 259, column 1; to line 259, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x205F;1h' at '&#x205F;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x205F;1h' at '&#x205F;1h' (From line 260, column 1; to line 260, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x3000;1h' at '&#x3000;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#x3000;1h' at '&#x3000;1h' (From line 261, column 1; to line 261, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#xFEFF;1h' at '&#xFEFF;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &#xFEFF;1h' at '&#xFEFF;1h' (From line 262, column 1; to line 262, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &nbsp;1h' at '&nbsp;1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w &nbsp;1h' at '&nbsp;1h' (From line 244, column 1; to line 244, column 34)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w +1w' at '+1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w +1w' at '+1w' (From line 100, column 1; to line 100, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w -1h' at '-1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w -1h' at '-1h' (From line 214, column 1; to line 214, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w -1w' at '-1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w -1w' at '-1w' (From line 93, column 1; to line 93, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 0h' at '0h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 0h' at '0h' (From line 213, column 1; to line 213, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x1680;h' at '1&#x1680;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x1680;h' at '1&#x1680;h' (From line 225, column 1; to line 225, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x1;h' at '1&#x1;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x1;h' at '1&#x1;h' (From line 223, column 1; to line 223, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2000;h' at '1&#x2000;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2000;h' at '1&#x2000;h' (From line 226, column 1; to line 226, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2001;h' at '1&#x2001;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2001;h' at '1&#x2001;h' (From line 227, column 1; to line 227, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2002;h' at '1&#x2002;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2002;h' at '1&#x2002;h' (From line 228, column 1; to line 228, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2003;h' at '1&#x2003;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2003;h' at '1&#x2003;h' (From line 229, column 1; to line 229, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2004;h' at '1&#x2004;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2004;h' at '1&#x2004;h' (From line 230, column 1; to line 230, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2005;h' at '1&#x2005;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2005;h' at '1&#x2005;h' (From line 231, column 1; to line 231, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2006;h' at '1&#x2006;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2006;h' at '1&#x2006;h' (From line 232, column 1; to line 232, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2007;h' at '1&#x2007;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2007;h' at '1&#x2007;h' (From line 233, column 1; to line 233, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2008;h' at '1&#x2008;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2008;h' at '1&#x2008;h' (From line 234, column 1; to line 234, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2009;h' at '1&#x2009;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x2009;h' at '1&#x2009;h' (From line 235, column 1; to line 235, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200A;h' at '1&#x200A;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200A;h' at '1&#x200A;h' (From line 236, column 1; to line 236, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200C;h' at '1&#x200C;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200C;h' at '1&#x200C;h' (From line 237, column 1; to line 237, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200D;h' at '1&#x200D;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x200D;h' at '1&#x200D;h' (From line 238, column 1; to line 238, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x202F;h' at '1&#x202F;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x202F;h' at '1&#x202F;h' (From line 239, column 1; to line 239, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x205F;h' at '1&#x205F;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x205F;h' at '1&#x205F;h' (From line 240, column 1; to line 240, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x3000;h' at '1&#x3000;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#x3000;h' at '1&#x3000;h' (From line 241, column 1; to line 241, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#xFEFF;h' at '1&#xFEFF;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&#xFEFF;h' at '1&#xFEFF;h' (From line 242, column 1; to line 242, column 36)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&nbsp;h' at '1&nbsp;h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1&nbsp;h' at '1&nbsp;h' (From line 224, column 1; to line 224, column 34)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1.0h' at '1.0h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1.0h' at '1.0h' (From line 215, column 1; to line 215, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1.0w' at '1.0w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1.0w' at '1.0w' (From line 95, column 1; to line 95, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1H' at '1H'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1H' at '1H' (From line 218, column 1; to line 218, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1W' at '1W'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1W' at '1W' (From line 102, column 1; to line 102, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1e0h' at '1e0h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1e0h' at '1e0h' (From line 216, column 1; to line 216, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1e0w' at '1e0w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1e0w' at '1e0w' (From line 97, column 1; to line 97, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1hhh' at '1hhh'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1hhh' at '1hhh' (From line 217, column 1; to line 217, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1w' at '1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1w' at '1w' (From line 80, column 1; to line 80, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1www' at '1www'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1www' at '1www' (From line 99, column 1; to line 99, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1x' at '1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w 1x' at '1x' (From line 82, column 1; to line 82, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w Infinityh' at 'Infinityh'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w Infinityh' at 'Infinityh' (From line 219, column 1; to line 219, column 35)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w Infinityw' at 'Infinityw'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w Infinityw' at 'Infinityw' (From line 104, column 1; to line 104, column 35)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w NaNh' at 'NaNh'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w NaNh' at 'NaNh' (From line 220, column 1; to line 220, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w NaNw' at 'NaNw'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1w NaNw' at 'NaNw' (From line 106, column 1; to line 106, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1www' at '1www'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1www' at '1www' (From line 98, column 1; to line 98, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x -0x' at '-0x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x -0x' at '-0x' (From line 150, column 1; to line 150, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x -1x' at '-1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x -1x' at '-1x' (From line 152, column 1; to line 152, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1.0x' at '1.0x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1.0x' at '1.0x' (From line 166, column 1; to line 166, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1.5e1x' at '1.5e1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1.5e1x' at '1.5e1x' (From line 163, column 1; to line 163, column 32)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1e1.5x' at '1e1.5x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1e1.5x' at '1e1.5x' (From line 164, column 1; to line 164, column 32)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1w 1h' at '1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1w 1h' at '1h' (From line 88, column 1; to line 88, column 31)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1w' at '1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1w' at '1w' (From line 83, column 1; to line 83, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1x' at '1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a 1x 1x' at '1x' (From line 79, column 1; to line 79, column 28)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a Infinityw' at 'Infinityw'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a Infinityw' at 'Infinityw' (From line 103, column 1; to line 103, column 32)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a Infinityx' at 'Infinityx'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a Infinityx' at 'Infinityx' (From line 169, column 1; to line 169, column 32)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a NaNw' at 'NaNw'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a NaNw' at 'NaNw' (From line 105, column 1; to line 105, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a NaNx' at 'NaNx'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a NaNx' at 'NaNx' (From line 170, column 1; to line 170, column 27)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a [ , data:,b 1x, ], data:,c' at '['",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a [ , data:,b 1x, ], data:,c' at '[' (From line 60, column 1; to line 60, column 49)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1h' at '1h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1h' at '1h' (From line 90, column 1; to line 90, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1w foo' at 'foo'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1w foo' at 'foo' (From line 78, column 1; to line 78, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1w' at '1w'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1w' at '1w' (From line 77, column 1; to line 77, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1x foo' at 'foo'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1x foo' at 'foo' (From line 76, column 1; to line 76, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1x' at '1x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo 1x' at '1x' (From line 75, column 1; to line 75, column 29)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo foo' at 'foo'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo foo' at 'foo' (From line 74, column 1; to line 74, column 30)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo' at 'foo'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a foo' at 'foo' (From line 73, column 1; to line 73, column 26)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a { , data:,b 1x, }, data:,c' at '{'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a { , data:,b 1x, }, data:,c' at '{' (From line 61, column 1; to line 61, column 49)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (  ' at '(  '",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (  ' at '(  ' (From line 65, column 1; to line 65, column 35)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (' at '('",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (' at '(' (From line 64, column 1; to line 64, column 33)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b ()' at '()'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b ()' at '()' (From line 68, column 1; to line 68, column 34)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (,' at '(,'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (,' at '(,' (From line 66, column 1; to line 66, column 34)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (x' at '(x'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'data:,a, data:,b (x' at '(x' (From line 67, column 1; to line 67, column 34)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png 0h, image.png 800w' at '0h'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png 0h, image.png 800w' at '0h' (From line 25, column 1; to line 25, column 129)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png 480w 2x broken' at 'broken'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png 480w 2x broken' at 'broken' (From line 1, column 1; to line 1, column 85)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png broken' at 'broken'",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Invalid srcset descriptor found in 'image.png broken' at 'broken' (From line 2, column 1; to line 2, column 77)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 11, column 1; to line 11, column 58)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 14, column 1; to line 16, column 32)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 17, column 1; to line 21, column 2)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 22, column 1; to line 23, column 2)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 3, column 1; to line 3, column 22)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 31, column 1; to line 31, column 15)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 32, column 1; to line 32, column 16)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 33, column 1; to line 33, column 18)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 5, column 1; to line 5, column 16)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 7, column 1; to line 7, column 61)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 8, column 1; to line 8, column 62)",
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings",
+HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must contain one or more image candidate strings (From line 9, column 1; to line 9, column 64)",
 ]
 `;
 
