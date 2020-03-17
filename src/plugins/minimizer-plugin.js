@@ -23,7 +23,7 @@ export default (options) =>
       // eslint-disable-next-line no-param-reassign
       html = minify(html, minimizeOptions);
     } catch (error) {
-      result.errors.push(error);
+      result.messages.push({ type: 'error', value: error });
     }
 
     return html;

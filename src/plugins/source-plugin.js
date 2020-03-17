@@ -478,11 +478,9 @@ export default (options) =>
               try {
                 sourceSet = parseSrcset(value);
               } catch (error) {
-                result.errors.push(
-                  new Error(
-                    `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`
-                  )
-                );
+                error.message = `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`;
+
+                result.messages.push({ type: 'error', value: error });
 
                 return;
               }
@@ -507,11 +505,9 @@ export default (options) =>
             try {
               source = parseSrc(value);
             } catch (error) {
-              result.errors.push(
-                new Error(
-                  `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`
-                )
-              );
+              error.message = `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`;
+
+              result.messages.push({ type: 'error', value: error });
 
               return;
             }
@@ -529,7 +525,7 @@ export default (options) =>
         },
         /* istanbul ignore next */
         onerror(error) {
-          result.errors.push(error);
+          result.messages.push({ type: 'error', value: error });
         },
       },
       {

@@ -5,7 +5,7 @@ const GET_SOURCE_FROM_IMPORT_NAME = '___HTML_LOADER_GET_SOURCE_FROM_IMPORT___';
 export function pluginRunner(plugins) {
   return {
     process: (content) => {
-      const result = { messages: [], warnings: [], errors: [] };
+      const result = { messages: [] };
 
       for (const plugin of plugins) {
         // eslint-disable-next-line no-param-reassign

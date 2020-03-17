@@ -2,7 +2,6 @@ import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
 import { sourcePlugin, minimizerPlugin } from './plugins';
-import Warning from './Warning';
 
 import {
   pluginRunner,
@@ -40,18 +39,9 @@ export default function htmlLoader(content) {
     plugins.push(minimizerPlugin({ minimize }));
   }
 
-  const { html, messages, warnings, errors } = pluginRunner(plugins).process(
-    content
-  );
+  const { html, messages } = pluginRunner(plugins).process(content);
 
-  for (const warning of warnings) {
-    this.emitWarning(new Warning(warning));
-  }
-
-  for (const error of errors) {
-    this.emitError(new Error(error));
-  }
-
+  const errors = [];
   const importedMessages = [];
   const replaceableMessages = [];
   const exportedMessages = [];
@@ -59,16 +49,20 @@ export default function htmlLoader(content) {
   for (const message of messages) {
     // eslint-disable-next-line default-case
     switch (message.type) {
+      case 'error':
+        errors.push(message.value);
+        break;
       case 'import':
         importedMessages.push(message.value);
         break;
       case 'replacer':
         replaceableMessages.push(message.value);
         break;
-      case 'exports':
-        exportedMessages.push(message.value);
-        break;
     }
+  }
+
+  for (const error of errors) {
+    this.emitError(new Error(error));
   }
 
   const codeOptions = { ...options, loaderContext: this };
