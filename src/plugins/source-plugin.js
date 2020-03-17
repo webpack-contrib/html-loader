@@ -375,18 +375,31 @@ function parseSrc(input) {
   return { value, startIndex };
 }
 
+function getAttributeValue(attributes, name) {
+  const lowercasedAttributes = Object.keys(attributes).reduce((keys, k) => {
+    // eslint-disable-next-line no-param-reassign
+    keys[k.toLowerCase()] = k;
+
+    return keys;
+  }, {});
+
+  return attributes[lowercasedAttributes[name.toLowerCase()]];
+}
+
 const defaultAttributes = [
-  'source:srcset',
+  'audio:src',
+  'embed:src',
   'img:src',
   'img:srcset',
-  'audio:src',
-  'video:src',
-  'track:src',
-  'embed:src',
-  'source:src',
   'input:src',
+  'link:href',
   'object:data',
   'script:src',
+  'source:src',
+  'source:srcset',
+  'track:src',
+  'video:poster',
+  'video:src',
 ];
 
 export default (options) =>
@@ -442,6 +455,21 @@ export default (options) =>
               !onOpenTagFilter.test(`${tag}:${attribute}`)
             ) {
               return;
+            }
+
+            if (tag.toLowerCase() === 'link') {
+              if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
+                return;
+              }
+
+              if (
+                attributes.type &&
+                getAttributeValue(attributes, 'type')
+                  .trim()
+                  .toLowerCase() !== 'text/css'
+              ) {
+                return;
+              }
             }
 
             if (attribute.toLowerCase() === 'srcset') {
