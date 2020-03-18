@@ -680,7 +680,7 @@ exports[`"minimize" option should be turned on in "production" mode: warnings 1`
 exports[`"minimize" option should emit an error on broken HTML syntax: errors 1`] = `
 Array [
   "ModuleError: Module Error (from /path/to/file.js):
-Error: Parse Error: < img src=\\"image.png\\" >",
+Parse Error: < img src=\\"image.png\\" >",
 ]
 `;
 
