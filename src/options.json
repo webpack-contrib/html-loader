@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "preprocessor": {
+      "instanceof": "Function"
+    },
     "attributes": {
       "anyOf": [
         { "type": "boolean" },

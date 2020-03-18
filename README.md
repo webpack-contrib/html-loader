@@ -50,12 +50,66 @@ module.exports = {
 
 ## Options
 
-|              Name               |            Type            |                   Default                    | Description                              |
-| :-----------------------------: | :------------------------: | :------------------------------------------: | :--------------------------------------- |
-| **[`attributes`](#attributes)** | `{Boolean\/Array\/Object}` |                    `true`                    | Enables/Disables attributes handling     |
-|       **[`root`](#root)**       |         `{String}`         |                 `undefiend`                  | Allow to handle root-relative attributes |
-|   **[`minimize`](#minimize)**   |    `{Boolean\|Object}`     | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML      |
-|   **[`esModule`](#esmodule)**   |        `{Boolean}`         |                   `false`                    | Use ES modules syntax                    |
+|                Name                 |            Type            |                   Default                    | Description                                      |
+| :---------------------------------: | :------------------------: | :------------------------------------------: | :----------------------------------------------- |
+| **[`preprocessor`](#preprocessor)** |        `{Function}`        |                 `undefined`                  | Allows pre-processing of content before handling |
+|   **[`attributes`](#attributes)**   | `{Boolean\/Array\/Object}` |                    `true`                    | Enables/Disables attributes handling             |
+|         **[`root`](#root)**         |         `{String}`         |                 `undefiend`                  | Allow to handle root-relative attributes         |
+|     **[`minimize`](#minimize)**     |    `{Boolean\|Object}`     | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML              |
+|     **[`esModule`](#esmodule)**     |        `{Boolean}`         |                   `false`                    | Use ES modules syntax                            |
+
+### `preprocessor`
+
+Type: `Function`
+Default: `undefined`
+
+Allows pre-processing of content before handling.
+
+> ⚠ You should always return valid HTML
+
+**file.hbs**
+
+```hbs
+<div>
+  <p>{{firstname}} {{lastname}}</p>
+  <img src="image.png" alt="alt" />
+<div>
+```
+
+**webpack.config.js**
+
+```js
+const Handlebars = require('handlebars');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.hbs$/i,
+        loader: 'html-loader',
+        options: {
+          preprocessor: (content, loaderContext) => {
+            let result;
+
+            try {
+              result = Handlebars.compile(content)({
+                firstname: 'Value',
+                lastname: 'OtherValue',
+              });
+            } catch (error) {
+              loaderContext.emitError(error);
+
+              return content;
+            }
+
+            return result;
+          },
+        },
+      },
+    ],
+  },
+};
+```
 
 ### `attributes`
 
@@ -499,6 +553,99 @@ require('html-loader!./file.html');
 require('html-loader?root=.!./file.html');
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg">'
+```
+
+### Templating
+
+You can use any template system. Below is an example for [handlebars](https://handlebarsjs.com/).
+
+**file.hbs**
+
+```hbs
+<div>
+  <p>{{firstname}} {{lastname}}</p>
+  <img src="image.png" alt="alt" />
+<div>
+```
+
+**webpack.config.js**
+
+```js
+const Handlebars = require('handlebars');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.hbs$/i,
+        loader: 'html-loader',
+        options: {
+          preprocessor: (content, loaderContext) => {
+            let result;
+
+            try {
+              result = Handlebars.compile(content)({
+                firstname: 'Value',
+                lastname: 'OtherValue',
+              });
+            } catch (error) {
+              loaderContext.emitError(error);
+
+              return content;
+            }
+
+            return result;
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+### PostHTML
+
+You can use [PostHTML](https://github.com/posthtml/posthtml) without any additional loaders.
+
+**file.html**
+
+```html
+<img src="image.jpg" />
+```
+
+**webpack.config.js**
+
+```js
+const posthtml = require('posthtml');
+const posthtmlWebp = require('posthtml-webp');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.hbs$/i,
+        loader: 'html-loader',
+        options: {
+          preprocessor: () => {
+            let result;
+
+            try {
+              result = posthtml()
+                .use(plugin)
+                .process(content, { sync: true });
+            } catch (error) {
+              loaderContext.emitError(error);
+
+              return content;
+            }
+
+            return result.html;
+          },
+        },
+      },
+    ],
+  },
+};
 ```
 
 ### Export into HTML files
