@@ -94,5 +94,5 @@ export function getExportCode(html, exportedMessages, codeOptions) {
     return `// Exports\nexport default code;`;
   }
 
-  return `// Exports\nmodule.exports = code`;
+  return `// Exports\nmodule.exports = code;`;
 }

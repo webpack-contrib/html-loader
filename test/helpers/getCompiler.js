@@ -19,7 +19,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
     module: {
       rules: [
         {
-          test: /\.html$/i,
+          test: /\.(html|hbs)$/i,
           rules: [
             {
               loader: path.resolve(__dirname, '../../src'),
@@ -28,7 +28,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           ],
         },
         {
-          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt)$/i,
+          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp)$/i,
           loader: 'file-loader',
           options: { name: '[name].[ext]' },
         },

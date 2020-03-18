@@ -21,6 +21,11 @@ export default function htmlLoader(content) {
     baseDataPath: 'options',
   });
 
+  if (options.preprocessor) {
+    // eslint-disable-next-line no-param-reassign
+    content = options.preprocessor(content, this);
+  }
+
   const plugins = [];
 
   const attributes =
@@ -70,5 +75,12 @@ export default function htmlLoader(content) {
   const moduleCode = getModuleCode(html, replaceableMessages, codeOptions);
   const exportCode = getExportCode(html, exportedMessages, codeOptions);
 
-  return `${importCode}${moduleCode}${exportCode}`;
+  let code = `${importCode}${moduleCode}${exportCode}`;
+
+  if (options.process && options.process.post) {
+    // eslint-disable-next-line no-param-reassign
+    code = options.process.post(code, this);
+  }
+
+  return code;
 }
