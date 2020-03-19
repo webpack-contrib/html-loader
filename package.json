@@ -1,12 +1,12 @@
 {
   "name": "html-loader",
-  "version": "0.5.5",
-  "description": "html loader module for webpack",
+  "version": "1.0.0",
+  "description": "Html loader module for webpack",
   "license": "MIT",
-  "repository": "ryanclark/html-loader",
+  "repository": "webpack-contrib/html-loader",
   "author": "Tobias Koppers @sokra",
-  "homepage": "https://github.com/ryanclark/html-loader",
-  "bugs": "https://github.com/ryanclark/html-loader/issues",
+  "homepage": "https://github.com/webpack-contrib/html-loader",
+  "bugs": "https://github.com/webpack-contrib/html-loader/issues",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/webpack"
@@ -37,7 +37,7 @@
     "defaults": "webpack-defaults"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "peerDependencies": {
     "webpack": "^4.0.0 || ^5.0.0"

@@ -67,19 +67,19 @@ You may need to specify loaders for images in your configuration (recommended `f
 
 Supported tags and attributes:
 
-- `audio:src`
-- `embed:src`
-- `img:src`
-- `img:srcset`
-- `input:src`
-- `link:href`
-- `object:data`
-- `script:src`
-- `source:src`
-- `source:srcset`
-- `track:src`
-- `video:poster`
-- `video:src`
+- the `src` attribute of the `audio` tag
+- the `src` attribute of the `embed` tag
+- the `src` attribute of the `img` tag
+- the `srcset` attribute of the `img` tag
+- the `src` attribute of the `input` tag
+- the `href` attribute of the `link` tag (only for stylesheets)
+- the `data` attribute of the `object` tag
+- the `src` attribute of the `script` tag
+- the `src` attribute of the `source` tag
+- the `srcset` attribute of the `source` tag
+- the `src` attribute of the `track` tag
+- the `poster` attribute of the `video` tag
+- the `src` attribute of the `video` tag
 
 #### `Boolean`
 

@@ -1,6 +1,58 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.0.0](https://github.com/ryanclark/html-loader/compare/v0.5.5...v1.0.0) (2020-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* for parsing HTML now we use `htmlparser2` package
+* the `attrs` option was renamed to the `attributes` option
+* the `interpolate` option was removed, please consider migration on the [`preprocessor`](https://github.com/webpack-contrib/html-loader#preprocessor)
+* the `minimize` option is `true` by default in `production` mode. You need to list all options for `html-minifier` if you use `object` notation.
+* uppercase tags and uppercase attributes are handled by default
+* the `root` option was moved under the `attributes` option, please look at the [documentation](https://github.com/webpack-contrib/html-loader#object)
+* emit an error on broken HTML syntax when minimization is enabled
+* By default, now we process the following tags with attributes:
+  * the `src` attribute of the `audio` tag
+  * the `src` attribute of the `embed` tag
+  * the `src` attribute of the `img` tag
+  * the `srcset` attribute of the `img` tag
+  * the `src` attribute of the `input` tag
+  * the `href` attribute of the `link` tag (only for stylesheets)
+  * the `data` attribute of the `object` tag
+  * the `src` attribute of the `script` tag
+  * the `src` attribute of the `source` tag
+  * the `srcset` attribute of the `source` tag
+  * the `src` attribute of the `track` tag
+  * the `poster` attribute of the `video` tag
+  * the `src` attribute of the `video` tag
+* the `attributes` option should be `Boolean` or `Object`, please look at the [documentation](https://github.com/webpack-contrib/html-loader#object)
+* the `exportAsDefault` option were removed in favor the `esModules` option
+* the `exportAsEs6Default` option were removed in favor the `esModules` option
+
+### Features
+
+* handle more tags and attributes
+* added the `preprocessor` option
+* added the `esModule` option
+* add the `rulFilter` option for filtering some of urls, please look at the [documentation](https://github.com/webpack-contrib/html-loader#urlfilter)
+* allow to setup how to handle and filter tags and attributes, please look at the [documentation](https://github.com/webpack-contrib/html-loader#list)
+* improve error reporting
+
+### Bug Fixes
+
+* adding quotes when necessary for unquoted sources
+* do not handle empty attributes
+* escape `\u2028` and `\u2029` characters
+* handle only valid srcset tags
+* parser tags and attributes according spec
+* reduce `import`/`require` count
+* reduce size of generated modules
+* respect `#hash` in sources
+* support ES6 syntax in `script` tags when minimize
+* support ES6 import of urls
 
 <a name="0.5.5"></a>
 ## [0.5.5](https://github.com/webpack-contrib/html-loader/compare/v0.5.4...v0.5.5) (2018-01-17)
