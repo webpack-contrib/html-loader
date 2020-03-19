@@ -83,6 +83,16 @@ describe("'attributes' option", () => {
             type: 'src',
           },
           {
+            tag: 'img',
+            attribute: 'data-src',
+            type: 'src',
+          },
+          {
+            tag: 'img',
+            attribute: 'data-srcset',
+            type: 'srcset',
+          },
+          {
             tag: 'source',
             attribute: 'src',
             type: 'src',
