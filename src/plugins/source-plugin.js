@@ -388,48 +388,121 @@ function getAttributeValue(attributes, name) {
 }
 
 const defaultAttributes = [
-  'audio:src',
-  'embed:src',
-  'img:src',
-  'img:srcset',
-  'input:src',
-  'link:href',
-  'object:data',
-  'script:src',
-  'source:src',
-  'source:srcset',
-  'track:src',
-  'video:poster',
-  'video:src',
+  {
+    tag: 'audio',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'embed',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'img',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'img',
+    attribute: 'srcset',
+    type: 'srcset',
+  },
+  {
+    tag: 'input',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'link',
+    attribute: 'href',
+    type: 'src',
+    filter: (tag, attribute, attributes) => {
+      if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
+        return false;
+      }
+
+      if (
+        attributes.type &&
+        getAttributeValue(attributes, 'type')
+          .trim()
+          .toLowerCase() !== 'text/css'
+      ) {
+        return false;
+      }
+
+      return true;
+    },
+  },
+  {
+    tag: 'object',
+    attribute: 'data',
+    type: 'src',
+  },
+  {
+    tag: 'script',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'source',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'source',
+    attribute: 'srcset',
+    type: 'srcset',
+  },
+  {
+    tag: 'track',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'video',
+    attribute: 'poster',
+    type: 'src',
+  },
+  {
+    tag: 'video',
+    attribute: 'src',
+    type: 'src',
+  },
 ];
 
 export default (options) =>
   function process(html, result) {
-    let possibleAttributes;
-    let maybeFilter;
+    let attributeList;
+    let maybeUrlFilter;
     let root;
 
     if (
       typeof options.attributes === 'undefined' ||
       options.attributes === true
     ) {
-      possibleAttributes = defaultAttributes;
-    } else if (Array.isArray(options.attributes)) {
-      possibleAttributes = options.attributes;
+      attributeList = defaultAttributes;
     } else {
-      possibleAttributes = options.attributes.list || defaultAttributes;
+      attributeList = options.attributes.list || defaultAttributes;
       // eslint-disable-next-line no-undefined
-      maybeFilter = options.attributes.filter || undefined;
-      // eslint-disable-next-line no-undefined
-      root = options.attributes.root ? options.attributes.root : undefined;
+      ({ urlFilter: maybeUrlFilter, root } = options.attributes);
     }
 
     const sources = [];
-    const onOpenTagFilter = new RegExp(
-      `^(${possibleAttributes.join('|')})$`,
-      'i'
+    const urlFilter = getFilter(maybeUrlFilter, (value) =>
+      isUrlRequest(value, root)
     );
-    const filter = getFilter(maybeFilter, (value) => isUrlRequest(value, root));
+    const getAttribute = (tag, attribute, attributes, resourcePath) => {
+      return attributeList.find(
+        (element) =>
+          element.tag.toLowerCase() === tag.toLowerCase() &&
+          element.attribute.toLowerCase() === attribute.toLowerCase() &&
+          (element.filter
+            ? element.filter(tag, attribute, attributes, resourcePath)
+            : true)
+      );
+    };
+    const { resourcePath } = options;
     const parser = new Parser(
       {
         attributesMeta: {},
@@ -449,29 +522,20 @@ export default (options) =>
               unquoted,
             } = this.attributesMeta[attribute];
 
-            if (
-              !onOpenTagFilter.test(`:${attribute}`) &&
-              !onOpenTagFilter.test(`${tag}:${attribute}`)
-            ) {
+            const foundAttribute = getAttribute(
+              tag,
+              attribute,
+              attributes,
+              resourcePath
+            );
+
+            if (!foundAttribute) {
               return;
             }
 
-            if (tag.toLowerCase() === 'link') {
-              if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
-                return;
-              }
+            const { type } = foundAttribute;
 
-              if (
-                attributes.type &&
-                getAttributeValue(attributes, 'type')
-                  .trim()
-                  .toLowerCase() !== 'text/css'
-              ) {
-                return;
-              }
-            }
-
-            if (attribute.toLowerCase() === 'srcset') {
+            if (type === 'srcset') {
               let sourceSet;
 
               try {
@@ -493,7 +557,7 @@ export default (options) =>
               sourceSet.forEach((sourceItem) => {
                 const { source } = sourceItem;
 
-                if (!filter(attribute, source.value, options.resourcePath)) {
+                if (!urlFilter(attribute, source.value, resourcePath)) {
                   return;
                 }
 
@@ -523,7 +587,7 @@ export default (options) =>
               return;
             }
 
-            if (!filter(attribute, source.value, options.resourcePath)) {
+            if (!urlFilter(attribute, source.value, resourcePath)) {
               return;
             }
 

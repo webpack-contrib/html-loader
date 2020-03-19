@@ -1,5 +1,36 @@
 {
   "type": "object",
+  "definitions": {
+    "Attribute": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attribute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": ["src", "srcset"]
+        },
+        "filter": {
+          "instanceof": "Function"
+        }
+      },
+      "required": ["tag", "attribute", "type"],
+      "additionalProperties": false
+    },
+    "AttributeList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Attribute"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
   "properties": {
     "preprocessor": {
       "instanceof": "Function"
@@ -8,25 +39,12 @@
       "anyOf": [
         { "type": "boolean" },
         {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1,
-          "uniqueItems": true
-        },
-        {
           "type": "object",
           "properties": {
             "list": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "minItems": 1,
-              "uniqueItems": true
+              "$ref": "#/definitions/AttributeList"
             },
-            "filter": {
+            "urlFilter": {
               "instanceof": "Function"
             },
             "root": {
