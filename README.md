@@ -132,6 +132,16 @@ module.exports = {
                 type: 'srcset',
               },
               {
+                tag: 'img',
+                attribute: 'data-src',
+                type: 'src',
+              },
+              {
+                tag: 'img',
+                attribute: 'data-srcset',
+                type: 'srcset',
+              },
+              {
                 tag: 'link',
                 attribute: 'href',
                 type: 'src',
@@ -207,6 +217,16 @@ module.exports = {
                 // Attribute name
                 attribute: 'srcset',
                 // Type of processing, can be `src` or `scrset`
+                type: 'srcset',
+              },
+              {
+                tag: 'img',
+                attribute: 'data-src',
+                type: 'src',
+              },
+              {
+                tag: 'img',
+                attribute: 'data-srcset',
                 type: 'srcset',
               },
               {
