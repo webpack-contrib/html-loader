@@ -6,23 +6,99 @@ describe('validate options', () => {
       success: [
         true,
         false,
-        ['img:src'],
-        ['img:src', ':srcset'],
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+            },
+          ],
+        },
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+              filter: () => true,
+            },
+          ],
+        },
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+            },
+            {
+              tag: 'img',
+              attribute: 'srcset',
+              type: 'srcset',
+            },
+          ],
+        },
+        { urlFilter: () => true },
         { root: '.' },
-        { list: ['img:src'] },
-        { filter: () => true },
-        { list: ['img:src'], filter: () => true },
-        { list: ['img:src'], root: '.' },
-        { list: ['img:src'], root: '.', filter: () => true },
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+            },
+            {
+              tag: 'img',
+              attribute: 'srcset',
+              type: 'srcset',
+            },
+          ],
+          urlFilter: () => true,
+          root: '.',
+        },
       ],
       failure: [
         'true',
         [],
-        [':src', ':src'],
-        { list: [] },
-        { list: [':src', ':src'] },
-        { filter: false },
+        {
+          list: [],
+        },
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+            },
+          ],
+        },
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+            },
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+            },
+          ],
+        },
+        {
+          list: [
+            {
+              tag: 'img',
+              attribute: 'src',
+              type: 'src',
+              filter: 'test',
+            },
+          ],
+        },
+        { urlFilter: false },
         { root: false },
+        { unknown: true },
       ],
     },
     esModule: {

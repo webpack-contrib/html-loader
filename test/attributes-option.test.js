@@ -59,33 +59,6 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with an "array" notations', async () => {
-    const compiler = getCompiler('simple.js', {
-      attributes: [
-        'img:src',
-        'flag-icon:src',
-        'MyStrangeTag13:src',
-        'a-:src',
-        'a-.:src',
-        'a--:src',
-        'aÀ-豈:src',
-        'aÀ-Ⰰ:src',
-        // Should not work
-        'INVALID_TAG_NAME:src',
-        // Should not work
-        'invalid-CUSTOM-TAG:src',
-      ],
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
   it('should work with an empty "object" notations', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {},
@@ -104,47 +77,68 @@ describe("'attributes' option", () => {
     const compiler = getCompiler('simple.js', {
       attributes: {
         list: [
-          'img:src',
-          'flag-icon:src',
-          'MyStrangeTag13:src',
-          'a-:src',
-          'a-.:src',
-          'a--:src',
-          'aÀ-豈:src',
-          'aÀ-Ⰰ:src',
-          // Should not work
-          'INVALID_TAG_NAME:src',
-          // Should not work
-          'invalid-CUSTOM-TAG:src',
+          {
+            tag: 'img',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'source',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'source',
+            attribute: 'srcset',
+            type: 'srcset',
+          },
+          {
+            tag: 'flag-icon',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'MyStrangeTag13',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'a-',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'a-.',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'a--',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'aÀ-豈',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'aÀ-Ⰰ',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'INVALID_TAG_NAME',
+            attribute: 'src',
+            type: 'src',
+          },
+          {
+            tag: 'invalid-CUSTOM-TAG',
+            attribute: 'src',
+            type: 'src',
+          },
         ],
-      },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
-  it('should work with an "object" notations and translate root-relative sources', async () => {
-    const compiler = getCompiler('simple.js', { attributes: { root: '.' } });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
-  it('should work with an "object" notations and filter some sources', async () => {
-    const compiler = getCompiler('simple.js', {
-      attributes: {
-        filter: (attribute, value, resourcePath) => {
+        urlFilter: (attribute, value, resourcePath) => {
           expect(typeof attribute).toBe('string');
           expect(typeof value).toBe('string');
           expect(typeof resourcePath).toBe('string');
@@ -155,6 +149,7 @@ describe("'attributes' option", () => {
 
           return true;
         },
+        root: '.',
       },
     });
     const stats = await compile(compiler);

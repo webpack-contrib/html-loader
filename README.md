@@ -50,13 +50,269 @@ module.exports = {
 
 ## Options
 
-|                Name                 |            Type            |                   Default                    | Description                                      |
-| :---------------------------------: | :------------------------: | :------------------------------------------: | :----------------------------------------------- |
-| **[`preprocessor`](#preprocessor)** |        `{Function}`        |                 `undefined`                  | Allows pre-processing of content before handling |
-|   **[`attributes`](#attributes)**   | `{Boolean\/Array\/Object}` |                    `true`                    | Enables/Disables attributes handling             |
-|         **[`root`](#root)**         |         `{String}`         |                 `undefiend`                  | Allow to handle root-relative attributes         |
-|     **[`minimize`](#minimize)**     |    `{Boolean\|Object}`     | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML              |
-|     **[`esModule`](#esmodule)**     |        `{Boolean}`         |                   `false`                    | Use ES modules syntax                            |
+|                Name                 |        Type         |                   Default                    | Description                                      |
+| :---------------------------------: | :-----------------: | :------------------------------------------: | :----------------------------------------------- |
+|   **[`attributes`](#attributes)**   | `{Boolean\|Object}` |                    `true`                    | Enables/Disables attributes handling             |
+| **[`preprocessor`](#preprocessor)** |    `{Function}`     |                 `undefined`                  | Allows pre-processing of content before handling |
+|     **[`minimize`](#minimize)**     | `{Boolean\|Object}` | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML              |
+|     **[`esModule`](#esmodule)**     |     `{Boolean}`     |                   `false`                    | Use ES modules syntax                            |
+
+### `attributes`
+
+Type: `Boolean|Object`
+Default: `true`
+
+By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
+You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
+
+Supported tags and attributes:
+
+- `audio:src`
+- `embed:src`
+- `img:src`
+- `img:srcset`
+- `input:src`
+- `link:href`
+- `object:data`
+- `script:src`
+- `source:src`
+- `source:srcset`
+- `track:src`
+- `video:poster`
+- `video:src`
+
+#### `Boolean`
+
+The `true` value enables processing of all default elements and attributes, the `false` disable processing of all attributes.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          // Disables attributes processing
+          attributes: false,
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `Object`
+
+Allows you to specify which tags and attributes to process, filter them, filter urls and process sources starts with `/`.
+For example:
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            list: [
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src',
+              },
+              {
+                tag: 'img',
+                attribute: 'srcset',
+                type: 'srcset',
+              },
+              {
+                tag: 'link',
+                attribute: 'href',
+                type: 'src',
+                filter: (tag, attribute, attributes) => {
+                  if (!/stylesheet/i.test(attributes.rel)) {
+                    return false;
+                  }
+
+                  if (
+                    attributes.type &&
+                    attributes.type.trim().toLowerCase() !== 'text/css'
+                  ) {
+                    return false;
+                  }
+
+                  return true;
+                },
+              },
+              // More attributes
+            ],
+            urlFilter: (attribute, value, resourcePath) => {
+              // The `attribute` argument contains a name of the HTML attribute.
+              // The `value` argument contains a value of the HTML attribute.
+              // The `resourcePath` argument contains a path to the loaded HTML file.
+
+              if (/example\.pdf$/.test(value)) {
+                return false;
+              }
+
+              return true;
+            },
+            root: '.',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `list`
+
+Type: `Array`
+Default: https://github.com/webpack-contrib/html-loader#attributes
+
+Allows to setup which tags and attributes to process and how, and the ability to filter some of them.
+
+For example:
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            list: [
+              {
+                // Tag name
+                tag: 'img',
+                // Attribute name
+                attribute: 'src',
+                // Type of processing, can be `src` or `scrset`
+                type: 'src',
+              },
+              {
+                // Tag name
+                tag: 'img',
+                // Attribute name
+                attribute: 'srcset',
+                // Type of processing, can be `src` or `scrset`
+                type: 'srcset',
+              },
+              {
+                // Tag name
+                tag: 'link',
+                // Attribute name
+                attribute: 'href',
+                // Type of processing, can be `src` or `scrset`
+                type: 'src',
+                // Allow to filter some attributes
+                filter: (tag, attribute, attributes, resourcePath) => {
+                  // The `tag` argument contains a name of the HTML tag.
+                  // The `attribute` argument contains a name of the HTML attribute.
+                  // The `attributes` argument contains all attributes of the tag.
+                  // The `resourcePath` argument contains a path to the loaded HTML file.
+
+                  if (/my-html\.html$/.test(resourcePath)) {
+                    return false;
+                  }
+
+                  if (!/stylesheet/i.test(attributes.rel)) {
+                    return false;
+                  }
+
+                  if (
+                    attributes.type &&
+                    attributes.type.trim().toLowerCase() !== 'text/css'
+                  ) {
+                    return false;
+                  }
+
+                  return true;
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `urlFilter`
+
+Type: `Function`
+Default: `undefined`
+
+Allow to filter urls. All filtered urls will not be resolved (left in the code as they were written).
+All non requestable sources (for example `<img src="javascript:void(0)">`) do not handle by default.
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            urlFilter: (attribute, value, resourcePath) => {
+              // The `attribute` argument contains a name of the HTML attribute.
+              // The `value` argument contains a value of the HTML attribute.
+              // The `resourcePath` argument contains a path to the loaded HTML file.
+
+              if (/example\.pdf$/.test(value)) {
+                return false;
+              }
+
+              return true;
+            },
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `root`
+
+Type: `String`
+Default: `undefined`
+
+For urls that start with a `/`, the default behavior is to not translate them.
+If a `root` query parameter is set, however, it will be prepended to the url and then translated.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            root: '.',
+          },
+        },
+      },
+    ],
+  },
+};
+```
 
 ### `preprocessor`
 
@@ -103,205 +359,6 @@ module.exports = {
             }
 
             return result;
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-### `attributes`
-
-Type: `Boolean|Array|Object`
-Default: `true`
-
-By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
-You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
-
-Supported tags and attributes:
-
-- `audio:src`
-- `embed:src`
-- `img:src`
-- `img:srcset`
-- `input:src`
-- `link:href`
-- `object:data`
-- `script:src`
-- `source:src`
-- `source:srcset`
-- `track:src`
-- `video:poster`
-- `video:src`
-
-#### `Boolean`
-
-The `true` value enables processing of all default elements and attributes, the `false` disable processing of all attributes.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          // Disables tags and attributes processing
-          attributes: false,
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `Array`
-
-Allows you to specify which tags and attributes to process.
-Pass an array of `<tag>:<attribute>` or `:<attribute>` combinations.
-You can specify which tag-attribute combination should be processed by this loader via the query parameter `attributes`, for example:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          attributes: [':data-src', 'custom-elements:data-src'],
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `Object`
-
-Allows you to specify which tags and attributes to process, filter them and process sources starts with `/`.
-For example:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          attributes: {
-            list: [':data-src', 'custom-elements:data-src'],
-            filter: (attribute, value, resourcePath) => {
-              // The `attribute` argument contains a name of the HTML attribute.
-              // The `value` argument contains a value of the HTML attribute.
-              // The `resourcePath` argument contains a path to the loaded HTML file.
-
-              if (value.includes('example')) {
-                return false;
-              }
-
-              return true;
-            },
-            root: '.',
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `list`
-
-Type: `String`
-Default: https://github.com/webpack-contrib/html-loader#attributes
-
-For example:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          attributes: {
-            list: [':data-src', 'custom-elements:data-src'],
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `filter`
-
-Type: `Function`
-Default: `undefined`
-
-Allow to filter sources. All filtered sources will not be resolved (left in the code as they were written).
-All non requestable sources (for example `<img src="javascript:void(0)">`) do not handle by default.
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          attributes: {
-            filter: (attribute, value, resourcePath) => {
-              // The `attribute` argument contains a name of the HTML attribute.
-              // The `value` argument contains a value of the HTML attribute.
-              // The `resourcePath` argument contains a path to the loaded HTML file.
-
-              if (value.includes('example')) {
-                return false;
-              }
-
-              return true;
-            },
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `root`
-
-Type: `String`
-Default: `undefined`
-
-For urls that start with a `/`, the default behavior is to not translate them.
-If a `root` query parameter is set, however, it will be prepended to the url and then translated.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          attributes: {
-            root: '.',
           },
         },
       },
