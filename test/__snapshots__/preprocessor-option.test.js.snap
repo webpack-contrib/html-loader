@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`'process' option should work with Async "preprocessor" Function option: errors 1`] = `Array []`;
+
+exports[`'process' option should work with Async "preprocessor" Function option: module 1`] = `
+"// Imports
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
+var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
+// Module
+var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var code = \\"<div>\\\\n  <p>Alexander Krasnoyarov</p>\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_0___ + \\"\\\\\\" alt=\\\\\\"alt\\\\\\" />\\\\n<div>\\\\n\\";
+// Exports
+module.exports = code;"
+`;
+
+exports[`'process' option should work with Async "preprocessor" Function option: result 1`] = `
+"<div>
+  <p>Alexander Krasnoyarov</p>
+  <img src=\\"/webpack/public/path/image.png\\" alt=\\"alt\\" />
+<div>
+"
+`;
+
+exports[`'process' option should work with Async "preprocessor" Function option: warnings 1`] = `Array []`;
+
 exports[`'process' option should work with the "preprocessor" option #2: errors 1`] = `Array []`;
 
 exports[`'process' option should work with the "preprocessor" option #2: module 1`] = `
@@ -44,3 +67,25 @@ exports[`'process' option should work with the "preprocessor" option: result 1`]
 `;
 
 exports[`'process' option should work with the "preprocessor" option: warnings 1`] = `Array []`;
+
+exports[`'process' option should work with the Async "preprocessor" Function option #2: errors 1`] = `Array []`;
+
+exports[`'process' option should work with the Async "preprocessor" Function option #2: module 1`] = `
+"// Imports
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
+var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png.webp\\");
+var ___HTML_LOADER_IMPORT_1___ = require(\\"./image.png\\");
+// Module
+var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var ___HTML_LOADER_REPLACER_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
+var code = \\"<picture><source type=\\\\\\"image/webp\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_REPLACER_0___ + \\"\\\\\\"><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\"></picture>\\\\n\\";
+// Exports
+module.exports = code;"
+`;
+
+exports[`'process' option should work with the Async "preprocessor" Function option #2: result 1`] = `
+"<picture><source type=\\"image/webp\\" srcset=\\"/webpack/public/path/image.png.webp\\"><img src=\\"/webpack/public/path/image.png\\"></picture>
+"
+`;
+
+exports[`'process' option should work with the Async "preprocessor" Function option #2: warnings 1`] = `Array []`;
