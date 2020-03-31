@@ -270,6 +270,51 @@ module.exports = {
 };
 ```
 
+If the tag name is not specified or assigned to the wild card `'*'` it will process all the tags.
+
+> You can use your custom filter to specify html elements to be processed.
+
+For example:
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            list: [
+              {
+                // Tag name
+                tag: '*', // or tag: ''
+                // Attribute name
+                attribute: 'src',
+                // Type of processing, can be `src` or `scrset`
+                type: 'src',
+                // Allow to filter some attributes (optional)
+                filter: (tag, attribute, attributes, resourcePath) => {
+                  // The `tag` argument contains a name of the HTML tag.
+                  // The `attribute` argument contains a name of the HTML attribute.
+                  // The `attributes` argument contains all attributes of the tag.
+                  // The `resourcePath` argument contains a path to the loaded HTML file.
+
+                  // choose all HTML tags except img tag
+                  return tag.toLowerCase() !== 'img';
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
 #### `urlFilter`
 
 Type: `Function`

@@ -172,7 +172,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML when tag is specified to "*"', async () => {
+  it('should handle all src attributes in all HTML tags when tag is specified to "*"', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {
         list: [
@@ -194,7 +194,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML when tag is not specified', async () => {
+  it('should handle all src attributes in all HTML tags when tag is not specified', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {
         list: [
@@ -215,7 +215,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML when tag is empty', async () => {
+  it('should handle all src attributes in all HTML tags when tag is empty', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {
         list: [
@@ -223,6 +223,83 @@ describe("'attributes' option", () => {
             tag: '',
             attribute: 'src',
             type: 'src',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle all src attributes in all HTML tags except img (testing filter option) tag is "*"', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          {
+            tag: '*',
+            attribute: 'src',
+            type: 'src',
+            // eslint-disable-next-line no-unused-vars
+            filter: (tag, attribute, attributes) => {
+              return tag.toLowerCase() !== 'img';
+            },
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle all src attributes in all HTML tags except img (testing filter option) tag is not specified', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          {
+            attribute: 'src',
+            type: 'src',
+            // eslint-disable-next-line no-unused-vars
+            filter: (tag, attribute, attributes) => {
+              return tag.toLowerCase() !== 'img';
+            },
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle all src attributes in all HTML tags except img (testing filter option) tag is an empty string', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          {
+            tag: '',
+            attribute: 'src',
+            type: 'src',
+            // eslint-disable-next-line no-unused-vars
+            filter: (tag, attribute, attributes) => {
+              return tag.toLowerCase() !== 'img';
+            },
           },
         ],
       },

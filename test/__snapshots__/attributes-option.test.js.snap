@@ -738,9 +738,942 @@ exports[`'attributes' option should handle "src" and "srcset" tags correctly: re
 
 exports[`'attributes' option should handle "src" and "srcset" tags correctly: warnings 1`] = `Array []`;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is empty: errors 1`] = `Array []`;
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is "*": errors 1`] = `Array []`;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is empty: module 1`] = `
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is "*": module 1`] = `
+"// Imports
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
+var ___HTML_LOADER_IMPORT_0___ = require(\\"./script.file.js\\");
+var ___HTML_LOADER_IMPORT_1___ = require(\\"./example.ogg\\");
+var ___HTML_LOADER_IMPORT_2___ = require(\\"./example.pdf\\");
+var ___HTML_LOADER_IMPORT_3___ = require(\\"./template.html\\");
+var ___HTML_LOADER_IMPORT_4___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IMPORT_5___ = require(\\"./example.vtt\\");
+var ___HTML_LOADER_IMPORT_6___ = require(\\"./module.file.js\\");
+var ___HTML_LOADER_IMPORT_7___ = require(\\"./fallback.file.js\\");
+// Module
+var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var ___HTML_LOADER_REPLACER_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
+var ___HTML_LOADER_REPLACER_2___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_2___);
+var ___HTML_LOADER_REPLACER_3___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_3___);
+var ___HTML_LOADER_REPLACER_4___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___);
+var ___HTML_LOADER_REPLACER_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_5___);
+var ___HTML_LOADER_REPLACER_6___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___);
+var ___HTML_LOADER_REPLACER_7___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_7___);
+var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src='image.png'>\\\\n<img src=image.png>\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<IMG src=\\\\\\"image.png\\\\\\">\\\\n<img SRC=\\\\\\"image.png\\\\\\">\\\\n<IMG SRC=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_0___ + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<IMG srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img SRCSET=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<IMG SRCSET=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz 480w, image.png?bar=baz,foo 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz 480h, image.png?bar=baz,foo 800h\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz, image.png?bar=baz,foo\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,\\\\n             image.png 1.5x,\\\\n             image.png 2x\\\\\\"\\\\n     src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,,,\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\nimage.png,\\\\n\\\\n  image.png   1.5x,\\\\n\\\\nimage.png 2x\\\\n\\\\n\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\\\n<audio src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" controls>\\\\n  Your browser does not support the audio element.\\\\n</audio>\\\\n\\\\n<embed src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_2___ + \\"\\\\\\">\\\\n\\\\n<iframe src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_3___ + \\"\\\\\\"></iframe>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Smiley face\\\\\\">\\\\n\\\\n<form action=\\\\\\"/action_page.php\\\\\\">\\\\n  First name: <input type=\\\\\\"text\\\\\\" name=\\\\\\"fname\\\\\\"><br>\\\\n  <input type=\\\\\\"image\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Submit\\\\\\">\\\\n</form>\\\\n\\\\n<script src=\\\\\\"https://domain.org/script.js\\\\\\"></script>\\\\n\\\\n<audio controls>\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"audio/ogg\\\\\\">\\\\n  Your browser does not support the audio element.\\\\n</audio>\\\\n\\\\n<video width=\\\\\\"320\\\\\\" height=\\\\\\"240\\\\\\" controls>\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <track src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_5___ + \\"\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<video src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" controls>\\\\n  Your browser does not support the video tag.\\\\n</video>\\\\n\\\\n<video controls poster=\\\\\\"./image.png\\\\\\">\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <track src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_5___ + \\"\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<object width=\\\\\\"400\\\\\\" height=\\\\\\"400\\\\\\" data=\\\\\\"example.pdf\\\\\\"></object>\\\\n\\\\nT ex t  <img \\\\t  src =   \\\\\\"image.png\\\\\\"   >  <img\\\\n  src\\\\n    =\\\\n    \\\\\\"image.png\\\\\\"\\\\n>\\\\n\\\\n<div data-videomp4=\\\\\\"video.mp4\\\\\\"></div>\\\\n\\\\n<use xlink:href=\\\\\\"vector.svg\\\\\\" />\\\\n\\\\n<![CDATA[<img src=\\\\\\"image.png\\\\\\">]]><img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link ReL=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" HREF=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"alternate stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet alternate\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet alternate\\\\\\" type=\\\\\\"   text/css   \\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/html\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" TYPE=\\\\\\"text/html\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"icon\\\\\\" href=\\\\\\"./image.png\\\\\\" sizes=\\\\\\"16x16\\\\\\">\\\\n<link rel=\\\\\\"apple-touch-icon\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<link rel=\\\\\\"apple-touch-startup-image\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<link rel=\\\\\\"shortlink\\\\\\" type=\\\\\\"text/html\\\\\\" href=\\\\\\"http://flic.kr/p/6XuLyD\\\\\\">\\\\n<link type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"pingback\\\\\\" href=\\\\\\"http://bob.example.net/xmlrpcserver\\\\\\">\\\\n<a rel=\\\\\\"author\\\\\\" href=\\\\\\"./simple.html\\\\\\">link text</a>\\\\n\\\\n<a href=\\\\\\"tel:1-408-555-5555\\\\\\">Call me</a>\\\\n\\\\n<!----><img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--><img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--<!--<img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--<img src=\\\\\\"image.png\\\\\\">-->\\\\n\\\\n<!--Text < img src=\\\\\\"image.png\\\\\\" >\\\\nText <<img src=\\\\\\"image.png\\\\\\">\\\\nText ><img src=\\\\\\"image.png\\\\\\">-->\\\\n\\\\n<br>\\\\n<br />\\\\n\\\\n&lt;div id = &quot;character&quot;&gt;\\\\n&copy; 2007\\\\nor\\\\n&#169; 2007\\\\n\\\\n<br>\\\\n\\\\n<img src=\\\\\\"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\\\\" alt=\\\\\\"Red dot\\\\\\" />\\\\n<address>\\\\n  Written by <img src=\\\\\\"mailto:webmaster@example.com\\\\\\">Jon Doe.<br>\\\\n  Visit us at:<br>\\\\n  Example.com<br>\\\\n  Box 564, Disneyland<br>\\\\n  USA\\\\n</address>\\\\n<img src=\\\\\\"chrome://settings\\\\\\">link</img>\\\\n<img src=\\\\\\"skype:example123?chat\\\\\\">Start Chat</img>\\\\n<img src=\\\\\\"foobar:test\\\\\\">Start Chat</img>\\\\n<img src=\\\\\\"javascript:alert('Hello');\\\\\\">Start Chat</img>\\\\n\\\\n<img src=\\\\\\"   image.png   \\\\\\">\\\\n<img src=\\\\\\"\\\\nimage.png\\\\n\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   \\\\\\" src=\\\\\\"   image.png   \\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\nimage.png\\\\n\\\\\\" src=\\\\\\"\\\\nimage.png\\\\n\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<img srcset=\\\\\\"#test\\\\\\" src=\\\\\\"#test\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"image%20image.png\\\\\\" alt=\\\\\\"Test\\\\\\">\\\\n\\\\n<flag-icon src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\"></flag-icon>\\\\n<MyStrangeTag13 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Smiley face\\\\\\" />\\\\n<MyStrangeTag13 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Smiley face\\\\\\"> Test </MyStrangeTag13>\\\\n<a- src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\"></a->\\\\n<a-. src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</a-.>\\\\n<a-- src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</a-->\\\\n<aÀ-豈 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</aÀ-豈>\\\\n<aÀ-Ⰰ src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n\\\\n<INVALID_TAG_NAME src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n<invalid-CUSTOM-TAG src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n\\\\n<p>Text</p>\\\\n<p >Text</p>\\\\n<p   >Text</p>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\" src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n<script type=\\\\\\"module\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_6___ + \\"\\\\\\"></script>\\\\n<script nomodule src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_7___ + \\"\\\\\\"></script>\\\\n<script type=\\\\\\"module\\\\\\">\\\\n  function test() {}\\\\n</script>\\\\n<script>\\\\n  function test() {}\\\\n</script>\\\\n\\\\n<img src=image.png />\\\\n<img src=\\\\\\"image image.png\\\\\\" />\\\\n<img src='image image.png' />\\\\n<img src=~aliasImageWithSpace />\\\\n<img srcset=image.png />\\\\n<img srcset=\\\\\\"image%20image.png\\\\\\" />\\\\n<img srcset='image%20image.png' />\\\\n<img srcset=~aliasImageWithSpace />\\\\n<img srcset=\\\\\\"image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src      =       image.png />\\\\n<img src      =      ~aliasImageWithSpace      />\\\\n<img src      =      \\\\\\"~aliasImageWithSpace\\\\\\"      />\\\\n<img src      =      '~aliasImageWithSpace'      />\\\\n\\\\n<img src=\\\\\\"#hash\\\\\\" />\\\\n<img src=\\\\\\"javascript:void(0)\\\\\\" />\\\\n<img src='image.png#hash' />\\\\n<img src=image.png#hash />\\\\n<img src=image.png# />\\\\n<img srcset=\\\\\\"image.png#hash\\\\\\" />\\\\n<img srcset=\\\\\\"image.png#foo 480w, image.png#bar 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png#baz\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\\\"#\\\\\\" srcset=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\" />\\\\n<img src=\\\\\\"###\\\\\\" srcset=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\" />\\\\n<img src=\\\\\\"   #   \\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\\\"\\\\n\\\\n\\\\n#\\\\n\\\\n\\\\n\\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\n\\\\n\\\\n       image.png\\\\n\\\\n\\\\n/>\\\\n\\\\n<img data-srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" data-src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\";
+// Exports
+module.exports = code;"
+`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is "*": result 1`] = `
+"<!doctype html>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"image.png\\">
+<img src='image.png'>
+<img src=image.png>
+<img src=\\"./image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"~aliasImg\\">
+<img src=\\"image.png\\">
+<IMG src=\\"image.png\\">
+<img SRC=\\"image.png\\">
+<IMG SRC=\\"image.png\\">
+
+<script src=\\"/webpack/public/path/script.file.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"./icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img SRCSET=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG SRCSET=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz 480w, image.png?bar=baz,foo 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz 480h, image.png?bar=baz,foo 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz, image.png?bar=baz,foo\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,
+             image.png 1.5x,
+             image.png 2x\\"
+     src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,,,\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+
+image.png,
+
+  image.png   1.5x,
+
+image.png 2x
+
+\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
+
+<audio src=\\"/webpack/public/path/example.ogg\\" controls>
+  Your browser does not support the audio element.
+</audio>
+
+<embed src=\\"/webpack/public/path/example.pdf\\">
+
+<iframe src=\\"<img src=\\"\${\\"Hello \\" + (1+1)}\\">
+<img src=\\"\${\`Hello \` + (1+1)}\\">
+<p>Something about the \\\\\` character</p>
+<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>
+<h3>#{number} {customer}</h3>
+<p>   {title}   </p>
+<img src=\\"\${require(\\"./image.png\\")}\\" /></a>
+\\"></iframe>
+
+<img src=\\"image.png\\" alt=\\"Smiley face\\">
+
+<form action=\\"/action_page.php\\">
+  First name: <input type=\\"text\\" name=\\"fname\\"><br>
+  <input type=\\"image\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Submit\\">
+</form>
+
+<script src=\\"https://domain.org/script.js\\"></script>
+
+<audio controls>
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"audio/ogg\\">
+  Your browser does not support the audio element.
+</audio>
+
+<video width=\\"320\\" height=\\"240\\" controls>
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+</video>
+
+<video src=\\"/webpack/public/path/example.ogg\\" controls>
+  Your browser does not support the video tag.
+</video>
+
+<video controls poster=\\"./image.png\\">
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+</video>
+
+<object width=\\"400\\" height=\\"400\\" data=\\"example.pdf\\"></object>
+
+T ex t  <img 	  src =   \\"image.png\\"   >  <img
+  src
+    =
+    \\"image.png\\"
+>
+
+<div data-videomp4=\\"video.mp4\\"></div>
+
+<use xlink:href=\\"vector.svg\\" />
+
+<![CDATA[<img src=\\"image.png\\">]]><img src=\\"image.png\\">
+
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link ReL=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" HREF=\\"./style.file.css\\">
+<link rel=\\"alternate stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"   text/css   \\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/html\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" TYPE=\\"text/html\\" href=\\"./style.file.css\\">
+<link rel=\\"icon\\" href=\\"./image.png\\" sizes=\\"16x16\\">
+<link rel=\\"apple-touch-icon\\" href=\\"./image.png\\">
+<link rel=\\"apple-touch-startup-image\\" href=\\"./image.png\\">
+<link rel=\\"shortlink\\" type=\\"text/html\\" href=\\"http://flic.kr/p/6XuLyD\\">
+<link type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"pingback\\" href=\\"http://bob.example.net/xmlrpcserver\\">
+<a rel=\\"author\\" href=\\"./simple.html\\">link text</a>
+
+<a href=\\"tel:1-408-555-5555\\">Call me</a>
+
+<!----><img src=\\"image.png\\">-->
+<!--><img src=\\"image.png\\">-->
+<!--<!--<img src=\\"image.png\\">-->
+<!--<img src=\\"image.png\\">-->
+
+<!--Text < img src=\\"image.png\\" >
+Text <<img src=\\"image.png\\">
+Text ><img src=\\"image.png\\">-->
+
+<br>
+<br />
+
+&lt;div id = &quot;character&quot;&gt;
+&copy; 2007
+or
+&#169; 2007
+
+<br>
+
+<img src=\\"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\" alt=\\"Red dot\\" />
+<address>
+  Written by <img src=\\"mailto:webmaster@example.com\\">Jon Doe.<br>
+  Visit us at:<br>
+  Example.com<br>
+  Box 564, Disneyland<br>
+  USA
+</address>
+<img src=\\"chrome://settings\\">link</img>
+<img src=\\"skype:example123?chat\\">Start Chat</img>
+<img src=\\"foobar:test\\">Start Chat</img>
+<img src=\\"javascript:alert('Hello');\\">Start Chat</img>
+
+<img src=\\"   image.png   \\">
+<img src=\\"
+image.png
+\\">
+<img srcset=\\"   image.png   \\" src=\\"   image.png   \\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+image.png
+\\" src=\\"
+image.png
+\\" alt=\\"Elva dressed as a fairy\\">
+
+<img srcset=\\"#test\\" src=\\"#test\\" alt=\\"Elva dressed as a fairy\\">
+<img src=\\"image%20image.png\\" alt=\\"Test\\">
+
+<flag-icon src=\\"/webpack/public/path/image.png\\"></flag-icon>
+<MyStrangeTag13 src=\\"/webpack/public/path/image.png\\" alt=\\"Smiley face\\" />
+<MyStrangeTag13 src=\\"/webpack/public/path/image.png\\" alt=\\"Smiley face\\"> Test </MyStrangeTag13>
+<a- src=\\"/webpack/public/path/image.png\\"></a->
+<a-. src=\\"/webpack/public/path/image.png\\">test</a-.>
+<a-- src=\\"/webpack/public/path/image.png\\">test</a-->
+<aÀ-豈 src=\\"/webpack/public/path/image.png\\">test</aÀ-豈>
+<aÀ-Ⰰ src=\\"/webpack/public/path/image.png\\" />
+
+<INVALID_TAG_NAME src=\\"/webpack/public/path/image.png\\" />
+<invalid-CUSTOM-TAG src=\\"/webpack/public/path/image.png\\" />
+
+<p>Text</p>
+<p >Text</p>
+<p   >Text</p>
+
+<img src=\\"image.png\\" src=\\"image.png\\" />
+
+<script type=\\"module\\" src=\\"/webpack/public/path/module.file.js\\"></script>
+<script nomodule src=\\"/webpack/public/path/fallback.file.js\\"></script>
+<script type=\\"module\\">
+  function test() {}
+</script>
+<script>
+  function test() {}
+</script>
+
+<img src=image.png />
+<img src=\\"image image.png\\" />
+<img src='image image.png' />
+<img src=~aliasImageWithSpace />
+<img srcset=image.png />
+<img srcset=\\"image%20image.png\\" />
+<img srcset='image%20image.png' />
+<img srcset=~aliasImageWithSpace />
+<img srcset=\\"image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img src      =       image.png />
+<img src      =      ~aliasImageWithSpace      />
+<img src      =      \\"~aliasImageWithSpace\\"      />
+<img src      =      '~aliasImageWithSpace'      />
+
+<img src=\\"#hash\\" />
+<img src=\\"javascript:void(0)\\" />
+<img src='image.png#hash' />
+<img src=image.png#hash />
+<img src=image.png# />
+<img srcset=\\"image.png#hash\\" />
+<img srcset=\\"image.png#foo 480w, image.png#bar 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png#baz\\" alt=\\"Elva dressed as a fairy\\">
+<img src=\\"#\\" alt=\\"test\\"/>
+<img src=\\"#\\" srcset=\\"#\\" alt=\\"test\\" />
+<img src=\\"###\\" srcset=\\"#\\" alt=\\"test\\" />
+<img src=\\"   #   \\" alt=\\"test\\"/>
+<img src=\\"
+
+
+#
+
+
+\\" alt=\\"test\\"/>
+<img src=
+
+
+       image.png
+
+
+/>
+
+<img data-srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" data-src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+"
+`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is "*": warnings 1`] = `Array []`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is an empty string: errors 1`] = `Array []`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is an empty string: module 1`] = `
+"// Imports
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
+var ___HTML_LOADER_IMPORT_0___ = require(\\"./script.file.js\\");
+var ___HTML_LOADER_IMPORT_1___ = require(\\"./example.ogg\\");
+var ___HTML_LOADER_IMPORT_2___ = require(\\"./example.pdf\\");
+var ___HTML_LOADER_IMPORT_3___ = require(\\"./template.html\\");
+var ___HTML_LOADER_IMPORT_4___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IMPORT_5___ = require(\\"./example.vtt\\");
+var ___HTML_LOADER_IMPORT_6___ = require(\\"./module.file.js\\");
+var ___HTML_LOADER_IMPORT_7___ = require(\\"./fallback.file.js\\");
+// Module
+var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var ___HTML_LOADER_REPLACER_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
+var ___HTML_LOADER_REPLACER_2___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_2___);
+var ___HTML_LOADER_REPLACER_3___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_3___);
+var ___HTML_LOADER_REPLACER_4___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___);
+var ___HTML_LOADER_REPLACER_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_5___);
+var ___HTML_LOADER_REPLACER_6___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___);
+var ___HTML_LOADER_REPLACER_7___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_7___);
+var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src='image.png'>\\\\n<img src=image.png>\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<IMG src=\\\\\\"image.png\\\\\\">\\\\n<img SRC=\\\\\\"image.png\\\\\\">\\\\n<IMG SRC=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_0___ + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<IMG srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img SRCSET=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<IMG SRCSET=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz 480w, image.png?bar=baz,foo 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz 480h, image.png?bar=baz,foo 800h\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz, image.png?bar=baz,foo\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,\\\\n             image.png 1.5x,\\\\n             image.png 2x\\\\\\"\\\\n     src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,,,\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\nimage.png,\\\\n\\\\n  image.png   1.5x,\\\\n\\\\nimage.png 2x\\\\n\\\\n\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\\\n<audio src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" controls>\\\\n  Your browser does not support the audio element.\\\\n</audio>\\\\n\\\\n<embed src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_2___ + \\"\\\\\\">\\\\n\\\\n<iframe src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_3___ + \\"\\\\\\"></iframe>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Smiley face\\\\\\">\\\\n\\\\n<form action=\\\\\\"/action_page.php\\\\\\">\\\\n  First name: <input type=\\\\\\"text\\\\\\" name=\\\\\\"fname\\\\\\"><br>\\\\n  <input type=\\\\\\"image\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Submit\\\\\\">\\\\n</form>\\\\n\\\\n<script src=\\\\\\"https://domain.org/script.js\\\\\\"></script>\\\\n\\\\n<audio controls>\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"audio/ogg\\\\\\">\\\\n  Your browser does not support the audio element.\\\\n</audio>\\\\n\\\\n<video width=\\\\\\"320\\\\\\" height=\\\\\\"240\\\\\\" controls>\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <track src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_5___ + \\"\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<video src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" controls>\\\\n  Your browser does not support the video tag.\\\\n</video>\\\\n\\\\n<video controls poster=\\\\\\"./image.png\\\\\\">\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <track src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_5___ + \\"\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<object width=\\\\\\"400\\\\\\" height=\\\\\\"400\\\\\\" data=\\\\\\"example.pdf\\\\\\"></object>\\\\n\\\\nT ex t  <img \\\\t  src =   \\\\\\"image.png\\\\\\"   >  <img\\\\n  src\\\\n    =\\\\n    \\\\\\"image.png\\\\\\"\\\\n>\\\\n\\\\n<div data-videomp4=\\\\\\"video.mp4\\\\\\"></div>\\\\n\\\\n<use xlink:href=\\\\\\"vector.svg\\\\\\" />\\\\n\\\\n<![CDATA[<img src=\\\\\\"image.png\\\\\\">]]><img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link ReL=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" HREF=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"alternate stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet alternate\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet alternate\\\\\\" type=\\\\\\"   text/css   \\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/html\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" TYPE=\\\\\\"text/html\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"icon\\\\\\" href=\\\\\\"./image.png\\\\\\" sizes=\\\\\\"16x16\\\\\\">\\\\n<link rel=\\\\\\"apple-touch-icon\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<link rel=\\\\\\"apple-touch-startup-image\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<link rel=\\\\\\"shortlink\\\\\\" type=\\\\\\"text/html\\\\\\" href=\\\\\\"http://flic.kr/p/6XuLyD\\\\\\">\\\\n<link type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"pingback\\\\\\" href=\\\\\\"http://bob.example.net/xmlrpcserver\\\\\\">\\\\n<a rel=\\\\\\"author\\\\\\" href=\\\\\\"./simple.html\\\\\\">link text</a>\\\\n\\\\n<a href=\\\\\\"tel:1-408-555-5555\\\\\\">Call me</a>\\\\n\\\\n<!----><img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--><img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--<!--<img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--<img src=\\\\\\"image.png\\\\\\">-->\\\\n\\\\n<!--Text < img src=\\\\\\"image.png\\\\\\" >\\\\nText <<img src=\\\\\\"image.png\\\\\\">\\\\nText ><img src=\\\\\\"image.png\\\\\\">-->\\\\n\\\\n<br>\\\\n<br />\\\\n\\\\n&lt;div id = &quot;character&quot;&gt;\\\\n&copy; 2007\\\\nor\\\\n&#169; 2007\\\\n\\\\n<br>\\\\n\\\\n<img src=\\\\\\"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\\\\" alt=\\\\\\"Red dot\\\\\\" />\\\\n<address>\\\\n  Written by <img src=\\\\\\"mailto:webmaster@example.com\\\\\\">Jon Doe.<br>\\\\n  Visit us at:<br>\\\\n  Example.com<br>\\\\n  Box 564, Disneyland<br>\\\\n  USA\\\\n</address>\\\\n<img src=\\\\\\"chrome://settings\\\\\\">link</img>\\\\n<img src=\\\\\\"skype:example123?chat\\\\\\">Start Chat</img>\\\\n<img src=\\\\\\"foobar:test\\\\\\">Start Chat</img>\\\\n<img src=\\\\\\"javascript:alert('Hello');\\\\\\">Start Chat</img>\\\\n\\\\n<img src=\\\\\\"   image.png   \\\\\\">\\\\n<img src=\\\\\\"\\\\nimage.png\\\\n\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   \\\\\\" src=\\\\\\"   image.png   \\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\nimage.png\\\\n\\\\\\" src=\\\\\\"\\\\nimage.png\\\\n\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<img srcset=\\\\\\"#test\\\\\\" src=\\\\\\"#test\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"image%20image.png\\\\\\" alt=\\\\\\"Test\\\\\\">\\\\n\\\\n<flag-icon src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\"></flag-icon>\\\\n<MyStrangeTag13 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Smiley face\\\\\\" />\\\\n<MyStrangeTag13 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Smiley face\\\\\\"> Test </MyStrangeTag13>\\\\n<a- src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\"></a->\\\\n<a-. src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</a-.>\\\\n<a-- src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</a-->\\\\n<aÀ-豈 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</aÀ-豈>\\\\n<aÀ-Ⰰ src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n\\\\n<INVALID_TAG_NAME src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n<invalid-CUSTOM-TAG src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n\\\\n<p>Text</p>\\\\n<p >Text</p>\\\\n<p   >Text</p>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\" src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n<script type=\\\\\\"module\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_6___ + \\"\\\\\\"></script>\\\\n<script nomodule src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_7___ + \\"\\\\\\"></script>\\\\n<script type=\\\\\\"module\\\\\\">\\\\n  function test() {}\\\\n</script>\\\\n<script>\\\\n  function test() {}\\\\n</script>\\\\n\\\\n<img src=image.png />\\\\n<img src=\\\\\\"image image.png\\\\\\" />\\\\n<img src='image image.png' />\\\\n<img src=~aliasImageWithSpace />\\\\n<img srcset=image.png />\\\\n<img srcset=\\\\\\"image%20image.png\\\\\\" />\\\\n<img srcset='image%20image.png' />\\\\n<img srcset=~aliasImageWithSpace />\\\\n<img srcset=\\\\\\"image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src      =       image.png />\\\\n<img src      =      ~aliasImageWithSpace      />\\\\n<img src      =      \\\\\\"~aliasImageWithSpace\\\\\\"      />\\\\n<img src      =      '~aliasImageWithSpace'      />\\\\n\\\\n<img src=\\\\\\"#hash\\\\\\" />\\\\n<img src=\\\\\\"javascript:void(0)\\\\\\" />\\\\n<img src='image.png#hash' />\\\\n<img src=image.png#hash />\\\\n<img src=image.png# />\\\\n<img srcset=\\\\\\"image.png#hash\\\\\\" />\\\\n<img srcset=\\\\\\"image.png#foo 480w, image.png#bar 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png#baz\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\\\"#\\\\\\" srcset=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\" />\\\\n<img src=\\\\\\"###\\\\\\" srcset=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\" />\\\\n<img src=\\\\\\"   #   \\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\\\"\\\\n\\\\n\\\\n#\\\\n\\\\n\\\\n\\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\n\\\\n\\\\n       image.png\\\\n\\\\n\\\\n/>\\\\n\\\\n<img data-srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" data-src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\";
+// Exports
+module.exports = code;"
+`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is an empty string: result 1`] = `
+"<!doctype html>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"image.png\\">
+<img src='image.png'>
+<img src=image.png>
+<img src=\\"./image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"~aliasImg\\">
+<img src=\\"image.png\\">
+<IMG src=\\"image.png\\">
+<img SRC=\\"image.png\\">
+<IMG SRC=\\"image.png\\">
+
+<script src=\\"/webpack/public/path/script.file.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"./icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img SRCSET=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG SRCSET=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz 480w, image.png?bar=baz,foo 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz 480h, image.png?bar=baz,foo 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz, image.png?bar=baz,foo\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,
+             image.png 1.5x,
+             image.png 2x\\"
+     src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,,,\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+
+image.png,
+
+  image.png   1.5x,
+
+image.png 2x
+
+\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
+
+<audio src=\\"/webpack/public/path/example.ogg\\" controls>
+  Your browser does not support the audio element.
+</audio>
+
+<embed src=\\"/webpack/public/path/example.pdf\\">
+
+<iframe src=\\"<img src=\\"\${\\"Hello \\" + (1+1)}\\">
+<img src=\\"\${\`Hello \` + (1+1)}\\">
+<p>Something about the \\\\\` character</p>
+<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>
+<h3>#{number} {customer}</h3>
+<p>   {title}   </p>
+<img src=\\"\${require(\\"./image.png\\")}\\" /></a>
+\\"></iframe>
+
+<img src=\\"image.png\\" alt=\\"Smiley face\\">
+
+<form action=\\"/action_page.php\\">
+  First name: <input type=\\"text\\" name=\\"fname\\"><br>
+  <input type=\\"image\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Submit\\">
+</form>
+
+<script src=\\"https://domain.org/script.js\\"></script>
+
+<audio controls>
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"audio/ogg\\">
+  Your browser does not support the audio element.
+</audio>
+
+<video width=\\"320\\" height=\\"240\\" controls>
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+</video>
+
+<video src=\\"/webpack/public/path/example.ogg\\" controls>
+  Your browser does not support the video tag.
+</video>
+
+<video controls poster=\\"./image.png\\">
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+</video>
+
+<object width=\\"400\\" height=\\"400\\" data=\\"example.pdf\\"></object>
+
+T ex t  <img 	  src =   \\"image.png\\"   >  <img
+  src
+    =
+    \\"image.png\\"
+>
+
+<div data-videomp4=\\"video.mp4\\"></div>
+
+<use xlink:href=\\"vector.svg\\" />
+
+<![CDATA[<img src=\\"image.png\\">]]><img src=\\"image.png\\">
+
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link ReL=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" HREF=\\"./style.file.css\\">
+<link rel=\\"alternate stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"   text/css   \\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/html\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" TYPE=\\"text/html\\" href=\\"./style.file.css\\">
+<link rel=\\"icon\\" href=\\"./image.png\\" sizes=\\"16x16\\">
+<link rel=\\"apple-touch-icon\\" href=\\"./image.png\\">
+<link rel=\\"apple-touch-startup-image\\" href=\\"./image.png\\">
+<link rel=\\"shortlink\\" type=\\"text/html\\" href=\\"http://flic.kr/p/6XuLyD\\">
+<link type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"pingback\\" href=\\"http://bob.example.net/xmlrpcserver\\">
+<a rel=\\"author\\" href=\\"./simple.html\\">link text</a>
+
+<a href=\\"tel:1-408-555-5555\\">Call me</a>
+
+<!----><img src=\\"image.png\\">-->
+<!--><img src=\\"image.png\\">-->
+<!--<!--<img src=\\"image.png\\">-->
+<!--<img src=\\"image.png\\">-->
+
+<!--Text < img src=\\"image.png\\" >
+Text <<img src=\\"image.png\\">
+Text ><img src=\\"image.png\\">-->
+
+<br>
+<br />
+
+&lt;div id = &quot;character&quot;&gt;
+&copy; 2007
+or
+&#169; 2007
+
+<br>
+
+<img src=\\"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\" alt=\\"Red dot\\" />
+<address>
+  Written by <img src=\\"mailto:webmaster@example.com\\">Jon Doe.<br>
+  Visit us at:<br>
+  Example.com<br>
+  Box 564, Disneyland<br>
+  USA
+</address>
+<img src=\\"chrome://settings\\">link</img>
+<img src=\\"skype:example123?chat\\">Start Chat</img>
+<img src=\\"foobar:test\\">Start Chat</img>
+<img src=\\"javascript:alert('Hello');\\">Start Chat</img>
+
+<img src=\\"   image.png   \\">
+<img src=\\"
+image.png
+\\">
+<img srcset=\\"   image.png   \\" src=\\"   image.png   \\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+image.png
+\\" src=\\"
+image.png
+\\" alt=\\"Elva dressed as a fairy\\">
+
+<img srcset=\\"#test\\" src=\\"#test\\" alt=\\"Elva dressed as a fairy\\">
+<img src=\\"image%20image.png\\" alt=\\"Test\\">
+
+<flag-icon src=\\"/webpack/public/path/image.png\\"></flag-icon>
+<MyStrangeTag13 src=\\"/webpack/public/path/image.png\\" alt=\\"Smiley face\\" />
+<MyStrangeTag13 src=\\"/webpack/public/path/image.png\\" alt=\\"Smiley face\\"> Test </MyStrangeTag13>
+<a- src=\\"/webpack/public/path/image.png\\"></a->
+<a-. src=\\"/webpack/public/path/image.png\\">test</a-.>
+<a-- src=\\"/webpack/public/path/image.png\\">test</a-->
+<aÀ-豈 src=\\"/webpack/public/path/image.png\\">test</aÀ-豈>
+<aÀ-Ⰰ src=\\"/webpack/public/path/image.png\\" />
+
+<INVALID_TAG_NAME src=\\"/webpack/public/path/image.png\\" />
+<invalid-CUSTOM-TAG src=\\"/webpack/public/path/image.png\\" />
+
+<p>Text</p>
+<p >Text</p>
+<p   >Text</p>
+
+<img src=\\"image.png\\" src=\\"image.png\\" />
+
+<script type=\\"module\\" src=\\"/webpack/public/path/module.file.js\\"></script>
+<script nomodule src=\\"/webpack/public/path/fallback.file.js\\"></script>
+<script type=\\"module\\">
+  function test() {}
+</script>
+<script>
+  function test() {}
+</script>
+
+<img src=image.png />
+<img src=\\"image image.png\\" />
+<img src='image image.png' />
+<img src=~aliasImageWithSpace />
+<img srcset=image.png />
+<img srcset=\\"image%20image.png\\" />
+<img srcset='image%20image.png' />
+<img srcset=~aliasImageWithSpace />
+<img srcset=\\"image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img src      =       image.png />
+<img src      =      ~aliasImageWithSpace      />
+<img src      =      \\"~aliasImageWithSpace\\"      />
+<img src      =      '~aliasImageWithSpace'      />
+
+<img src=\\"#hash\\" />
+<img src=\\"javascript:void(0)\\" />
+<img src='image.png#hash' />
+<img src=image.png#hash />
+<img src=image.png# />
+<img srcset=\\"image.png#hash\\" />
+<img srcset=\\"image.png#foo 480w, image.png#bar 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png#baz\\" alt=\\"Elva dressed as a fairy\\">
+<img src=\\"#\\" alt=\\"test\\"/>
+<img src=\\"#\\" srcset=\\"#\\" alt=\\"test\\" />
+<img src=\\"###\\" srcset=\\"#\\" alt=\\"test\\" />
+<img src=\\"   #   \\" alt=\\"test\\"/>
+<img src=\\"
+
+
+#
+
+
+\\" alt=\\"test\\"/>
+<img src=
+
+
+       image.png
+
+
+/>
+
+<img data-srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" data-src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+"
+`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is an empty string: warnings 1`] = `Array []`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is not specified: errors 1`] = `Array []`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is not specified: module 1`] = `
+"// Imports
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
+var ___HTML_LOADER_IMPORT_0___ = require(\\"./script.file.js\\");
+var ___HTML_LOADER_IMPORT_1___ = require(\\"./example.ogg\\");
+var ___HTML_LOADER_IMPORT_2___ = require(\\"./example.pdf\\");
+var ___HTML_LOADER_IMPORT_3___ = require(\\"./template.html\\");
+var ___HTML_LOADER_IMPORT_4___ = require(\\"./image.png\\");
+var ___HTML_LOADER_IMPORT_5___ = require(\\"./example.vtt\\");
+var ___HTML_LOADER_IMPORT_6___ = require(\\"./module.file.js\\");
+var ___HTML_LOADER_IMPORT_7___ = require(\\"./fallback.file.js\\");
+// Module
+var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var ___HTML_LOADER_REPLACER_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
+var ___HTML_LOADER_REPLACER_2___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_2___);
+var ___HTML_LOADER_REPLACER_3___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_3___);
+var ___HTML_LOADER_REPLACER_4___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___);
+var ___HTML_LOADER_REPLACER_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_5___);
+var ___HTML_LOADER_REPLACER_6___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___);
+var ___HTML_LOADER_REPLACER_7___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_7___);
+var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first paragraph.</p>\\\\n<h2>An Unordered HTML List</h2>\\\\n\\\\n<ul>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ul>\\\\n\\\\n<h2>An Ordered HTML List</h2>\\\\n\\\\n<ol>\\\\n  <li>Coffee</li>\\\\n  <li>Tea</li>\\\\n  <li>Milk</li>\\\\n</ol>\\\\n\\\\n<script>console.log({\\\\\\"json\\\\\\": \\\\\\"with \\\\\\\\\\\\\\"quotes\\\\\\\\\\\\\\" in value\\\\\\"})</script>\\\\n\\\\n<!-- comment -->\\\\n\\\\n<div>Foo</div>\\\\n\\\\n\\\\n<div>BAR</div>\\\\n\\\\n<input type=\\\\\\"text\\\\\\" />\\\\n\\\\n<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<img src='image.png'>\\\\n<img src=image.png>\\\\n<img src=\\\\\\"./image.png\\\\\\">\\\\n<img src=\\\\\\"/image.png\\\\\\">\\\\n<img src=\\\\\\"~aliasImg\\\\\\">\\\\n<img src=\\\\\\"image.png\\\\\\">\\\\n<IMG src=\\\\\\"image.png\\\\\\">\\\\n<img SRC=\\\\\\"image.png\\\\\\">\\\\n<IMG SRC=\\\\\\"image.png\\\\\\">\\\\n\\\\n<script src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_0___ + \\"\\\\\\"></script>\\\\n\\\\n<custom-element custom-src=\\\\\\"image.png\\\\\\" />\\\\n<custom-img custom-src=\\\\\\"image.png\\\\\\"/></custom-element>\\\\n\\\\n<img src=\\\\\\"./icons.svg#hash\\\\\\">\\\\n\\\\n<a href=\\\\\\"mailto:username@exampledomain.com\\\\\\"></a>\\\\n\\\\n<img srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<IMG srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img SRCSET=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<IMG SRCSET=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz 480w, image.png?bar=baz,foo 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz 480h, image.png?bar=baz,foo 800h\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png?foo=bar,baz, image.png?bar=baz,foo\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,\\\\n             image.png 1.5x,\\\\n             image.png 2x\\\\\\"\\\\n     src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   480w   ,   image.png   800w   \\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"image.png,,,\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\n\\\\nimage.png,\\\\n\\\\n  image.png   1.5x,\\\\n\\\\nimage.png 2x\\\\n\\\\n\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<picture>\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\\\n<audio src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" controls>\\\\n  Your browser does not support the audio element.\\\\n</audio>\\\\n\\\\n<embed src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_2___ + \\"\\\\\\">\\\\n\\\\n<iframe src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_3___ + \\"\\\\\\"></iframe>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Smiley face\\\\\\">\\\\n\\\\n<form action=\\\\\\"/action_page.php\\\\\\">\\\\n  First name: <input type=\\\\\\"text\\\\\\" name=\\\\\\"fname\\\\\\"><br>\\\\n  <input type=\\\\\\"image\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Submit\\\\\\">\\\\n</form>\\\\n\\\\n<script src=\\\\\\"https://domain.org/script.js\\\\\\"></script>\\\\n\\\\n<audio controls>\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"audio/ogg\\\\\\">\\\\n  Your browser does not support the audio element.\\\\n</audio>\\\\n\\\\n<video width=\\\\\\"320\\\\\\" height=\\\\\\"240\\\\\\" controls>\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <track src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_5___ + \\"\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<video src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" controls>\\\\n  Your browser does not support the video tag.\\\\n</video>\\\\n\\\\n<video controls poster=\\\\\\"./image.png\\\\\\">\\\\n  <source src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_1___ + \\"\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <track src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_5___ + \\"\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<object width=\\\\\\"400\\\\\\" height=\\\\\\"400\\\\\\" data=\\\\\\"example.pdf\\\\\\"></object>\\\\n\\\\nT ex t  <img \\\\t  src =   \\\\\\"image.png\\\\\\"   >  <img\\\\n  src\\\\n    =\\\\n    \\\\\\"image.png\\\\\\"\\\\n>\\\\n\\\\n<div data-videomp4=\\\\\\"video.mp4\\\\\\"></div>\\\\n\\\\n<use xlink:href=\\\\\\"vector.svg\\\\\\" />\\\\n\\\\n<![CDATA[<img src=\\\\\\"image.png\\\\\\">]]><img src=\\\\\\"image.png\\\\\\">\\\\n\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link ReL=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link REL=\\\\\\"STYLESHEET\\\\\\" type=\\\\\\"text/css\\\\\\" HREF=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"alternate stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet alternate\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet alternate\\\\\\" type=\\\\\\"   text/css   \\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" type=\\\\\\"text/html\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"stylesheet\\\\\\" TYPE=\\\\\\"text/html\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"icon\\\\\\" href=\\\\\\"./image.png\\\\\\" sizes=\\\\\\"16x16\\\\\\">\\\\n<link rel=\\\\\\"apple-touch-icon\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<link rel=\\\\\\"apple-touch-startup-image\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<link rel=\\\\\\"shortlink\\\\\\" type=\\\\\\"text/html\\\\\\" href=\\\\\\"http://flic.kr/p/6XuLyD\\\\\\">\\\\n<link type=\\\\\\"text/css\\\\\\" href=\\\\\\"./style.file.css\\\\\\">\\\\n<link rel=\\\\\\"pingback\\\\\\" href=\\\\\\"http://bob.example.net/xmlrpcserver\\\\\\">\\\\n<a rel=\\\\\\"author\\\\\\" href=\\\\\\"./simple.html\\\\\\">link text</a>\\\\n\\\\n<a href=\\\\\\"tel:1-408-555-5555\\\\\\">Call me</a>\\\\n\\\\n<!----><img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--><img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--<!--<img src=\\\\\\"image.png\\\\\\">-->\\\\n<!--<img src=\\\\\\"image.png\\\\\\">-->\\\\n\\\\n<!--Text < img src=\\\\\\"image.png\\\\\\" >\\\\nText <<img src=\\\\\\"image.png\\\\\\">\\\\nText ><img src=\\\\\\"image.png\\\\\\">-->\\\\n\\\\n<br>\\\\n<br />\\\\n\\\\n&lt;div id = &quot;character&quot;&gt;\\\\n&copy; 2007\\\\nor\\\\n&#169; 2007\\\\n\\\\n<br>\\\\n\\\\n<img src=\\\\\\"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\\\\" alt=\\\\\\"Red dot\\\\\\" />\\\\n<address>\\\\n  Written by <img src=\\\\\\"mailto:webmaster@example.com\\\\\\">Jon Doe.<br>\\\\n  Visit us at:<br>\\\\n  Example.com<br>\\\\n  Box 564, Disneyland<br>\\\\n  USA\\\\n</address>\\\\n<img src=\\\\\\"chrome://settings\\\\\\">link</img>\\\\n<img src=\\\\\\"skype:example123?chat\\\\\\">Start Chat</img>\\\\n<img src=\\\\\\"foobar:test\\\\\\">Start Chat</img>\\\\n<img src=\\\\\\"javascript:alert('Hello');\\\\\\">Start Chat</img>\\\\n\\\\n<img src=\\\\\\"   image.png   \\\\\\">\\\\n<img src=\\\\\\"\\\\nimage.png\\\\n\\\\\\">\\\\n<img srcset=\\\\\\"   image.png   \\\\\\" src=\\\\\\"   image.png   \\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img srcset=\\\\\\"\\\\nimage.png\\\\n\\\\\\" src=\\\\\\"\\\\nimage.png\\\\n\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<img srcset=\\\\\\"#test\\\\\\" src=\\\\\\"#test\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"image%20image.png\\\\\\" alt=\\\\\\"Test\\\\\\">\\\\n\\\\n<flag-icon src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\"></flag-icon>\\\\n<MyStrangeTag13 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Smiley face\\\\\\" />\\\\n<MyStrangeTag13 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" alt=\\\\\\"Smiley face\\\\\\"> Test </MyStrangeTag13>\\\\n<a- src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\"></a->\\\\n<a-. src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</a-.>\\\\n<a-- src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</a-->\\\\n<aÀ-豈 src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\">test</aÀ-豈>\\\\n<aÀ-Ⰰ src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n\\\\n<INVALID_TAG_NAME src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n<invalid-CUSTOM-TAG src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_4___ + \\"\\\\\\" />\\\\n\\\\n<p>Text</p>\\\\n<p >Text</p>\\\\n<p   >Text</p>\\\\n\\\\n<img src=\\\\\\"image.png\\\\\\" src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n<script type=\\\\\\"module\\\\\\" src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_6___ + \\"\\\\\\"></script>\\\\n<script nomodule src=\\\\\\"\\" + ___HTML_LOADER_REPLACER_7___ + \\"\\\\\\"></script>\\\\n<script type=\\\\\\"module\\\\\\">\\\\n  function test() {}\\\\n</script>\\\\n<script>\\\\n  function test() {}\\\\n</script>\\\\n\\\\n<img src=image.png />\\\\n<img src=\\\\\\"image image.png\\\\\\" />\\\\n<img src='image image.png' />\\\\n<img src=~aliasImageWithSpace />\\\\n<img srcset=image.png />\\\\n<img srcset=\\\\\\"image%20image.png\\\\\\" />\\\\n<img srcset='image%20image.png' />\\\\n<img srcset=~aliasImageWithSpace />\\\\n<img srcset=\\\\\\"image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src      =       image.png />\\\\n<img src      =      ~aliasImageWithSpace      />\\\\n<img src      =      \\\\\\"~aliasImageWithSpace\\\\\\"      />\\\\n<img src      =      '~aliasImageWithSpace'      />\\\\n\\\\n<img src=\\\\\\"#hash\\\\\\" />\\\\n<img src=\\\\\\"javascript:void(0)\\\\\\" />\\\\n<img src='image.png#hash' />\\\\n<img src=image.png#hash />\\\\n<img src=image.png# />\\\\n<img srcset=\\\\\\"image.png#hash\\\\\\" />\\\\n<img srcset=\\\\\\"image.png#foo 480w, image.png#bar 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" src=\\\\\\"image.png#baz\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<img src=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\\\"#\\\\\\" srcset=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\" />\\\\n<img src=\\\\\\"###\\\\\\" srcset=\\\\\\"#\\\\\\" alt=\\\\\\"test\\\\\\" />\\\\n<img src=\\\\\\"   #   \\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\\\"\\\\n\\\\n\\\\n#\\\\n\\\\n\\\\n\\\\\\" alt=\\\\\\"test\\\\\\"/>\\\\n<img src=\\\\n\\\\n\\\\n       image.png\\\\n\\\\n\\\\n/>\\\\n\\\\n<img data-srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" data-src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\";
+// Exports
+module.exports = code;"
+`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is not specified: result 1`] = `
+"<!doctype html>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<script>console.log({\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"})</script>
+
+<!-- comment -->
+
+<div>Foo</div>
+
+
+<div>BAR</div>
+
+<input type=\\"text\\" />
+
+<script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
+
+<img src=\\"image.png\\">
+<img src='image.png'>
+<img src=image.png>
+<img src=\\"./image.png\\">
+<img src=\\"/image.png\\">
+<img src=\\"~aliasImg\\">
+<img src=\\"image.png\\">
+<IMG src=\\"image.png\\">
+<img SRC=\\"image.png\\">
+<IMG SRC=\\"image.png\\">
+
+<script src=\\"/webpack/public/path/script.file.js\\"></script>
+
+<custom-element custom-src=\\"image.png\\" />
+<custom-img custom-src=\\"image.png\\"/></custom-element>
+
+<img src=\\"./icons.svg#hash\\">
+
+<a href=\\"mailto:username@exampledomain.com\\"></a>
+
+<img srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img SRCSET=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG SRCSET=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz 480w, image.png?bar=baz,foo 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz 480h, image.png?bar=baz,foo 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png?foo=bar,baz, image.png?bar=baz,foo\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,
+             image.png 1.5x,
+             image.png 2x\\"
+     src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   image.png   480w   ,   image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"image.png,,,\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+
+image.png,
+
+  image.png   1.5x,
+
+image.png 2x
+
+\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+
+<picture>
+  <source media=\\"(min-width: 650px)\\" srcset=\\"image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"image.png\\">
+  <img src=\\"image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+</picture>
+
+<audio src=\\"/webpack/public/path/example.ogg\\" controls>
+  Your browser does not support the audio element.
+</audio>
+
+<embed src=\\"/webpack/public/path/example.pdf\\">
+
+<iframe src=\\"<img src=\\"\${\\"Hello \\" + (1+1)}\\">
+<img src=\\"\${\`Hello \` + (1+1)}\\">
+<p>Something about the \\\\\` character</p>
+<script>{\\"json\\": \\"with \\\\\\"quotes\\\\\\" in value\\"}</script>
+<h3>#{number} {customer}</h3>
+<p>   {title}   </p>
+<img src=\\"\${require(\\"./image.png\\")}\\" /></a>
+\\"></iframe>
+
+<img src=\\"image.png\\" alt=\\"Smiley face\\">
+
+<form action=\\"/action_page.php\\">
+  First name: <input type=\\"text\\" name=\\"fname\\"><br>
+  <input type=\\"image\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Submit\\">
+</form>
+
+<script src=\\"https://domain.org/script.js\\"></script>
+
+<audio controls>
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"audio/ogg\\">
+  Your browser does not support the audio element.
+</audio>
+
+<video width=\\"320\\" height=\\"240\\" controls>
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+</video>
+
+<video src=\\"/webpack/public/path/example.ogg\\" controls>
+  Your browser does not support the video tag.
+</video>
+
+<video controls poster=\\"./image.png\\">
+  <source src=\\"/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+</video>
+
+<object width=\\"400\\" height=\\"400\\" data=\\"example.pdf\\"></object>
+
+T ex t  <img 	  src =   \\"image.png\\"   >  <img
+  src
+    =
+    \\"image.png\\"
+>
+
+<div data-videomp4=\\"video.mp4\\"></div>
+
+<use xlink:href=\\"vector.svg\\" />
+
+<![CDATA[<img src=\\"image.png\\">]]><img src=\\"image.png\\">
+
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link ReL=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" HREF=\\"./style.file.css\\">
+<link rel=\\"alternate stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"   text/css   \\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/html\\" href=\\"./style.file.css\\">
+<link rel=\\"stylesheet\\" TYPE=\\"text/html\\" href=\\"./style.file.css\\">
+<link rel=\\"icon\\" href=\\"./image.png\\" sizes=\\"16x16\\">
+<link rel=\\"apple-touch-icon\\" href=\\"./image.png\\">
+<link rel=\\"apple-touch-startup-image\\" href=\\"./image.png\\">
+<link rel=\\"shortlink\\" type=\\"text/html\\" href=\\"http://flic.kr/p/6XuLyD\\">
+<link type=\\"text/css\\" href=\\"./style.file.css\\">
+<link rel=\\"pingback\\" href=\\"http://bob.example.net/xmlrpcserver\\">
+<a rel=\\"author\\" href=\\"./simple.html\\">link text</a>
+
+<a href=\\"tel:1-408-555-5555\\">Call me</a>
+
+<!----><img src=\\"image.png\\">-->
+<!--><img src=\\"image.png\\">-->
+<!--<!--<img src=\\"image.png\\">-->
+<!--<img src=\\"image.png\\">-->
+
+<!--Text < img src=\\"image.png\\" >
+Text <<img src=\\"image.png\\">
+Text ><img src=\\"image.png\\">-->
+
+<br>
+<br />
+
+&lt;div id = &quot;character&quot;&gt;
+&copy; 2007
+or
+&#169; 2007
+
+<br>
+
+<img src=\\"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\" alt=\\"Red dot\\" />
+<address>
+  Written by <img src=\\"mailto:webmaster@example.com\\">Jon Doe.<br>
+  Visit us at:<br>
+  Example.com<br>
+  Box 564, Disneyland<br>
+  USA
+</address>
+<img src=\\"chrome://settings\\">link</img>
+<img src=\\"skype:example123?chat\\">Start Chat</img>
+<img src=\\"foobar:test\\">Start Chat</img>
+<img src=\\"javascript:alert('Hello');\\">Start Chat</img>
+
+<img src=\\"   image.png   \\">
+<img src=\\"
+image.png
+\\">
+<img srcset=\\"   image.png   \\" src=\\"   image.png   \\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"
+image.png
+\\" src=\\"
+image.png
+\\" alt=\\"Elva dressed as a fairy\\">
+
+<img srcset=\\"#test\\" src=\\"#test\\" alt=\\"Elva dressed as a fairy\\">
+<img src=\\"image%20image.png\\" alt=\\"Test\\">
+
+<flag-icon src=\\"/webpack/public/path/image.png\\"></flag-icon>
+<MyStrangeTag13 src=\\"/webpack/public/path/image.png\\" alt=\\"Smiley face\\" />
+<MyStrangeTag13 src=\\"/webpack/public/path/image.png\\" alt=\\"Smiley face\\"> Test </MyStrangeTag13>
+<a- src=\\"/webpack/public/path/image.png\\"></a->
+<a-. src=\\"/webpack/public/path/image.png\\">test</a-.>
+<a-- src=\\"/webpack/public/path/image.png\\">test</a-->
+<aÀ-豈 src=\\"/webpack/public/path/image.png\\">test</aÀ-豈>
+<aÀ-Ⰰ src=\\"/webpack/public/path/image.png\\" />
+
+<INVALID_TAG_NAME src=\\"/webpack/public/path/image.png\\" />
+<invalid-CUSTOM-TAG src=\\"/webpack/public/path/image.png\\" />
+
+<p>Text</p>
+<p >Text</p>
+<p   >Text</p>
+
+<img src=\\"image.png\\" src=\\"image.png\\" />
+
+<script type=\\"module\\" src=\\"/webpack/public/path/module.file.js\\"></script>
+<script nomodule src=\\"/webpack/public/path/fallback.file.js\\"></script>
+<script type=\\"module\\">
+  function test() {}
+</script>
+<script>
+  function test() {}
+</script>
+
+<img src=image.png />
+<img src=\\"image image.png\\" />
+<img src='image image.png' />
+<img src=~aliasImageWithSpace />
+<img srcset=image.png />
+<img srcset=\\"image%20image.png\\" />
+<img srcset='image%20image.png' />
+<img srcset=~aliasImageWithSpace />
+<img srcset=\\"image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img src      =       image.png />
+<img src      =      ~aliasImageWithSpace      />
+<img src      =      \\"~aliasImageWithSpace\\"      />
+<img src      =      '~aliasImageWithSpace'      />
+
+<img src=\\"#hash\\" />
+<img src=\\"javascript:void(0)\\" />
+<img src='image.png#hash' />
+<img src=image.png#hash />
+<img src=image.png# />
+<img srcset=\\"image.png#hash\\" />
+<img srcset=\\"image.png#foo 480w, image.png#bar 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"image.png#baz\\" alt=\\"Elva dressed as a fairy\\">
+<img src=\\"#\\" alt=\\"test\\"/>
+<img src=\\"#\\" srcset=\\"#\\" alt=\\"test\\" />
+<img src=\\"###\\" srcset=\\"#\\" alt=\\"test\\" />
+<img src=\\"   #   \\" alt=\\"test\\"/>
+<img src=\\"
+
+
+#
+
+
+\\" alt=\\"test\\"/>
+<img src=
+
+
+       image.png
+
+
+/>
+
+<img data-srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" data-src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
+"
+`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags except img (testing filter option) tag is not specified: warnings 1`] = `Array []`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is empty: errors 1`] = `Array []`;
+
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is empty: module 1`] = `
 "// Imports
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
@@ -775,7 +1708,7 @@ var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first
 module.exports = code;"
 `;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is empty: result 1`] = `
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is empty: result 1`] = `
 "<!doctype html>
 
 <h1>My First Heading</h1>
@@ -1057,11 +1990,11 @@ image.png
 "
 `;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is empty: warnings 1`] = `Array []`;
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is empty: warnings 1`] = `Array []`;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is not specified: errors 1`] = `Array []`;
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is not specified: errors 1`] = `Array []`;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is not specified: module 1`] = `
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is not specified: module 1`] = `
 "// Imports
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
@@ -1096,7 +2029,7 @@ var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first
 module.exports = code;"
 `;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is not specified: result 1`] = `
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is not specified: result 1`] = `
 "<!doctype html>
 
 <h1>My First Heading</h1>
@@ -1378,11 +2311,11 @@ image.png
 "
 `;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is not specified: warnings 1`] = `Array []`;
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is not specified: warnings 1`] = `Array []`;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is specified to "*": errors 1`] = `Array []`;
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is specified to "*": errors 1`] = `Array []`;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is specified to "*": module 1`] = `
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is specified to "*": module 1`] = `
 "// Imports
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
@@ -1417,7 +2350,7 @@ var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first
 module.exports = code;"
 `;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is specified to "*": result 1`] = `
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is specified to "*": result 1`] = `
 "<!doctype html>
 
 <h1>My First Heading</h1>
@@ -1699,7 +2632,7 @@ image.png
 "
 `;
 
-exports[`'attributes' option should handle all src attributes in all HTML when tag is specified to "*": warnings 1`] = `Array []`;
+exports[`'attributes' option should handle all src attributes in all HTML tags when tag is specified to "*": warnings 1`] = `Array []`;
 
 exports[`'attributes' option should handle attributes with a "boolean" notation equals "true": errors 1`] = `Array []`;
 
