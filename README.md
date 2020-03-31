@@ -270,7 +270,7 @@ module.exports = {
 };
 ```
 
-If the tag name is not specified or assigned to the wild card `'*'` it will process all the tags.
+If the tag name is not specified or is an empty string it will process all the tags.
 
 > You can use your custom filter to specify html elements to be processed.
 
@@ -289,8 +289,6 @@ module.exports = {
           attributes: {
             list: [
               {
-                // Tag name
-                tag: '*', // or tag: ''
                 // Attribute name
                 attribute: 'src',
                 // Type of processing, can be `src` or `scrset`

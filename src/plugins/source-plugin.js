@@ -501,8 +501,7 @@ export default (options) =>
             // eslint-disable-next-line no-undefined
             element.tag === undefined ||
             // eslint-disable-next-line no-undefined
-            (element.tag !== undefined && !element.tag.length) ||
-            element.tag === '*') &&
+            (element.tag !== undefined && !element.tag.length)) &&
           element.attribute.toLowerCase() === attribute.toLowerCase() &&
           (element.filter
             ? element.filter(tag, attribute, attributes, resourcePath)
