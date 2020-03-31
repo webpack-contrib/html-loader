@@ -428,11 +428,16 @@ const defaultAttributes = [
         'manifest',
         'apple-touch-startup-image'
       ];
-      const relVal =
+      const relValues =
         typeof getAttributeValue(attributes, 'rel') !== 'undefined'
-          ? getAttributeValue(attributes, 'rel').toLowerCase()
-          : undefined;
-      if (!allowedRelAttributes.includes(relVal)) {
+          ? getAttributeValue(attributes, 'rel')
+              .toLowerCase()
+              .split(' ')
+          : [];
+      const includesAllowedAttr = allowedRelAttributes.some((attr) =>
+        relValues.includes(attr)
+      );
+      if (!includesAllowedAttr) {
         return false;
       }
 
@@ -442,7 +447,7 @@ const defaultAttributes = [
           .trim()
           .toLowerCase() !== 'text/css' &&
         attributes.rel &&
-        relVal === 'stylesheet'
+        relValues.includes('stylesheet')
       ) {
         return false;
       }
@@ -459,11 +464,17 @@ const defaultAttributes = [
         'msapplication-TileImage',
         'msapplication-config'
       ];
-      const nameVal =
+      const nameValues =
         typeof getAttributeValue(attributes, 'name') !== 'undefined'
-          ? getAttributeValue(attributes, 'name').toLowerCase()
-          : undefined;
-      if (!allowedNameAttributes.includes(nameVal)) {
+          ? getAttributeValue(attributes, 'name')
+              .toLowerCase()
+              .split(' ')
+          : [];
+
+      const includesAllowedName = allowedNameAttributes.some((name) =>
+        nameValues.includes(name)
+      );
+      if (!includesAllowedName) {
         return false;
       }
 
