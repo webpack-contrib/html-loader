@@ -495,10 +495,8 @@ export default (options) =>
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
       return attributeList.find(
         (element) =>
-          // eslint-disable-next-line no-undefined
-          (element.tag === undefined ||
-            // eslint-disable-next-line no-undefined
-            (element.tag !== undefined &&
+          (typeof element.tag === 'undefined' ||
+            (typeof element.tag !== 'undefined' &&
               element.tag.toLowerCase() === tag.toLowerCase())) &&
           element.attribute.toLowerCase() === attribute.toLowerCase() &&
           (element.filter
