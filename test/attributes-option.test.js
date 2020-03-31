@@ -193,30 +193,6 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should throw exception when tag is empty', async () => {
-    const compiler = getCompiler('simple.js', {
-      attributes: {
-        list: [
-          {
-            tag: '',
-            attribute: 'src',
-            type: 'src',
-          },
-        ],
-      },
-    });
-
-    const stats = await compile(compiler);
-    try {
-      getModuleSource('./simple.html', stats);
-      execute(readAsset('main.bundle.js', compiler, stats));
-      expect(getWarnings(stats)).toMatchSnapshot('warnings');
-      expect(getErrors(stats)).toMatchSnapshot('errors');
-    } catch (e) {
-      expect(e.message.search('ValidationError')).not.toEqual(-1);
-    }
-  });
-
   it('should handle all src attributes in all HTML tags except img (testing filter option) tag is undefined', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {

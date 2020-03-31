@@ -75,6 +75,15 @@ describe('validate options', () => {
         {
           list: [
             {
+              tag: '',
+              attribute: 'src',
+              type: 'src',
+            },
+          ],
+        },
+        {
+          list: [
+            {
               tag: 'img',
               attribute: 'src',
               type: 'src',
