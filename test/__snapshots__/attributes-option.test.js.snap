@@ -1974,8 +1974,6 @@ image.png
 
 exports[`'attributes' option should not handle attributes with a "boolean" notation equals "false": warnings 1`] = `Array []`;
 
-exports[`'attributes' option should throw exception when tag is empty: module 1`] = `"throw new Error(\\"Module build failed (from /home/islam/Desktop/html-loader/src/index.js):\\\\nValidationError: Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.\\\\n - options.attributes.list[0].tag should be an non-empty string.\\\\n    at validate (/home/islam/Desktop/html-loader/node_modules/schema-utils/dist/validate.js:85:11)\\\\n    at Object.htmlLoader (/home/islam/Desktop/html-loader/src/index.js:19:3)\\");"`;
-
 exports[`'attributes' option should work by default with CommonJS module syntax and ES module syntax from other loader: errors 1`] = `Array []`;
 
 exports[`'attributes' option should work by default with CommonJS module syntax and ES module syntax from other loader: module 1`] = `
