@@ -193,7 +193,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML tags when tag is empty', async () => {
+  it('should throw exception when tag is empty', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {
         list: [
@@ -205,14 +205,18 @@ describe("'attributes' option", () => {
         ],
       },
     });
-    const stats = await compile(compiler);
 
+    const stats = await compile(compiler);
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
+    try {
+      expect(
+        execute(readAsset('main.bundle.js', compiler, stats))
+      ).toMatchSnapshot('result');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+    } catch (e) {
+      expect(e.message.search('ValidationError')).not.toEqual(-1);
+    }
   });
 
   it('should handle all src attributes in all HTML tags except img (testing filter option) tag is undefined', async () => {
@@ -220,32 +224,6 @@ describe("'attributes' option", () => {
       attributes: {
         list: [
           {
-            attribute: 'src',
-            type: 'src',
-            // eslint-disable-next-line no-unused-vars
-            filter: (tag, attribute, attributes) => {
-              return tag.toLowerCase() !== 'img';
-            },
-          },
-        ],
-      },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
-  it('should handle all src attributes in all HTML tags except img (testing filter option) tag is an empty string', async () => {
-    const compiler = getCompiler('simple.js', {
-      attributes: {
-        list: [
-          {
-            tag: '',
             attribute: 'src',
             type: 'src',
             // eslint-disable-next-line no-unused-vars
