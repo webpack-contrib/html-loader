@@ -207,11 +207,9 @@ describe("'attributes' option", () => {
     });
 
     const stats = await compile(compiler);
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
     try {
-      expect(
-        execute(readAsset('main.bundle.js', compiler, stats))
-      ).toMatchSnapshot('result');
+      getModuleSource('./simple.html', stats);
+      execute(readAsset('main.bundle.js', compiler, stats));
       expect(getWarnings(stats)).toMatchSnapshot('warnings');
       expect(getErrors(stats)).toMatchSnapshot('errors');
     } catch (e) {

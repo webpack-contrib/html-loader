@@ -270,7 +270,7 @@ module.exports = {
 };
 ```
 
-If the tag name is not specified or is an empty string it will process all the tags.
+If the tag name is not specified it will process all the tags.
 
 > You can use your custom filter to specify html elements to be processed.
 
