@@ -495,7 +495,14 @@ export default (options) =>
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
       return attributeList.find(
         (element) =>
-          element.tag.toLowerCase() === tag.toLowerCase() &&
+          // eslint-disable-next-line no-undefined
+          ((element.tag !== undefined &&
+            element.tag.toLowerCase() === tag.toLowerCase()) ||
+            // eslint-disable-next-line no-undefined
+            element.tag === undefined ||
+            // eslint-disable-next-line no-undefined
+            (element.tag !== undefined && !element.tag.length) ||
+            element.tag === '*') &&
           element.attribute.toLowerCase() === attribute.toLowerCase() &&
           (element.filter
             ? element.filter(tag, attribute, attributes, resourcePath)

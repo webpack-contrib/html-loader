@@ -172,6 +172,71 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should handle all src attributes in all HTML when tag is specified to "*"', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          {
+            tag: '*',
+            attribute: 'src',
+            type: 'src',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle all src attributes in all HTML when tag is not specified', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          {
+            attribute: 'src',
+            type: 'src',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should handle all src attributes in all HTML when tag is empty', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          {
+            tag: '',
+            attribute: 'src',
+            type: 'src',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it('should work by default with CommonJS module syntax', async () => {
     const compiler = getCompiler(
       'simple.js',
