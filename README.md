@@ -392,6 +392,7 @@ module.exports = {
 ```
 
 You can also set the `preprocessor` option as an Asynchronous Function (`async Function`) instance.
+
 For example :
 
 **webpack.config.js**
