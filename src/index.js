@@ -13,7 +13,7 @@ import {
 
 import schema from './options.json';
 
-export default function htmlLoader(content) {
+export default async function htmlLoader(content) {
   const options = getOptions(this);
 
   validateOptions(schema, options, {
@@ -23,7 +23,7 @@ export default function htmlLoader(content) {
 
   if (options.preprocessor) {
     // eslint-disable-next-line no-param-reassign
-    content = options.preprocessor(content, this);
+    content = await options.preprocessor(content, this);
   }
 
   const plugins = [];
