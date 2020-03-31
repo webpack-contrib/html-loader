@@ -50,12 +50,12 @@ module.exports = {
 
 ## Options
 
-|                Name                 |            Type             |                   Default                    |                   Description                    |
-| :---------------------------------: | :-------------------------: | :------------------------------------------: | :----------------------------------------------: |
-|   **[`attributes`](#attributes)**   |     `{Boolean\|Object}`     |                    `true`                    |       Enables/Disables attributes handling       |
-| **[`preprocessor`](#preprocessor)** | `{Function\|AsyncFunction}` |                 `undefined`                  | Allows pre-processing of content before handling |
-|     **[`minimize`](#minimize)**     |     `{Boolean\|Object}`     | `true` in production mode, otherwise `false` |       Tell `html-loader` to minimize HTML        |
-|     **[`esModule`](#esmodule)**     |         `{Boolean}`         |                   `false`                    |              Use ES modules syntax               |
+|                Name                 |        Type         |                   Default                    |                   Description                    |
+| :---------------------------------: | :-----------------: | :------------------------------------------: | :----------------------------------------------: |
+|   **[`attributes`](#attributes)**   | `{Boolean\|Object}` |                    `true`                    |       Enables/Disables attributes handling       |
+| **[`preprocessor`](#preprocessor)** |    `{Function}`     |                 `undefined`                  | Allows pre-processing of content before handling |
+|     **[`minimize`](#minimize)**     | `{Boolean\|Object}` | `true` in production mode, otherwise `false` |       Tell `html-loader` to minimize HTML        |
+|     **[`esModule`](#esmodule)**     |     `{Boolean}`     |                   `false`                    |              Use ES modules syntax               |
 
 ### `attributes`
 
@@ -336,7 +336,7 @@ module.exports = {
 
 ### `preprocessor`
 
-Type: `Function|AsyncFunction`
+Type: `Function`
 Default: `undefined`
 
 Allows pre-processing of content before handling.
@@ -391,9 +391,8 @@ module.exports = {
 };
 ```
 
-#### `AsyncFunction`
-
-You can set the `preprocessor` option as an Asynchronous Function (`AsyncFunction`) instance.
+You can also set the `preprocessor` option as an Asynchronous Function (`async Function`) instance.
+For example :
 
 **webpack.config.js**
 
