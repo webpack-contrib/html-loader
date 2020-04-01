@@ -15,6 +15,11 @@ exports[`validate options should throw an error on the "attributes" option with 
  - options.attributes.list should be an non-empty array."
 `;
 
+exports[`validate options should throw an error on the "attributes" option with "{"list":[{"tag":"","attribute":"src","type":"src"}]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.attributes.list[0].tag should be an non-empty string."
+`;
+
 exports[`validate options should throw an error on the "attributes" option with "{"list":[{"tag":"img","attribute":"src","type":"src","filter":"test"}]}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.attributes.list[0].filter should be an instance of function."

@@ -9,6 +9,14 @@ describe('validate options', () => {
         {
           list: [
             {
+              attribute: 'src',
+              type: 'src',
+            },
+          ],
+        },
+        {
+          list: [
+            {
               tag: 'img',
               attribute: 'src',
               type: 'src',
@@ -69,6 +77,15 @@ describe('validate options', () => {
             {
               tag: 'img',
               attribute: 'src',
+            },
+          ],
+        },
+        {
+          list: [
+            {
+              tag: '',
+              attribute: 'src',
+              type: 'src',
             },
           ],
         },

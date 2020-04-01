@@ -19,7 +19,7 @@
           "instanceof": "Function"
         }
       },
-      "required": ["tag", "attribute", "type"],
+      "required": ["attribute", "type"],
       "additionalProperties": false
     },
     "AttributeList": {

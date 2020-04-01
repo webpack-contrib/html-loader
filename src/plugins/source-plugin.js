@@ -495,7 +495,9 @@ export default (options) =>
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
       return attributeList.find(
         (element) =>
-          element.tag.toLowerCase() === tag.toLowerCase() &&
+          (typeof element.tag === 'undefined' ||
+            (typeof element.tag !== 'undefined' &&
+              element.tag.toLowerCase() === tag.toLowerCase())) &&
           element.attribute.toLowerCase() === attribute.toLowerCase() &&
           (element.filter
             ? element.filter(tag, attribute, attributes, resourcePath)
