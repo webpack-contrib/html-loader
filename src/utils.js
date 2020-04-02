@@ -74,11 +74,15 @@ export function getModuleCode(html, replaceableMessages) {
   let replacersCode = '';
 
   for (const item of replaceableMessages) {
-    const { importName, replacerName, unquoted } = item;
+    const { importName, replacerName, unquoted, hash } = item;
 
-    replacersCode += `var ${replacerName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${
-      unquoted ? ', true' : ''
-    });\n`;
+    const getUrlOptions = []
+      .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
+      .concat(unquoted ? 'maybeNeedQuotes: true' : []);
+    const preparedOptions =
+      getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
+
+    replacersCode += `var ${replacerName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
 
     code = code.replace(
       new RegExp(replacerName, 'g'),

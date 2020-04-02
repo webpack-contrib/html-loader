@@ -627,16 +627,13 @@ export default (options) =>
       const { startIndex, unquoted } = source;
       let { value } = source;
       const URLObject = parse(value);
+      const { hash } = URLObject;
 
-      if (URLObject.hash) {
-        const { hash } = URLObject;
-
+      if (hash) {
         URLObject.hash = null;
         source.value = URLObject.format();
 
-        if (hash) {
-          value = value.slice(0, value.length - hash.length);
-        }
+        value = value.slice(0, value.length - hash.length);
       }
 
       const importKey = urlToRequest(decodeURIComponent(source.value), root);
@@ -656,7 +653,11 @@ export default (options) =>
         });
       }
 
-      const replacerKey = JSON.stringify({ importKey, unquoted });
+      const replacerKey = JSON.stringify({
+        importKey,
+        unquoted,
+        hash,
+      });
       let replacerName = replacersMap.get(replacerKey);
 
       if (!replacerName) {
@@ -667,6 +668,7 @@ export default (options) =>
           type: 'replacer',
           value: {
             type: 'source',
+            hash,
             importName,
             replacerName,
             unquoted,
@@ -674,13 +676,15 @@ export default (options) =>
         });
       }
 
+      const valueLength = hash ? value.length + hash.length : value.length;
+
       // eslint-disable-next-line no-param-reassign
       html =
         html.substr(0, startIndex + offset) +
         replacerName +
-        html.substr(startIndex + value.length + offset);
+        html.substr(startIndex + valueLength + offset);
 
-      offset += replacerName.length - value.length;
+      offset += replacerName.length - valueLength;
     }
 
     return html;
