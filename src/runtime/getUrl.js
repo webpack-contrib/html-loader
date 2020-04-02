@@ -1,4 +1,4 @@
-module.exports = (url, maybeNeedQuotes) => {
+module.exports = (url, { maybeNeedQuotes, hash } = {}) => {
   // eslint-disable-next-line no-underscore-dangle, no-param-reassign
   url = url && url.__esModule ? url.default : url;
 
@@ -7,8 +7,14 @@ module.exports = (url, maybeNeedQuotes) => {
   }
 
   if (maybeNeedQuotes && /[\t\n\f\r "'=<>`]/.test(url)) {
+    if (hash) {
+      return `"${url}${hash}"`;
+    }
     return `"${url}"`;
   }
 
+  if (hash) {
+    return `${url}${hash}`;
+  }
   return url;
 };

@@ -633,6 +633,7 @@ export default (options) =>
 
         URLObject.hash = null;
         source.value = URLObject.format();
+        source.hash = hash;
 
         if (hash) {
           value = value.slice(0, value.length - hash.length);
@@ -656,7 +657,11 @@ export default (options) =>
         });
       }
 
-      const replacerKey = JSON.stringify({ importKey, unquoted });
+      const replacerKey = JSON.stringify({
+        importKey,
+        unquoted,
+        hash: source.hash,
+      });
       let replacerName = replacersMap.get(replacerKey);
 
       if (!replacerName) {
@@ -667,6 +672,7 @@ export default (options) =>
           type: 'replacer',
           value: {
             type: 'source',
+            hash: source.hash,
             importName,
             replacerName,
             unquoted,
@@ -674,13 +680,17 @@ export default (options) =>
         });
       }
 
+      const valueLength = source.hash
+        ? value.length + source.hash.length
+        : value.length;
+
       // eslint-disable-next-line no-param-reassign
       html =
         html.substr(0, startIndex + offset) +
         replacerName +
-        html.substr(startIndex + value.length + offset);
+        html.substr(startIndex + valueLength + offset);
 
-      offset += replacerName.length - value.length;
+      offset += replacerName.length - valueLength;
     }
 
     return html;
