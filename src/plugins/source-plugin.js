@@ -424,9 +424,8 @@ const defaultAttributes = [
 
       if (
         attributes.type &&
-        getAttributeValue(attributes, 'type')
-          .trim()
-          .toLowerCase() !== 'text/css'
+        getAttributeValue(attributes, 'type').trim().toLowerCase() !==
+          'text/css'
       ) {
         return false;
       }

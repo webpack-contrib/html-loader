@@ -91,9 +91,7 @@ describe("'process' option", () => {
         let result;
 
         try {
-          result = posthtml()
-            .use(plugin)
-            .process(content, { sync: true });
+          result = posthtml().use(plugin).process(content, { sync: true });
         } catch (error) {
           loaderContext.emitError(error);
 
