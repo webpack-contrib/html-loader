@@ -627,17 +627,13 @@ export default (options) =>
       const { startIndex, unquoted } = source;
       let { value } = source;
       const URLObject = parse(value);
+      const { hash } = URLObject;
 
-      if (URLObject.hash) {
-        const { hash } = URLObject;
-
+      if (hash) {
         URLObject.hash = null;
         source.value = URLObject.format();
-        source.hash = hash;
 
-        if (hash) {
-          value = value.slice(0, value.length - hash.length);
-        }
+        value = value.slice(0, value.length - hash.length);
       }
 
       const importKey = urlToRequest(decodeURIComponent(source.value), root);
@@ -660,7 +656,7 @@ export default (options) =>
       const replacerKey = JSON.stringify({
         importKey,
         unquoted,
-        hash: source.hash,
+        hash,
       });
       let replacerName = replacersMap.get(replacerKey);
 
@@ -672,7 +668,7 @@ export default (options) =>
           type: 'replacer',
           value: {
             type: 'source',
-            hash: source.hash,
+            hash,
             importName,
             replacerName,
             unquoted,
@@ -680,9 +676,7 @@ export default (options) =>
         });
       }
 
-      const valueLength = source.hash
-        ? value.length + source.hash.length
-        : value.length;
+      const valueLength = hash ? value.length + hash.length : value.length;
 
       // eslint-disable-next-line no-param-reassign
       html =
