@@ -29,7 +29,7 @@
     "lint": "npm-run-all -l -p \"lint:**\"",
     "test:only": "cross-env NODE_ENV=test jest",
     "test:watch": "npm run test:only -- --watch",
-    "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
+    "test:coverage": "npm run test:only -- --coverage",
     "pretest": "npm run lint",
     "test": "npm run test:coverage",
     "prepare": "npm run build",
