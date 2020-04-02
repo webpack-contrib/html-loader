@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/webpack-contrib/html-loader/compare/v1.0.0...v1.1.0) (2020-04-02)
+
+
+### Features
+
+* added support for an async functions to the `preprocessor` option ([#272](https://github.com/webpack-contrib/html-loader/issues/272)) ([e59324b](https://github.com/webpack-contrib/html-loader/commit/e59324b929557a9e1da5e1713748351cf37efdb1))
+* allowed to handle an attribute without a tag ([#273](https://github.com/webpack-contrib/html-loader/issues/273)) ([c0d6d5b](https://github.com/webpack-contrib/html-loader/commit/c0d6d5b9338af219a5cd81779ee2bcd9254420ed))
+
+
+### Bug Fixes
+
+* hash processing improved ([#275](https://github.com/webpack-contrib/html-loader/issues/275)) ([74d2c60](https://github.com/webpack-contrib/html-loader/commit/74d2c607c519bdaad995a51e74b6317c8cfaad14))
+
 ## [1.0.0](https://github.com/ryanclark/html-loader/compare/v0.5.5...v1.0.0) (2020-03-19)
 
 
