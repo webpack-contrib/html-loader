@@ -10,6 +10,8 @@ import {
   readAsset,
 } from './helpers';
 
+jest.setTimeout(10000);
+
 describe("'attributes' option", () => {
   it('should work by default', async () => {
     const compiler = getCompiler('simple.js');
