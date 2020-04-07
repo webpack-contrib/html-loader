@@ -418,14 +418,39 @@ const defaultAttributes = [
     attribute: 'href',
     type: 'src',
     filter: (tag, attribute, attributes) => {
-      if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
+      const allowedRelAttributes = ['stylesheet','shortcut icon','mask-icon','icon','apple-touch-icon','apple-touch-icon-precomposed','apple-touch-startup-image'];
+      if (!allowedRelAttributes.includes(getAttributeValue(attributes, 'rel'))) {
         return false;
       }
 
       if (
         attributes.type &&
-        getAttributeValue(attributes, 'type').trim().toLowerCase() !==
-          'text/css'
+        getAttributeValue(attributes, 'type')
+          .trim()
+          .toLowerCase() !== 'text/css' && attributes.rel &&
+          getAttributeValue(attributes, 'rel') === 'stylesheet'
+      ) {
+        return false;
+      }
+
+      return true;
+    },
+  },
+  {
+    tag: 'meta',
+    attribute: 'content',
+    type: 'src',
+    filter: (tag, attribute, attributes) => {
+      const allowedNameAttributes = ['msapplication-TileImage']
+      if (!allowedNameAttributes.includes(getAttributeValue(attributes, 'name'))) {
+        return false;
+      }
+
+      if (
+        attributes.content &&
+        getAttributeValue(attributes, 'content')
+          .trim()
+          .toLowerCase() === 'none'
       ) {
         return false;
       }
@@ -475,7 +500,7 @@ export default (options) =>
     let attributeList;
     let maybeUrlFilter;
     let root;
-
+    console.log(options)
     if (
       typeof options.attributes === 'undefined' ||
       options.attributes === true
