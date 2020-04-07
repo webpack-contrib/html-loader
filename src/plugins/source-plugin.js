@@ -391,35 +391,46 @@ const defaultAttributes = [
   {
     tag: 'audio',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'embed',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'img',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'img',
     attribute: 'srcset',
-    type: 'srcset',
+    type: 'srcset'
   },
   {
     tag: 'input',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'link',
     attribute: 'href',
     type: 'src',
     filter: (tag, attribute, attributes) => {
-      const allowedRelAttributes = ['stylesheet','shortcut icon','mask-icon','icon','apple-touch-icon','apple-touch-icon-precomposed','apple-touch-startup-image'];
-      if (!allowedRelAttributes.includes(getAttributeValue(attributes, 'rel'))) {
+      const allowedRelAttributes = [
+        'stylesheet',
+        'shortcut icon',
+        'mask-icon',
+        'icon',
+        'apple-touch-icon',
+        'apple-touch-icon-precomposed',
+        'manifest',
+        'apple-touch-startup-image'
+      ];
+      if (
+        !allowedRelAttributes.includes(getAttributeValue(attributes, 'rel'))
+      ) {
         return false;
       }
 
@@ -427,22 +438,28 @@ const defaultAttributes = [
         attributes.type &&
         getAttributeValue(attributes, 'type')
           .trim()
-          .toLowerCase() !== 'text/css' && attributes.rel &&
-          getAttributeValue(attributes, 'rel') === 'stylesheet'
+          .toLowerCase() !== 'text/css' &&
+        attributes.rel &&
+        getAttributeValue(attributes, 'rel') === 'stylesheet'
       ) {
         return false;
       }
 
       return true;
-    },
+    }
   },
   {
     tag: 'meta',
     attribute: 'content',
     type: 'src',
     filter: (tag, attribute, attributes) => {
-      const allowedNameAttributes = ['msapplication-TileImage']
-      if (!allowedNameAttributes.includes(getAttributeValue(attributes, 'name'))) {
+      const allowedNameAttributes = [
+        'msapplication-TileImage',
+        'msapplication-config'
+      ];
+      if (
+        !allowedNameAttributes.includes(getAttributeValue(attributes, 'name'))
+      ) {
         return false;
       }
 
@@ -456,51 +473,51 @@ const defaultAttributes = [
       }
 
       return true;
-    },
+    }
   },
   {
     tag: 'object',
     attribute: 'data',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'script',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'source',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'source',
     attribute: 'srcset',
-    type: 'srcset',
+    type: 'srcset'
   },
   {
     tag: 'track',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'video',
     attribute: 'poster',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'video',
     attribute: 'src',
-    type: 'src',
-  },
+    type: 'src'
+  }
 ];
 
-export default (options) =>
+export default options =>
   function process(html, result) {
     let attributeList;
     let maybeUrlFilter;
     let root;
-    console.log(options)
+
     if (
       typeof options.attributes === 'undefined' ||
       options.attributes === true
@@ -513,12 +530,12 @@ export default (options) =>
     }
 
     const sources = [];
-    const urlFilter = getFilter(maybeUrlFilter, (value) =>
+    const urlFilter = getFilter(maybeUrlFilter, value =>
       isUrlRequest(value, root)
     );
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
       return attributeList.find(
-        (element) =>
+        element =>
           (typeof element.tag === 'undefined' ||
             (typeof element.tag !== 'undefined' &&
               element.tag.toLowerCase() === tag.toLowerCase())) &&
@@ -541,11 +558,11 @@ export default (options) =>
           this.attributesMeta[name] = { startIndex, unquoted };
         },
         onopentag(tag, attributes) {
-          Object.keys(attributes).forEach((attribute) => {
+          Object.keys(attributes).forEach(attribute => {
             const value = attributes[attribute];
             const {
               startIndex: valueStartIndex,
-              unquoted,
+              unquoted
             } = this.attributesMeta[attribute];
 
             const foundAttribute = getAttribute(
@@ -574,13 +591,13 @@ export default (options) =>
                     parser.startIndex,
                     parser.endIndex,
                     html
-                  ),
+                  )
                 });
 
                 return;
               }
 
-              sourceSet.forEach((sourceItem) => {
+              sourceSet.forEach(sourceItem => {
                 const { source } = sourceItem;
 
                 if (!urlFilter(attribute, source.value, resourcePath)) {
@@ -607,7 +624,7 @@ export default (options) =>
                   parser.startIndex,
                   parser.endIndex,
                   html
-                ),
+                )
               });
 
               return;
@@ -627,16 +644,16 @@ export default (options) =>
         onerror(error) {
           result.messages.push({
             type: 'error',
-            value: error,
+            value: error
           });
-        },
+        }
       },
       {
         decodeEntities: false,
         lowerCaseTags: false,
         lowerCaseAttributeNames: false,
         recognizeCDATA: true,
-        recognizeSelfClosing: true,
+        recognizeSelfClosing: true
       }
     );
 
@@ -672,15 +689,15 @@ export default (options) =>
           value: {
             type: 'source',
             source: importKey,
-            importName,
-          },
+            importName
+          }
         });
       }
 
       const replacerKey = JSON.stringify({
         importKey,
         unquoted,
-        hash,
+        hash
       });
       let replacerName = replacersMap.get(replacerKey);
 
@@ -695,8 +712,8 @@ export default (options) =>
             hash,
             importName,
             replacerName,
-            unquoted,
-          },
+            unquoted
+          }
         });
       }
 

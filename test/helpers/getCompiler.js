@@ -14,7 +14,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
       filename: '[name].bundle.js',
       chunkFilename: '[name].chunk.js',
       publicPath: '/webpack/public/path/',
-      library: '___TEST___',
+      library: '___TEST___'
     },
     module: {
       rules: [
@@ -23,34 +23,34 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           rules: [
             {
               loader: path.resolve(__dirname, '../../src'),
-              options: loaderOptions || {},
-            },
-          ],
+              options: loaderOptions || {}
+            }
+          ]
         },
         {
-          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp)$/i,
+          test: /\.(png|jpg|gif|svg|eot|webmanifest|xml|ttf|woff|woff2|ogg|pdf|vtt|webp)$/i,
           loader: 'file-loader',
-          options: { name: '[name].[ext]' },
+          options: { name: '[name].[ext]' }
         },
         {
           test: /\.file.css$/i,
           rules: [
             {
               loader: 'file-loader',
-              options: { name: '[name].[ext]' },
-            },
-          ],
+              options: { name: '[name].[ext]' }
+            }
+          ]
         },
         {
           test: /\.file.js$/i,
           rules: [
             {
               loader: 'file-loader',
-              options: { name: '[name].[ext]' },
-            },
-          ],
-        },
-      ],
+              options: { name: '[name].[ext]' }
+            }
+          ]
+        }
+      ]
     },
     resolve: {
       alias: {
@@ -58,11 +58,11 @@ export default (fixture, loaderOptions = {}, config = {}) => {
         aliasImageWithSpace: path.resolve(
           __dirname,
           '../fixtures/image image.png'
-        ),
-      },
+        )
+      }
     },
     plugins: [],
-    ...config,
+    ...config
   };
 
   const compiler = webpack(fullConfig);

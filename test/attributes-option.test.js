@@ -7,7 +7,7 @@ import {
   getErrors,
   getModuleSource,
   getWarnings,
-  readAsset,
+  readAsset
 } from './helpers';
 
 describe("'attributes' option", () => {
@@ -53,7 +53,7 @@ describe("'attributes' option", () => {
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
     expect(
-      console.log(execute(readAsset('main.bundle.js', compiler, stats)))
+      execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
@@ -61,7 +61,7 @@ describe("'attributes' option", () => {
 
   it('should work with an empty "object" notations', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: {},
+      attributes: {}
     });
     const stats = await compile(compiler);
 
@@ -80,73 +80,73 @@ describe("'attributes' option", () => {
           {
             tag: 'img',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'img',
             attribute: 'data-src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'img',
             attribute: 'data-srcset',
-            type: 'srcset',
+            type: 'srcset'
           },
           {
             tag: 'source',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'source',
             attribute: 'srcset',
-            type: 'srcset',
+            type: 'srcset'
           },
           {
             tag: 'flag-icon',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'MyStrangeTag13',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'a-',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'a-.',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'a--',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'aÀ-豈',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'aÀ-Ⰰ',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'INVALID_TAG_NAME',
             attribute: 'src',
-            type: 'src',
+            type: 'src'
           },
           {
             tag: 'invalid-CUSTOM-TAG',
             attribute: 'src',
-            type: 'src',
-          },
+            type: 'src'
+          }
         ],
         urlFilter: (attribute, value, resourcePath) => {
           expect(typeof attribute).toBe('string');
@@ -159,8 +159,8 @@ describe("'attributes' option", () => {
 
           return true;
         },
-        root: '.',
-      },
+        root: '.'
+      }
     });
     const stats = await compile(compiler);
 
@@ -178,10 +178,10 @@ describe("'attributes' option", () => {
         list: [
           {
             attribute: 'src',
-            type: 'src',
-          },
-        ],
-      },
+            type: 'src'
+          }
+        ]
+      }
     });
     const stats = await compile(compiler);
 
@@ -203,10 +203,10 @@ describe("'attributes' option", () => {
             // eslint-disable-next-line no-unused-vars
             filter: (tag, attribute, attributes) => {
               return tag.toLowerCase() !== 'img';
-            },
-          },
-        ],
-      },
+            }
+          }
+        ]
+      }
     });
     const stats = await compile(compiler);
 
@@ -230,17 +230,17 @@ describe("'attributes' option", () => {
               rules: [
                 {
                   loader: path.resolve(__dirname, '../src'),
-                  options: { esModule: false },
-                },
-              ],
+                  options: { esModule: false }
+                }
+              ]
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
+              test: /\.(png|jpg|gif|svg|eot|webmanifest|xml|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
               loader: 'file-loader',
-              options: { esModule: false, name: '[name].[ext]' },
-            },
-          ],
-        },
+              options: { esModule: false, name: '[name].[ext]' }
+            }
+          ]
+        }
       }
     );
     const stats = await compile(compiler);
@@ -265,17 +265,17 @@ describe("'attributes' option", () => {
               rules: [
                 {
                   loader: path.resolve(__dirname, '../src'),
-                  options: { esModule: true },
-                },
-              ],
+                  options: { esModule: true }
+                }
+              ]
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
+              test: /\.(png|jpg|gif|svg|eot|webmanifest|xml|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
               loader: 'file-loader',
-              options: { esModule: true, name: '[name].[ext]' },
-            },
-          ],
-        },
+              options: { esModule: true, name: '[name].[ext]' }
+            }
+          ]
+        }
       }
     );
     const stats = await compile(compiler);
@@ -300,17 +300,17 @@ describe("'attributes' option", () => {
               rules: [
                 {
                   loader: path.resolve(__dirname, '../src'),
-                  options: { esModule: true },
-                },
-              ],
+                  options: { esModule: true }
+                }
+              ]
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
+              test: /\.(png|jpg|gif|svg|eot|webmanifest|xml|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
               loader: 'file-loader',
-              options: { esModule: false, name: '[name].[ext]' },
-            },
-          ],
-        },
+              options: { esModule: false, name: '[name].[ext]' }
+            }
+          ]
+        }
       }
     );
     const stats = await compile(compiler);
@@ -335,17 +335,17 @@ describe("'attributes' option", () => {
               rules: [
                 {
                   loader: path.resolve(__dirname, '../src'),
-                  options: { esModule: false },
-                },
-              ],
+                  options: { esModule: false }
+                }
+              ]
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
+              test: /\.(png|jpg|gif|svg|eot|webmanifest|xml|ttf|woff|woff2|ogg|pdf|vtt|css)$/i,
               loader: 'file-loader',
-              options: { esModule: true, name: '[name].[ext]' },
-            },
-          ],
-        },
+              options: { esModule: true, name: '[name].[ext]' }
+            }
+          ]
+        }
       }
     );
     const stats = await compile(compiler);

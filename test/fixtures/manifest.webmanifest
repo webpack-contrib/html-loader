@@ -1,0 +1,12 @@
+{
+  "name": "testHtmlLoader",
+  "short_name": "testHtmlLoader",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "test htm loader",
+  "icons": [{
+    "src": "./image.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }]
+}
