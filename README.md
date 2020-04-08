@@ -41,10 +41,10 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
-      },
-    ],
-  },
+        loader: 'html-loader'
+      }
+    ]
+  }
 };
 ```
 
@@ -96,11 +96,11 @@ module.exports = {
         loader: 'html-loader',
         options: {
           // Disables attributes processing
-          attributes: false,
-        },
-      },
-    ],
-  },
+          attributes: false
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -122,24 +122,28 @@ module.exports = {
           attributes: {
             list: [
               {
+                tag: 'style', // all tags with style attribute
+                type: 'src'
+              },
+              {
                 tag: 'img',
                 attribute: 'src',
-                type: 'src',
+                type: 'src'
               },
               {
                 tag: 'img',
                 attribute: 'srcset',
-                type: 'srcset',
+                type: 'srcset'
               },
               {
                 tag: 'img',
                 attribute: 'data-src',
-                type: 'src',
+                type: 'src'
               },
               {
                 tag: 'img',
                 attribute: 'data-srcset',
-                type: 'srcset',
+                type: 'srcset'
               },
               {
                 tag: 'link',
@@ -158,8 +162,8 @@ module.exports = {
                   }
 
                   return true;
-                },
-              },
+                }
+              }
               // More attributes
             ],
             urlFilter: (attribute, value, resourcePath) => {
@@ -173,12 +177,12 @@ module.exports = {
 
               return true;
             },
-            root: '.',
-          },
-        },
-      },
-    ],
-  },
+            root: '.'
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -209,7 +213,7 @@ module.exports = {
                 // Attribute name
                 attribute: 'src',
                 // Type of processing, can be `src` or `scrset`
-                type: 'src',
+                type: 'src'
               },
               {
                 // Tag name
@@ -217,17 +221,17 @@ module.exports = {
                 // Attribute name
                 attribute: 'srcset',
                 // Type of processing, can be `src` or `scrset`
-                type: 'srcset',
+                type: 'srcset'
               },
               {
                 tag: 'img',
                 attribute: 'data-src',
-                type: 'src',
+                type: 'src'
               },
               {
                 tag: 'img',
                 attribute: 'data-srcset',
-                type: 'srcset',
+                type: 'srcset'
               },
               {
                 // Tag name
@@ -259,14 +263,14 @@ module.exports = {
                   }
 
                   return true;
-                },
-              },
-            ],
-          },
-        },
-      },
-    ],
-  },
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -302,14 +306,14 @@ module.exports = {
 
                   // choose all HTML tags except img tag
                   return tag.toLowerCase() !== 'img';
-                },
-              },
-            ],
-          },
-        },
-      },
-    ],
-  },
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -340,12 +344,12 @@ module.exports = {
               }
 
               return true;
-            },
-          },
-        },
-      },
-    ],
-  },
+            }
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -368,12 +372,12 @@ module.exports = {
         loader: 'html-loader',
         options: {
           attributes: {
-            root: '.',
-          },
-        },
-      },
-    ],
-  },
+            root: '.'
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -417,7 +421,7 @@ module.exports = {
             try {
               result = Handlebars.compile(content)({
                 firstname: 'Value',
-                lastname: 'OtherValue',
+                lastname: 'OtherValue'
               });
             } catch (error) {
               loaderContext.emitError(error);
@@ -426,11 +430,11 @@ module.exports = {
             }
 
             return result;
-          },
-        },
-      },
-    ],
-  },
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -456,7 +460,7 @@ module.exports = {
             try {
               result = await Handlebars.compile(content)({
                 firstname: 'Value',
-                lastname: 'OtherValue',
+                lastname: 'OtherValue'
               });
             } catch (error) {
               await loaderContext.emitError(error);
@@ -465,11 +469,11 @@ module.exports = {
             }
 
             return result;
-          },
-        },
-      },
-    ],
-  },
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -505,11 +509,11 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          minimize: true,
-        },
-      },
-    ],
-  },
+          minimize: true
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -533,12 +537,12 @@ module.exports = {
         options: {
           minimize: {
             removeComments: false,
-            collapseWhitespace: false,
-          },
-        },
-      },
-    ],
-  },
+            collapseWhitespace: false
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -562,11 +566,11 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          esModule: true,
-        },
-      },
-    ],
-  },
+          esModule: true
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -581,12 +585,12 @@ module.exports = {
   module: {
     rules: [
       { test: /\.jpg$/, loader: 'file-loader' },
-      { test: /\.png$/, loader: 'url-loader' },
-    ],
+      { test: /\.png$/, loader: 'url-loader' }
+    ]
   },
   output: {
-    publicPath: 'http://cdn.example.com/[hash]/',
-  },
+    publicPath: 'http://cdn.example.com/[hash]/'
+  }
 };
 ```
 
@@ -667,28 +671,28 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
+        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader']
       },
       {
         test: /\.js$/i,
         exclude: /\.file.js$/i,
-        loader: 'babel-loader',
+        loader: 'babel-loader'
       },
       {
         test: /\.file.js$/i,
-        loader: 'file-loader',
+        loader: 'file-loader'
       },
       {
         test: /\.css$/i,
         exclude: /\.file.css$/i,
-        loader: 'css-loader',
+        loader: 'css-loader'
       },
       {
         test: /\.file.css$/i,
-        loader: 'file-loader',
-      },
-    ],
-  },
+        loader: 'file-loader'
+      }
+    ]
+  }
 };
 ```
 
@@ -749,7 +753,7 @@ module.exports = {
             try {
               result = Handlebars.compile(content)({
                 firstname: 'Value',
-                lastname: 'OtherValue',
+                lastname: 'OtherValue'
               });
             } catch (error) {
               loaderContext.emitError(error);
@@ -758,11 +762,11 @@ module.exports = {
             }
 
             return result;
-          },
-        },
-      },
-    ],
-  },
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -793,7 +797,9 @@ module.exports = {
             let result;
 
             try {
-              result = posthtml().use(plugin).process(content, { sync: true });
+              result = posthtml()
+                .use(plugin)
+                .process(content, { sync: true });
             } catch (error) {
               loaderContext.emitError(error);
 
@@ -801,11 +807,11 @@ module.exports = {
             }
 
             return result.html;
-          },
-        },
-      },
-    ],
-  },
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
@@ -832,10 +838,10 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
-      },
-    ],
-  },
+        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader']
+      }
+    ]
+  }
 };
 ```
 

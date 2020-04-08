@@ -368,7 +368,6 @@ function parseSrc(input) {
   while (isASCIIWhitespace(value.substring(value.length - 1, value.length))) {
     value = value.substring(0, value.length - 1);
   }
-
   if (!value) {
     throw new Error('Must be non-empty');
   }
@@ -389,29 +388,33 @@ function getAttributeValue(attributes, name) {
 
 const defaultAttributes = [
   {
+    attribute: 'style',
+    type: 'src'
+  },
+  {
     tag: 'audio',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'embed',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'img',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'img',
     attribute: 'srcset',
-    type: 'srcset',
+    type: 'srcset'
   },
   {
     tag: 'input',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'link',
@@ -424,53 +427,54 @@ const defaultAttributes = [
 
       if (
         attributes.type &&
-        getAttributeValue(attributes, 'type').trim().toLowerCase() !==
-          'text/css'
+        getAttributeValue(attributes, 'type')
+          .trim()
+          .toLowerCase() !== 'text/css'
       ) {
         return false;
       }
 
       return true;
-    },
+    }
   },
   {
     tag: 'object',
     attribute: 'data',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'script',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'source',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'source',
     attribute: 'srcset',
-    type: 'srcset',
+    type: 'srcset'
   },
   {
     tag: 'track',
     attribute: 'src',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'video',
     attribute: 'poster',
-    type: 'src',
+    type: 'src'
   },
   {
     tag: 'video',
     attribute: 'src',
-    type: 'src',
-  },
+    type: 'src'
+  }
 ];
 
-export default (options) =>
+export default options =>
   function process(html, result) {
     let attributeList;
     let maybeUrlFilter;
@@ -488,12 +492,12 @@ export default (options) =>
     }
 
     const sources = [];
-    const urlFilter = getFilter(maybeUrlFilter, (value) =>
+    const urlFilter = getFilter(maybeUrlFilter, value =>
       isUrlRequest(value, root)
     );
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
       return attributeList.find(
-        (element) =>
+        element =>
           (typeof element.tag === 'undefined' ||
             (typeof element.tag !== 'undefined' &&
               element.tag.toLowerCase() === tag.toLowerCase())) &&
@@ -516,11 +520,11 @@ export default (options) =>
           this.attributesMeta[name] = { startIndex, unquoted };
         },
         onopentag(tag, attributes) {
-          Object.keys(attributes).forEach((attribute) => {
+          Object.keys(attributes).forEach(attribute => {
             const value = attributes[attribute];
             const {
               startIndex: valueStartIndex,
-              unquoted,
+              unquoted
             } = this.attributesMeta[attribute];
 
             const foundAttribute = getAttribute(
@@ -549,13 +553,13 @@ export default (options) =>
                     parser.startIndex,
                     parser.endIndex,
                     html
-                  ),
+                  )
                 });
 
                 return;
               }
 
-              sourceSet.forEach((sourceItem) => {
+              sourceSet.forEach(sourceItem => {
                 const { source } = sourceItem;
 
                 if (!urlFilter(attribute, source.value, resourcePath)) {
@@ -582,9 +586,47 @@ export default (options) =>
                   parser.startIndex,
                   parser.endIndex,
                   html
-                ),
+                )
               });
 
+              return;
+            }
+            if (attribute.toLowerCase() === 'style') {
+              const urlSources = [];
+
+              source.value.split('url(').forEach((urlSource, index) => {
+                /* Ignoring first index because the first is just the css propertie for example:
+                [0:'background-image: ', 1:'
+                "image.png");\ntext-align: center;text-decoration: overline; color:red;background-image:',
+                '"image.png")']*/
+
+                if (index !== 0) {
+                  // removing the rest of the url value ');....' and removing single and douple quotations
+                  urlSource = urlSource
+                    .substring(0, urlSource.indexOf(')'))
+                    .replace(/["']/g, '');
+                  urlSources.push(urlSource);
+                }
+              });
+              let currIndex = 0;
+
+              urlSources.forEach(urlSource => {
+                if (!urlFilter(attribute, urlSource, resourcePath)) {
+                  return;
+                }
+
+                // currIndex to indicate to the current urlSource
+                const sourceStartIndex = source.value.indexOf(
+                  urlSource,
+                  currIndex
+                );
+
+                const startIndex = valueStartIndex + sourceStartIndex;
+                // incrementing currIndex so we can go to the next urlSource
+                currIndex = sourceStartIndex + 1;
+
+                sources.push({ startIndex, value: urlSource, unquoted });
+              });
               return;
             }
 
@@ -602,16 +644,16 @@ export default (options) =>
         onerror(error) {
           result.messages.push({
             type: 'error',
-            value: error,
+            value: error
           });
-        },
+        }
       },
       {
         decodeEntities: false,
         lowerCaseTags: false,
         lowerCaseAttributeNames: false,
         recognizeCDATA: true,
-        recognizeSelfClosing: true,
+        recognizeSelfClosing: true
       }
     );
 
@@ -647,15 +689,15 @@ export default (options) =>
           value: {
             type: 'source',
             source: importKey,
-            importName,
-          },
+            importName
+          }
         });
       }
 
       const replacerKey = JSON.stringify({
         importKey,
         unquoted,
-        hash,
+        hash
       });
       let replacerName = replacersMap.get(replacerKey);
 
@@ -670,8 +712,8 @@ export default (options) =>
             hash,
             importName,
             replacerName,
-            unquoted,
-          },
+            unquoted
+          }
         });
       }
 
