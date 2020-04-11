@@ -590,27 +590,30 @@ module.exports = {
 };
 ```
 
+**file.html**
+
 ```html
-<!-- file.html -->
-<img src="image.png" data-src="image2x.png" />
+<img src="image.jpg" data-src="image2x.png" />
 ```
+
+**index.js**
 
 ```js
 require('html-loader!./file.html');
 
-// => '<img src="http://cdn.example.com/49eba9f/a992ca.png" data-src="image2x.png">'
+// => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg" data-src="image2x.png">'
 ```
 
 ```js
-require('html-loader?attributes[]=img:data-src!./file.html');
+require('html-loader?{"attributes":{"list":[{"tag":"img","attribute":"data-src","type":"src"}]}}!./file.html');
 
-// => '<img src="image.png" data-src="data:image/png;base64,..." >'
+// => '<img src="image.jpg" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require('html-loader?attributes[]=img:src&attributes[]=img:data-src!./file.html');
+require('html-loader?{"attributes":{"list":[{"tag":"img","attribute":"src","type":"src"},{"tag":"img","attribute":"data-src","type":"src"}]}}!./file.html');
 
-// => '<img src="http://cdn.example.com/49eba9f/a992ca.png" data-src="data:image/png;base64,..." >'
+// => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
@@ -619,12 +622,7 @@ require('html-loader?-attributes!./file.html');
 // => '<img src="image.jpg"  data-src="image2x.png" >'
 ```
 
-> :warning: `-attributes` it is set attributes: false
-
-```html
-'<img src=http://cdn.example.com/49eba9f/a9f92ca.jpg
-data-src=data:image/png;base64,...>'
-```
+> :warning: `-attributes` sets `attributes: false`.
 
 ### Process `script` and `link` tags
 
@@ -694,7 +692,7 @@ module.exports = {
 
 ### 'Root-relative' URLs
 
-With the same configuration as above:
+With the same configuration as in the CDN example:
 
 **file.html**
 
@@ -713,7 +711,7 @@ require('html-loader!./file.html');
 **other-scripts.js**
 
 ```js
-require('html-loader?root=.!./file.html');
+require('html-loader?{"attributes":{"root":"."}}!./file.html');
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg">'
 ```
@@ -789,7 +787,7 @@ module.exports = {
         test: /\.hbs$/i,
         loader: 'html-loader',
         options: {
-          preprocessor: () => {
+          preprocessor: (content, loaderContext) => {
             let result;
 
             try {
