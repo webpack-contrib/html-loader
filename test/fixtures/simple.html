@@ -271,3 +271,37 @@ image.png
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
 <img src=~aliasImageWithSpace#hash />
+
+
+<div style="background-image:url(image.png)">First & Last</div>
+<div style="background-image:url('image.png')">First & Last</div>
+<div style='background-image:url(image.png)'>First & Last</div>
+<div style='background-image:url("image.png")'>First & Last</div>
+<div style='background-color:red;text-align: center;background-image:url("image.png");text-decoration: overline; color:red;'>Middle</div>
+<div style='background-color:red;text-align: center;background-image:url(image.png);text-decoration: overline; color:red;'>Middle</div>
+<div style='background-color:red;text-align: center;background-image:url(image.png);text-decoration: overline; color:red;'>Middle</div>
+<div style="background-color:red;text-align: center;background-image:url('image.png');text-decoration: overline; color:red;">Middle</div>
+
+<div style='background-color:red;
+
+
+background-image:url("image.png");
+text-align: center;text-decoration: overline;
+
+background-image:url("image.png");
+
+color:red;background-image:url(image.png)'>Multiple</div>
+
+<div style="background-image:url('image.png');
+
+background-color:red;
+
+background-image:url(image.png);
+
+          background-image:url('image.png');
+
+text-align: center;text-decoration: overline;
+color:red;">Multiple</div>
+
+<div STYLE="background-color:red;text-align: center;background-image:url('image.png');text-decoration: overline; color:red;">style attribute</div>
+<div sTyLe="background-color:red;text-align: center;background-image:url('image.png');text-decoration: overline; color:red;">style attribute</div>
