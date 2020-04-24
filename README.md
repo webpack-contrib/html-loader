@@ -853,8 +853,8 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [node-url]: https://nodejs.org
 [deps]: https://david-dm.org/webpack-contrib/html-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/html-loader
-[tests]: https://dev.azure.com/webpack-contrib/html-loader/_apis/build/status/webpack-contrib.html-loader?branchName=master
-[tests-url]: https://dev.azure.com/webpack-contrib/html-loader/_build/latest?definitionId=38&branchName=master
+[tests]: https://github.com/webpack-contrib/html-loader/workflows/html-loader/badge.svg
+[tests-url]: https://github.com/webpack-contrib/html-loader/actions
 [cover]: https://codecov.io/gh/webpack-contrib/html-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/html-loader
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
