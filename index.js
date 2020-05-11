@@ -146,7 +146,7 @@ module.exports = function(content) {
 	}
 
  	return exportsString + content.replace(/xxxHTMLLINKxxx[0-9\.]+xxx/g, function(match) {
-		if(!data[match]) return match;
+		if(!data[match]) return '';
 		
 		var urlToRequest;
 
