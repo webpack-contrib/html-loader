@@ -8,6 +8,11 @@ describe("loader", function() {
 			'module.exports = "Text <img src=\\"" + require("./image.png") + "\\"><img src=\\"" + require("bootstrap-img") + "\\"> Text";'
 		);
 	});
+	it("should remain unchanged when img tag src attribute is empty", function() {
+		loader.call({}, 'Text <img src=""> Text').should.be.eql(
+			'module.exports = "Text <img src=\\"\\"> Text";'
+		);
+	});
 	it("should accept attrs from query", function() {
 		loader.call({
 			query: "?attrs=script:src"
