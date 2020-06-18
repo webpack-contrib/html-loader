@@ -75,12 +75,5 @@ export default async function htmlLoader(content) {
   const moduleCode = getModuleCode(html, replaceableMessages, codeOptions);
   const exportCode = getExportCode(html, exportedMessages, codeOptions);
 
-  let code = `${importCode}${moduleCode}${exportCode}`;
-
-  if (options.process && options.process.post) {
-    // eslint-disable-next-line no-param-reassign
-    code = options.process.post(code, this);
-  }
-
-  return code;
+  return `${importCode}${moduleCode}${exportCode}`;
 }
