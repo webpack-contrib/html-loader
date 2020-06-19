@@ -536,27 +536,26 @@ export default (options) =>
 
             const { type } = foundAttribute;
 
-            if (type === 'srcset') {
-              let sourceSet;
+            // eslint-disable-next-line default-case
+            switch (type) {
+              case 'src': {
+                let source;
 
-              try {
-                sourceSet = parseSrcset(value);
-              } catch (error) {
-                result.messages.push({
-                  type: 'error',
-                  value: new HtmlSourceError(
-                    `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
-                    parser.startIndex,
-                    parser.endIndex,
-                    html
-                  ),
-                });
+                try {
+                  source = parseSrc(value);
+                } catch (error) {
+                  result.messages.push({
+                    type: 'error',
+                    value: new HtmlSourceError(
+                      `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
+                      parser.startIndex,
+                      parser.endIndex,
+                      html
+                    ),
+                  });
 
-                return;
-              }
-
-              sourceSet.forEach((sourceItem) => {
-                const { source } = sourceItem;
+                  return;
+                }
 
                 if (!urlFilter(attribute, source.value, resourcePath)) {
                   return;
@@ -565,36 +564,43 @@ export default (options) =>
                 const startIndex = valueStartIndex + source.startIndex;
 
                 sources.push({ startIndex, value: source.value, unquoted });
-              });
 
-              return;
+                break;
+              }
+              case 'srcset': {
+                let sourceSet;
+
+                try {
+                  sourceSet = parseSrcset(value);
+                } catch (error) {
+                  result.messages.push({
+                    type: 'error',
+                    value: new HtmlSourceError(
+                      `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
+                      parser.startIndex,
+                      parser.endIndex,
+                      html
+                    ),
+                  });
+
+                  return;
+                }
+
+                sourceSet.forEach((sourceItem) => {
+                  const { source } = sourceItem;
+
+                  if (!urlFilter(attribute, source.value, resourcePath)) {
+                    return;
+                  }
+
+                  const startIndex = valueStartIndex + source.startIndex;
+
+                  sources.push({ startIndex, value: source.value, unquoted });
+                });
+
+                break;
+              }
             }
-
-            let source;
-
-            try {
-              source = parseSrc(value);
-            } catch (error) {
-              result.messages.push({
-                type: 'error',
-                value: new HtmlSourceError(
-                  `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
-                  parser.startIndex,
-                  parser.endIndex,
-                  html
-                ),
-              });
-
-              return;
-            }
-
-            if (!urlFilter(attribute, source.value, resourcePath)) {
-              return;
-            }
-
-            const startIndex = valueStartIndex + source.startIndex;
-
-            sources.push({ startIndex, value: source.value, unquoted });
           });
 
           this.attributesMeta = {};
