@@ -519,6 +519,56 @@ export default (options) =>
       );
     };
     const { resourcePath } = options;
+    const imports = new Map();
+    const getImportItem = (value) => {
+      const key = urlToRequest(decodeURIComponent(value), root);
+
+      let name = imports.get(key);
+
+      if (name) {
+        return { key, name };
+      }
+
+      name = `___HTML_LOADER_IMPORT_${imports.size}___`;
+      imports.set(key, name);
+
+      result.messages.push({
+        type: 'import',
+        value: {
+          type: 'source',
+          source: key,
+          importName: name,
+        },
+      });
+
+      return { key, name };
+    };
+    const replacements = new Map();
+    const getReplacementItem = (importItem, unquoted, hash) => {
+      const key = JSON.stringify({ key: importItem.key, unquoted, hash });
+
+      let name = replacements.get(key);
+
+      if (name) {
+        return { key, name };
+      }
+
+      name = `___HTML_LOADER_REPLACER_${replacements.size}___`;
+      replacements.set(key, name);
+
+      result.messages.push({
+        type: 'replacer',
+        value: {
+          type: 'source',
+          hash,
+          importName: importItem.name,
+          replacerName: name,
+          unquoted,
+        },
+      });
+
+      return { key, name };
+    };
     const parser = new Parser(
       {
         attributesMeta: {},
@@ -650,60 +700,6 @@ export default (options) =>
 
     parser.write(html);
     parser.end();
-
-    const imports = new Map();
-
-    const getImportItem = (value) => {
-      const key = urlToRequest(decodeURIComponent(value), root);
-
-      let name = imports.get(key);
-
-      if (name) {
-        return { key, name };
-      }
-
-      name = `___HTML_LOADER_IMPORT_${imports.size}___`;
-      imports.set(key, name);
-
-      result.messages.push({
-        type: 'import',
-        value: {
-          type: 'source',
-          source: key,
-          importName: name,
-        },
-      });
-
-      return { key, name };
-    };
-
-    const replacements = new Map();
-
-    const getReplacementItem = (importItem, unquoted, hash) => {
-      const key = JSON.stringify({ key: importItem.key, unquoted, hash });
-
-      let name = replacements.get(key);
-
-      if (name) {
-        return { key, name };
-      }
-
-      name = `___HTML_LOADER_REPLACER_${replacements.size}___`;
-      replacements.set(key, name);
-
-      result.messages.push({
-        type: 'replacer',
-        value: {
-          type: 'source',
-          hash,
-          importName: importItem.name,
-          replacerName: name,
-          unquoted,
-        },
-      });
-
-      return { key, name };
-    };
 
     let offset = 0;
 
