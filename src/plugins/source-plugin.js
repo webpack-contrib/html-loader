@@ -651,60 +651,75 @@ export default (options) =>
     parser.write(html);
     parser.end();
 
-    const importsMap = new Map();
-    const replacersMap = new Map();
+    const imports = new Map();
+
+    const getImportItem = (value) => {
+      const key = urlToRequest(decodeURIComponent(value), root);
+
+      let name = imports.get(key);
+
+      if (name) {
+        return { key, name };
+      }
+
+      name = `___HTML_LOADER_IMPORT_${imports.size}___`;
+      imports.set(key, name);
+
+      result.messages.push({
+        type: 'import',
+        value: {
+          type: 'source',
+          source: key,
+          importName: name,
+        },
+      });
+
+      return { key, name };
+    };
+
+    const replacements = new Map();
+
+    const getReplacementItem = (importItem, unquoted, hash) => {
+      const key = JSON.stringify({ key: importItem.key, unquoted, hash });
+
+      let name = replacements.get(key);
+
+      if (name) {
+        return { key, name };
+      }
+
+      name = `___HTML_LOADER_REPLACER_${replacements.size}___`;
+      replacements.set(key, name);
+
+      result.messages.push({
+        type: 'replacer',
+        value: {
+          type: 'source',
+          hash,
+          importName: importItem.name,
+          replacerName: name,
+          unquoted,
+        },
+      });
+
+      return { key, name };
+    };
 
     let offset = 0;
 
     for (const source of sources) {
       const { startIndex, value, unquoted, hash } = source;
-      const importKey = urlToRequest(decodeURIComponent(value), root);
-
-      let importName = importsMap.get(importKey);
-
-      if (!importName) {
-        importName = `___HTML_LOADER_IMPORT_${importsMap.size}___`;
-        importsMap.set(importKey, importName);
-
-        result.messages.push({
-          type: 'import',
-          value: {
-            type: 'source',
-            source: importKey,
-            importName,
-          },
-        });
-      }
-
-      const replacerKey = JSON.stringify({ importKey, unquoted, hash });
-
-      let replacerName = replacersMap.get(replacerKey);
-
-      if (!replacerName) {
-        replacerName = `___HTML_LOADER_REPLACER_${replacersMap.size}___`;
-        replacersMap.set(replacerKey, replacerName);
-
-        result.messages.push({
-          type: 'replacer',
-          value: {
-            type: 'source',
-            hash,
-            importName,
-            replacerName,
-            unquoted,
-          },
-        });
-      }
-
+      const importItem = getImportItem(value);
+      const replacementItem = getReplacementItem(importItem, unquoted, hash);
       const valueLength = hash ? value.length + hash.length : value.length;
 
       // eslint-disable-next-line no-param-reassign
       html =
         html.substr(0, startIndex + offset) +
-        replacerName +
+        replacementItem.name +
         html.substr(startIndex + valueLength + offset);
 
-      offset += replacerName.length - valueLength;
+      offset += replacementItem.name.length - valueLength;
     }
 
     return html;
