@@ -470,6 +470,21 @@ const defaultAttributes = [
   },
 ];
 
+function parseSource(source) {
+  const URLObject = parse(source);
+  const { hash } = URLObject;
+
+  if (!hash) {
+    return { sourceValue: source };
+  }
+
+  URLObject.hash = null;
+
+  const sourceWithoutHash = URLObject.format();
+
+  return { sourceValue: sourceWithoutHash, hash };
+}
+
 export default (options) =>
   function process(html, result) {
     let attributeList;
@@ -562,8 +577,14 @@ export default (options) =>
                 }
 
                 const startIndex = valueStartIndex + source.startIndex;
+                const { sourceValue, hash } = parseSource(source.value);
 
-                sources.push({ startIndex, value: source.value, unquoted });
+                sources.push({
+                  startIndex,
+                  value: sourceValue,
+                  hash,
+                  unquoted,
+                });
 
                 break;
               }
@@ -594,8 +615,14 @@ export default (options) =>
                   }
 
                   const startIndex = valueStartIndex + source.startIndex;
+                  const { sourceValue, hash } = parseSource(source.value);
 
-                  sources.push({ startIndex, value: source.value, unquoted });
+                  sources.push({
+                    startIndex,
+                    value: sourceValue,
+                    hash,
+                    unquoted,
+                  });
                 });
 
                 break;
@@ -626,22 +653,13 @@ export default (options) =>
 
     const importsMap = new Map();
     const replacersMap = new Map();
+
     let offset = 0;
 
     for (const source of sources) {
-      const { startIndex, unquoted } = source;
-      let { value } = source;
-      const URLObject = parse(value);
-      const { hash } = URLObject;
+      const { startIndex, value, unquoted, hash } = source;
+      const importKey = urlToRequest(decodeURIComponent(value), root);
 
-      if (hash) {
-        URLObject.hash = null;
-        source.value = URLObject.format();
-
-        value = value.slice(0, value.length - hash.length);
-      }
-
-      const importKey = urlToRequest(decodeURIComponent(source.value), root);
       let importName = importsMap.get(importKey);
 
       if (!importName) {
@@ -658,11 +676,8 @@ export default (options) =>
         });
       }
 
-      const replacerKey = JSON.stringify({
-        importKey,
-        unquoted,
-        hash,
-      });
+      const replacerKey = JSON.stringify({ importKey, unquoted, hash });
+
       let replacerName = replacersMap.get(replacerKey);
 
       if (!replacerName) {
