@@ -628,12 +628,17 @@ export default (options) =>
 
                 const startIndex = valueStartIndex + source.startIndex;
                 const { sourceValue, hash } = parseSource(source.value);
+                const importItem = getImportItem(sourceValue);
+                const replacementItem = getReplacementItem(
+                  importItem,
+                  unquoted,
+                  hash
+                );
 
                 sources.push({
+                  originalValue: source.value,
                   startIndex,
-                  value: sourceValue,
-                  hash,
-                  unquoted,
+                  replacementItem,
                 });
 
                 break;
@@ -666,12 +671,17 @@ export default (options) =>
 
                   const startIndex = valueStartIndex + source.startIndex;
                   const { sourceValue, hash } = parseSource(source.value);
+                  const importItem = getImportItem(sourceValue);
+                  const replacementItem = getReplacementItem(
+                    importItem,
+                    unquoted,
+                    hash
+                  );
 
                   sources.push({
+                    originalValue: source.value,
                     startIndex,
-                    value: sourceValue,
-                    hash,
-                    unquoted,
+                    replacementItem,
                   });
                 });
 
@@ -704,18 +714,15 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { startIndex, value, unquoted, hash } = source;
-      const importItem = getImportItem(value);
-      const replacementItem = getReplacementItem(importItem, unquoted, hash);
-      const valueLength = hash ? value.length + hash.length : value.length;
+      const { startIndex, originalValue, replacementItem } = source;
 
       // eslint-disable-next-line no-param-reassign
       html =
         html.substr(0, startIndex + offset) +
         replacementItem.name +
-        html.substr(startIndex + valueLength + offset);
+        html.substr(startIndex + originalValue.length + offset);
 
-      offset += replacementItem.name.length - valueLength;
+      offset += replacementItem.name.length - originalValue.length;
     }
 
     return html;
