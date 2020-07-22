@@ -442,6 +442,8 @@ const defaultAttributes = [
     tag: 'script',
     attribute: 'src',
     type: 'src',
+    // TODO type
+    // https://github.com/prettier/prettier/blob/b01591770a2407513af31b59377e87d0892a66a9/src/language-html/utils.js#L367
   },
   {
     tag: 'source',
@@ -467,6 +469,11 @@ const defaultAttributes = [
     tag: 'video',
     attribute: 'src',
     type: 'src',
+  },
+  {
+    tag: 'include',
+    attribute: 'src',
+    type: 'tag',
   },
 ];
 
@@ -553,6 +560,7 @@ export default (options) =>
         return { key, name };
       }
 
+      // TODO rename
       name = `___HTML_LOADER_REPLACER_${replacements.size}___`;
       replacements.set(key, name);
 
@@ -626,7 +634,6 @@ export default (options) =>
                   return;
                 }
 
-                const startIndex = valueStartIndex + source.startIndex;
                 const { sourceValue, hash } = parseSource(source.value);
                 const importItem = getImportItem(sourceValue);
                 const replacementItem = getReplacementItem(
@@ -634,12 +641,10 @@ export default (options) =>
                   unquoted,
                   hash
                 );
+                const startIndex = valueStartIndex + source.startIndex;
+                const endIndex = startIndex + source.value.length;
 
-                sources.push({
-                  originalValue: source.value,
-                  startIndex,
-                  replacementItem,
-                });
+                sources.push({ replacementItem, startIndex, endIndex });
 
                 break;
               }
@@ -669,7 +674,6 @@ export default (options) =>
                     return;
                   }
 
-                  const startIndex = valueStartIndex + source.startIndex;
                   const { sourceValue, hash } = parseSource(source.value);
                   const importItem = getImportItem(sourceValue);
                   const replacementItem = getReplacementItem(
@@ -677,12 +681,45 @@ export default (options) =>
                     unquoted,
                     hash
                   );
+                  const startIndex = valueStartIndex + source.startIndex;
+                  const endIndex = startIndex + source.value.length;
 
-                  sources.push({
-                    originalValue: source.value,
-                    startIndex,
-                    replacementItem,
+                  sources.push({ replacementItem, startIndex, endIndex });
+                });
+
+                break;
+              }
+              case 'tag': {
+                let source;
+
+                try {
+                  source = parseSrc(value);
+                } catch (error) {
+                  result.messages.push({
+                    type: 'error',
+                    value: new HtmlSourceError(
+                      `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
+                      parser.startIndex,
+                      parser.endIndex,
+                      html
+                    ),
                   });
+
+                  return;
+                }
+
+                if (!urlFilter(attribute, source.value, resourcePath)) {
+                  return;
+                }
+
+                const { startIndex, endIndex } = parser;
+                const importItem = getImportItem(source.value);
+                const replacementItem = getReplacementItem(importItem);
+
+                sources.push({
+                  replacementItem,
+                  startIndex,
+                  endIndex: endIndex + 1,
                 });
 
                 break;
@@ -714,15 +751,15 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { startIndex, originalValue, replacementItem } = source;
+      const { startIndex, endIndex, replacementItem } = source;
 
       // eslint-disable-next-line no-param-reassign
       html =
-        html.substr(0, startIndex + offset) +
+        html.slice(0, startIndex + offset) +
         replacementItem.name +
-        html.substr(startIndex + originalValue.length + offset);
+        html.slice(endIndex + offset);
 
-      offset += replacementItem.name.length - originalValue.length;
+      offset += startIndex + replacementItem.name.length - endIndex;
     }
 
     return html;
