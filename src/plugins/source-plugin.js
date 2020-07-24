@@ -100,11 +100,6 @@ const defaultAttributes = [
     attribute: 'src',
     type: 'src',
   },
-  {
-    tag: 'include',
-    attribute: 'src',
-    type: 'tag',
-  },
 ];
 
 function parseSource(source) {
