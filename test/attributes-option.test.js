@@ -23,7 +23,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it.only('should handle the "include" type of tags', async () => {
+  it('should handle the "include" type of tags', async () => {
     const compiler = getCompiler('include.js');
     const stats = await compile(compiler);
 
