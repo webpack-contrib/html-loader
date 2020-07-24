@@ -205,7 +205,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML tags except img (testing filter option) tag is undefined', async () => {
+  it('should handle all src attributes in all HTML tags except img tag (testing filter option)', async () => {
     const compiler = getCompiler('simple.js', {
       attributes: {
         list: [

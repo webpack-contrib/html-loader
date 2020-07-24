@@ -72,8 +72,21 @@ const defaultAttributes = [
     tag: 'script',
     attribute: 'src',
     type: 'src',
-    // TODO type
-    // https://github.com/prettier/prettier/blob/b01591770a2407513af31b59377e87d0892a66a9/src/language-html/utils.js#L367
+    filter: (tag, attribute, attributes) => {
+      if (attributes.type) {
+        const type = getAttributeValue(attributes, 'type').trim().toLowerCase();
+
+        if (
+          type !== 'module' &&
+          type !== 'text/javascript' &&
+          type !== 'application/javascript'
+        ) {
+          return false;
+        }
+      }
+
+      return true;
+    },
   },
   {
     tag: 'source',
@@ -139,16 +152,19 @@ export default (options) =>
       isUrlRequest(value, root)
     );
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      return attributeList.find(
-        (element) =>
-          (typeof element.tag === 'undefined' ||
-            (typeof element.tag !== 'undefined' &&
-              element.tag.toLowerCase() === tag.toLowerCase())) &&
-          element.attribute.toLowerCase() === attribute.toLowerCase() &&
-          (element.filter
-            ? element.filter(tag, attribute, attributes, resourcePath)
-            : true)
-      );
+      return attributeList.find((element) => {
+        const foundTag =
+          typeof element.tag === 'undefined' ||
+          (typeof element.tag !== 'undefined' &&
+            element.tag.toLowerCase() === tag.toLowerCase());
+        const foundAttribute =
+          element.attribute.toLowerCase() === attribute.toLowerCase();
+        const isNotFiltered = element.filter
+          ? element.filter(tag, attribute, attributes, resourcePath)
+          : true;
+
+        return foundTag && foundAttribute && isNotFiltered;
+      });
     };
     const { resourcePath } = options;
     const imports = new Map();
