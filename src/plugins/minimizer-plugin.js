@@ -1,7 +1,7 @@
 import { minify } from 'html-minifier-terser';
 
 export default (options) =>
-  function process(html, result) {
+  function process(html) {
     const minimizeOptions =
       typeof options.minimize === 'boolean' ||
       typeof options.minimize === 'undefined'
@@ -23,7 +23,7 @@ export default (options) =>
       // eslint-disable-next-line no-param-reassign
       html = minify(html, minimizeOptions);
     } catch (error) {
-      result.messages.push({ type: 'error', value: error });
+      options.errors.push(error);
     }
 
     return html;
