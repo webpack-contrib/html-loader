@@ -201,17 +201,16 @@ export default (options) =>
         return { key, name };
       }
 
-      // TODO rename
-      name = `___HTML_LOADER_REPLACER_${replacements.size}___`;
+      name = `___HTML_LOADER_REPLACEMENT_${replacements.size}___`;
       replacements.set(key, name);
 
       result.messages.push({
-        type: 'replacer',
+        type: 'replacement',
         value: {
           type: 'source',
           hash,
           importName: importItem.name,
-          replacerName: name,
+          replacementName: name,
           unquoted,
         },
       });
