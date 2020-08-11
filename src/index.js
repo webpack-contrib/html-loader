@@ -13,7 +13,7 @@ import {
 
 import schema from './options.json';
 
-export default async function htmlLoader(content) {
+export default async function loader(content) {
   const options = getOptions(this);
 
   validateOptions(schema, options, {
@@ -27,12 +27,23 @@ export default async function htmlLoader(content) {
   }
 
   const plugins = [];
+  const errors = [];
+  const imports = [];
+  const replacements = [];
 
   const attributes =
     typeof options.attributes === 'undefined' ? true : options.attributes;
 
   if (attributes) {
-    plugins.push(sourcePlugin({ attributes, resourcePath: this.resourcePath }));
+    plugins.push(
+      sourcePlugin({
+        attributes,
+        resourcePath: this.resourcePath,
+        imports,
+        errors,
+        replacements,
+      })
+    );
   }
 
   const minimize =
@@ -41,29 +52,10 @@ export default async function htmlLoader(content) {
       : options.minimize;
 
   if (minimize) {
-    plugins.push(minimizerPlugin({ minimize }));
+    plugins.push(minimizerPlugin({ minimize, errors }));
   }
 
-  const { html, messages } = pluginRunner(plugins).process(content);
-
-  const errors = [];
-  const imports = [];
-  const replacements = [];
-
-  for (const message of messages) {
-    // eslint-disable-next-line default-case
-    switch (message.type) {
-      case 'error':
-        errors.push(message.value);
-        break;
-      case 'import':
-        imports.push(message.value);
-        break;
-      case 'replacement':
-        replacements.push(message.value);
-        break;
-    }
-  }
+  const { html } = pluginRunner(plugins).process(content);
 
   for (const error of errors) {
     this.emitError(error instanceof Error ? error : new Error(error));

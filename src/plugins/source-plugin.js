@@ -131,7 +131,7 @@ function parseSource(source) {
 }
 
 export default (options) =>
-  function process(html, result) {
+  function process(html) {
     let attributeList;
     let maybeUrlFilter;
     let root;
@@ -180,14 +180,7 @@ export default (options) =>
       name = `___HTML_LOADER_IMPORT_${imports.size}___`;
       imports.set(key, name);
 
-      result.messages.push({
-        type: 'import',
-        value: {
-          type: 'source',
-          source: key,
-          importName: name,
-        },
-      });
+      options.imports.push({ importName: name, source: key });
 
       return { key, name };
     };
@@ -204,15 +197,11 @@ export default (options) =>
       name = `___HTML_LOADER_REPLACEMENT_${replacements.size}___`;
       replacements.set(key, name);
 
-      result.messages.push({
-        type: 'replacement',
-        value: {
-          type: 'source',
-          hash,
-          importName: importItem.name,
-          replacementName: name,
-          unquoted,
-        },
+      options.replacements.push({
+        replacementName: name,
+        importName: importItem.name,
+        hash,
+        unquoted,
       });
 
       return { key, name };
@@ -257,15 +246,14 @@ export default (options) =>
                 try {
                   source = parseSrc(value);
                 } catch (error) {
-                  result.messages.push({
-                    type: 'error',
-                    value: new HtmlSourceError(
+                  options.errors.push(
+                    new HtmlSourceError(
                       `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
                       parser.startIndex,
                       parser.endIndex,
                       html
-                    ),
-                  });
+                    )
+                  );
 
                   return;
                 }
@@ -294,15 +282,14 @@ export default (options) =>
                 try {
                   sourceSet = parseSrcset(value);
                 } catch (error) {
-                  result.messages.push({
-                    type: 'error',
-                    value: new HtmlSourceError(
+                  options.errors.push(
+                    new HtmlSourceError(
                       `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
                       parser.startIndex,
                       parser.endIndex,
                       html
-                    ),
-                  });
+                    )
+                  );
 
                   return;
                 }
@@ -335,15 +322,14 @@ export default (options) =>
                 try {
                   source = parseSrc(value);
                 } catch (error) {
-                  result.messages.push({
-                    type: 'error',
-                    value: new HtmlSourceError(
+                  options.errors.push(
+                    new HtmlSourceError(
                       `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
                       parser.startIndex,
                       parser.endIndex,
                       html
-                    ),
-                  });
+                    )
+                  );
 
                   return;
                 }
@@ -370,10 +356,7 @@ export default (options) =>
           this.attributesMeta = {};
         },
         onerror(error) {
-          result.messages.push({
-            type: 'error',
-            value: error,
-          });
+          options.errors.push(error);
         },
       },
       {
