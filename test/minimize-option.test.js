@@ -111,4 +111,16 @@ describe('"minimize" option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should work with XHTML', async () => {
+    const compiler = getCompiler('XHTML.js', { minimize: true });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./XHTML.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });
