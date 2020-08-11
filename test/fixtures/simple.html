@@ -128,8 +128,6 @@ T ex t  <img 	  src =   "image.png"   >  <img
 
 <div data-videomp4="video.mp4"></div>
 
-<use xlink:href="vector.svg" />
-
 <![CDATA[<img src="image.png">]]><img src="image.png">
 
 <link rel="stylesheet" type="text/css" href="./style.file.css">
@@ -275,3 +273,19 @@ image.png
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
 <img src=~aliasImageWithSpace#hash />
+
+<svg width="200" height="200">
+  <image xlink:href="./webpack.svg" height="200" width="200"/>
+</svg>
+
+<svg width="200" height="200">
+  <image href="./webpack.svg" height="200" width="200"/>
+</svg>
+
+<svg width="200" height="200">
+  <use href="./webpack.svg"></use>
+</svg>
+
+<svg width="200" height="200">
+  <use xlink:href="./webpack.svg"></use>
+</svg>

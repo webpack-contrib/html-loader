@@ -113,6 +113,27 @@ const defaultAttributes = [
     attribute: 'src',
     type: 'src',
   },
+  // SVG
+  {
+    tag: 'image',
+    attribute: 'xlink:href',
+    type: 'src',
+  },
+  {
+    tag: 'image',
+    attribute: 'href',
+    type: 'src',
+  },
+  {
+    tag: 'use',
+    attribute: 'xlink:href',
+    type: 'src',
+  },
+  {
+    tag: 'use',
+    attribute: 'href',
+    type: 'src',
+  },
 ];
 
 function parseSource(source) {
