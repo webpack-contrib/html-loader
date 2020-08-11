@@ -407,8 +407,8 @@ export function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
 
-export function getImportCode(html, importedMessages, codeOptions) {
-  if (importedMessages.length === 0) {
+export function getImportCode(html, imports, codeOptions) {
+  if (imports.length === 0) {
     return '';
   }
 
@@ -422,7 +422,7 @@ export function getImportCode(html, importedMessages, codeOptions) {
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
     : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${stringifiedHelperRequest});\n`;
 
-  for (const item of importedMessages) {
+  for (const item of imports) {
     const { importName, source } = item;
     const stringifiedSourceRequest = stringifyRequest(loaderContext, source);
 
@@ -434,7 +434,7 @@ export function getImportCode(html, importedMessages, codeOptions) {
   return `// Imports\n${code}`;
 }
 
-export function getModuleCode(html, replaceableMessages) {
+export function getModuleCode(html, replacements) {
   let code = JSON.stringify(html)
     // Invalid in JavaScript but valid HTML
     .replace(/[\u2028\u2029]/g, (str) =>
@@ -443,8 +443,8 @@ export function getModuleCode(html, replaceableMessages) {
 
   let replacersCode = '';
 
-  for (const item of replaceableMessages) {
-    const { importName, replacerName, unquoted, hash } = item;
+  for (const item of replacements) {
+    const { importName, replacementName, unquoted, hash } = item;
 
     const getUrlOptions = []
       .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
@@ -452,18 +452,18 @@ export function getModuleCode(html, replaceableMessages) {
     const preparedOptions =
       getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
 
-    replacersCode += `var ${replacerName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
+    replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
 
     code = code.replace(
-      new RegExp(replacerName, 'g'),
-      () => `" + ${replacerName} + "`
+      new RegExp(replacementName, 'g'),
+      () => `" + ${replacementName} + "`
     );
   }
 
   return `// Module\n${replacersCode}var code = ${code};\n`;
 }
 
-export function getExportCode(html, exportedMessages, codeOptions) {
+export function getExportCode(html, codeOptions) {
   if (codeOptions.esModule) {
     return `// Exports\nexport default code;`;
   }

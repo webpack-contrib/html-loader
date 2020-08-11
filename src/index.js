@@ -47,9 +47,8 @@ export default async function htmlLoader(content) {
   const { html, messages } = pluginRunner(plugins).process(content);
 
   const errors = [];
-  const importedMessages = [];
-  const replaceableMessages = [];
-  const exportedMessages = [];
+  const imports = [];
+  const replacements = [];
 
   for (const message of messages) {
     // eslint-disable-next-line default-case
@@ -58,10 +57,10 @@ export default async function htmlLoader(content) {
         errors.push(message.value);
         break;
       case 'import':
-        importedMessages.push(message.value);
+        imports.push(message.value);
         break;
-      case 'replacer':
-        replaceableMessages.push(message.value);
+      case 'replacement':
+        replacements.push(message.value);
         break;
     }
   }
@@ -71,9 +70,9 @@ export default async function htmlLoader(content) {
   }
 
   const codeOptions = { ...options, loaderContext: this };
-  const importCode = getImportCode(html, importedMessages, codeOptions);
-  const moduleCode = getModuleCode(html, replaceableMessages, codeOptions);
-  const exportCode = getExportCode(html, exportedMessages, codeOptions);
+  const importCode = getImportCode(html, imports, codeOptions);
+  const moduleCode = getModuleCode(html, replacements, codeOptions);
+  const exportCode = getExportCode(html, codeOptions);
 
   return `${importCode}${moduleCode}${exportCode}`;
 }
