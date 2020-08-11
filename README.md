@@ -492,11 +492,10 @@ The enabled rules for minimizing by default are the following ones:
   keepClosingSlash: true,
   minifyCSS: true,
   minifyJS: true,
-  removeAttributeQuotes: false,
   removeComments: true,
+  removeRedundantAttributes: true,
   removeScriptTypeAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  useShortDoctype: false,
 });
 ```
 
