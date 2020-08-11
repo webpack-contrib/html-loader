@@ -23,11 +23,11 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it.skip('should handle the "include" type of tags', async () => {
-    const compiler = getCompiler('include.js');
+  it('should handle "src" and "srcset" tags correctly', async () => {
+    const compiler = getCompiler('sources.js');
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./include.html', stats)).toMatchSnapshot('module');
+    expect(getModuleSource('./sources.html', stats)).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
@@ -35,11 +35,21 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle "src" and "srcset" tags correctly', async () => {
-    const compiler = getCompiler('sources.js');
+  it.only('should handle the "include" type of tags', async () => {
+    const compiler = getCompiler('include.js', {
+      attributes: {
+        list: [
+          {
+            tag: 'include',
+            attribute: 'src',
+            type: 'include',
+          },
+        ],
+      },
+    });
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./sources.html', stats)).toMatchSnapshot('module');
+    expect(getModuleSource('./include.html', stats)).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');

@@ -329,7 +329,7 @@ export default (options) =>
 
                 break;
               }
-              case 'tag': {
+              case 'include': {
                 let source;
 
                 try {
