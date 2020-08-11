@@ -340,6 +340,11 @@ export default (options) =>
               case 'include': {
                 let source;
 
+                // eslint-disable-next-line no-underscore-dangle
+                if (parser._tokenizer._state === 4) {
+                  return;
+                }
+
                 try {
                   source = parseSrc(value);
                 } catch (error) {
@@ -359,15 +364,22 @@ export default (options) =>
                   return;
                 }
 
-                const { startIndex, endIndex } = parser;
+                const { startIndex } = parser;
+                const closingTag = html
+                  .slice(startIndex - 1)
+                  .match(
+                    new RegExp(`<s*${tag}[^>]*>(?:.*?)</${tag}[^<>]*>`, 's')
+                  );
+
+                if (!closingTag) {
+                  return;
+                }
+
+                const endIndex = startIndex + closingTag[0].length;
                 const importItem = getImportItem(source.value);
                 const replacementItem = getReplacementItem(importItem);
 
-                sources.push({
-                  replacementItem,
-                  startIndex,
-                  endIndex: endIndex + 1,
-                });
+                sources.push({ replacementItem, startIndex, endIndex });
 
                 break;
               }

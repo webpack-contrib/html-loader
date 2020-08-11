@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`'attributes' option should handle "src" and "srcset" tags correctly: errors 1`] = `
+exports[`'attributes' option should handle "sources" tags: errors 1`] = `
 Array [
   "ModuleError: Module Error (from /path/to/file.js):
 HtmlSourceError: Bad value for attribute \\"src\\" on element \\"img\\": Must be non-empty (From line 10, column 1; to line 10, column 15)",
@@ -447,7 +447,7 @@ HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must
 ]
 `;
 
-exports[`'attributes' option should handle "src" and "srcset" tags correctly: module 1`] = `
+exports[`'attributes' option should handle "sources" tags: module 1`] = `
 "// Imports
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
@@ -458,7 +458,7 @@ var code = \\"<img srcset=\\\\\\"image.png 480w 2x broken\\\\\\" src=\\\\\\"\\" 
 module.exports = code;"
 `;
 
-exports[`'attributes' option should handle "src" and "srcset" tags correctly: result 1`] = `
+exports[`'attributes' option should handle "sources" tags: result 1`] = `
 "<img srcset=\\"image.png 480w 2x broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 <img srcset=\\"image.png broken\\" src=\\"/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 <img src=\\"\\" srcset=\\"\\">
@@ -736,7 +736,7 @@ exports[`'attributes' option should handle "src" and "srcset" tags correctly: re
 "
 `;
 
-exports[`'attributes' option should handle "src" and "srcset" tags correctly: warnings 1`] = `Array []`;
+exports[`'attributes' option should handle "sources" tags: warnings 1`] = `Array []`;
 
 exports[`'attributes' option should handle all src attributes in all HTML tags except img tag (testing filter option): errors 1`] = `Array []`;
 
@@ -1778,9 +1778,9 @@ or
 
 exports[`'attributes' option should handle attributes with a "boolean" notation equals "true": warnings 1`] = `Array []`;
 
-exports[`'attributes' option should handle the "include" type of tags: errors 1`] = `Array []`;
+exports[`'attributes' option should handle the "include" tags: errors 1`] = `Array []`;
 
-exports[`'attributes' option should handle the "include" type of tags: module 1`] = `
+exports[`'attributes' option should handle the "include" tags: module 1`] = `
 "// Imports
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./include-header.html\\");
@@ -1790,18 +1790,17 @@ var ___HTML_LOADER_IMPORT_2___ = require(\\"./include-content.html\\");
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
 var ___HTML_LOADER_REPLACEMENT_2___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_2___);
-var code = \\"<div>\\\\n  <article>\\\\n    BeforeHeaderText\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"AfterHeaderText\\\\n    <ol>\\\\n      <li>Grow a long, majestic beard.</li>\\\\n      <li>Wear a tall, pointed hat.</li>\\\\n      <li>Have I mentioned the beard?</li>\\\\n    </ol>\\\\n    BeforeFooterText\\" + ___HTML_LOADER_REPLACEMENT_1___ + \\"AfterFooterText\\\\n    <!--<div><include src=\\\\\\"./include-content.html\\\\\\"></include></div>-->\\\\n    TextBeforeOpenDiv<div>TextAfterOpenDiv\\" + ___HTML_LOADER_REPLACEMENT_2___ + \\"TextBeforeCloseDiv</div>TextAfterCloseDiv\\\\n  </article>\\\\n</div>\\\\n\\";
+var code = \\"<div>\\\\n  <article>\\\\n    BeforeHeaderText\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"AfterHeaderText\\\\n    <ol>\\\\n      <li>Grow a long, majestic beard.</li>\\\\n      <li>Wear a tall, pointed hat.</li>\\\\n      <li>Have I mentioned the beard?</li>\\\\n    </ol>\\\\n    BeforeFooterText\\" + ___HTML_LOADER_REPLACEMENT_1___ + \\"AfterFooterText\\\\n    TextBeforeOpenDiv<div>TextAfterOpenDiv\\" + ___HTML_LOADER_REPLACEMENT_2___ + \\"TextBeforeCloseDiv</div>TextAfterCloseDiv\\\\n  </article>\\\\n</div>\\\\n\\\\n<!-- Future improvements -->\\\\nBEFORE\\\\n\\" + ___HTML_LOADER_REPLACEMENT_2___ + \\"\\\\nAFTER\\\\n\\\\n<div>TEXT</div>\\\\n<div>\\\\n  \\" + ___HTML_LOADER_REPLACEMENT_2___ + \\"\\\\n</div>\\\\n<div>TEXT</div>\\\\n\\\\n<!-- WRONG -->\\\\n<div><include src=\\\\\\"./include-conten\\" + ___HTML_LOADER_REPLACEMENT_2___ + \\"\\\\n</include>\\\\n\\";
 // Exports
 module.exports = code;"
 `;
 
-exports[`'attributes' option should handle the "include" type of tags: result 1`] = `
+exports[`'attributes' option should handle the "include" tags: result 1`] = `
 "<div>
   <article>
     BeforeHeaderText<header>
   <h1>How to be a wizard</h1>
-</header>
-AfterHeaderText
+</header>AfterHeaderText
     <ol>
       <li>Grow a long, majestic beard.</li>
       <li>Wear a tall, pointed hat.</li>
@@ -1809,17 +1808,29 @@ AfterHeaderText
     </ol>
     BeforeFooterText<footer>
   <p>© 2018 Gandalf</p>
-</footer>
-AfterFooterText
-    <!--<div><include src=\\"./include-content.html\\"></include></div>-->
-    TextBeforeOpenDiv<div>TextAfterOpenDiv<span>Text</span>
-TextBeforeCloseDiv</div>TextAfterCloseDiv
+</footer>AfterFooterText
+    TextBeforeOpenDiv<div>TextAfterOpenDiv<span>Text</span>TextBeforeCloseDiv</div>TextAfterCloseDiv
   </article>
 </div>
+
+<!-- Future improvements -->
+BEFORE
+<span>Text</span>
+AFTER
+
+<div>TEXT</div>
+<div>
+  <span>Text</span>
+</div>
+<div>TEXT</div>
+
+<!-- WRONG -->
+<div><include src=\\"./include-conten<span>Text</span>
+</include>
 "
 `;
 
-exports[`'attributes' option should handle the "include" type of tags: warnings 1`] = `Array []`;
+exports[`'attributes' option should handle the "include" tags: warnings 1`] = `Array []`;
 
 exports[`'attributes' option should not handle attributes with a "boolean" notation equals "false": errors 1`] = `Array []`;
 

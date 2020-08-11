@@ -23,7 +23,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle "src" and "srcset" tags correctly', async () => {
+  it('should handle "sources" tags', async () => {
     const compiler = getCompiler('sources.js');
     const stats = await compile(compiler);
 
@@ -35,7 +35,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle the "include" type of tags', async () => {
+  it('should handle the "include" tags', async () => {
     const compiler = getCompiler('include.js', {
       attributes: {
         list: [
