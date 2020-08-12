@@ -2,10 +2,9 @@ import { getOptions } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
 import { sourcePlugin, minimizerPlugin } from './plugins';
-
 import {
   pluginRunner,
-  isProductionMode,
+  normalizeOptions,
   getImportCode,
   getModuleCode,
   getExportCode,
@@ -14,12 +13,14 @@ import {
 import schema from './options.json';
 
 export default async function loader(content) {
-  const options = getOptions(this);
+  const rawOptions = getOptions(this);
 
-  validateOptions(schema, options, {
+  validateOptions(schema, rawOptions, {
     name: 'HTML Loader',
     baseDataPath: 'options',
   });
+
+  const options = normalizeOptions(rawOptions, this);
 
   if (options.preprocessor) {
     // eslint-disable-next-line no-param-reassign
@@ -31,13 +32,10 @@ export default async function loader(content) {
   const imports = [];
   const replacements = [];
 
-  const attributes =
-    typeof options.attributes === 'undefined' ? true : options.attributes;
-
-  if (attributes) {
+  if (options.attributes) {
     plugins.push(
       sourcePlugin({
-        attributes,
+        attributes: options.attributes,
         resourcePath: this.resourcePath,
         imports,
         errors,
@@ -46,13 +44,8 @@ export default async function loader(content) {
     );
   }
 
-  const minimize =
-    typeof options.minimize === 'undefined'
-      ? isProductionMode(this)
-      : options.minimize;
-
-  if (minimize) {
-    plugins.push(minimizerPlugin({ minimize, errors }));
+  if (options.minimize) {
+    plugins.push(minimizerPlugin({ minimize: options.minimize, errors }));
   }
 
   const { html } = pluginRunner(plugins).process(content);
@@ -61,10 +54,9 @@ export default async function loader(content) {
     this.emitError(error instanceof Error ? error : new Error(error));
   }
 
-  const codeOptions = { ...options, loaderContext: this };
-  const importCode = getImportCode(html, imports, codeOptions);
-  const moduleCode = getModuleCode(html, replacements, codeOptions);
-  const exportCode = getExportCode(html, codeOptions);
+  const importCode = getImportCode(html, this, imports, options);
+  const moduleCode = getModuleCode(html, replacements, options);
+  const exportCode = getExportCode(html, options);
 
   return `${importCode}${moduleCode}${exportCode}`;
 }

@@ -1,24 +1,5 @@
 import { stringifyRequest } from 'loader-utils';
 
-const GET_SOURCE_FROM_IMPORT_NAME = '___HTML_LOADER_GET_SOURCE_FROM_IMPORT___';
-
-export function pluginRunner(plugins) {
-  return {
-    process: (content) => {
-      const result = { messages: [] };
-
-      for (const plugin of plugins) {
-        // eslint-disable-next-line no-param-reassign
-        content = plugin(content, result);
-      }
-
-      result.html = content;
-
-      return result;
-    },
-  };
-}
-
 function isASCIIWhitespace(character) {
   return (
     // Horizontal tab
@@ -389,6 +370,210 @@ export function parseSrc(input) {
   return { value, startIndex };
 }
 
+function isProductionMode(loaderContext) {
+  return loaderContext.mode === 'production' || !loaderContext.mode;
+}
+
+const defaultMinimizerOptions = {
+  caseSensitive: true,
+  // `collapseBooleanAttributes` is not always safe, since this can break CSS attribute selectors and not safe for XHTML
+  collapseWhitespace: true,
+  conservativeCollapse: true,
+  keepClosingSlash: true,
+  // We need ability to use cssnano, or setup own function without extra dependencies
+  minifyCSS: true,
+  minifyJS: true,
+  // `minifyURLs` is unsafe, because we can't guarantee what the base URL is
+  // `removeAttributeQuotes` is not safe in some rare cases, also HTML spec recommends against doing this
+  removeComments: true,
+  // `removeEmptyAttributes` is not safe, can affect certain style or script behavior
+  removeRedundantAttributes: true,
+  removeScriptTypeAttributes: true,
+  removeStyleLinkTypeAttributes: true,
+  // `useShortDoctype` is not safe for XHTML
+};
+
+function getMinimizeOption(rawOptions, loaderContext) {
+  if (typeof rawOptions.minimize === 'undefined') {
+    return isProductionMode(loaderContext) ? defaultMinimizerOptions : false;
+  }
+
+  if (typeof rawOptions.minimize === 'boolean') {
+    return rawOptions.minimize === true ? defaultMinimizerOptions : false;
+  }
+
+  return rawOptions.minimize;
+}
+
+function getAttributeValue(attributes, name) {
+  const lowercasedAttributes = Object.keys(attributes).reduce((keys, k) => {
+    // eslint-disable-next-line no-param-reassign
+    keys[k.toLowerCase()] = k;
+
+    return keys;
+  }, {});
+
+  return attributes[lowercasedAttributes[name.toLowerCase()]];
+}
+
+const defaultAttributes = [
+  {
+    tag: 'audio',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'embed',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'img',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'img',
+    attribute: 'srcset',
+    type: 'srcset',
+  },
+  {
+    tag: 'input',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'link',
+    attribute: 'href',
+    type: 'src',
+    filter: (tag, attribute, attributes) => {
+      if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
+        return false;
+      }
+
+      if (
+        attributes.type &&
+        getAttributeValue(attributes, 'type').trim().toLowerCase() !==
+          'text/css'
+      ) {
+        return false;
+      }
+
+      return true;
+    },
+  },
+  {
+    tag: 'object',
+    attribute: 'data',
+    type: 'src',
+  },
+  {
+    tag: 'script',
+    attribute: 'src',
+    type: 'src',
+    filter: (tag, attribute, attributes) => {
+      if (attributes.type) {
+        const type = getAttributeValue(attributes, 'type').trim().toLowerCase();
+
+        if (
+          type !== 'module' &&
+          type !== 'text/javascript' &&
+          type !== 'application/javascript'
+        ) {
+          return false;
+        }
+      }
+
+      return true;
+    },
+  },
+  {
+    tag: 'source',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'source',
+    attribute: 'srcset',
+    type: 'srcset',
+  },
+  {
+    tag: 'track',
+    attribute: 'src',
+    type: 'src',
+  },
+  {
+    tag: 'video',
+    attribute: 'poster',
+    type: 'src',
+  },
+  {
+    tag: 'video',
+    attribute: 'src',
+    type: 'src',
+  },
+  // SVG
+  {
+    tag: 'image',
+    attribute: 'xlink:href',
+    type: 'src',
+  },
+  {
+    tag: 'image',
+    attribute: 'href',
+    type: 'src',
+  },
+  {
+    tag: 'use',
+    attribute: 'xlink:href',
+    type: 'src',
+  },
+  {
+    tag: 'use',
+    attribute: 'href',
+    type: 'src',
+  },
+];
+
+function getAttributesOption(rawOptions) {
+  if (typeof rawOptions.attributes === 'undefined') {
+    return { list: defaultAttributes };
+  }
+
+  if (typeof rawOptions.attributes === 'boolean') {
+    return rawOptions.attributes === true ? { list: defaultAttributes } : false;
+  }
+
+  return { ...{ list: defaultAttributes }, ...rawOptions.attributes };
+}
+
+export function normalizeOptions(rawOptions, loaderContext) {
+  return {
+    preprocessor: rawOptions.preprocessor,
+    attributes: getAttributesOption(rawOptions),
+    minimize: getMinimizeOption(rawOptions, loaderContext),
+    esModule:
+      typeof rawOptions.esModule === 'undefined' ? false : rawOptions.esModule,
+  };
+}
+
+export function pluginRunner(plugins) {
+  return {
+    process: (content) => {
+      const result = {};
+
+      for (const plugin of plugins) {
+        // eslint-disable-next-line no-param-reassign
+        content = plugin(content, result);
+      }
+
+      result.html = content;
+
+      return result;
+    },
+  };
+}
+
 export function getFilter(filter, defaultFilter = null) {
   return (attribute, value, resourcePath) => {
     if (defaultFilter && !defaultFilter(value)) {
@@ -403,22 +588,19 @@ export function getFilter(filter, defaultFilter = null) {
   };
 }
 
-export function isProductionMode(loaderContext) {
-  return loaderContext.mode === 'production' || !loaderContext.mode;
-}
+const GET_SOURCE_FROM_IMPORT_NAME = '___HTML_LOADER_GET_SOURCE_FROM_IMPORT___';
 
-export function getImportCode(html, imports, codeOptions) {
+export function getImportCode(html, loaderContext, imports, options) {
   if (imports.length === 0) {
     return '';
   }
 
-  const { loaderContext, esModule } = codeOptions;
   const stringifiedHelperRequest = stringifyRequest(
     loaderContext,
     require.resolve('./runtime/getUrl.js')
   );
 
-  let code = esModule
+  let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
     : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${stringifiedHelperRequest});\n`;
 
@@ -426,7 +608,7 @@ export function getImportCode(html, imports, codeOptions) {
     const { importName, source } = item;
     const stringifiedSourceRequest = stringifyRequest(loaderContext, source);
 
-    code += esModule
+    code += options.esModule
       ? `import ${importName} from ${stringifiedSourceRequest};\n`
       : `var ${importName} = require(${stringifiedSourceRequest});\n`;
   }
@@ -463,8 +645,8 @@ export function getModuleCode(html, replacements) {
   return `// Module\n${replacersCode}var code = ${code};\n`;
 }
 
-export function getExportCode(html, codeOptions) {
-  if (codeOptions.esModule) {
+export function getExportCode(html, options) {
+  if (options.esModule) {
     return `// Exports\nexport default code;`;
   }
 

@@ -6,136 +6,6 @@ import { isUrlRequest, urlToRequest } from 'loader-utils';
 import HtmlSourceError from '../HtmlSourceError';
 import { getFilter, parseSrc, parseSrcset } from '../utils';
 
-function getAttributeValue(attributes, name) {
-  const lowercasedAttributes = Object.keys(attributes).reduce((keys, k) => {
-    // eslint-disable-next-line no-param-reassign
-    keys[k.toLowerCase()] = k;
-
-    return keys;
-  }, {});
-
-  return attributes[lowercasedAttributes[name.toLowerCase()]];
-}
-
-const defaultAttributes = [
-  {
-    tag: 'audio',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'embed',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'img',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'img',
-    attribute: 'srcset',
-    type: 'srcset',
-  },
-  {
-    tag: 'input',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'link',
-    attribute: 'href',
-    type: 'src',
-    filter: (tag, attribute, attributes) => {
-      if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
-        return false;
-      }
-
-      if (
-        attributes.type &&
-        getAttributeValue(attributes, 'type').trim().toLowerCase() !==
-          'text/css'
-      ) {
-        return false;
-      }
-
-      return true;
-    },
-  },
-  {
-    tag: 'object',
-    attribute: 'data',
-    type: 'src',
-  },
-  {
-    tag: 'script',
-    attribute: 'src',
-    type: 'src',
-    filter: (tag, attribute, attributes) => {
-      if (attributes.type) {
-        const type = getAttributeValue(attributes, 'type').trim().toLowerCase();
-
-        if (
-          type !== 'module' &&
-          type !== 'text/javascript' &&
-          type !== 'application/javascript'
-        ) {
-          return false;
-        }
-      }
-
-      return true;
-    },
-  },
-  {
-    tag: 'source',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'source',
-    attribute: 'srcset',
-    type: 'srcset',
-  },
-  {
-    tag: 'track',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'video',
-    attribute: 'poster',
-    type: 'src',
-  },
-  {
-    tag: 'video',
-    attribute: 'src',
-    type: 'src',
-  },
-  // SVG
-  {
-    tag: 'image',
-    attribute: 'xlink:href',
-    type: 'src',
-  },
-  {
-    tag: 'image',
-    attribute: 'href',
-    type: 'src',
-  },
-  {
-    tag: 'use',
-    attribute: 'xlink:href',
-    type: 'src',
-  },
-  {
-    tag: 'use',
-    attribute: 'href',
-    type: 'src',
-  },
-];
-
 function parseSource(source) {
   const URLObject = parse(source);
   const { hash } = URLObject;
@@ -153,27 +23,13 @@ function parseSource(source) {
 
 export default (options) =>
   function process(html) {
-    let attributeList;
-    let maybeUrlFilter;
-    let root;
-
-    if (
-      typeof options.attributes === 'undefined' ||
-      options.attributes === true
-    ) {
-      attributeList = defaultAttributes;
-    } else {
-      attributeList = options.attributes.list || defaultAttributes;
-      // eslint-disable-next-line no-undefined
-      ({ urlFilter: maybeUrlFilter, root } = options.attributes);
-    }
-
+    const { list, urlFilter: maybeUrlFilter, root } = options.attributes;
     const sources = [];
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
       isUrlRequest(value, root)
     );
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      return attributeList.find((element) => {
+      return list.find((element) => {
         const foundTag =
           typeof element.tag === 'undefined' ||
           (typeof element.tag !== 'undefined' &&
