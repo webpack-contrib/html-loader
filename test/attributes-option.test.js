@@ -35,7 +35,7 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle the "include" tags', async () => {
+  it.skip('should handle the "include" tags', async () => {
     const compiler = getCompiler('include.js', {
       attributes: {
         list: [
