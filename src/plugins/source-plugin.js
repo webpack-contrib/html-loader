@@ -193,52 +193,53 @@ export default (options) =>
 
                 break;
               }
-              case 'include': {
-                let source;
-
-                // eslint-disable-next-line no-underscore-dangle
-                if (parser._tokenizer._state === 4) {
-                  return;
-                }
-
-                try {
-                  source = parseSrc(value);
-                } catch (error) {
-                  options.errors.push(
-                    new HtmlSourceError(
-                      `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
-                      parser.startIndex,
-                      parser.endIndex,
-                      html
-                    )
-                  );
-
-                  return;
-                }
-
-                if (!urlFilter(attribute, source.value, resourcePath)) {
-                  return;
-                }
-
-                const { startIndex } = parser;
-                const closingTag = html
-                  .slice(startIndex - 1)
-                  .match(
-                    new RegExp(`<s*${tag}[^>]*>(?:.*?)</${tag}[^<>]*>`, 's')
-                  );
-
-                if (!closingTag) {
-                  return;
-                }
-
-                const endIndex = startIndex + closingTag[0].length;
-                const importItem = getImportItem(source.value);
-                const replacementItem = getReplacementItem(importItem);
-
-                sources.push({ replacementItem, startIndex, endIndex });
-
-                break;
-              }
+              // Need improve
+              // case 'include': {
+              //   let source;
+              //
+              //   // eslint-disable-next-line no-underscore-dangle
+              //   if (parser._tokenizer._state === 4) {
+              //     return;
+              //   }
+              //
+              //   try {
+              //     source = parseSrc(value);
+              //   } catch (error) {
+              //     options.errors.push(
+              //       new HtmlSourceError(
+              //         `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
+              //         parser.startIndex,
+              //         parser.endIndex,
+              //         html
+              //       )
+              //     );
+              //
+              //     return;
+              //   }
+              //
+              //   if (!urlFilter(attribute, source.value, resourcePath)) {
+              //     return;
+              //   }
+              //
+              //   const { startIndex } = parser;
+              //   const closingTag = html
+              //     .slice(startIndex - 1)
+              //     .match(
+              //       new RegExp(`<s*${tag}[^>]*>(?:.*?)</${tag}[^<>]*>`, 's')
+              //     );
+              //
+              //   if (!closingTag) {
+              //     return;
+              //   }
+              //
+              //   const endIndex = startIndex + closingTag[0].length;
+              //   const importItem = getImportItem(source.value);
+              //   const replacementItem = getReplacementItem(importItem);
+              //
+              //   sources.push({ replacementItem, startIndex, endIndex });
+              //
+              //   break;
+              // }
             }
           });
 

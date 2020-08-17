@@ -13,7 +13,7 @@
           "minLength": 1
         },
         "type": {
-          "enum": ["src", "srcset", "include"]
+          "enum": ["src", "srcset"]
         },
         "filter": {
           "instanceof": "Function"
