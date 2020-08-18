@@ -75,6 +75,7 @@
     "posthtml-webp": "^1.5.0",
     "prettier": "^2.0.5",
     "standard-version": "^8.0.2",
+    "url-loader": "^4.1.0",
     "webpack": "^4.44.1"
   },
   "keywords": [
