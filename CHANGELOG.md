@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/webpack-contrib/html-loader/compare/v1.1.0...v1.2.0) (2020-08-18)
+
+
+### Features
+
+* support SVG tags ([#302](https://github.com/webpack-contrib/html-loader/issues/302)) ([1acd204](https://github.com/webpack-contrib/html-loader/commit/1acd20448dbe976b883597b135bb8ac9e1b71d1a))
+
+
+### Bug Fixes
+
+* do not handle non standard `script` types ([ddad9f2](https://github.com/webpack-contrib/html-loader/commit/ddad9f2d6f5ab75fe2afd247bf55b1646c6e1c31))
+* inline syntax for sources ([#310](https://github.com/webpack-contrib/html-loader/issues/310)) ([c247cfa](https://github.com/webpack-contrib/html-loader/commit/c247cfa9ad66281b28aef5397c8c2d2786f05867))
+* linefeed characters in sources ([#311](https://github.com/webpack-contrib/html-loader/issues/311)) ([b8ee9ee](https://github.com/webpack-contrib/html-loader/commit/b8ee9ee0d60848e84e52fb117c1f3cdc2ebf08d7))
+* minimize is more safely ([#304](https://github.com/webpack-contrib/html-loader/issues/304)) ([03152b1](https://github.com/webpack-contrib/html-loader/commit/03152b1d3b807a287d84302f6a9987ceb22d395c))
+* perf ([#300](https://github.com/webpack-contrib/html-loader/issues/300)) ([d69f259](https://github.com/webpack-contrib/html-loader/commit/d69f259d2a6b4bc9ba9c163fd2d70989c3f3a6ff))
+
 ## [1.1.0](https://github.com/webpack-contrib/html-loader/compare/v1.0.0...v1.1.0) (2020-04-02)
 
 
