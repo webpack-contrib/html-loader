@@ -371,7 +371,7 @@ export function parseSrc(input) {
 }
 
 export function normalizeUrl(url) {
-  return decodeURIComponent(url);
+  return decodeURIComponent(url).replace(/[\t\n\r]/g, '');
 }
 
 export function requestify(url, root) {
