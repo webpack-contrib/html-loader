@@ -1,25 +1,14 @@
-import { parse } from 'url';
-
 import { Parser } from 'htmlparser2';
-import { isUrlRequest, urlToRequest } from 'loader-utils';
+import { isUrlRequest } from 'loader-utils';
 
 import HtmlSourceError from '../HtmlSourceError';
-import { getFilter, parseSrc, parseSrcset } from '../utils';
-
-function parseSource(source) {
-  const URLObject = parse(source);
-  const { hash } = URLObject;
-
-  if (!hash) {
-    return { sourceValue: source };
-  }
-
-  URLObject.hash = null;
-
-  const sourceWithoutHash = URLObject.format();
-
-  return { sourceValue: sourceWithoutHash, hash };
-}
+import {
+  getFilter,
+  parseSrc,
+  parseSrcset,
+  normalizeUrl,
+  requestify,
+} from '../utils';
 
 export default (options) =>
   function process(html) {
@@ -44,45 +33,6 @@ export default (options) =>
       });
     };
     const { resourcePath } = options;
-    const imports = new Map();
-    const getImportItem = (value) => {
-      const key = urlToRequest(decodeURIComponent(value), root);
-
-      let name = imports.get(key);
-
-      if (name) {
-        return { key, name };
-      }
-
-      name = `___HTML_LOADER_IMPORT_${imports.size}___`;
-      imports.set(key, name);
-
-      options.imports.push({ importName: name, source: key });
-
-      return { key, name };
-    };
-    const replacements = new Map();
-    const getReplacementItem = (importItem, unquoted, hash) => {
-      const key = JSON.stringify({ key: importItem.key, unquoted, hash });
-
-      let name = replacements.get(key);
-
-      if (name) {
-        return { key, name };
-      }
-
-      name = `___HTML_LOADER_REPLACEMENT_${replacements.size}___`;
-      replacements.set(key, name);
-
-      options.replacements.push({
-        replacementName: name,
-        importName: importItem.name,
-        hash,
-        unquoted,
-      });
-
-      return { key, name };
-    };
     const parser = new Parser(
       {
         attributesMeta: {},
@@ -135,21 +85,16 @@ export default (options) =>
                   return;
                 }
 
-                if (!urlFilter(attribute, source.value, resourcePath)) {
-                  return;
-                }
-
-                const { sourceValue, hash } = parseSource(source.value);
-                const importItem = getImportItem(sourceValue);
-                const replacementItem = getReplacementItem(
-                  importItem,
-                  unquoted,
-                  hash
-                );
                 const startIndex = valueStartIndex + source.startIndex;
                 const endIndex = startIndex + source.value.length;
 
-                sources.push({ replacementItem, startIndex, endIndex });
+                sources.push({
+                  name: attribute,
+                  value: source.value,
+                  unquoted,
+                  startIndex,
+                  endIndex,
+                });
 
                 break;
               }
@@ -173,22 +118,16 @@ export default (options) =>
 
                 sourceSet.forEach((sourceItem) => {
                   const { source } = sourceItem;
-
-                  if (!urlFilter(attribute, source.value, resourcePath)) {
-                    return;
-                  }
-
-                  const { sourceValue, hash } = parseSource(source.value);
-                  const importItem = getImportItem(sourceValue);
-                  const replacementItem = getReplacementItem(
-                    importItem,
-                    unquoted,
-                    hash
-                  );
                   const startIndex = valueStartIndex + source.startIndex;
                   const endIndex = startIndex + source.value.length;
 
-                  sources.push({ replacementItem, startIndex, endIndex });
+                  sources.push({
+                    name: attribute,
+                    value: source.value,
+                    unquoted,
+                    startIndex,
+                    endIndex,
+                  });
                 });
 
                 break;
@@ -261,18 +200,76 @@ export default (options) =>
     parser.write(html);
     parser.end();
 
+    const imports = new Map();
+    const replacements = new Map();
+
     let offset = 0;
 
     for (const source of sources) {
-      const { startIndex, endIndex, replacementItem } = source;
+      const { name, value, unquoted, startIndex, endIndex } = source;
+
+      let normalizedUrl = value;
+      let prefix = '';
+
+      const queryParts = normalizedUrl.split('!');
+
+      if (queryParts.length > 1) {
+        normalizedUrl = queryParts.pop();
+        prefix = queryParts.join('!');
+      }
+
+      normalizedUrl = normalizeUrl(normalizedUrl);
+
+      if (!urlFilter(name, value, resourcePath)) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      let hash;
+      const indexHash = normalizedUrl.lastIndexOf('#');
+
+      if (indexHash >= 0) {
+        hash = normalizedUrl.substr(indexHash, indexHash);
+        normalizedUrl = normalizedUrl.substr(0, indexHash);
+      }
+
+      const request = requestify(normalizedUrl, root);
+      const newUrl = prefix ? `${prefix}!${request}` : request;
+      const importKey = newUrl;
+      let importName = imports.get(importKey);
+
+      if (!importName) {
+        importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
+        imports.set(importKey, importName);
+
+        options.imports.push({
+          importName,
+          source: options.urlHandler(newUrl),
+        });
+      }
+
+      const replacementKey = JSON.stringify({ newUrl, unquoted, hash });
+      let replacementName = replacements.get(replacementKey);
+
+      if (!replacementName) {
+        replacementName = `___HTML_LOADER_REPLACEMENT_${replacements.size}___`;
+        replacements.set(replacementKey, replacementName);
+
+        options.replacements.push({
+          replacementName,
+          importName,
+          hash,
+          unquoted,
+        });
+      }
 
       // eslint-disable-next-line no-param-reassign
       html =
         html.slice(0, startIndex + offset) +
-        replacementItem.name +
+        replacementName +
         html.slice(endIndex + offset);
 
-      offset += startIndex + replacementItem.name.length - endIndex;
+      offset += startIndex + replacementName.length - endIndex;
     }
 
     return html;

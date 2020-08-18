@@ -1,4 +1,4 @@
-import { stringifyRequest } from 'loader-utils';
+import { stringifyRequest, urlToRequest } from 'loader-utils';
 
 function isASCIIWhitespace(character) {
   return (
@@ -370,6 +370,14 @@ export function parseSrc(input) {
   return { value, startIndex };
 }
 
+export function normalizeUrl(url) {
+  return decodeURIComponent(url);
+}
+
+export function requestify(url, root) {
+  return urlToRequest(url, root);
+}
+
 function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
@@ -606,11 +614,10 @@ export function getImportCode(html, loaderContext, imports, options) {
 
   for (const item of imports) {
     const { importName, source } = item;
-    const stringifiedSourceRequest = stringifyRequest(loaderContext, source);
 
     code += options.esModule
-      ? `import ${importName} from ${stringifiedSourceRequest};\n`
-      : `var ${importName} = require(${stringifiedSourceRequest});\n`;
+      ? `import ${importName} from ${source};\n`
+      : `var ${importName} = require(${source});\n`;
   }
 
   return `// Imports\n${code}`;
