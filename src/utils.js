@@ -1,4 +1,4 @@
-import { stringifyRequest, urlToRequest } from 'loader-utils';
+import { stringifyRequest, isUrlRequest, urlToRequest } from 'loader-utils';
 
 function isASCIIWhitespace(character) {
   return (
@@ -376,6 +376,10 @@ export function normalizeUrl(url) {
 
 export function requestify(url, root) {
   return urlToRequest(url, root);
+}
+
+export function isUrlRequestable(url, root) {
+  return isUrlRequest(url, root);
 }
 
 function isProductionMode(loaderContext) {
