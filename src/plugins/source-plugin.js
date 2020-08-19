@@ -8,6 +8,7 @@ import {
   parseSrcset,
   normalizeUrl,
   requestify,
+  isUrlRequestable,
 } from '../utils';
 
 export default (options) =>
@@ -85,6 +86,10 @@ export default (options) =>
                   return;
                 }
 
+                if (!isUrlRequestable(source.value, root)) {
+                  return;
+                }
+
                 const startIndex = valueStartIndex + source.startIndex;
                 const endIndex = startIndex + source.value.length;
 
@@ -120,6 +125,10 @@ export default (options) =>
                   const { source } = sourceItem;
                   const startIndex = valueStartIndex + source.startIndex;
                   const endIndex = startIndex + source.value.length;
+
+                  if (!isUrlRequestable(source.value, root)) {
+                    return;
+                  }
 
                   sources.push({
                     name: attribute,
