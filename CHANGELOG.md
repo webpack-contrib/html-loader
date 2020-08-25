@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/webpack-contrib/html-loader/compare/v1.2.1...v1.3.0) (2020-08-25)
+
+
+### Features
+
+* `...` syntax to extend default tag and attributes ([#317](https://github.com/webpack-contrib/html-loader/issues/317)) ([f02bb48](https://github.com/webpack-contrib/html-loader/commit/f02bb48a1124fc567b858234b1cf3d3e68bb6c76))
+
+
+### Bug Fixes
+
+* handle `script` tags in SVG ([#315](https://github.com/webpack-contrib/html-loader/issues/315)) ([d021e42](https://github.com/webpack-contrib/html-loader/commit/d021e42fc830d36cf2ab3e9d483fd5723af23ba8))
+
 ### [1.2.1](https://github.com/webpack-contrib/html-loader/compare/v1.2.0...v1.2.1) (2020-08-19)
 
 
