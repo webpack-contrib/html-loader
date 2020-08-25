@@ -35,6 +35,29 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should work with "..." syntax', async () => {
+    const compiler = getCompiler('simple.js', {
+      attributes: {
+        list: [
+          '...',
+          {
+            tag: 'flag-icon',
+            attribute: 'src',
+            type: 'src',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it.skip('should handle the "include" tags', async () => {
     const compiler = getCompiler('include.js', {
       attributes: {

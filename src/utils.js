@@ -562,6 +562,33 @@ const defaultAttributes = [
   },
 ];
 
+function smartMergeSources(array, factory) {
+  if (typeof array === 'undefined') {
+    return factory();
+  }
+
+  const newArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i];
+
+    if (item === '...') {
+      const items = factory();
+
+      if (typeof items !== 'undefined') {
+        // eslint-disable-next-line no-shadow
+        for (const item of items) {
+          newArray.push(item);
+        }
+      }
+    } else if (typeof newArray !== 'undefined') {
+      newArray.push(item);
+    }
+  }
+
+  return newArray;
+}
+
 function getAttributesOption(rawOptions) {
   if (typeof rawOptions.attributes === 'undefined') {
     return { list: defaultAttributes };
@@ -571,7 +598,16 @@ function getAttributesOption(rawOptions) {
     return rawOptions.attributes === true ? { list: defaultAttributes } : false;
   }
 
-  return { ...{ list: defaultAttributes }, ...rawOptions.attributes };
+  const sources = smartMergeSources(
+    rawOptions.attributes.list,
+    () => defaultAttributes
+  );
+
+  return {
+    list: sources,
+    urlFilter: rawOptions.attributes.urlFilter,
+    root: rawOptions.attributes.root,
+  };
 }
 
 export function normalizeOptions(rawOptions, loaderContext) {

@@ -2,25 +2,32 @@
   "type": "object",
   "definitions": {
     "Attribute": {
-      "type": "object",
-      "properties": {
-        "tag": {
-          "type": "string",
-          "minLength": 1
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "attribute": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "enum": ["src", "srcset"]
+            },
+            "filter": {
+              "instanceof": "Function"
+            }
+          },
+          "required": ["attribute", "type"],
+          "additionalProperties": false
         },
-        "attribute": {
-          "type": "string",
-          "minLength": 1
-        },
-        "type": {
-          "enum": ["src", "srcset"]
-        },
-        "filter": {
-          "instanceof": "Function"
+        {
+          "enum": ["..."]
         }
-      },
-      "required": ["attribute", "type"],
-      "additionalProperties": false
+      ]
     },
     "AttributeList": {
       "type": "array",
