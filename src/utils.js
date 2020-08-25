@@ -428,6 +428,22 @@ function getAttributeValue(attributes, name) {
   return attributes[lowercasedAttributes[name.toLowerCase()]];
 }
 
+function scriptFilter(tag, attribute, attributes) {
+  if (attributes.type) {
+    const type = getAttributeValue(attributes, 'type').trim().toLowerCase();
+
+    if (
+      type !== 'module' &&
+      type !== 'text/javascript' &&
+      type !== 'application/javascript'
+    ) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 const defaultAttributes = [
   {
     tag: 'audio',
@@ -483,21 +499,20 @@ const defaultAttributes = [
     tag: 'script',
     attribute: 'src',
     type: 'src',
-    filter: (tag, attribute, attributes) => {
-      if (attributes.type) {
-        const type = getAttributeValue(attributes, 'type').trim().toLowerCase();
-
-        if (
-          type !== 'module' &&
-          type !== 'text/javascript' &&
-          type !== 'application/javascript'
-        ) {
-          return false;
-        }
-      }
-
-      return true;
-    },
+    filter: scriptFilter,
+  },
+  // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
+  {
+    tag: 'script',
+    attribute: 'href',
+    type: 'src',
+    filter: scriptFilter,
+  },
+  {
+    tag: 'script',
+    attribute: 'xlink:href',
+    type: 'src',
+    filter: scriptFilter,
   },
   {
     tag: 'source',
