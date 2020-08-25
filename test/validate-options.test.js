@@ -47,6 +47,16 @@ describe('validate options', () => {
             },
           ],
         },
+        {
+          list: [
+            '...',
+            {
+              tag: 'img',
+              attribute: 'srcset',
+              type: 'srcset',
+            },
+          ],
+        },
         { urlFilter: () => true },
         { root: '.' },
         {
