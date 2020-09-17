@@ -371,6 +371,8 @@ export function parseSrc(input) {
 }
 
 export function normalizeUrl(url) {
+  // fix bug #319
+  url = url.replace(/%/g, '%25');
   return decodeURIComponent(url).replace(/[\t\n\r]/g, '');
 }
 
