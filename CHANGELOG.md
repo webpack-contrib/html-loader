@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/webpack-contrib/html-loader/compare/v1.3.0...v1.3.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* avoid removing redundant attributes ([#324](https://github.com/webpack-contrib/html-loader/issues/324)) ([ab299ac](https://github.com/webpack-contrib/html-loader/commit/ab299acd8784f96f9191988133fb74f72aaf89c8))
+
 ## [1.3.0](https://github.com/webpack-contrib/html-loader/compare/v1.2.1...v1.3.0) (2020-08-25)
 
 
