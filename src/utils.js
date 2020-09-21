@@ -398,8 +398,8 @@ const defaultMinimizerOptions = {
   // `minifyURLs` is unsafe, because we can't guarantee what the base URL is
   // `removeAttributeQuotes` is not safe in some rare cases, also HTML spec recommends against doing this
   removeComments: true,
-  // `removeEmptyAttributes` is not safe, can affect certain style or script behavior
-  removeRedundantAttributes: true,
+  // `removeEmptyAttributes` is not safe, can affect certain style or script behavior, look at https://github.com/webpack-contrib/html-loader/issues/323
+  // `removeRedundantAttributes` is not safe, can affect certain style or script behavior, look at https://github.com/webpack-contrib/html-loader/issues/323
   removeScriptTypeAttributes: true,
   removeStyleLinkTypeAttributes: true,
   // `useShortDoctype` is not safe for XHTML
