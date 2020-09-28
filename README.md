@@ -280,6 +280,41 @@ module.exports = {
 };
 ```
 
+Filter can also be used to extend the supported elements and attributes. For example, filter can help process meta tags that reference assets:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          attributes: {
+            list: [
+              {
+                tag: 'meta',
+                attribute: 'content',
+                type: 'src',
+                filter: (tag, attribute, attributes, resourcePath) => {
+                  if (
+                    attributes.property === 'og:image' ||
+                    attributes.property === 'twitter:image'
+                  ) {
+                    return true;
+                  }
+                  return false;
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
 #### `urlFilter`
 
 Type: `Function`
