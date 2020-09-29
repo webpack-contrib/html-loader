@@ -299,7 +299,7 @@ module.exports = {
                 filter: (tag, attribute, attributes, resourcePath) => {
                   if (
                     attributes.property === 'og:image' ||
-                    attributes.property === 'twitter:image'
+                    attributes.name === 'twitter:image'
                   ) {
                     return true;
                   }
