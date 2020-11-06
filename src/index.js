@@ -1,5 +1,5 @@
 import { getOptions, stringifyRequest } from 'loader-utils';
-import validateOptions from 'schema-utils';
+import { validate } from 'schema-utils';
 
 import { sourcePlugin, minimizerPlugin } from './plugins';
 import {
@@ -15,7 +15,7 @@ import schema from './options.json';
 export default async function loader(content) {
   const rawOptions = getOptions(this);
 
-  validateOptions(schema, rawOptions, {
+  validate(schema, rawOptions, {
     name: 'HTML Loader',
     baseDataPath: 'options',
   });
