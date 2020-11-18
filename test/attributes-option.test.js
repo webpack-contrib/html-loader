@@ -11,7 +11,7 @@ import {
 } from './helpers';
 
 describe("'attributes' option", () => {
-  it.only('should work by default', async () => {
+  it('should work by default', async () => {
     const compiler = getCompiler('simple.js');
     const stats = await compile(compiler);
 
@@ -280,7 +280,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4|css)$/i,
               loader: 'file-loader',
               options: { esModule: false, name: '[name].[ext]' },
             },
@@ -315,7 +315,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4|css)$/i,
               loader: 'file-loader',
               options: { esModule: true, name: '[name].[ext]' },
             },
@@ -350,7 +350,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4|css)$/i,
               loader: 'file-loader',
               options: { esModule: false, name: '[name].[ext]' },
             },
@@ -385,7 +385,7 @@ describe("'attributes' option", () => {
               ],
             },
             {
-              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
+              test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4|css)$/i,
               loader: 'file-loader',
               options: { esModule: true, name: '[name].[ext]' },
             },
