@@ -428,7 +428,6 @@ function getAttributeValue(attributes, name) {
   return attributes[lowercasedAttributes[name.toLowerCase()]];
 }
 
-// TODO refactor
 function scriptSrcFilter(tag, attribute, attributes) {
   let type = getAttributeValue(attributes, 'type');
 
@@ -484,29 +483,54 @@ function linkHrefFilter(tag, attribute, attributes) {
 function metaContentFilter(tag, attribute, attributes) {
   let name = getAttributeValue(attributes, 'name');
 
-  if (!name) {
-    return false;
+  if (name) {
+    name = name.trim();
+
+    if (!name) {
+      return false;
+    }
+
+    name = name.toLowerCase();
+
+    const allowedNames = [
+      // msapplication-TileImage
+      'msapplication-tileimage',
+      'msapplication-square70x70logo',
+      'msapplication-square150x150logo',
+      'msapplication-wide310x150logo',
+      'msapplication-square310x310logo',
+      'msapplication-config',
+    ];
+
+    return allowedNames.includes(name);
   }
 
-  name = name.trim();
+  let property = getAttributeValue(attributes, 'property');
 
-  if (!name) {
-    return false;
+  if (property) {
+    property = property.trim();
+
+    if (!property) {
+      return false;
+    }
+
+    property = property.toLowerCase();
+
+    const allowedProperties = [
+      'og:image',
+      'og:image:url',
+      'og:image:secure_url',
+      'og:audio',
+      'og:audio:secure_url',
+      'og:video',
+      'og:video:secure_url',
+      'vk:image',
+    ];
+
+    return allowedProperties.includes(property);
   }
 
-  name = name.toLowerCase();
-
-  const allowedNames = [
-    // msapplication-TileImage
-    'msapplication-tileimage',
-    'msapplication-square70x70logo',
-    'msapplication-square150x150logo',
-    'msapplication-wide310x150logo',
-    'msapplication-square310x310logo',
-    'msapplication-config',
-  ];
-
-  return allowedNames.includes(name);
+  return false;
 }
 
 const defaultAttributes = [
