@@ -24,13 +24,21 @@ export default (options) =>
           typeof element.tag === 'undefined' ||
           (typeof element.tag !== 'undefined' &&
             element.tag.toLowerCase() === tag.toLowerCase());
+
+        if (!foundTag) {
+          return false;
+        }
+
         const foundAttribute =
           element.attribute.toLowerCase() === attribute.toLowerCase();
-        const isNotFiltered = element.filter
+
+        if (!foundAttribute) {
+          return false;
+        }
+
+        return element.filter
           ? element.filter(tag, attribute, attributes, resourcePath)
           : true;
-
-        return foundTag && foundAttribute && isNotFiltered;
       });
     };
     const { resourcePath } = options;
