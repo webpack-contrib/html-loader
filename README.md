@@ -72,7 +72,6 @@ Supported tags and attributes:
 - the `src` attribute of the `img` tag
 - the `srcset` attribute of the `img` tag
 - the `src` attribute of the `input` tag
-- the `href` attribute of the `link` tag (only for stylesheets)
 - the `data` attribute of the `object` tag
 - the `src` attribute of the `script` tag
 - the `href` attribute of the `script` tag
@@ -86,6 +85,8 @@ Supported tags and attributes:
 - the `href` attribute of the `image` tag
 - the `xlink:href` attribute of the `use` tag
 - the `href` attribute of the `use` tag
+- the `href` attribute of the `link` tag when the `rel` attribute contains `stylesheet`, `icon`, `shortcut icon`, `mask-icon`, `apple-touch-icon`, `apple-touch-icon-precomposed`, `apple-touch-startup-image`
+- the `content` attribute of the `meta` tag when the `name` attribute is `msapplication-tileimage`, `msapplication-square70x70logo`, `msapplication-square150x150logo`, `msapplication-wide310x150logo`, `msapplication-square310x310logo`, `msapplication-config`
 
 #### `Boolean`
 

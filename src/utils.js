@@ -428,20 +428,85 @@ function getAttributeValue(attributes, name) {
   return attributes[lowercasedAttributes[name.toLowerCase()]];
 }
 
-function scriptFilter(tag, attribute, attributes) {
-  if (attributes.type) {
-    const type = getAttributeValue(attributes, 'type').trim().toLowerCase();
+// TODO refactor
+function scriptSrcFilter(tag, attribute, attributes) {
+  let type = getAttributeValue(attributes, 'type');
 
-    if (
-      type !== 'module' &&
-      type !== 'text/javascript' &&
-      type !== 'application/javascript'
-    ) {
-      return false;
-    }
+  if (!type) {
+    return true;
+  }
+
+  type = type.trim();
+
+  if (!type) {
+    return false;
+  }
+
+  if (
+    type !== 'module' &&
+    type !== 'text/javascript' &&
+    type !== 'application/javascript'
+  ) {
+    return false;
   }
 
   return true;
+}
+
+function linkHrefFilter(tag, attribute, attributes) {
+  let rel = getAttributeValue(attributes, 'rel');
+
+  if (!rel) {
+    return false;
+  }
+
+  rel = rel.trim();
+
+  if (!rel) {
+    return false;
+  }
+
+  rel = rel.toLowerCase();
+
+  const usedRels = rel.split(' ').filter((value) => value);
+  const allowedRels = [
+    'stylesheet',
+    'icon',
+    'mask-icon',
+    'apple-touch-icon',
+    'apple-touch-icon-precomposed',
+    'apple-touch-startup-image',
+  ];
+
+  return allowedRels.filter((value) => usedRels.includes(value));
+}
+
+function metaContentFilter(tag, attribute, attributes) {
+  let name = getAttributeValue(attributes, 'name');
+
+  if (!name) {
+    return false;
+  }
+
+  name = name.trim();
+
+  if (!name) {
+    return false;
+  }
+
+  name = name.toLowerCase();
+
+  const allowedNames = [
+    // msapplication-TileImage
+    'msapplication-tileimage',
+    'msapplication-square70x70logo',
+    'msapplication-square150x150logo',
+    'msapplication-wide310x150logo',
+    'msapplication-square310x310logo',
+    'msapplication-config',
+  ];
+
+  return allowedNames.includes(name);
 }
 
 const defaultAttributes = [
@@ -474,21 +539,13 @@ const defaultAttributes = [
     tag: 'link',
     attribute: 'href',
     type: 'src',
-    filter: (tag, attribute, attributes) => {
-      if (!/stylesheet/i.test(getAttributeValue(attributes, 'rel'))) {
-        return false;
-      }
-
-      if (
-        attributes.type &&
-        getAttributeValue(attributes, 'type').trim().toLowerCase() !==
-          'text/css'
-      ) {
-        return false;
-      }
-
-      return true;
-    },
+    filter: linkHrefFilter,
+  },
+  {
+    tag: 'meta',
+    attribute: 'content',
+    type: 'src',
+    filter: metaContentFilter,
   },
   {
     tag: 'object',
@@ -499,20 +556,20 @@ const defaultAttributes = [
     tag: 'script',
     attribute: 'src',
     type: 'src',
-    filter: scriptFilter,
+    filter: scriptSrcFilter,
   },
   // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
   {
     tag: 'script',
     attribute: 'href',
     type: 'src',
-    filter: scriptFilter,
+    filter: scriptSrcFilter,
   },
   {
     tag: 'script',
     attribute: 'xlink:href',
     type: 'src',
-    filter: scriptFilter,
+    filter: scriptSrcFilter,
   },
   {
     tag: 'source',
