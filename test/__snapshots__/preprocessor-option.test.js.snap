@@ -8,7 +8,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getU
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = \\"<div>\\\\n  <p>Alexander Krasnoyarov</p>\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" alt=\\\\\\"alt\\\\\\" />\\\\n<div>\\\\n\\";
+var code = \\"<div>\\\\r\\\\n  <p>Alexander Krasnoyarov</p>\\\\r\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" alt=\\\\\\"alt\\\\\\" />\\\\r\\\\n<div>\\\\r\\\\n\\";
 // Exports
 module.exports = code;"
 `;
@@ -33,7 +33,7 @@ var ___HTML_LOADER_IMPORT_1___ = require(\\"./image.png\\");
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
-var code = \\"<picture><source type=\\\\\\"image/webp\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\"><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_1___ + \\"\\\\\\"></picture>\\\\n\\";
+var code = \\"<picture><source type=\\\\\\"image/webp\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\"><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_1___ + \\"\\\\\\"></picture>\\\\r\\\\n\\";
 // Exports
 module.exports = code;"
 `;
@@ -53,7 +53,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getU
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = \\"<div>\\\\n  <p>Alexander Krasnoyarov</p>\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" alt=\\\\\\"alt\\\\\\" />\\\\n<div>\\\\n\\";
+var code = \\"<div>\\\\r\\\\n  <p>Alexander Krasnoyarov</p>\\\\r\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" alt=\\\\\\"alt\\\\\\" />\\\\r\\\\n<div>\\\\r\\\\n\\";
 // Exports
 module.exports = code;"
 `;
@@ -78,7 +78,7 @@ var ___HTML_LOADER_IMPORT_1___ = require(\\"./image.png\\");
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
-var code = \\"<picture><source type=\\\\\\"image/webp\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\"><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_1___ + \\"\\\\\\"></picture>\\\\n\\";
+var code = \\"<picture><source type=\\\\\\"image/webp\\\\\\" srcset=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\"><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_1___ + \\"\\\\\\"></picture>\\\\r\\\\n\\";
 // Exports
 module.exports = code;"
 `;
