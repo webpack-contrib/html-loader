@@ -246,7 +246,7 @@ export default (options) =>
       const indexHash = normalizedUrl.lastIndexOf('#');
 
       if (indexHash >= 0) {
-        hash = normalizedUrl.substr(indexHash, indexHash);
+        hash = normalizedUrl.substr(indexHash); // Truncate url of small relative path can be solved from this
         normalizedUrl = normalizedUrl.substr(0, indexHash);
       }
 
