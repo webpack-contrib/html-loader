@@ -213,7 +213,6 @@ export default (options) =>
       const request = requestify(normalizedUrl, root);
       const newUrl = prefix ? `${prefix}!${request}` : request;
       const importKey = newUrl;
-
       let importName = imports.get(importKey);
 
       if (!importName) {

@@ -246,9 +246,7 @@ describe("'attributes' option", () => {
             attribute: 'src',
             type: 'src',
             // eslint-disable-next-line no-unused-vars
-            filter: (tag, attribute, attributes) => {
-              return tag.toLowerCase() !== 'img';
-            },
+            filter: (tag, attribute, attributes) => tag.toLowerCase() !== 'img',
           },
         ],
       },

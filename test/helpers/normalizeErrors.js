@@ -14,8 +14,7 @@ function removeCWD(str) {
     .replace(/\(from (.*)\)/, '(from /path/to/file.js)');
 }
 
-export default (errors) => {
-  return errors.map((error) =>
+export default (errors) =>
+  errors.map((error) =>
     removeCWD(error.toString().split('\n').slice(0, 2).join('\n'))
   );
-};
