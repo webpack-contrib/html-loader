@@ -1,4 +1,6 @@
-import { Parser } from 'htmlparser2';
+import { Readable } from 'stream';
+
+import SAXParser from 'parse5-sax-parser';
 import { isUrlRequest } from 'loader-utils';
 
 import HtmlSourceError from '../HtmlSourceError';
@@ -9,10 +11,11 @@ import {
   normalizeUrl,
   requestify,
   isUrlRequestable,
+  c0ControlCodesExclude,
 } from '../utils';
 
 export default (options) =>
-  function process(html) {
+  async function process(html) {
     const { list, urlFilter: maybeUrlFilter, root } = options.attributes;
     const sources = [];
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
@@ -36,186 +39,154 @@ export default (options) =>
           return false;
         }
 
+        const adaptedAttributes = attributes.reduce((accumulator, item) => {
+          // eslint-disable-next-line no-param-reassign
+          accumulator[item.name] = item.value;
+          return accumulator;
+        }, {});
+
         return element.filter
-          ? element.filter(tag, attribute, attributes, resourcePath)
+          ? element.filter(tag, attribute, adaptedAttributes, resourcePath)
           : true;
       });
     };
+
     const { resourcePath } = options;
-    const parser = new Parser(
-      {
-        attributesMeta: {},
-        onattribute(name, value) {
-          // eslint-disable-next-line no-underscore-dangle
-          const endIndex = parser._tokenizer._index;
-          const startIndex = endIndex - value.length;
-          const unquoted = html[endIndex] !== '"' && html[endIndex] !== "'";
+    const readable = Readable.from(html);
 
-          this.attributesMeta[name] = { startIndex, unquoted };
-        },
-        onopentag(tag, attributes) {
-          Object.keys(attributes).forEach((attribute) => {
-            const value = attributes[attribute];
-            const {
-              startIndex: valueStartIndex,
-              unquoted,
-            } = this.attributesMeta[attribute];
+    readable.on('data', () => {});
 
-            const foundAttribute = getAttribute(
-              tag,
-              attribute,
-              attributes,
-              resourcePath
-            );
+    const streamEnd = new Promise((resolve) => {
+      readable.on('end', () => resolve());
+    });
+    const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
 
-            if (!foundAttribute) {
+    parser5.on('startTag', (node) => {
+      const { tagName, attrs, sourceCodeLocation } = node;
+
+      attrs.forEach((attribute) => {
+        const { value, prefix } = attribute;
+        let { name } = attribute;
+
+        name = prefix ? `${prefix}:${name}` : name;
+
+        if (!sourceCodeLocation.attrs[name]) {
+          return;
+        }
+
+        const foundAttribute = getAttribute(tagName, name, attrs, resourcePath);
+
+        if (!foundAttribute) {
+          return;
+        }
+
+        const { type } = foundAttribute;
+
+        const target = html.slice(
+          sourceCodeLocation.attrs[name].startOffset,
+          sourceCodeLocation.attrs[name].endOffset
+        );
+
+        const unquoted =
+          target[target.length - 1] !== '"' &&
+          target[target.length - 1] !== "'";
+
+        // eslint-disable-next-line default-case
+        switch (type) {
+          case 'src': {
+            let source;
+
+            try {
+              source = parseSrc(value);
+            } catch (error) {
+              options.errors.push(
+                new HtmlSourceError(
+                  `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
+                  sourceCodeLocation.attrs[name].startOffset,
+                  sourceCodeLocation.attrs[name].endOffset,
+                  html
+                )
+              );
+
               return;
             }
 
-            const { type } = foundAttribute;
+            source = c0ControlCodesExclude(source);
 
-            // eslint-disable-next-line default-case
-            switch (type) {
-              case 'src': {
-                let source;
-
-                try {
-                  source = parseSrc(value);
-                } catch (error) {
-                  options.errors.push(
-                    new HtmlSourceError(
-                      `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
-                      parser.startIndex,
-                      parser.endIndex,
-                      html
-                    )
-                  );
-
-                  return;
-                }
-
-                if (!isUrlRequestable(source.value, root)) {
-                  return;
-                }
-
-                const startIndex = valueStartIndex + source.startIndex;
-                const endIndex = startIndex + source.value.length;
-
-                sources.push({
-                  name: attribute,
-                  value: source.value,
-                  unquoted,
-                  startIndex,
-                  endIndex,
-                });
-
-                break;
-              }
-              case 'srcset': {
-                let sourceSet;
-
-                try {
-                  sourceSet = parseSrcset(value);
-                } catch (error) {
-                  options.errors.push(
-                    new HtmlSourceError(
-                      `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
-                      parser.startIndex,
-                      parser.endIndex,
-                      html
-                    )
-                  );
-
-                  return;
-                }
-
-                sourceSet.forEach((sourceItem) => {
-                  const { source } = sourceItem;
-                  const startIndex = valueStartIndex + source.startIndex;
-                  const endIndex = startIndex + source.value.length;
-
-                  if (!isUrlRequestable(source.value, root)) {
-                    return;
-                  }
-
-                  sources.push({
-                    name: attribute,
-                    value: source.value,
-                    unquoted,
-                    startIndex,
-                    endIndex,
-                  });
-                });
-
-                break;
-              }
-              // Need improve
-              // case 'include': {
-              //   let source;
-              //
-              //   // eslint-disable-next-line no-underscore-dangle
-              //   if (parser._tokenizer._state === 4) {
-              //     return;
-              //   }
-              //
-              //   try {
-              //     source = parseSrc(value);
-              //   } catch (error) {
-              //     options.errors.push(
-              //       new HtmlSourceError(
-              //         `Bad value for attribute "${attribute}" on element "${tag}": ${error.message}`,
-              //         parser.startIndex,
-              //         parser.endIndex,
-              //         html
-              //       )
-              //     );
-              //
-              //     return;
-              //   }
-              //
-              //   if (!urlFilter(attribute, source.value, resourcePath)) {
-              //     return;
-              //   }
-              //
-              //   const { startIndex } = parser;
-              //   const closingTag = html
-              //     .slice(startIndex - 1)
-              //     .match(
-              //       new RegExp(`<s*${tag}[^>]*>(?:.*?)</${tag}[^<>]*>`, 's')
-              //     );
-              //
-              //   if (!closingTag) {
-              //     return;
-              //   }
-              //
-              //   const endIndex = startIndex + closingTag[0].length;
-              //   const importItem = getImportItem(source.value);
-              //   const replacementItem = getReplacementItem(importItem);
-              //
-              //   sources.push({ replacementItem, startIndex, endIndex });
-              //
-              //   break;
-              // }
+            if (!isUrlRequestable(source.value, root)) {
+              return;
             }
-          });
 
-          this.attributesMeta = {};
-        },
-        onerror(error) {
-          options.errors.push(error);
-        },
-      },
-      {
-        decodeEntities: false,
-        lowerCaseTags: false,
-        lowerCaseAttributeNames: false,
-        recognizeCDATA: true,
-        recognizeSelfClosing: true,
-      }
-    );
+            const startOffset =
+              sourceCodeLocation.attrs[name].startOffset +
+              target.indexOf(source.value);
 
-    parser.write(html);
-    parser.end();
+            sources.push({
+              name,
+              value: source.value,
+              unquoted,
+              startIndex: startOffset,
+              endIndex: startOffset + source.value.length,
+            });
+
+            break;
+          }
+
+          case 'srcset': {
+            let sourceSet;
+
+            try {
+              sourceSet = parseSrcset(value);
+            } catch (error) {
+              options.errors.push(
+                new HtmlSourceError(
+                  `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
+                  sourceCodeLocation.attrs[name].startOffset,
+                  sourceCodeLocation.attrs[name].endOffset,
+                  html
+                )
+              );
+
+              return;
+            }
+
+            sourceSet = sourceSet.map((item) => ({
+              source: c0ControlCodesExclude(item.source),
+            }));
+
+            let searchFrom = 0;
+
+            sourceSet.forEach((sourceItem) => {
+              const { source } = sourceItem;
+
+              if (!isUrlRequestable(source.value, root)) {
+                return;
+              }
+
+              const startOffset =
+                sourceCodeLocation.attrs[name].startOffset +
+                target.indexOf(source.value, searchFrom);
+
+              searchFrom = target.indexOf(source.value, searchFrom) + 1;
+
+              sources.push({
+                name,
+                value: source.value,
+                unquoted,
+                startIndex: startOffset,
+                endIndex: startOffset + source.value.length,
+              });
+            });
+
+            break;
+          }
+        }
+      });
+    });
+
+    readable.pipe(parser5);
+
+    await streamEnd;
 
     const imports = new Map();
     const replacements = new Map();
@@ -253,6 +224,7 @@ export default (options) =>
       const request = requestify(normalizedUrl, root);
       const newUrl = prefix ? `${prefix}!${request}` : request;
       const importKey = newUrl;
+
       let importName = imports.get(importKey);
 
       if (!importName) {
