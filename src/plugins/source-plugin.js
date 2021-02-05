@@ -19,8 +19,8 @@ export default (options) =>
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
       isUrlRequest(value, root)
     );
-    const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      return list.find((element) => {
+    const getAttribute = (tag, attribute, attributes, resourcePath) =>
+      list.find((element) => {
         const foundTag =
           typeof element.tag === 'undefined' ||
           (typeof element.tag !== 'undefined' &&
@@ -47,7 +47,6 @@ export default (options) =>
           ? element.filter(tag, attribute, adaptedAttributes, resourcePath)
           : true;
       });
-    };
 
     const { resourcePath } = options;
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
@@ -141,9 +140,11 @@ export default (options) =>
               return;
             }
 
-            sourceSet = sourceSet.map((item) => ({
-              source: c0ControlCodesExclude(item.source),
-            }));
+            sourceSet = sourceSet.map((item) => {
+              return {
+                source: c0ControlCodesExclude(item.source),
+              };
+            });
 
             let searchFrom = name.length;
 
@@ -213,7 +214,6 @@ export default (options) =>
       const request = requestify(normalizedUrl, root);
       const newUrl = prefix ? `${prefix}!${request}` : request;
       const importKey = newUrl;
-
       let importName = imports.get(importKey);
 
       if (!importName) {
