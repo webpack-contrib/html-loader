@@ -795,3 +795,32 @@ export function getExportCode(html, options) {
 
   return `// Exports\nmodule.exports = code;`;
 }
+
+function isASCIIC0group(character) {
+  // C0 and &nbsp;
+  // eslint-disable-next-line no-control-regex
+  return /^[\u0001-\u0019\u00a0]/.test(character);
+}
+
+export function c0ControlCodesExclude(source) {
+  let { value, startIndex } = source;
+
+  if (!value) {
+    throw new Error('Must be non-empty');
+  }
+
+  while (isASCIIC0group(value.substring(0, 1))) {
+    startIndex += 1;
+    value = value.substring(1, value.length);
+  }
+
+  while (isASCIIC0group(value.substring(value.length - 1, value.length))) {
+    value = value.substring(0, value.length - 1);
+  }
+
+  if (!value) {
+    throw new Error('Must be non-empty');
+  }
+
+  return { value, startIndex };
+}

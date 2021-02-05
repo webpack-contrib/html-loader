@@ -49,7 +49,7 @@ export default async function loader(content) {
     plugins.push(minimizerPlugin({ minimize: options.minimize, errors }));
   }
 
-  const { html } = pluginRunner(plugins).process(content);
+  const { html } = await pluginRunner(plugins).process(content);
 
   for (const error of errors) {
     this.emitError(error instanceof Error ? error : new Error(error));

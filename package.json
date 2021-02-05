@@ -44,8 +44,8 @@
   },
   "dependencies": {
     "html-minifier-terser": "^5.1.1",
-    "htmlparser2": "^4.1.0",
     "loader-utils": "^2.0.0",
+    "parse5-sax-parser": "^6.0.1",
     "schema-utils": "^3.0.0"
   },
   "devDependencies": {
@@ -75,6 +75,7 @@
     "posthtml-webp": "^2.1.0",
     "prettier": "^2.1.2",
     "standard-version": "^9.0.0",
+    "unescape-unicode": "^0.2.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.5.0"
   },
