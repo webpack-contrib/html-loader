@@ -153,7 +153,6 @@ module.exports = {
 
               return true;
             },
-            root: '.',
           },
         },
       },
@@ -309,34 +308,6 @@ module.exports = {
 
               return true;
             },
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `root`
-
-Type: `String`
-Default: `undefined`
-
-For urls that start with a `/`, the default behavior is to not translate them.
-If a `root` query parameter is set, however, it will be prepended to the url and then translated.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          attributes: {
-            root: '.',
           },
         },
       },
@@ -660,32 +631,6 @@ module.exports = {
     ],
   },
 };
-```
-
-### 'Root-relative' URLs
-
-With the same configuration as in the CDN example:
-
-**file.html**
-
-```html
-<img src="/image.jpg" />
-```
-
-**scripts.js**
-
-```js
-require('html-loader!./file.html');
-
-// => '<img src="/image.jpg">'
-```
-
-**other-scripts.js**
-
-```js
-require('html-loader?{"attributes":{"root":"."}}!./file.html');
-
-// => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg">'
 ```
 
 ### Templating

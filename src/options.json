@@ -54,9 +54,6 @@
             },
             "urlFilter": {
               "instanceof": "Function"
-            },
-            "root": {
-              "type": "string"
             }
           },
           "additionalProperties": false

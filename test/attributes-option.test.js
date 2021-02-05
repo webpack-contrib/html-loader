@@ -204,7 +204,6 @@ describe("'attributes' option", () => {
 
           return true;
         },
-        root: '.',
       },
     });
     const stats = await compile(compiler);

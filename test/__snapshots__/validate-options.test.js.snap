@@ -3,11 +3,11 @@
 exports[`validate options should throw an error on the "attributes" option with "[]" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.attributes should be one of these:
-   boolean | object { list?, urlFilter?, root? }
+   boolean | object { list?, urlFilter? }
    Details:
     * options.attributes should be a boolean.
     * options.attributes should be an object:
-      object { list?, urlFilter?, root? }"
+      object { list?, urlFilter? }"
 `;
 
 exports[`validate options should throw an error on the "attributes" option with "{"list":[]}" value 1`] = `
@@ -36,15 +36,10 @@ exports[`validate options should throw an error on the "attributes" option with 
    \\"src\\" | \\"srcset\\""
 `;
 
-exports[`validate options should throw an error on the "attributes" option with "{"root":false}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.root should be a string."
-`;
-
 exports[`validate options should throw an error on the "attributes" option with "{"unknown":true}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.attributes has an unknown property 'unknown'. These properties are valid:
-   object { list?, urlFilter?, root? }"
+   object { list?, urlFilter? }"
 `;
 
 exports[`validate options should throw an error on the "attributes" option with "{"urlFilter":false}" value 1`] = `
@@ -55,11 +50,11 @@ exports[`validate options should throw an error on the "attributes" option with 
 exports[`validate options should throw an error on the "attributes" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.attributes should be one of these:
-   boolean | object { list?, urlFilter?, root? }
+   boolean | object { list?, urlFilter? }
    Details:
     * options.attributes should be a boolean.
     * options.attributes should be an object:
-      object { list?, urlFilter?, root? }"
+      object { list?, urlFilter? }"
 `;
 
 exports[`validate options should throw an error on the "esModule" option with "true" value 1`] = `

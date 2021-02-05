@@ -374,12 +374,12 @@ export function normalizeUrl(url) {
   return decodeURIComponent(url).replace(/[\t\n\r]/g, '');
 }
 
-export function requestify(url, root) {
-  return urlToRequest(url, root);
+export function requestify(url) {
+  return urlToRequest(url);
 }
 
-export function isUrlRequestable(url, root) {
-  return isUrlRequest(url, root);
+export function isUrlRequestable(url) {
+  return isUrlRequest(url);
 }
 
 function isProductionMode(loaderContext) {

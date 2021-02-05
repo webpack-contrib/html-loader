@@ -82,4 +82,17 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  // Todo uncomment, when drop loader-utils
+  // it('should work with "resolve.roots"', async () => {
+  //   const compiler = getCompiler('roots.js');
+  //   const stats = await compile(compiler);
+  //
+  //   expect(getModuleSource('./roots.html', stats)).toMatchSnapshot('module');
+  //   expect(
+  //     execute(readAsset('main.bundle.js', compiler, stats))
+  //   ).toMatchSnapshot('result');
+  //   expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  //   expect(getErrors(stats)).toMatchSnapshot('errors');
+  // });
 });
