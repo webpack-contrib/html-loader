@@ -1,5 +1,3 @@
-import { Readable } from 'stream';
-
 import SAXParser from 'parse5-sax-parser';
 import { isUrlRequest } from 'loader-utils';
 
@@ -15,7 +13,7 @@ import {
 } from '../utils';
 
 export default (options) =>
-  async function process(html) {
+  function process(html) {
     const { list, urlFilter: maybeUrlFilter, root } = options.attributes;
     const sources = [];
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
@@ -52,13 +50,6 @@ export default (options) =>
     };
 
     const { resourcePath } = options;
-    const readable = Readable.from(html);
-
-    readable.on('data', () => {});
-
-    const streamEnd = new Promise((resolve) => {
-      readable.on('end', () => resolve());
-    });
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
 
     parser5.on('startTag', (node) => {
@@ -119,7 +110,7 @@ export default (options) =>
 
             const startOffset =
               sourceCodeLocation.attrs[name].startOffset +
-              target.indexOf(source.value);
+              target.indexOf(source.value, name.length);
 
             sources.push({
               name,
@@ -154,7 +145,7 @@ export default (options) =>
               source: c0ControlCodesExclude(item.source),
             }));
 
-            let searchFrom = 0;
+            let searchFrom = name.length;
 
             sourceSet.forEach((sourceItem) => {
               const { source } = sourceItem;
@@ -184,9 +175,7 @@ export default (options) =>
       });
     });
 
-    readable.pipe(parser5);
-
-    await streamEnd;
+    parser5.end(html);
 
     const imports = new Map();
     const replacements = new Map();

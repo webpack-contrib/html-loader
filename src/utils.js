@@ -703,12 +703,12 @@ export function normalizeOptions(rawOptions, loaderContext) {
 
 export function pluginRunner(plugins) {
   return {
-    process: async (content) => {
+    process: (content) => {
       const result = {};
 
-      for await (const plugin of plugins) {
+      for (const plugin of plugins) {
         // eslint-disable-next-line no-param-reassign
-        content = await plugin(content, result);
+        content = plugin(content, result);
       }
 
       result.html = content;
