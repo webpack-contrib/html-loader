@@ -114,4 +114,42 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should work with absolute paths', async () => {
+    const compiler = getCompiler('absolute.js');
+    const stats = await compile(compiler);
+
+    const file = path.resolve(__dirname, 'fixtures', 'generated-1.html');
+    const absolutePath = path.resolve(__dirname, 'fixtures', 'image.png');
+
+    fs.writeFileSync(file, `<img src="${absolutePath}">`);
+
+    expect(getModuleSource('./generated-1.html', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work with file protocol', async () => {
+    const compiler = getCompiler('file-protocol.js');
+    const stats = await compile(compiler);
+
+    const file = path.resolve(__dirname, 'fixtures', 'generated-2.html');
+    const absolutePath = path.resolve(__dirname, 'fixtures', 'image.png');
+
+    fs.writeFileSync(file, `<img src="file:///${absolutePath}">`);
+
+    expect(getModuleSource('./generated-2.html', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });

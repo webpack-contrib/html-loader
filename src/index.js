@@ -5,7 +5,6 @@ import {
   getImportCode,
   getModuleCode,
   getExportCode,
-  stringifyRequest,
 } from './utils';
 
 import schema from './options.json';
@@ -27,8 +26,7 @@ export default async function loader(content) {
   if (options.attributes) {
     plugins.push(
       sourcePlugin({
-        urlHandler: (url) =>
-          url[0] === '/' ? `"${url}"` : stringifyRequest(this, url),
+        urlHandler: (url) => `"${url}"`,
         attributes: options.attributes,
         resourcePath: this.resourcePath,
         imports,

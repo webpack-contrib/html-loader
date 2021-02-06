@@ -377,35 +377,29 @@ export function normalizeUrl(url) {
 const moduleRequestRegex = /^[^?]*~/;
 const matchNativeWin32Path = /^[A-Z]:[/\\]|^\\\\/i;
 
-function urlToRequest(url) {
-  if (url === '') {
-    return '';
+export function requestify(url) {
+  if (matchNativeWin32Path.test(url) || url[0] === '/') {
+    return url;
   }
 
-  let request = url;
+  if (/^file:/i.test(url)) {
+    return url;
+  }
 
-  if (matchNativeWin32Path.test(url) || url[0] === '/') {
-    request = url;
-  } else if (/^\.\.?\//.test(url)) {
-    request = url;
-  } else {
-    // every other url is threaded like a relative url
-    request = `./${url}`;
+  if (/^\.\.?\//.test(url)) {
+    return url;
   }
 
   // A `~` makes the url an module
-  if (moduleRequestRegex.test(request)) {
-    request = request.replace(moduleRequestRegex, '');
+  if (moduleRequestRegex.test(url)) {
+    return url.replace(moduleRequestRegex, '');
   }
 
-  return request;
+  // every other url is threaded like a relative url
+  return `./${url}`;
 }
 
-export function requestify(url) {
-  return urlToRequest(url);
-}
-
-export function isUrlRequest(url) {
+export function isUrlRequestable(url) {
   // Protocol-relative URLs
   if (/^\/\//.test(url)) {
     return false;
@@ -429,54 +423,14 @@ export function isUrlRequest(url) {
   return true;
 }
 
-export function isUrlRequestable(url) {
-  return isUrlRequest(url);
-}
-
-const matchRelativePath = /^\.\.?[/\\]/;
-
-function isAbsolutePath(str) {
-  return path.posix.isAbsolute(str) || path.win32.isAbsolute(str);
-}
-
-function isRelativePath(str) {
-  return matchRelativePath.test(str);
-}
-
-export function stringifyRequest(loaderContext, request) {
-  const splitted = request.split('!');
+function stringifyHelperRequest(loaderContext, singlePath) {
   const context =
     loaderContext.context ||
     (loaderContext.options && loaderContext.options.context);
 
-  return JSON.stringify(
-    splitted
-      .map((part) => {
-        // First, separate singlePath from query, because the query might contain paths again
-        const splittedPart = part.match(/^(.*?)(\?.*)/);
-        const query = splittedPart ? splittedPart[2] : '';
-        let singlePath = splittedPart ? splittedPart[1] : part;
+  const result = path.relative(context, singlePath);
 
-        if (isAbsolutePath(singlePath) && context) {
-          singlePath = path.relative(context, singlePath);
-
-          if (isAbsolutePath(singlePath)) {
-            // If singlePath still matches an absolute path, singlePath was on a different drive than context.
-            // In this case, we leave the path platform-specific without replacing any separators.
-            // @see https://github.com/webpack/loader-utils/pull/14
-            return singlePath + query;
-          }
-
-          if (isRelativePath(singlePath) === false) {
-            // Ensure that the relative path starts at least with ./ otherwise it would be a request into the modules directory (like node_modules).
-            singlePath = `./${singlePath}`;
-          }
-        }
-
-        return singlePath.replace(/\\/g, '/') + query;
-      })
-      .join('!')
-  );
+  return `"${result.replace(/\\\\/g, '/')}"`;
 }
 
 function isProductionMode(loaderContext) {
@@ -836,7 +790,7 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const stringifiedHelperRequest = stringifyRequest(
+  const stringifiedHelperRequest = stringifyHelperRequest(
     loaderContext,
     require.resolve('./runtime/getUrl.js')
   );
