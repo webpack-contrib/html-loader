@@ -9,6 +9,7 @@ import {
   requestify,
   isUrlRequestable,
   c0ControlCodesExclude,
+  stringifyRequest,
 } from '../utils';
 
 export default (options) =>
@@ -221,7 +222,7 @@ export default (options) =>
 
         options.imports.push({
           importName,
-          source: `"${newUrl}"`,
+          source: stringifyRequest(options.loaderContext, newUrl),
         });
       }
 
