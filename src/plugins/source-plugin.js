@@ -205,8 +205,8 @@ export default (options) =>
       const indexHash = normalizedUrl.lastIndexOf('#');
 
       if (indexHash >= 0) {
-        hash = normalizedUrl.substr(indexHash, indexHash);
-        normalizedUrl = normalizedUrl.substr(0, indexHash);
+        hash = normalizedUrl.substring(indexHash);
+        normalizedUrl = normalizedUrl.substring(0, indexHash);
       }
 
       const request = requestify(normalizedUrl);
