@@ -58,7 +58,6 @@ describe('validate options', () => {
           ],
         },
         { urlFilter: () => true },
-        { root: '.' },
         {
           list: [
             {
@@ -73,7 +72,6 @@ describe('validate options', () => {
             },
           ],
           urlFilter: () => true,
-          root: '.',
         },
       ],
       failure: [
@@ -124,7 +122,6 @@ describe('validate options', () => {
           ],
         },
         { urlFilter: false },
-        { root: false },
         { unknown: true },
       ],
     },

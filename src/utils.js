@@ -1,4 +1,4 @@
-import { stringifyRequest, isUrlRequest, urlToRequest } from 'loader-utils';
+import path from 'path';
 
 function isASCIIWhitespace(character) {
   return (
@@ -374,12 +374,109 @@ export function normalizeUrl(url) {
   return decodeURIComponent(url).replace(/[\t\n\r]/g, '');
 }
 
-export function requestify(url, root) {
-  return urlToRequest(url, root);
+const moduleRequestRegex = /^[^?]*~/;
+const matchNativeWin32Path = /^[A-Z]:[/\\]|^\\\\/i;
+
+function urlToRequest(url) {
+  if (url === '') {
+    return '';
+  }
+
+  let request = url;
+
+  if (matchNativeWin32Path.test(url) || url[0] === '/') {
+    request = url;
+  } else if (/^\.\.?\//.test(url)) {
+    request = url;
+  } else {
+    // every other url is threaded like a relative url
+    request = `./${url}`;
+  }
+
+  // A `~` makes the url an module
+  if (moduleRequestRegex.test(request)) {
+    request = request.replace(moduleRequestRegex, '');
+  }
+
+  return request;
 }
 
-export function isUrlRequestable(url, root) {
-  return isUrlRequest(url, root);
+export function requestify(url) {
+  return urlToRequest(url);
+}
+
+export function isUrlRequest(url) {
+  // Protocol-relative URLs
+  if (/^\/\//.test(url)) {
+    return false;
+  }
+
+  // `file:` protocol
+  if (/^file:/i.test(url)) {
+    return true;
+  }
+
+  // Absolute URLs
+  if (/^[a-z][a-z0-9+.-]*:/i.test(url) && !matchNativeWin32Path.test(url)) {
+    return false;
+  }
+
+  // It's some kind of url for a template
+  if (/^[{}[\]#*;,'§$%&(=?`´^°<>]/.test(url)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function isUrlRequestable(url) {
+  return isUrlRequest(url);
+}
+
+const matchRelativePath = /^\.\.?[/\\]/;
+
+function isAbsolutePath(str) {
+  return path.posix.isAbsolute(str) || path.win32.isAbsolute(str);
+}
+
+function isRelativePath(str) {
+  return matchRelativePath.test(str);
+}
+
+export function stringifyRequest(loaderContext, request) {
+  const splitted = request.split('!');
+  const context =
+    loaderContext.context ||
+    (loaderContext.options && loaderContext.options.context);
+
+  return JSON.stringify(
+    splitted
+      .map((part) => {
+        // First, separate singlePath from query, because the query might contain paths again
+        const splittedPart = part.match(/^(.*?)(\?.*)/);
+        const query = splittedPart ? splittedPart[2] : '';
+        let singlePath = splittedPart ? splittedPart[1] : part;
+
+        if (isAbsolutePath(singlePath) && context) {
+          singlePath = path.relative(context, singlePath);
+
+          if (isAbsolutePath(singlePath)) {
+            // If singlePath still matches an absolute path, singlePath was on a different drive than context.
+            // In this case, we leave the path platform-specific without replacing any separators.
+            // @see https://github.com/webpack/loader-utils/pull/14
+            return singlePath + query;
+          }
+
+          if (isRelativePath(singlePath) === false) {
+            // Ensure that the relative path starts at least with ./ otherwise it would be a request into the modules directory (like node_modules).
+            singlePath = `./${singlePath}`;
+          }
+        }
+
+        return singlePath.replace(/\\/g, '/') + query;
+      })
+      .join('!')
+  );
 }
 
 function isProductionMode(loaderContext) {

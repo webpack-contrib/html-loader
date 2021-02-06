@@ -82,4 +82,36 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should work with server-relative url', async () => {
+    const compiler = getCompiler('nested.js');
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./nested.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work with "resolve.roots"', async () => {
+    const compiler = getCompiler(
+      'roots.js',
+      {},
+      {
+        resolve: {
+          roots: [path.resolve(__dirname, 'fixtures/roots')],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./roots.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });

@@ -1,5 +1,4 @@
 import SAXParser from 'parse5-sax-parser';
-import { isUrlRequest } from 'loader-utils';
 
 import HtmlSourceError from '../HtmlSourceError';
 import {
@@ -10,15 +9,14 @@ import {
   requestify,
   isUrlRequestable,
   c0ControlCodesExclude,
+  isUrlRequest,
 } from '../utils';
 
 export default (options) =>
   function process(html) {
-    const { list, urlFilter: maybeUrlFilter, root } = options.attributes;
+    const { list, urlFilter: maybeUrlFilter } = options.attributes;
     const sources = [];
-    const urlFilter = getFilter(maybeUrlFilter, (value) =>
-      isUrlRequest(value, root)
-    );
+    const urlFilter = getFilter(maybeUrlFilter, (value) => isUrlRequest(value));
     const getAttribute = (tag, attribute, attributes, resourcePath) =>
       list.find((element) => {
         const foundTag =
@@ -103,7 +101,7 @@ export default (options) =>
 
             source = c0ControlCodesExclude(source);
 
-            if (!isUrlRequestable(source.value, root)) {
+            if (!isUrlRequestable(source.value)) {
               return;
             }
 
@@ -151,7 +149,7 @@ export default (options) =>
             sourceSet.forEach((sourceItem) => {
               const { source } = sourceItem;
 
-              if (!isUrlRequestable(source.value, root)) {
+              if (!isUrlRequestable(source.value)) {
                 return;
               }
 
@@ -211,7 +209,7 @@ export default (options) =>
         normalizedUrl = normalizedUrl.substr(0, indexHash);
       }
 
-      const request = requestify(normalizedUrl, root);
+      const request = requestify(normalizedUrl);
       const newUrl = prefix ? `${prefix}!${request}` : request;
       const importKey = newUrl;
       let importName = imports.get(importKey);

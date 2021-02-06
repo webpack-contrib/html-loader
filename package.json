@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "html-minifier-terser": "^5.1.1",
-    "loader-utils": "^2.0.0",
     "parse5-sax-parser": "^6.0.1"
   },
   "devDependencies": {

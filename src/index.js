@@ -1,5 +1,3 @@
-import { stringifyRequest } from 'loader-utils';
-
 import { sourcePlugin, minimizerPlugin } from './plugins';
 import {
   pluginRunner,
@@ -7,6 +5,7 @@ import {
   getImportCode,
   getModuleCode,
   getExportCode,
+  stringifyRequest,
 } from './utils';
 
 import schema from './options.json';
@@ -28,7 +27,8 @@ export default async function loader(content) {
   if (options.attributes) {
     plugins.push(
       sourcePlugin({
-        urlHandler: (url) => stringifyRequest(this, url),
+        urlHandler: (url) =>
+          url[0] === '/' ? `"${url}"` : stringifyRequest(this, url),
         attributes: options.attributes,
         resourcePath: this.resourcePath,
         imports,
