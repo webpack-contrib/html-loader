@@ -28,6 +28,7 @@ export default async function loader(content) {
       sourcePlugin({
         attributes: options.attributes,
         resourcePath: this.resourcePath,
+        loaderContext: this,
         imports,
         errors,
         replacements,
