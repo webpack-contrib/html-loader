@@ -1,5 +1,4 @@
 import SAXParser from 'parse5-sax-parser';
-import { isUrlRequest } from 'loader-utils';
 
 import HtmlSourceError from '../HtmlSourceError';
 import {
@@ -10,6 +9,7 @@ import {
   requestify,
   isUrlRequestable,
   c0ControlCodesExclude,
+  isUrlRequest,
 } from '../utils';
 
 export default (options) =>

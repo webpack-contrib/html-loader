@@ -515,6 +515,44 @@ module.exports = {
 
 ## Examples
 
+### roots
+
+With [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots) can specify a list of directories where requests of server-relative URLs (starting with '/') are resolved.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  context: __dirname,
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {},
+      },
+      {
+        test: /\.jpg$/,
+        loader: 'file-loader',
+      },
+    ],
+  },
+  resolve: {
+    roots: [path.resolve(__dirname, 'fixtures')],
+  },
+};
+```
+
+**file.html**
+
+```html
+<img src="/image.jpg" />
+```
+
+```js
+// => image.jpg in __dirname/fixtures will be resolved
+```
+
 ### CDN
 
 **webpack.config.js**
