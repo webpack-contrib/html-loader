@@ -86,17 +86,6 @@ exports[`loader should work with "resolve.roots": warnings 1`] = `Array []`;
 
 exports[`loader should work with absolute paths: errors 1`] = `Array []`;
 
-exports[`loader should work with absolute paths: module 1`] = `
-"// Imports
-var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
-var ___HTML_LOADER_IMPORT_0___ = require(\\"/media/veracrypt1/OS/html-loader/test/fixtures/image.png\\");
-// Module
-var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = \\"<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\">\\";
-// Exports
-module.exports = code;"
-`;
-
 exports[`loader should work with absolute paths: result 1`] = `"<img src=\\"/webpack/public/path/image.png\\">"`;
 
 exports[`loader should work with absolute paths: warnings 1`] = `Array []`;
@@ -119,17 +108,6 @@ Object {
 exports[`loader should work with an empty file: warnings 1`] = `Array []`;
 
 exports[`loader should work with file protocol: errors 1`] = `Array []`;
-
-exports[`loader should work with file protocol: module 1`] = `
-"// Imports
-var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
-var ___HTML_LOADER_IMPORT_0___ = require(\\"file:////media/veracrypt1/OS/html-loader/test/fixtures/image.png\\");
-// Module
-var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = \\"<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\">\\";
-// Exports
-module.exports = code;"
-`;
 
 exports[`loader should work with file protocol: result 1`] = `"<img src=\\"/webpack/public/path/image.png\\">"`;
 

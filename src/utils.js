@@ -430,7 +430,7 @@ function stringifyHelperRequest(loaderContext, singlePath) {
 
   const result = path.relative(context, singlePath);
 
-  return `"${result.replace(/\\\\/g, '/')}"`;
+  return `"${result.replace(/\\/g, '/')}"`;
 }
 
 function isProductionMode(loaderContext) {

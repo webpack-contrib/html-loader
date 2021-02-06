@@ -221,7 +221,7 @@ export default (options) =>
 
         options.imports.push({
           importName,
-          source: options.urlHandler(newUrl),
+          source: `"${newUrl}"`,
         });
       }
 

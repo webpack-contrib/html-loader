@@ -26,7 +26,6 @@ export default async function loader(content) {
   if (options.attributes) {
     plugins.push(
       sourcePlugin({
-        urlHandler: (url) => `"${url}"`,
         attributes: options.attributes,
         resourcePath: this.resourcePath,
         imports,
