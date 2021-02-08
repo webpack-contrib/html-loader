@@ -754,31 +754,31 @@ function smartMergeSources(array, factory) {
   return newArray;
 }
 
-function getAttributesOption(rawOptions) {
-  if (typeof rawOptions.attributes === 'undefined') {
+function getSourcesOption(rawOptions) {
+  if (typeof rawOptions.sources === 'undefined') {
     return { list: defaultAttributes };
   }
 
-  if (typeof rawOptions.attributes === 'boolean') {
-    return rawOptions.attributes === true ? { list: defaultAttributes } : false;
+  if (typeof rawOptions.sources === 'boolean') {
+    return rawOptions.sources === true ? { list: defaultAttributes } : false;
   }
 
   const sources = smartMergeSources(
-    rawOptions.attributes.list,
+    rawOptions.sources.list,
     () => defaultAttributes
   );
 
   return {
     list: sources,
-    urlFilter: rawOptions.attributes.urlFilter,
-    root: rawOptions.attributes.root,
+    urlFilter: rawOptions.sources.urlFilter,
+    root: rawOptions.sources.root,
   };
 }
 
 export function normalizeOptions(rawOptions, loaderContext) {
   return {
     preprocessor: rawOptions.preprocessor,
-    attributes: getAttributesOption(rawOptions),
+    sources: getSourcesOption(rawOptions),
     minimize: getMinimizeOption(rawOptions, loaderContext),
     esModule:
       typeof rawOptions.esModule === 'undefined' ? true : rawOptions.esModule,

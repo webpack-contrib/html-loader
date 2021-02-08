@@ -1,4 +1,4 @@
-import { sourcePlugin, minimizerPlugin } from './plugins';
+import { sourcesPlugin, minimizerPlugin } from './plugins';
 import {
   pluginRunner,
   normalizeOptions,
@@ -23,10 +23,10 @@ export default async function loader(content) {
   const imports = [];
   const replacements = [];
 
-  if (options.attributes) {
+  if (options.sources) {
     plugins.push(
-      sourcePlugin({
-        attributes: options.attributes,
+      sourcesPlugin({
+        sources: options.sources,
         resourcePath: this.resourcePath,
         context: this.context,
         imports,

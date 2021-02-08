@@ -2,7 +2,7 @@ import { getCompiler, compile } from './helpers';
 
 describe('validate options', () => {
   const tests = {
-    attributes: {
+    sources: {
       success: [
         true,
         false,

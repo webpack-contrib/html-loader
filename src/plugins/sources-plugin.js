@@ -14,7 +14,7 @@ import {
 
 export default (options) =>
   function process(html) {
-    const { list, urlFilter: maybeUrlFilter } = options.attributes;
+    const { list, urlFilter: maybeUrlFilter } = options.sources;
     const sources = [];
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
       isUrlRequestable(value)

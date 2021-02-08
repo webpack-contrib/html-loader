@@ -30,7 +30,7 @@
         }
       ]
     },
-    "AttributeList": {
+    "SourcesList": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/Attribute"
@@ -43,14 +43,14 @@
     "preprocessor": {
       "instanceof": "Function"
     },
-    "attributes": {
+    "sources": {
       "anyOf": [
         { "type": "boolean" },
         {
           "type": "object",
           "properties": {
             "list": {
-              "$ref": "#/definitions/AttributeList"
+              "$ref": "#/definitions/SourcesList"
             },
             "urlFilter": {
               "instanceof": "Function"
