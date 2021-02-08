@@ -559,9 +559,12 @@ function linkHrefFilter(tag, attribute, attributes) {
     'apple-touch-icon',
     'apple-touch-icon-precomposed',
     'apple-touch-startup-image',
+    'manifest',
+    'prefetch',
+    'preload',
   ];
 
-  return allowedRels.filter((value) => usedRels.includes(value));
+  return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
 }
 
 function metaContentFilter(tag, attribute, attributes) {
