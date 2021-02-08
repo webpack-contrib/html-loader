@@ -20,3 +20,5 @@ Thumbs.db
 .vscode
 *.sublime-project
 *.sublime-workspace
+/test/fixtures/generated-1.html
+/test/fixtures/generated-2.html

@@ -377,35 +377,29 @@ export function normalizeUrl(url) {
 const moduleRequestRegex = /^[^?]*~/;
 const matchNativeWin32Path = /^[A-Z]:[/\\]|^\\\\/i;
 
-function urlToRequest(url) {
-  if (url === '') {
-    return '';
+export function requestify(url) {
+  if (matchNativeWin32Path.test(url) || url[0] === '/') {
+    return url;
   }
 
-  let request = url;
+  if (/^file:/i.test(url)) {
+    return url;
+  }
 
-  if (matchNativeWin32Path.test(url) || url[0] === '/') {
-    request = url;
-  } else if (/^\.\.?\//.test(url)) {
-    request = url;
-  } else {
-    // every other url is threaded like a relative url
-    request = `./${url}`;
+  if (/^\.\.?\//.test(url)) {
+    return url;
   }
 
   // A `~` makes the url an module
-  if (moduleRequestRegex.test(request)) {
-    request = request.replace(moduleRequestRegex, '');
+  if (moduleRequestRegex.test(url)) {
+    return url.replace(moduleRequestRegex, '');
   }
 
-  return request;
+  // every other url is threaded like a relative url
+  return `./${url}`;
 }
 
-export function requestify(url) {
-  return urlToRequest(url);
-}
-
-export function isUrlRequest(url) {
+export function isUrlRequestable(url) {
   // Protocol-relative URLs
   if (/^\/\//.test(url)) {
     return false;
@@ -429,25 +423,18 @@ export function isUrlRequest(url) {
   return true;
 }
 
-export function isUrlRequestable(url) {
-  return isUrlRequest(url);
-}
-
 const matchRelativePath = /^\.\.?[/\\]/;
 
 function isAbsolutePath(str) {
-  return path.posix.isAbsolute(str) || path.win32.isAbsolute(str);
+  return matchNativeWin32Path.test(str) && path.win32.isAbsolute(str);
 }
 
 function isRelativePath(str) {
   return matchRelativePath.test(str);
 }
 
-export function stringifyRequest(loaderContext, request) {
+export function stringifyRequest(context, request) {
   const splitted = request.split('!');
-  const context =
-    loaderContext.context ||
-    (loaderContext.options && loaderContext.options.context);
 
   return JSON.stringify(
     splitted
@@ -836,10 +823,9 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const stringifiedHelperRequest = stringifyRequest(
-    loaderContext,
-    require.resolve('./runtime/getUrl.js')
-  );
+  const stringifiedHelperRequest = `"${path
+    .relative(loaderContext.context, require.resolve('./runtime/getUrl.js'))
+    .replace(/\\/g, '/')}"`;
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`

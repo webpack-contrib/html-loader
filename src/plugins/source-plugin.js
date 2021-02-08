@@ -9,14 +9,16 @@ import {
   requestify,
   isUrlRequestable,
   c0ControlCodesExclude,
-  isUrlRequest,
+  stringifyRequest,
 } from '../utils';
 
 export default (options) =>
   function process(html) {
     const { list, urlFilter: maybeUrlFilter } = options.attributes;
     const sources = [];
-    const urlFilter = getFilter(maybeUrlFilter, (value) => isUrlRequest(value));
+    const urlFilter = getFilter(maybeUrlFilter, (value) =>
+      isUrlRequestable(value)
+    );
     const getAttribute = (tag, attribute, attributes, resourcePath) =>
       list.find((element) => {
         const foundTag =
@@ -220,7 +222,7 @@ export default (options) =>
 
         options.imports.push({
           importName,
-          source: options.urlHandler(newUrl),
+          source: stringifyRequest(options.context, newUrl),
         });
       }
 
