@@ -653,6 +653,12 @@ const defaultAttributes = [
     filter: linkHrefFilter,
   },
   {
+    tag: 'link',
+    attribute: 'imagesrcset',
+    type: 'srcset',
+    filter: linkHrefFilter,
+  },
+  {
     tag: 'meta',
     attribute: 'content',
     type: 'src',
