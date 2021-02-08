@@ -466,16 +466,6 @@ export function stringifyRequest(context, request) {
   );
 }
 
-function stringifyHelperRequest(loaderContext, singlePath) {
-  const context =
-    loaderContext.context ||
-    (loaderContext.options && loaderContext.options.context);
-
-  const result = path.relative(context, singlePath);
-
-  return `"${result.replace(/\\/g, '/')}"`;
-}
-
 function isProductionMode(loaderContext) {
   return loaderContext.mode === 'production' || !loaderContext.mode;
 }
@@ -833,10 +823,10 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const stringifiedHelperRequest = stringifyHelperRequest(
-    loaderContext,
+  const stringifiedHelperRequest = `"${path.posix.relative(
+    loaderContext.context,
     require.resolve('./runtime/getUrl.js')
-  );
+  )}"`;
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
