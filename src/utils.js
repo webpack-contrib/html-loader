@@ -823,10 +823,9 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const stringifiedHelperRequest = `"${path.posix.relative(
-    loaderContext.context,
-    require.resolve('./runtime/getUrl.js')
-  )}"`;
+  const stringifiedHelperRequest = `"${path
+    .relative(loaderContext.context, require.resolve('./runtime/getUrl.js'))
+    .replace(/\\/g, '/')}"`;
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
