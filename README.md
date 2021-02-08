@@ -52,12 +52,12 @@ module.exports = {
 
 |                Name                 |        Type         |                   Default                    | Description                                      |
 | :---------------------------------: | :-----------------: | :------------------------------------------: | :----------------------------------------------- |
-|   **[`attributes`](#attributes)**   | `{Boolean\|Object}` |                    `true`                    | Enables/Disables attributes handling             |
+|      **[`sources`](#sources)**      | `{Boolean\|Object}` |                    `true`                    | Enables/Disables sources handling                |
 | **[`preprocessor`](#preprocessor)** |    `{Function}`     |                 `undefined`                  | Allows pre-processing of content before handling |
 |     **[`minimize`](#minimize)**     | `{Boolean\|Object}` | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML              |
 |     **[`esModule`](#esmodule)**     |     `{Boolean}`     |                    `true`                    | Enable/disable ES modules syntax                 |
 
-### `attributes`
+### `sources`
 
 Type: `Boolean|Object`
 Default: `true`
@@ -103,7 +103,7 @@ module.exports = {
         loader: 'html-loader',
         options: {
           // Disables attributes processing
-          attributes: false,
+          sources: false,
         },
       },
     ],
@@ -127,7 +127,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: {
+          sources: {
             list: [
               // All default supported tags and attributes
               '...',
@@ -164,11 +164,11 @@ module.exports = {
 #### `list`
 
 Type: `Array`
-Default: [supported tags and attributes](#attributes).
+Default: [supported tags and attributes](#sources).
 
 Allows to setup which tags and attributes to process and how, and the ability to filter some of them.
 
-Using `...` syntax allows you to extend [default supported tags and attributes](#attributes).
+Using `...` syntax allows you to extend [default supported tags and attributes](#sources).
 
 For example:
 
@@ -182,7 +182,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: {
+          sources: {
             list: [
               // All default supported tags and attributes
               '...',
@@ -253,7 +253,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: {
+          sources: {
             list: [
               {
                 // Attribute name
@@ -290,7 +290,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: {
+          sources: {
             list: [
               {
                 tag: 'meta',
@@ -331,7 +331,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: {
+          sources: {
             urlFilter: (attribute, value, resourcePath) => {
               // The `attribute` argument contains a name of the HTML attribute.
               // The `value` argument contains a value of the HTML attribute.
@@ -621,24 +621,24 @@ require('html-loader!./file.html');
 ```
 
 ```js
-require('html-loader?{"attributes":{"list":[{"tag":"img","attribute":"data-src","type":"src"}]}}!./file.html');
+require('html-loader?{"sources":{"list":[{"tag":"img","attribute":"data-src","type":"src"}]}}!./file.html');
 
 // => '<img src="image.jpg" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require('html-loader?{"attributes":{"list":[{"tag":"img","attribute":"src","type":"src"},{"tag":"img","attribute":"data-src","type":"src"}]}}!./file.html');
+require('html-loader?{"sources":{"list":[{"tag":"img","attribute":"src","type":"src"},{"tag":"img","attribute":"data-src","type":"src"}]}}!./file.html');
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg" data-src="data:image/png;base64,..." >'
 ```
 
 ```js
-require('html-loader?-attributes!./file.html');
+require('html-loader?-sources!./file.html');
 
 // => '<img src="image.jpg"  data-src="image2x.png" >'
 ```
 
-> :warning: `-attributes` sets `attributes: false`.
+> :warning: `-sources` sets `sources: false`.
 
 ### Process `script` and `link` tags
 

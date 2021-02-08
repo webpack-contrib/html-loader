@@ -10,7 +10,7 @@ import {
   readAsset,
 } from './helpers';
 
-describe("'attributes' option", () => {
+describe("'sources' option", () => {
   it('should work by default', async () => {
     const compiler = getCompiler('simple.js');
     const stats = await compile(compiler);
@@ -37,7 +37,7 @@ describe("'attributes' option", () => {
 
   it('should work with "..." syntax', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: {
+      sources: {
         list: [
           '...',
           {
@@ -60,7 +60,7 @@ describe("'attributes' option", () => {
 
   it.skip('should handle the "include" tags', async () => {
     const compiler = getCompiler('include.js', {
-      attributes: {
+      sources: {
         list: [
           {
             tag: 'include',
@@ -80,8 +80,8 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should not handle attributes with a "boolean" notation equals "false"', async () => {
-    const compiler = getCompiler('simple.js', { attributes: false });
+  it('should not handle sources with a "boolean" notation equals "false"', async () => {
+    const compiler = getCompiler('simple.js', { sources: false });
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
@@ -92,8 +92,8 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle attributes with a "boolean" notation equals "true"', async () => {
-    const compiler = getCompiler('simple.js', { attributes: true });
+  it('should handle sources with a "boolean" notation equals "true"', async () => {
+    const compiler = getCompiler('simple.js', { sources: true });
     const stats = await compile(compiler);
 
     expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
@@ -106,7 +106,7 @@ describe("'attributes' option", () => {
 
   it('should work with an empty "object" notations', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: {},
+      sources: {},
     });
     const stats = await compile(compiler);
 
@@ -120,7 +120,7 @@ describe("'attributes' option", () => {
 
   it('should work with an "object" notations', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: {
+      sources: {
         list: [
           {
             tag: 'img',
@@ -216,9 +216,9 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML tags when tag is undefined', async () => {
+  it('should handle all src sources in all HTML tags when tag is undefined', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: {
+      sources: {
         list: [
           {
             attribute: 'src',
@@ -237,15 +237,15 @@ describe("'attributes' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle all src attributes in all HTML tags except img tag (testing filter option)', async () => {
+  it('should handle all src sources in all HTML tags except img tag (testing filter option)', async () => {
     const compiler = getCompiler('simple.js', {
-      attributes: {
+      sources: {
         list: [
           {
             attribute: 'src',
             type: 'src',
             // eslint-disable-next-line no-unused-vars
-            filter: (tag, attribute, attributes) => tag.toLowerCase() !== 'img',
+            filter: (tag, attribute, sources) => tag.toLowerCase() !== 'img',
           },
         ],
       },

@@ -1,111 +1,111 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`validate options should throw an error on the "attributes" option with "[]" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes should be one of these:
-   boolean | object { list?, urlFilter? }
-   Details:
-    * options.attributes should be a boolean.
-    * options.attributes should be an object:
-      object { list?, urlFilter? }"
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"list":[]}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.list should be an non-empty array."
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"list":[{"tag":"","attribute":"src","type":"src"}]}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.list[0].tag should be an non-empty string."
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"list":[{"tag":"img","attribute":"src","type":"src","filter":"test"}]}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.list[0].filter should be an instance of function."
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"list":[{"tag":"img","attribute":"src","type":"src"},{"tag":"img","attribute":"src","type":"src"}]}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.list should not contain the item '[object Object]' twice."
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"list":[{"tag":"img","attribute":"src"}]}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.list[0] misses the property 'type'. Should be:
-   \\"src\\" | \\"srcset\\""
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"unknown":true}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes has an unknown property 'unknown'. These properties are valid:
-   object { list?, urlFilter? }"
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "{"urlFilter":false}" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes.urlFilter should be an instance of function."
-`;
-
-exports[`validate options should throw an error on the "attributes" option with "true" value 1`] = `
-"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
- - options.attributes should be one of these:
-   boolean | object { list?, urlFilter? }
-   Details:
-    * options.attributes should be a boolean.
-    * options.attributes should be an object:
-      object { list?, urlFilter? }"
-`;
-
 exports[`validate options should throw an error on the "esModule" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.esModule should be a boolean."
 `;
 
+exports[`validate options should throw an error on the "sources" option with "[]" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources should be one of these:
+   boolean | object { list?, urlFilter? }
+   Details:
+    * options.sources should be a boolean.
+    * options.sources should be an object:
+      object { list?, urlFilter? }"
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"list":[]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.list should be an non-empty array."
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"list":[{"tag":"","attribute":"src","type":"src"}]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.list[0].tag should be an non-empty string."
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"list":[{"tag":"img","attribute":"src","type":"src","filter":"test"}]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.list[0].filter should be an instance of function."
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"list":[{"tag":"img","attribute":"src","type":"src"},{"tag":"img","attribute":"src","type":"src"}]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.list should not contain the item '[object Object]' twice."
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"list":[{"tag":"img","attribute":"src"}]}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.list[0] misses the property 'type'. Should be:
+   \\"src\\" | \\"srcset\\""
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"unknown":true}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources has an unknown property 'unknown'. These properties are valid:
+   object { list?, urlFilter? }"
+`;
+
+exports[`validate options should throw an error on the "sources" option with "{"urlFilter":false}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.urlFilter should be an instance of function."
+`;
+
+exports[`validate options should throw an error on the "sources" option with "true" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources should be one of these:
+   boolean | object { list?, urlFilter? }
+   Details:
+    * options.sources should be a boolean.
+    * options.sources should be an object:
+      object { list?, urlFilter? }"
+`;
+
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "[]" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{"foo":"bar"}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "1" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "false" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "test" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { preprocessor?, attributes?, minimize?, esModule? }"
+   object { preprocessor?, sources?, minimize?, esModule? }"
 `;

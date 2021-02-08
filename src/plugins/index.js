@@ -1,4 +1,4 @@
-import sourcePlugin from './source-plugin';
+import sourcesPlugin from './sources-plugin';
 import minimizerPlugin from './minimizer-plugin';
 
-export { sourcePlugin, minimizerPlugin };
+export { sourcesPlugin, minimizerPlugin };
