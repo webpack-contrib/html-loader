@@ -781,7 +781,7 @@ export function normalizeOptions(rawOptions, loaderContext) {
     attributes: getAttributesOption(rawOptions),
     minimize: getMinimizeOption(rawOptions, loaderContext),
     esModule:
-      typeof rawOptions.esModule === 'undefined' ? false : rawOptions.esModule,
+      typeof rawOptions.esModule === 'undefined' ? true : rawOptions.esModule,
   };
 }
 
