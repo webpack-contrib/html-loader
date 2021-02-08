@@ -587,6 +587,7 @@ function metaContentFilter(tag, attribute, attributes) {
       'msapplication-wide310x150logo',
       'msapplication-square310x310logo',
       'msapplication-config',
+      'twitter:image',
     ];
 
     return allowedNames.includes(name);
