@@ -2,7 +2,7 @@
   "title": "HTML Loader options",
   "type": "object",
   "definitions": {
-    "Attribute": {
+    "Source": {
       "anyOf": [
         {
           "type": "object",
@@ -33,7 +33,7 @@
     "SourcesList": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Attribute"
+        "$ref": "#/definitions/Source"
       },
       "minItems": 1,
       "uniqueItems": true
