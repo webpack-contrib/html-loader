@@ -433,11 +433,8 @@ function isRelativePath(str) {
   return matchRelativePath.test(str);
 }
 
-export function stringifyRequest(loaderContext, request) {
+export function stringifyRequest(context, request) {
   const splitted = request.split('!');
-  const context =
-    loaderContext.context ||
-    (loaderContext.options && loaderContext.options.context);
 
   return JSON.stringify(
     splitted

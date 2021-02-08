@@ -222,7 +222,7 @@ export default (options) =>
 
         options.imports.push({
           importName,
-          source: stringifyRequest(options.loaderContext, newUrl),
+          source: stringifyRequest(options.context, newUrl),
         });
       }
 
