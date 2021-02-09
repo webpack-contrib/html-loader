@@ -152,4 +152,42 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  it('should pass queries to other loader', async () => {
+    const compiler = getCompiler(
+      'other-loader-query.js',
+      {},
+      {
+        module: {
+          rules: [
+            {
+              test: /\.svg$/i,
+              resourceQuery: /color/,
+              enforce: 'pre',
+              use: {
+                loader: path.resolve(
+                  __dirname,
+                  './helpers/svg-color-loader.js'
+                ),
+              },
+            },
+            {
+              test: /\.html$/i,
+              rules: [{ loader: path.resolve(__dirname, '../src') }],
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./other-loader-query.html', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
 });
