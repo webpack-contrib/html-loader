@@ -156,7 +156,7 @@ import ___HTML_LOADER_IMPORT_12___ from \\"./module.file.js\\";
 import ___HTML_LOADER_IMPORT_13___ from \\"./fallback.file.js\\";
 import ___HTML_LOADER_IMPORT_14___ from \\"aliasImageWithSpace\\";
 import ___HTML_LOADER_IMPORT_15___ from \\"./webpack.svg\\";
-import ___HTML_LOADER_IMPORT_16___ from \\"!!url-loader!./pixel.png\\";
+import ___HTML_LOADER_IMPORT_16___ from \\"./pixel.png?url\\";
 import ___HTML_LOADER_IMPORT_17___ from \\"./site.webmanifest\\";
 import ___HTML_LOADER_IMPORT_18___ from \\"./browserconfig.xml\\";
 import ___HTML_LOADER_IMPORT_19___ from \\"./sound.mp3\\";

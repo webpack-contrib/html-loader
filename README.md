@@ -63,7 +63,7 @@ Type: `Boolean|Object`
 Default: `true`
 
 By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
-You may need to specify loaders for images in your configuration (recommended `file-loader` or `url-loader`).
+You may need to specify loaders for images in your configuration (recommended [`asset modules`](https://webpack.js.org/guides/asset-modules/)).
 
 Supported tags and attributes:
 
@@ -177,6 +177,9 @@ For example:
 
 ```js
 module.exports = {
+  output: {
+    assetModuleFilename: '[name][ext]',
+  },
   module: {
     rules: [
       {
@@ -569,7 +572,7 @@ module.exports = {
       },
       {
         test: /\.jpg$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
     ],
   },
@@ -597,8 +600,14 @@ module.exports = {
 module.exports = {
   module: {
     rules: [
-      { test: /\.jpg$/, loader: 'file-loader' },
-      { test: /\.png$/, loader: 'url-loader' },
+      {
+        test: /\.jpg$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.png$/,
+        type: 'asset/inline',
+      },
     ],
   },
   output: {
@@ -681,8 +690,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]',
+        },
+      },
+      {
         test: /\.html$/i,
-        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
+        use: ['extract-loader', 'html-loader'],
       },
       {
         test: /\.js$/i,
@@ -691,7 +707,7 @@ module.exports = {
       },
       {
         test: /\.file.js$/i,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /\.css$/i,
@@ -700,7 +716,7 @@ module.exports = {
       },
       {
         test: /\.file.css$/i,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
     ],
   },
@@ -802,26 +818,37 @@ module.exports = {
 
 A very common scenario is exporting the HTML into their own _.html_ file, to
 serve them directly instead of injecting with javascript. This can be achieved
-with a combination of 3 loaders:
+with a combination of 2 loaders:
 
-- [file-loader](https://github.com/webpack/file-loader)
 - [extract-loader](https://github.com/peerigon/extract-loader)
 - html-loader
 
+and [`asset modules`](https://webpack.js.org/guides/asset-modules/)
+
 The html-loader will parse the URLs, require the images and everything you
 expect. The extract loader will parse the javascript back into a proper html
-file, ensuring images are required and point to proper path, and the file loader
+file, ensuring images are required and point to proper path, and the [`asset modules`](https://webpack.js.org/guides/asset-modules/)
 will write the _.html_ file for you. Example:
 
 **webpack.config.js**
 
 ```js
 module.exports = {
+  output: {
+    assetModuleFilename: '[name][ext]',
+  },
   module: {
     rules: [
       {
+        test: /\.html$/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]',
+        },
+      },
+      {
         test: /\.html$/i,
-        use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
+        use: ['extract-loader', 'html-loader'],
       },
     ],
   },
