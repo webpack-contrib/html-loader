@@ -15,6 +15,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
       chunkFilename: '[name].chunk.js',
       publicPath: '/webpack/public/path/',
       library: '___TEST___',
+      assetModuleFilename: '[name][ext]',
     },
     module: {
       rules: [
@@ -28,27 +29,21 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           ],
         },
         {
+          resourceQuery: /\?url$/,
+          type: 'asset/inline',
+        },
+        {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
-          loader: 'file-loader',
-          options: { name: '[name].[ext]' },
+          resourceQuery: /^(?!.*\?url).*$/,
+          type: 'asset/resource',
         },
         {
           test: /\.file.css$/i,
-          rules: [
-            {
-              loader: 'file-loader',
-              options: { name: '[name].[ext]' },
-            },
-          ],
+          type: 'asset/resource',
         },
         {
           test: /\.file.js$/i,
-          rules: [
-            {
-              loader: 'file-loader',
-              options: { name: '[name].[ext]' },
-            },
-          ],
+          type: 'asset/resource',
         },
       ],
     },
