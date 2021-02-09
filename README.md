@@ -177,9 +177,6 @@ For example:
 
 ```js
 module.exports = {
-  output: {
-    assetModuleFilename: '[name][ext]',
-  },
   module: {
     rules: [
       {
