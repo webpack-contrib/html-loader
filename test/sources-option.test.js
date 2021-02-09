@@ -58,6 +58,36 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should work with "..." syntax and disable source', async () => {
+    const compiler = getCompiler('simple.js', {
+      sources: {
+        list: [
+          '...',
+          {
+            tag: 'img',
+            attribute: 'src',
+            type: 'src',
+            filter: (tag) => tag.toLowerCase() !== 'img',
+          },
+          {
+            tag: 'img',
+            attribute: 'srcset',
+            type: 'srcset',
+            filter: (tag) => tag.toLowerCase() !== 'img',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it.skip('should handle the "include" tags', async () => {
     const compiler = getCompiler('include.js', {
       sources: {

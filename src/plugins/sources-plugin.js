@@ -19,34 +19,31 @@ export default (options) =>
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
       isUrlRequestable(value)
     );
-    const getAttribute = (tag, attribute, attributes, resourcePath) =>
-      list.find((element) => {
-        const foundTag =
-          typeof element.tag === 'undefined' ||
-          (typeof element.tag !== 'undefined' &&
-            element.tag.toLowerCase() === tag.toLowerCase());
+    const getAttribute = (tag, attribute, attributes, resourcePath) => {
+      const foundTag = list.get(tag.toLowerCase()) || list.get('all');
 
-        if (!foundTag) {
-          return false;
-        }
+      if (!foundTag) {
+        return false;
+      }
 
-        const foundAttribute =
-          element.attribute.toLowerCase() === attribute.toLowerCase();
+      const foundAttribute = foundTag.get(attribute.toLowerCase());
 
-        if (!foundAttribute) {
-          return false;
-        }
+      if (!foundAttribute) {
+        return false;
+      }
 
-        const adaptedAttributes = attributes.reduce((accumulator, item) => {
-          // eslint-disable-next-line no-param-reassign
-          accumulator[item.name] = item.value;
-          return accumulator;
-        }, {});
+      const adaptedAttributes = attributes.reduce((accumulator, item) => {
+        // eslint-disable-next-line no-param-reassign
+        accumulator[item.name] = item.value;
+        return accumulator;
+      }, {});
 
-        return element.filter
-          ? element.filter(tag, attribute, adaptedAttributes, resourcePath)
-          : true;
-      });
+      const result = foundAttribute.filter
+        ? foundAttribute.filter(tag, attribute, adaptedAttributes, resourcePath)
+        : true;
+
+      return result ? foundAttribute : false;
+    };
 
     const { resourcePath } = options;
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
