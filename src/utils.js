@@ -562,8 +562,52 @@ function linkHrefFilter(tag, attribute, attributes) {
   return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
 }
 
-function metaContentFilter(tag, attribute, attributes) {
-  let name = getAttributeValue(attributes, 'name');
+const META = new Map([
+  [
+    'name',
+    new Set([
+      // msapplication-TileImage
+      'msapplication-tileimage',
+      'msapplication-square70x70logo',
+      'msapplication-square150x150logo',
+      'msapplication-wide310x150logo',
+      'msapplication-square310x310logo',
+      'msapplication-config',
+      'twitter:image',
+    ]),
+  ],
+  [
+    'property',
+    new Set([
+      'og:image',
+      'og:image:url',
+      'og:image:secure_url',
+      'og:audio',
+      'og:audio:secure_url',
+      'og:video',
+      'og:video:secure_url',
+      'vk:image',
+    ]),
+  ],
+  [
+    'itemprop',
+    new Set([
+      'image',
+      'logo',
+      'screenshot',
+      'thumbnailurl',
+      'contenturl',
+      'downloadurl',
+      'duringmedia',
+      'embedurl',
+      'installurl',
+      'layoutimage',
+    ]),
+  ],
+]);
+
+function linkItempropFilter(tag, attribute, attributes) {
+  let name = getAttributeValue(attributes, 'itemprop');
 
   if (name) {
     name = name.trim();
@@ -574,43 +618,37 @@ function metaContentFilter(tag, attribute, attributes) {
 
     name = name.toLowerCase();
 
-    const allowedNames = [
-      // msapplication-TileImage
-      'msapplication-tileimage',
-      'msapplication-square70x70logo',
-      'msapplication-square150x150logo',
-      'msapplication-wide310x150logo',
-      'msapplication-square310x310logo',
-      'msapplication-config',
-      'twitter:image',
-    ];
-
-    return allowedNames.includes(name);
+    return META.get('itemprop').has(name);
   }
 
-  let property = getAttributeValue(attributes, 'property');
+  return false;
+}
 
-  if (property) {
-    property = property.trim();
+function linkUnionFilter(tag, attribute, attributes) {
+  return (
+    linkHrefFilter(tag, attribute, attributes) ||
+    linkItempropFilter(tag, attribute, attributes)
+  );
+}
 
-    if (!property) {
-      return false;
+function metaContentFilter(tag, attribute, attributes) {
+  for (const item of META) {
+    const [key, allowedNames] = item;
+
+    let name = getAttributeValue(attributes, key);
+
+    if (name) {
+      name = name.trim();
+
+      if (!name) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      name = name.toLowerCase();
+
+      return allowedNames.has(name);
     }
-
-    property = property.toLowerCase();
-
-    const allowedProperties = [
-      'og:image',
-      'og:image:url',
-      'og:image:secure_url',
-      'og:audio',
-      'og:audio:secure_url',
-      'og:video',
-      'og:video:secure_url',
-      'vk:image',
-    ];
-
-    return allowedProperties.includes(property);
   }
 
   return false;
@@ -646,7 +684,7 @@ const defaultAttributes = [
     tag: 'link',
     attribute: 'href',
     type: 'src',
-    filter: linkHrefFilter,
+    filter: linkUnionFilter,
   },
   {
     tag: 'link',
