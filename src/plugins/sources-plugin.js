@@ -32,14 +32,8 @@ export default (options) =>
         return false;
       }
 
-      const adaptedAttributes = attributes.reduce((accumulator, item) => {
-        // eslint-disable-next-line no-param-reassign
-        accumulator[item.name] = item.value;
-        return accumulator;
-      }, {});
-
       const result = foundAttribute.filter
-        ? foundAttribute.filter(tag, attribute, adaptedAttributes, resourcePath)
+        ? foundAttribute.filter(tag, attribute, attributes, resourcePath)
         : true;
 
       return result ? foundAttribute : false;

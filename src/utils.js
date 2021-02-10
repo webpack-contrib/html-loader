@@ -502,14 +502,9 @@ function getMinimizeOption(rawOptions, loaderContext) {
 }
 
 function getAttributeValue(attributes, name) {
-  const lowercasedAttributes = Object.keys(attributes).reduce((keys, k) => {
-    // eslint-disable-next-line no-param-reassign
-    keys[k.toLowerCase()] = k;
+  const [result] = attributes.filter((i) => i.name.toLowerCase() === name);
 
-    return keys;
-  }, {});
-
-  return attributes[lowercasedAttributes[name.toLowerCase()]];
+  return typeof result === 'undefined' ? result : result.value;
 }
 
 function scriptSrcFilter(tag, attribute, attributes) {
