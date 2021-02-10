@@ -562,8 +562,43 @@ function linkHrefFilter(tag, attribute, attributes) {
   return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
 }
 
-function metaContentFilter(tag, attribute, attributes) {
-  let name = getAttributeValue(attributes, 'name');
+const META = {
+  name: [
+    // msapplication-TileImage
+    'msapplication-tileimage',
+    'msapplication-square70x70logo',
+    'msapplication-square150x150logo',
+    'msapplication-wide310x150logo',
+    'msapplication-square310x310logo',
+    'msapplication-config',
+    'twitter:image',
+  ],
+  property: [
+    'og:image',
+    'og:image:url',
+    'og:image:secure_url',
+    'og:audio',
+    'og:audio:secure_url',
+    'og:video',
+    'og:video:secure_url',
+    'vk:image',
+  ],
+  itemprop: [
+    'image',
+    'logo',
+    'screenshot',
+    'thumbnailurl',
+    'contenturl',
+    'downloadurl',
+    'duringmedia',
+    'embedurl',
+    'installurl',
+    'layoutimage',
+  ],
+};
+
+function linkItempropFilter(tag, attribute, attributes) {
+  let name = getAttributeValue(attributes, 'itemprop');
 
   if (name) {
     name = name.trim();
@@ -574,46 +609,39 @@ function metaContentFilter(tag, attribute, attributes) {
 
     name = name.toLowerCase();
 
-    const allowedNames = [
-      // msapplication-TileImage
-      'msapplication-tileimage',
-      'msapplication-square70x70logo',
-      'msapplication-square150x150logo',
-      'msapplication-wide310x150logo',
-      'msapplication-square310x310logo',
-      'msapplication-config',
-      'twitter:image',
-    ];
-
-    return allowedNames.includes(name);
-  }
-
-  let property = getAttributeValue(attributes, 'property');
-
-  if (property) {
-    property = property.trim();
-
-    if (!property) {
-      return false;
-    }
-
-    property = property.toLowerCase();
-
-    const allowedProperties = [
-      'og:image',
-      'og:image:url',
-      'og:image:secure_url',
-      'og:audio',
-      'og:audio:secure_url',
-      'og:video',
-      'og:video:secure_url',
-      'vk:image',
-    ];
-
-    return allowedProperties.includes(property);
+    return META.itemprop.includes(name);
   }
 
   return false;
+}
+
+function linkUnionFilter(tag, attribute, attributes) {
+  return (
+    linkHrefFilter(tag, attribute, attributes) ||
+    linkItempropFilter(tag, attribute, attributes)
+  );
+}
+
+function metaContentFilter(tag, attribute, attributes) {
+  return Object.entries(META).some((item) => {
+    const [key, allowedNames] = item;
+
+    let name = getAttributeValue(attributes, key);
+
+    if (name) {
+      name = name.trim();
+
+      if (!name) {
+        return false;
+      }
+
+      name = name.toLowerCase();
+
+      return allowedNames.includes(name);
+    }
+
+    return false;
+  });
 }
 
 const defaultAttributes = [
@@ -646,7 +674,7 @@ const defaultAttributes = [
     tag: 'link',
     attribute: 'href',
     type: 'src',
-    filter: linkHrefFilter,
+    filter: linkUnionFilter,
   },
   {
     tag: 'link',
