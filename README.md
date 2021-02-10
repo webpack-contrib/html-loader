@@ -299,7 +299,7 @@ module.exports = {
                 type: 'src',
                 filter: (tag, attribute, attributes, resourcePath) => {
                   if (
-                    attributes.name === 'og:image' ||
+                    attributes.value === 'og:image' ||
                     attributes.name === 'twitter:image'
                   ) {
                     return true;

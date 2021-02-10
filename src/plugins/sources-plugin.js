@@ -20,7 +20,7 @@ export default (options) =>
       isUrlRequestable(value)
     );
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      const foundTag = list.get(tag.toLowerCase()) || list.get('all');
+      const foundTag = list.get(tag.toLowerCase()) || list.get('*');
 
       if (!foundTag) {
         return false;

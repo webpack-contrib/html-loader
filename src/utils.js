@@ -750,19 +750,19 @@ function rewriteSourcesList(sourcesList, attribute, source) {
   }
 }
 
-function createSourcesMap(sources, accumulator = new Map()) {
+function createSourcesList(sources, accumulator = new Map()) {
   for (const source of sources) {
     if (source === '...') {
       // eslint-disable-next-line no-continue
       continue;
     }
 
-    let { tag = 'all', attribute = 'all' } = source;
+    let { tag = '*', attribute = '*' } = source;
 
     tag = tag.toLowerCase();
     attribute = attribute.toLowerCase();
 
-    if (tag === 'all') {
+    if (tag === '*') {
       rewriteSourcesList(accumulator, attribute, source);
     }
 
@@ -781,26 +781,26 @@ function smartMergeSources(array, factory) {
     return factory();
   }
 
-  const resultMap = array.some((i) => i === '...')
-    ? createSourcesMap(array, factory())
-    : createSourcesMap(array);
+  const result = array.some((i) => i === '...')
+    ? createSourcesList(array, factory())
+    : createSourcesList(array);
 
-  return resultMap;
+  return result;
 }
 
 function getSourcesOption(rawOptions) {
   if (typeof rawOptions.sources === 'undefined') {
-    return { list: createSourcesMap(defaultAttributes) };
+    return { list: createSourcesList(defaultAttributes) };
   }
 
   if (typeof rawOptions.sources === 'boolean') {
     return rawOptions.sources === true
-      ? { list: createSourcesMap(defaultAttributes) }
+      ? { list: createSourcesList(defaultAttributes) }
       : false;
   }
 
   const sources = smartMergeSources(rawOptions.sources.list, () =>
-    createSourcesMap(defaultAttributes)
+    createSourcesList(defaultAttributes)
   );
 
   return {
