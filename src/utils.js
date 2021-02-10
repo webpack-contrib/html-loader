@@ -502,14 +502,9 @@ function getMinimizeOption(rawOptions, loaderContext) {
 }
 
 function getAttributeValue(attributes, name) {
-  const lowercasedAttributes = Object.keys(attributes).reduce((keys, k) => {
-    // eslint-disable-next-line no-param-reassign
-    keys[k.toLowerCase()] = k;
+  const [result] = attributes.filter((i) => i.name.toLowerCase() === name);
 
-    return keys;
-  }, {});
-
-  return attributes[lowercasedAttributes[name.toLowerCase()]];
+  return typeof result === 'undefined' ? result : result.value;
 }
 
 function scriptSrcFilter(tag, attribute, attributes) {
@@ -737,45 +732,75 @@ const defaultAttributes = [
   },
 ];
 
+function rewriteSourcesList(sourcesList, attribute, source) {
+  for (const key of sourcesList.keys()) {
+    const item = sourcesList.get(key);
+
+    if (!item.has(attribute)) {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    item.set(attribute, {
+      ...item.get(attribute),
+      ...source,
+    });
+
+    sourcesList.set(key, item);
+  }
+}
+
+function createSourcesList(sources, accumulator = new Map()) {
+  for (const source of sources) {
+    if (source === '...') {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    let { tag = '*', attribute = '*' } = source;
+
+    tag = tag.toLowerCase();
+    attribute = attribute.toLowerCase();
+
+    if (tag === '*') {
+      rewriteSourcesList(accumulator, attribute, source);
+    }
+
+    if (!accumulator.has(tag)) {
+      accumulator.set(tag, new Map());
+    }
+
+    accumulator.get(tag).set(attribute, source);
+  }
+
+  return accumulator;
+}
+
 function smartMergeSources(array, factory) {
   if (typeof array === 'undefined') {
     return factory();
   }
 
-  const newArray = [];
+  const result = array.some((i) => i === '...')
+    ? createSourcesList(array, factory())
+    : createSourcesList(array);
 
-  for (let i = 0; i < array.length; i++) {
-    const item = array[i];
-
-    if (item === '...') {
-      const items = factory();
-
-      if (typeof items !== 'undefined') {
-        // eslint-disable-next-line no-shadow
-        for (const item of items) {
-          newArray.push(item);
-        }
-      }
-    } else if (typeof newArray !== 'undefined') {
-      newArray.push(item);
-    }
-  }
-
-  return newArray;
+  return result;
 }
 
 function getSourcesOption(rawOptions) {
   if (typeof rawOptions.sources === 'undefined') {
-    return { list: defaultAttributes };
+    return { list: createSourcesList(defaultAttributes) };
   }
 
   if (typeof rawOptions.sources === 'boolean') {
-    return rawOptions.sources === true ? { list: defaultAttributes } : false;
+    return rawOptions.sources === true
+      ? { list: createSourcesList(defaultAttributes) }
+      : false;
   }
 
-  const sources = smartMergeSources(
-    rawOptions.sources.list,
-    () => defaultAttributes
+  const sources = smartMergeSources(rawOptions.sources.list, () =>
+    createSourcesList(defaultAttributes)
   );
 
   return {
