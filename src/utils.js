@@ -562,40 +562,49 @@ function linkHrefFilter(tag, attribute, attributes) {
   return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
 }
 
-const META = {
-  name: [
-    // msapplication-TileImage
-    'msapplication-tileimage',
-    'msapplication-square70x70logo',
-    'msapplication-square150x150logo',
-    'msapplication-wide310x150logo',
-    'msapplication-square310x310logo',
-    'msapplication-config',
-    'twitter:image',
+const META = new Map([
+  [
+    'name',
+    new Set([
+      // msapplication-TileImage
+      'msapplication-tileimage',
+      'msapplication-square70x70logo',
+      'msapplication-square150x150logo',
+      'msapplication-wide310x150logo',
+      'msapplication-square310x310logo',
+      'msapplication-config',
+      'twitter:image',
+    ]),
   ],
-  property: [
-    'og:image',
-    'og:image:url',
-    'og:image:secure_url',
-    'og:audio',
-    'og:audio:secure_url',
-    'og:video',
-    'og:video:secure_url',
-    'vk:image',
+  [
+    'property',
+    new Set([
+      'og:image',
+      'og:image:url',
+      'og:image:secure_url',
+      'og:audio',
+      'og:audio:secure_url',
+      'og:video',
+      'og:video:secure_url',
+      'vk:image',
+    ]),
   ],
-  itemprop: [
-    'image',
-    'logo',
-    'screenshot',
-    'thumbnailurl',
-    'contenturl',
-    'downloadurl',
-    'duringmedia',
-    'embedurl',
-    'installurl',
-    'layoutimage',
+  [
+    'itemprop',
+    new Set([
+      'image',
+      'logo',
+      'screenshot',
+      'thumbnailurl',
+      'contenturl',
+      'downloadurl',
+      'duringmedia',
+      'embedurl',
+      'installurl',
+      'layoutimage',
+    ]),
   ],
-};
+]);
 
 function linkItempropFilter(tag, attribute, attributes) {
   let name = getAttributeValue(attributes, 'itemprop');
@@ -609,7 +618,7 @@ function linkItempropFilter(tag, attribute, attributes) {
 
     name = name.toLowerCase();
 
-    return META.itemprop.includes(name);
+    return META.get('itemprop').has(name);
   }
 
   return false;
@@ -623,7 +632,7 @@ function linkUnionFilter(tag, attribute, attributes) {
 }
 
 function metaContentFilter(tag, attribute, attributes) {
-  return Object.entries(META).some((item) => {
+  for (const item of META) {
     const [key, allowedNames] = item;
 
     let name = getAttributeValue(attributes, key);
@@ -632,16 +641,17 @@ function metaContentFilter(tag, attribute, attributes) {
       name = name.trim();
 
       if (!name) {
-        return false;
+        // eslint-disable-next-line no-continue
+        continue;
       }
 
       name = name.toLowerCase();
 
-      return allowedNames.includes(name);
+      return allowedNames.has(name);
     }
+  }
 
-    return false;
-  });
+  return false;
 }
 
 const defaultAttributes = [
