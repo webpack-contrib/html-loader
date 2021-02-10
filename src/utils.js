@@ -370,12 +370,16 @@ export function parseSrc(input) {
   return { value, startIndex };
 }
 
-export function normalizeUrl(url) {
-  return decodeURI(url).replace(/[\t\n\r]/g, '');
-}
-
 const moduleRequestRegex = /^[^?]*~/;
 const matchNativeWin32Path = /^[A-Z]:[/\\]|^\\\\/i;
+
+export function normalizeUrl(url) {
+  return matchNativeWin32Path.test(url)
+    ? decodeURI(url).replace(/[\t\n\r]/g, '')
+    : decodeURI(url)
+        .replace(/[\t\n\r]/g, '')
+        .replace(/\\/g, '/');
+}
 
 export function requestify(url) {
   if (matchNativeWin32Path.test(url) || url[0] === '/') {
