@@ -15,8 +15,8 @@ export default code;"
 
 exports[`loader should emit an error on broken HTML syntax: result 1`] = `
 "Text < img src=\\"image.png\\" >
-Text <<img src=\\"file:///webpack/public/path/image.png\\">
-Text ><img src=\\"file:///webpack/public/path/image.png\\">
+Text <<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+Text ><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 
 <a foo><bar></a><!-- --><![CDATA[]]]><?foo?><!bar><boo/>boohay
 <<<<>foo
@@ -75,7 +75,7 @@ var code = \\"<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\"
 export default code;"
 `;
 
-exports[`loader should pass queries to other loader: result 1`] = `"<img src=\\"file:///webpack/public/path/icons.svg\\">"`;
+exports[`loader should pass queries to other loader: result 1`] = `"<img src=\\"replaced_file_protocol_/webpack/public/path/icons.svg#foo\\">"`;
 
 exports[`loader should pass queries to other loader: warnings 1`] = `Array []`;
 
@@ -95,7 +95,7 @@ export default code;"
 exports[`loader should work with "resolve.roots": result 1`] = `
 "<!doctype html>
 
-<img src=\\"file:///webpack/public/path/image2.png\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image2.png\\">
 "
 `;
 
@@ -103,7 +103,7 @@ exports[`loader should work with "resolve.roots": warnings 1`] = `Array []`;
 
 exports[`loader should work with absolute paths: errors 1`] = `Array []`;
 
-exports[`loader should work with absolute paths: result 1`] = `"<img src=\\"file:///webpack/public/path/image.png\\">"`;
+exports[`loader should work with absolute paths: result 1`] = `"<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">"`;
 
 exports[`loader should work with absolute paths: warnings 1`] = `Array []`;
 
@@ -126,7 +126,7 @@ exports[`loader should work with an empty file: warnings 1`] = `Array []`;
 
 exports[`loader should work with file protocol: errors 1`] = `Array []`;
 
-exports[`loader should work with file protocol: result 1`] = `"<img src=\\"file:///webpack/public/path/image.png\\">"`;
+exports[`loader should work with file protocol: result 1`] = `"<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">"`;
 
 exports[`loader should work with file protocol: warnings 1`] = `Array []`;
 
@@ -146,7 +146,7 @@ export default code;"
 exports[`loader should work with server-relative url: result 1`] = `
 "<!doctype html>
 
-<img src=\\"file:///webpack/public/path/image3.png\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image3.png\\">
 "
 `;
 
@@ -248,134 +248,134 @@ exports[`loader should work: result 1`] = `
 
 <script>   console.log(1 + 2 + \`\${3 + 3}\`)   </script>
 
-<img src=\\"file:///webpack/public/path/image.png\\">
-<img src='file:///webpack/public/path/image.png'>
-<img src=file:///webpack/public/path/image.png>
-<img src=\\"file:///webpack/public/path/image.png\\">
-<img src=\\"file:///webpack/public/path/image.png\\">
-<img src=\\"file:///webpack/public/path/image.png\\">
-<img src=\\"file:///webpack/public/path/image.png\\">
-<IMG src=\\"file:///webpack/public/path/image.png\\">
-<img SRC=\\"file:///webpack/public/path/image.png\\">
-<IMG SRC=\\"file:///webpack/public/path/image.png\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<img src='replaced_file_protocol_/webpack/public/path/image.png'>
+<img src=replaced_file_protocol_/webpack/public/path/image.png>
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<IMG src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<img SRC=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<IMG SRC=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 <img src=\\"//image.png\\">
 
-<script src=\\"file:///webpack/public/path/script.file.js\\"></script>
+<script src=\\"replaced_file_protocol_/webpack/public/path/script.file.js\\"></script>
 
 <custom-element custom-src=\\"image.png\\" />
 <custom-img custom-src=\\"image.png\\"/></custom-element>
 
-<img src=\\"file:///webpack/public/path/icons.svg\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/icons.svg#icon-chevron-with-circle-up\\">
 
 <a href=\\"mailto:username@exampledomain.com\\"></a>
 
-<img srcset=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<IMG srcset=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img SRCSET=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<IMG SRCSET=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png 480h, file:///webpack/public/path/image.png 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png, file:///webpack/public/path/image.png\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png,
-             file:///webpack/public/path/image.png 1.5x,
-             file:///webpack/public/path/image.png 2x\\"
-     src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"   file:///webpack/public/path/image.png   480w   ,   file:///webpack/public/path/image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png,\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img srcset=\\"file:///webpack/public/path/image.png,,,\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG srcset=\\"replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img SRCSET=\\"replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<IMG SRCSET=\\"replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png 480h, replaced_file_protocol_/webpack/public/path/image.png 800h\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png, replaced_file_protocol_/webpack/public/path/image.png\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png,
+             replaced_file_protocol_/webpack/public/path/image.png 1.5x,
+             replaced_file_protocol_/webpack/public/path/image.png 2x\\"
+     src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   replaced_file_protocol_/webpack/public/path/image.png   480w   ,   replaced_file_protocol_/webpack/public/path/image.png   800w   \\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png,\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png,,,\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 <img srcset=\\"
 
-file:///webpack/public/path/image.png,
+replaced_file_protocol_/webpack/public/path/image.png,
 
-  file:///webpack/public/path/image.png   1.5x,
+  replaced_file_protocol_/webpack/public/path/image.png   1.5x,
 
-file:///webpack/public/path/image.png 2x
+replaced_file_protocol_/webpack/public/path/image.png 2x
 
-\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
 
 <picture>
-  <source media=\\"(min-width: 650px)\\" srcset=\\"file:///webpack/public/path/image.png\\">
-  <source media=\\"(min-width: 465px)\\" srcset=\\"file:///webpack/public/path/image.png\\">
-  <img src=\\"file:///webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
+  <source media=\\"(min-width: 650px)\\" srcset=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+  <source media=\\"(min-width: 465px)\\" srcset=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+  <img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
 </picture>
 
-<audio src=\\"file:///webpack/public/path/example.ogg\\" controls>
+<audio src=\\"replaced_file_protocol_/webpack/public/path/example.ogg\\" controls>
   Your browser does not support the audio element.
 </audio>
 
-<embed src=\\"file:///webpack/public/path/example.pdf\\">
+<embed src=\\"replaced_file_protocol_/webpack/public/path/example.pdf\\">
 
 <iframe src=\\"template.html\\"></iframe>
 
-<img src=\\"file:///webpack/public/path/image.png\\" alt=\\"Smiley face\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Smiley face\\">
 
 <form action=\\"/action_page.php\\">
   First name: <input type=\\"text\\" name=\\"fname\\"><br>
-  <input type=\\"image\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Submit\\">
+  <input type=\\"image\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Submit\\">
 </form>
 
 <script src=\\"https://domain.org/script.js\\"></script>
 
 <audio controls>
-  <source src=\\"file:///webpack/public/path/example.ogg\\" type=\\"audio/ogg\\">
+  <source src=\\"replaced_file_protocol_/webpack/public/path/example.ogg\\" type=\\"audio/ogg\\">
   Your browser does not support the audio element.
 </audio>
 
 <video width=\\"320\\" height=\\"240\\" controls>
-  <source src=\\"file:///webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
-  <track src=\\"file:///webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+  <source src=\\"replaced_file_protocol_/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"replaced_file_protocol_/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
 </video>
 
-<video src=\\"file:///webpack/public/path/example.ogg\\" controls>
+<video src=\\"replaced_file_protocol_/webpack/public/path/example.ogg\\" controls>
   Your browser does not support the video tag.
 </video>
 
-<video controls poster=\\"file:///webpack/public/path/image.png\\">
-  <source src=\\"file:///webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
-  <track src=\\"file:///webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
+<video controls poster=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+  <source src=\\"replaced_file_protocol_/webpack/public/path/example.ogg\\" type=\\"video/ogg\\">
+  <track src=\\"replaced_file_protocol_/webpack/public/path/example.vtt\\" kind=\\"subtitles\\" srclang=\\"en\\" label=\\"English\\">
 </video>
 
-<object width=\\"400\\" height=\\"400\\" data=\\"file:///webpack/public/path/example.pdf\\"></object>
+<object width=\\"400\\" height=\\"400\\" data=\\"replaced_file_protocol_/webpack/public/path/example.pdf\\"></object>
 
-T ex t  <img 	  src =   \\"file:///webpack/public/path/image.png\\"   >  <img
+T ex t  <img 	  src =   \\"replaced_file_protocol_/webpack/public/path/image.png\\"   >  <img
   src
     =
-    \\"file:///webpack/public/path/image.png\\"
+    \\"replaced_file_protocol_/webpack/public/path/image.png\\"
 >
 
 <div data-videomp4=\\"video.mp4\\"></div>
 
-<![CDATA[<img src=\\"image.png\\">]]><img src=\\"file:///webpack/public/path/image.png\\">
+<![CDATA[<img src=\\"image.png\\">]]><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 
-<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link REL=\\"stylesheet\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link ReL=\\"stylesheet\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link REL=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link REL=\\"STYLESHEET\\" type=\\"text/css\\" HREF=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"alternate stylesheet\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"stylesheet alternate\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"stylesheet alternate\\" type=\\"   text/css   \\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"stylesheet\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"stylesheet\\" type=\\"text/html\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"stylesheet\\" TYPE=\\"text/html\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"icon\\" href=\\"file:///webpack/public/path/image.png\\" sizes=\\"16x16\\">
-<link rel=\\"apple-touch-icon\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"apple-touch-startup-image\\" href=\\"file:///webpack/public/path/image.png\\">
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link REL=\\"stylesheet\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link ReL=\\"stylesheet\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link REL=\\"STYLESHEET\\" type=\\"text/css\\" HREF=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"alternate stylesheet\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"stylesheet alternate\\" type=\\"   text/css   \\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"stylesheet\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"stylesheet\\" type=\\"text/html\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"stylesheet\\" TYPE=\\"text/html\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\" sizes=\\"16x16\\">
+<link rel=\\"apple-touch-icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"apple-touch-startup-image\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 <link rel=\\"shortlink\\" type=\\"text/html\\" href=\\"http://flic.kr/p/6XuLyD\\">
 <link type=\\"text/css\\" href=\\"./style.file.css\\">
 <link rel=\\"pingback\\" href=\\"http://bob.example.net/xmlrpcserver\\">
-<link rel=\\"preload\\" href=\\"file:///webpack/public/path/style.file.css\\">
-<link rel=\\"prefetch\\" href=\\"file:///webpack/public/path/image.png\\">
+<link rel=\\"preload\\" href=\\"replaced_file_protocol_/webpack/public/path/style.file.css\\">
+<link rel=\\"prefetch\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 <link rel=\\"modulepreload\\" href=\\"script.js\\">
 <a rel=\\"author\\" href=\\"./simple.html\\">link text</a>
 
 <a href=\\"tel:1-408-555-5555\\">Call me</a>
 
-<!----><img src=\\"file:///webpack/public/path/image.png\\">-->
-<!--><img src=\\"file:///webpack/public/path/image.png\\">-->
+<!----><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">-->
+<!--><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\">-->
 <!--<!--<img src=\\"image.png\\">-->
 <!--<img src=\\"image.png\\">-->
 
@@ -406,19 +406,19 @@ or
 <img src=\\"foobar:test\\">Start Chat</img>
 <img src=\\"javascript:alert('Hello');\\">Start Chat</img>
 
-<img src=\\"   file:///webpack/public/path/image.png   \\">
+<img src=\\"   replaced_file_protocol_/webpack/public/path/image.png   \\">
 <img src=\\"
-file:///webpack/public/path/image.png
+replaced_file_protocol_/webpack/public/path/image.png
 \\">
-<img srcset=\\"   file:///webpack/public/path/image.png   \\" src=\\"   file:///webpack/public/path/image.png   \\" alt=\\"Elva dressed as a fairy\\">
+<img srcset=\\"   replaced_file_protocol_/webpack/public/path/image.png   \\" src=\\"   replaced_file_protocol_/webpack/public/path/image.png   \\" alt=\\"Elva dressed as a fairy\\">
 <img srcset=\\"
-file:///webpack/public/path/image.png
+replaced_file_protocol_/webpack/public/path/image.png
 \\" src=\\"
-file:///webpack/public/path/image.png
+replaced_file_protocol_/webpack/public/path/image.png
 \\" alt=\\"Elva dressed as a fairy\\">
 
 <img srcset=\\"#test\\" src=\\"#test\\" alt=\\"Elva dressed as a fairy\\">
-<img src=\\"file:///webpack/public/path/image%20image.png\\" alt=\\"Test\\">
+<img src=\\"replaced_file_protocol_/webpack/public/path/image%20image.png\\" alt=\\"Test\\">
 
 <flag-icon src=\\"image.png\\"></flag-icon>
 <MyStrangeTag13 src=\\"image.png\\" alt=\\"Smiley face\\" />
@@ -436,12 +436,12 @@ file:///webpack/public/path/image.png
 <p >Text</p>
 <p   >Text</p>
 
-<img src=\\"image.png\\" src=\\"file:///webpack/public/path/image.png\\" />
+<img src=\\"image.png\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
 
-<script type=\\"module\\" src=\\"file:///webpack/public/path/module.file.js\\"></script>
-<script nomodule src=\\"file:///webpack/public/path/fallback.file.js\\"></script>
-<script type=\\"text/javascript\\" src=\\"file:///webpack/public/path/fallback.file.js\\"></script>
-<script type=\\"application/javascript\\" src=\\"file:///webpack/public/path/fallback.file.js\\"></script>
+<script type=\\"module\\" src=\\"replaced_file_protocol_/webpack/public/path/module.file.js\\"></script>
+<script nomodule src=\\"replaced_file_protocol_/webpack/public/path/fallback.file.js\\"></script>
+<script type=\\"text/javascript\\" src=\\"replaced_file_protocol_/webpack/public/path/fallback.file.js\\"></script>
+<script type=\\"application/javascript\\" src=\\"replaced_file_protocol_/webpack/public/path/fallback.file.js\\"></script>
 <script type=\\"application/json\\" src=\\"fallback.file.json\\"></script>
 <script type=\\"text/x-handlebars-template\\" src=\\"preprocessor.hbs\\"></script>
 <script type=\\"module\\">
@@ -451,27 +451,27 @@ file:///webpack/public/path/image.png
   function test() {}
 </script>
 
-<img src=file:///webpack/public/path/image.png />
-<img src=\\"file:///webpack/public/path/image%20image.png\\" />
-<img src='file:///webpack/public/path/image%20image.png' />
-<img src=file:///webpack/public/path/image%20image.png />
-<img srcset=file:///webpack/public/path/image.png />
-<img srcset=\\"file:///webpack/public/path/image%20image.png\\" />
-<img srcset='file:///webpack/public/path/image%20image.png' />
-<img srcset=file:///webpack/public/path/image%20image.png />
-<img srcset=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image%20image.png 640w, file:///webpack/public/path/image%20image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
-<img src      =       file:///webpack/public/path/image.png />
-<img src      =      file:///webpack/public/path/image%20image.png      />
-<img src      =      \\"file:///webpack/public/path/image%20image.png\\"      />
-<img src      =      'file:///webpack/public/path/image%20image.png'      />
+<img src=replaced_file_protocol_/webpack/public/path/image.png />
+<img src=\\"replaced_file_protocol_/webpack/public/path/image%20image.png\\" />
+<img src='replaced_file_protocol_/webpack/public/path/image%20image.png' />
+<img src=replaced_file_protocol_/webpack/public/path/image%20image.png />
+<img srcset=replaced_file_protocol_/webpack/public/path/image.png />
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image%20image.png\\" />
+<img srcset='replaced_file_protocol_/webpack/public/path/image%20image.png' />
+<img srcset=replaced_file_protocol_/webpack/public/path/image%20image.png />
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/image%20image.png 640w, replaced_file_protocol_/webpack/public/path/image%20image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img src      =       replaced_file_protocol_/webpack/public/path/image.png />
+<img src      =      replaced_file_protocol_/webpack/public/path/image%20image.png      />
+<img src      =      \\"replaced_file_protocol_/webpack/public/path/image%20image.png\\"      />
+<img src      =      'replaced_file_protocol_/webpack/public/path/image%20image.png'      />
 
 <img src=\\"#hash\\" />
 <img src=\\"javascript:void(0)\\" />
-<img src='file:///webpack/public/path/image.png' />
-<img src=file:///webpack/public/path/image.png />
-<img src=file:///webpack/public/path/image.png />
-<img srcset=\\"file:///webpack/public/path/image.png\\" />
-<img srcset=\\"file:///webpack/public/path/image.png 480w, file:///webpack/public/path/image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"file:///webpack/public/path/image.png\\" alt=\\"Elva dressed as a fairy\\">
+<img src='replaced_file_protocol_/webpack/public/path/image.png#hash' />
+<img src=replaced_file_protocol_/webpack/public/path/image.png#hash />
+<img src=replaced_file_protocol_/webpack/public/path/image.png# />
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png#hash\\" />
+<img srcset=\\"replaced_file_protocol_/webpack/public/path/image.png#foo 480w, replaced_file_protocol_/webpack/public/path/image.png#bar 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" src=\\"replaced_file_protocol_/webpack/public/path/image.png#baz\\" alt=\\"Elva dressed as a fairy\\">
 <img src=\\"#\\" alt=\\"test\\"/>
 <img src=\\"#\\" srcset=\\"#\\" alt=\\"test\\" />
 <img src=\\"###\\" srcset=\\"#\\" alt=\\"test\\" />
@@ -486,29 +486,29 @@ file:///webpack/public/path/image.png
 <img src=
 
 
-       file:///webpack/public/path/image.png
+       replaced_file_protocol_/webpack/public/path/image.png
 
 
 />
 
 <img data-srcset=\\"image.png 480w, image.png 800w\\" sizes=\\"(max-width: 600px) 480px, 800px\\" data-src=\\"image.png\\" alt=\\"Elva dressed as a fairy\\">
 
-<img src=file:///webpack/public/path/image%20image.png />
+<img src=replaced_file_protocol_/webpack/public/path/image%20image.png#hash />
 
 <svg width=\\"200\\" height=\\"200\\">
-  <image xlink:href=\\"file:///webpack/public/path/webpack.svg\\" height=\\"200\\" width=\\"200\\"/>
+  <image xlink:href=\\"replaced_file_protocol_/webpack/public/path/webpack.svg\\" height=\\"200\\" width=\\"200\\"/>
 </svg>
 
 <svg width=\\"200\\" height=\\"200\\">
-  <image href=\\"file:///webpack/public/path/webpack.svg\\" height=\\"200\\" width=\\"200\\"/>
+  <image href=\\"replaced_file_protocol_/webpack/public/path/webpack.svg\\" height=\\"200\\" width=\\"200\\"/>
 </svg>
 
 <svg width=\\"200\\" height=\\"200\\">
-  <use href=\\"file:///webpack/public/path/webpack.svg\\"></use>
+  <use href=\\"replaced_file_protocol_/webpack/public/path/webpack.svg\\"></use>
 </svg>
 
 <svg width=\\"200\\" height=\\"200\\">
-  <use xlink:href=\\"file:///webpack/public/path/webpack.svg\\"></use>
+  <use xlink:href=\\"replaced_file_protocol_/webpack/public/path/webpack.svg\\"></use>
 </svg>
 
 <span>foo</span> <span>bar</span>
@@ -550,7 +550,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42m
 
 \\" alt=\\"\\" />
 
-<img src=\\"file:///webpack/public/path/image.png\\" alt=\\"multi
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"multi
 line
 alt\\" />
 
@@ -562,13 +562,13 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 <img data-dz-thumbnail=\\"\\" width=\\"95\\" height=\\"95\\" title=\\"<%= name %>\\" alt=\\"<%= name %>\\" src=\\"<%= imgsrc %>\\" />
 
 <svg>
-  <script href=\\"file:///webpack/public/path/script.file.js\\"></script>
+  <script href=\\"replaced_file_protocol_/webpack/public/path/script.file.js\\"></script>
 </svg>
 <svg>
   <script type=\\"application/json\\" href=\\"./script.file.js\\"></script>
 </svg>
 <svg>
-  <script xlink:href=\\"file:///webpack/public/path/script.file.js\\"></script>
+  <script xlink:href=\\"replaced_file_protocol_/webpack/public/path/script.file.js\\"></script>
 </svg>
 <svg>
   <script type=\\"application/json\\" xlink:href=\\"./script.file.js\\"></script>
@@ -577,33 +577,33 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 <input type=\\"text\\" name=\\"test\\">
 
 <link rel=\\"icon\\">
-<link    rel   =   \\"   icon   \\"    href   =   \\"file:///webpack/public/path/image.png\\">
-<link rel=\\"icon\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"ICON\\" href=\\"file:///webpack/public/path/image.png\\">
-<link REL=\\"icon\\" href=\\"file:///webpack/public/path/image.png\\">
-<link REL=\\"ICON\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"shortcut icon\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"shortcut    icon\\" href=\\"file:///webpack/public/path/image.png\\">
+<link    rel   =   \\"   icon   \\"    href   =   \\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"ICON\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link REL=\\"icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link REL=\\"ICON\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"shortcut icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"shortcut    icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 <link rel=\\"shortcut\\" href=\\"./image.png\\">
-<link rel=\\"icon shortcut\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"16x16\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"32x32\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"194x194\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"192x192\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"apple-touch-icon\\" href=\\"file:///webpack/public/path/image.png\\">
-<link rel=\\"apple-touch-icon-precomposed\\" href=\\"file:///webpack/public/path/image.png\\"/>
-<link rel=\\"manifest\\" href=\\"file:///webpack/public/path/site.webmanifest\\">
-<link rel=\\"mask-icon\\" href=\\"file:///webpack/public/path/webpack.svg\\" color=\\"#5bbad5\\">
-<link rel=\\"preload\\" as=\\"image\\" imagesrcset=\\"file:///webpack/public/path/image.png 400w, file:///webpack/public/path/image.png 800w, file:///webpack/public/path/image.png 1600w\\" imagesizes=\\"100vw\\">
-<meta name=\\"twitter:image\\" content=\\"file:///webpack/public/path/image.png\\">
-<meta name=\\"msapplication-square70x70logo\\" content=\\"file:///webpack/public/path/image.png\\">
-<meta NAME=\\"msapplication-square70x70logo\\" content=\\"file:///webpack/public/path/image.png\\">
-<meta name=\\"msapplication-square150x150logo\\" content=\\"file:///webpack/public/path/image.png\\">
-<meta name=\\"msapplication-wide310x150logo\\" content=\\"file:///webpack/public/path/image.png\\">
-<meta name=\\"msapplication-square310x310logo\\" content=\\"file:///webpack/public/path/image.png\\">
+<link rel=\\"icon shortcut\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"16x16\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"32x32\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"194x194\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"icon\\" type=\\"image/png\\" sizes=\\"192x192\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"apple-touch-icon\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link rel=\\"apple-touch-icon-precomposed\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\"/>
+<link rel=\\"manifest\\" href=\\"replaced_file_protocol_/webpack/public/path/site.webmanifest\\">
+<link rel=\\"mask-icon\\" href=\\"replaced_file_protocol_/webpack/public/path/webpack.svg\\" color=\\"#5bbad5\\">
+<link rel=\\"preload\\" as=\\"image\\" imagesrcset=\\"replaced_file_protocol_/webpack/public/path/image.png 400w, replaced_file_protocol_/webpack/public/path/image.png 800w, replaced_file_protocol_/webpack/public/path/image.png 1600w\\" imagesizes=\\"100vw\\">
+<meta name=\\"twitter:image\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<meta name=\\"msapplication-square70x70logo\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<meta NAME=\\"msapplication-square70x70logo\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<meta name=\\"msapplication-square150x150logo\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<meta name=\\"msapplication-wide310x150logo\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<meta name=\\"msapplication-square310x310logo\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 <meta name=\\"msapplication-TileColor\\" content=\\"#da532c\\">
-<meta name=\\"msapplication-TileImage\\" content=\\"file:///webpack/public/path/image.png\\">
-<meta name=\\"msapplication-config\\" content=\\"file:///webpack/public/path/browserconfig.xml\\">
+<meta name=\\"msapplication-TileImage\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<meta name=\\"msapplication-config\\" content=\\"replaced_file_protocol_/webpack/public/path/browserconfig.xml\\">
 <meta name=\\"theme-color\\" content=\\"#ffffff\\">
 <meta content=\\"name=Check Order Status;action-uri=./orderStatus.aspx?src=IE9;icon-uri=./favicon.ico\\" name=\\"msapplication-task\\">
 
@@ -611,41 +611,41 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 <meta property=\\"og:type\\" content=\\"article\\" />
 <meta property=\\"og:title\\" content=\\"When Great Minds Don’t Think Alike\\" />
 <meta property=\\"og:description\\" content=\\"How much does culture influence creative thinking?\\" />
-<meta property=\\"og:image\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta property=\\"og:image:url\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta property=\\"og:image:secure_url\\" content=\\"file:///webpack/public/path/image.png\\" />
+<meta property=\\"og:image\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta property=\\"og:image:url\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta property=\\"og:image:secure_url\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
 
-<meta property=\\"og:audio\\" content=\\"file:///webpack/public/path/sound.mp3\\" />
-<meta property=\\"og:audio:secure_url\\" content=\\"file:///webpack/public/path/sound.mp3\\" />
+<meta property=\\"og:audio\\" content=\\"replaced_file_protocol_/webpack/public/path/sound.mp3\\" />
+<meta property=\\"og:audio:secure_url\\" content=\\"replaced_file_protocol_/webpack/public/path/sound.mp3\\" />
 <meta property=\\"og:audio:type\\" content=\\"audio/mpeg\\" />
 
-<meta property=\\"og:video\\" content=\\"file:///webpack/public/path/video.mp4\\" />
-<meta property=\\"og:video:secure_url\\" content=\\"file:///webpack/public/path/video.mp4\\" />
+<meta property=\\"og:video\\" content=\\"replaced_file_protocol_/webpack/public/path/video.mp4\\" />
+<meta property=\\"og:video:secure_url\\" content=\\"replaced_file_protocol_/webpack/public/path/video.mp4\\" />
 <meta property=\\"og:video:type\\" content=\\"video/mp4\\" />
 <meta property=\\"og:video:width\\" content=\\"400\\" />
 <meta property=\\"og:video:height\\" content=\\"300\\" />
 
-<meta property=\\"vk:image\\" content=\\"file:///webpack/public/path/image.png\\" />
+<meta property=\\"vk:image\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
 
-<link itemprop=\\"downloadUrl\\" href=\\"file:///webpack/public/path/image.png\\">
-<link itemprop=\\"contentUrl\\" href=\\"file:///webpack/public/path/image.png\\">
-<link itemprop=\\"installUrl\\" href=\\"file:///webpack/public/path/image.png\\">
+<link itemprop=\\"downloadUrl\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link itemprop=\\"contentUrl\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
+<link itemprop=\\"installUrl\\" href=\\"replaced_file_protocol_/webpack/public/path/image.png\\">
 
 <link itemprop=\\"a\\" href=\\"image.png\\">
 <link itemprop=\\"b\\" href=\\"image.png\\">
 <link itemprop=\\"  \\" href=\\"image.png\\">
 <link href=\\"image.png\\">
 
-<meta itemprop=\\"image\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"logo\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"screenshot\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"thumbnailUrl\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"contentUrl\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"downloadUrl\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"duringMedia\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"embedUrl\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"installUrl\\" content=\\"file:///webpack/public/path/image.png\\" />
-<meta itemprop=\\"layoutImage\\" content=\\"file:///webpack/public/path/image.png\\" />
+<meta itemprop=\\"image\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"logo\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"screenshot\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"thumbnailUrl\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"contentUrl\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"downloadUrl\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"duringMedia\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"embedUrl\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"installUrl\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<meta itemprop=\\"layoutImage\\" content=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
 
 <meta itemprop=\\"a\\" content=\\"./image.png\\" />
 <meta itemprop=\\"b\\" content=\\"./image.png\\" />

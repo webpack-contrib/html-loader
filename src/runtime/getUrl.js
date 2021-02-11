@@ -4,8 +4,14 @@ module.exports = (url, options) => {
     options = {};
   }
 
-  // eslint-disable-next-line no-underscore-dangle, no-param-reassign
-  url = url && url.__esModule ? url.default : url;
+  if (url) {
+    // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+    url = url.__esModule
+      ? url.default
+      : typeof url !== 'string' && typeof url !== 'boolean'
+      ? url.toString()
+      : url;
+  }
 
   if (typeof url !== 'string') {
     return url;

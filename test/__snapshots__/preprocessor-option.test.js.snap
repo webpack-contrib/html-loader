@@ -16,7 +16,7 @@ export default code;"
 exports[`'process' option should work with Async "preprocessor" Function option: result 1`] = `
 "<div>
   <p>Alexander Krasnoyarov</p>
-  <img src=\\"file:///webpack/public/path/image.png\\" alt=\\"alt\\" />
+  <img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"alt\\" />
 <div>
 "
 `;
@@ -39,7 +39,7 @@ export default code;"
 `;
 
 exports[`'process' option should work with the "preprocessor" option #2: result 1`] = `
-"<picture><source type=\\"image/webp\\" srcset=\\"file:///webpack/public/path/image.png.webp\\"><img src=\\"file:///webpack/public/path/image.png\\"></picture>
+"<picture><source type=\\"image/webp\\" srcset=\\"replaced_file_protocol_/webpack/public/path/image.png.webp\\"><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\"></picture>
 "
 `;
 
@@ -61,7 +61,7 @@ export default code;"
 exports[`'process' option should work with the "preprocessor" option: result 1`] = `
 "<div>
   <p>Alexander Krasnoyarov</p>
-  <img src=\\"file:///webpack/public/path/image.png\\" alt=\\"alt\\" />
+  <img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"alt\\" />
 <div>
 "
 `;
@@ -84,7 +84,7 @@ export default code;"
 `;
 
 exports[`'process' option should work with the Async "preprocessor" Function option #2: result 1`] = `
-"<picture><source type=\\"image/webp\\" srcset=\\"file:///webpack/public/path/image.png.webp\\"><img src=\\"file:///webpack/public/path/image.png\\"></picture>
+"<picture><source type=\\"image/webp\\" srcset=\\"replaced_file_protocol_/webpack/public/path/image.png.webp\\"><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\"></picture>
 "
 `;
 
