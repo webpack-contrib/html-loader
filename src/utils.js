@@ -908,7 +908,7 @@ export function getImportCode(html, loaderContext, imports, options) {
     const { importName, source } = item;
 
     code += options.esModule
-      ? `import ${importName} from ${source};\n`
+      ? `var ${importName} = new URL(${source}, import.meta.url);\n`
       : `var ${importName} = require(${source});\n`;
   }
 
