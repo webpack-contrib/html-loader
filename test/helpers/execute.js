@@ -5,7 +5,7 @@ const parentModule = module;
 
 function replaceAbsolutePath(data) {
   return typeof data === 'string'
-    ? data.replace(/file:\/\/\/(\D:)?/gi, 'replaced_file_protocol_/')
+    ? data.replace(/file:\/\/\/(\D:\/)?/gi, 'replaced_file_protocol_/')
     : data;
 }
 
