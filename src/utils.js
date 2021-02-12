@@ -1,5 +1,7 @@
 import path from 'path';
 
+import HtmlSourceError from './HtmlSourceError';
+
 function isASCIIWhitespace(character) {
   return (
     // Horizontal tab
@@ -608,6 +610,7 @@ const META = new Map([
       'layoutimage',
     ]),
   ],
+  ['name', new Set(['msapplication-task'])],
 ]);
 
 function linkItempropFilter(tag, attribute, attributes) {
@@ -658,6 +661,183 @@ function metaContentFilter(tag, attribute, attributes) {
   return false;
 }
 
+export function typeSrc({ name, attribute, node, target, html, options }) {
+  const { tagName, sourceCodeLocation } = node;
+  const { value } = attribute;
+  const result = [];
+  let source;
+
+  try {
+    source = parseSrc(value);
+  } catch (error) {
+    options.errors.push(
+      new HtmlSourceError(
+        `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
+        sourceCodeLocation.attrs[name].startOffset,
+        sourceCodeLocation.attrs[name].endOffset,
+        html
+      )
+    );
+
+    return result;
+  }
+
+  source = c0ControlCodesExclude(source);
+
+  if (!isUrlRequestable(source.value)) {
+    return result;
+  }
+
+  const startOffset =
+    sourceCodeLocation.attrs[name].startOffset +
+    target.indexOf(source.value, name.length);
+
+  result.push({
+    value: source.value,
+    startIndex: startOffset,
+    endIndex: startOffset + source.value.length,
+  });
+
+  return result;
+}
+
+export function typeSrcset({ name, attribute, node, target, html, options }) {
+  const { tagName, sourceCodeLocation } = node;
+  const { value } = attribute;
+  const result = [];
+  let sourceSet;
+
+  try {
+    sourceSet = parseSrcset(value);
+  } catch (error) {
+    options.errors.push(
+      new HtmlSourceError(
+        `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
+        sourceCodeLocation.attrs[name].startOffset,
+        sourceCodeLocation.attrs[name].endOffset,
+        html
+      )
+    );
+
+    return result;
+  }
+
+  sourceSet = sourceSet.map((item) => {
+    return {
+      source: c0ControlCodesExclude(item.source),
+    };
+  });
+
+  let searchFrom = name.length;
+
+  sourceSet.forEach((sourceItem) => {
+    const { source } = sourceItem;
+
+    if (!isUrlRequestable(source.value)) {
+      return false;
+    }
+
+    const startOffset =
+      sourceCodeLocation.attrs[name].startOffset +
+      target.indexOf(source.value, searchFrom);
+
+    searchFrom = target.indexOf(source.value, searchFrom) + 1;
+
+    result.push({
+      value: source.value,
+      startIndex: startOffset,
+      endIndex: startOffset + source.value.length,
+    });
+
+    return false;
+  });
+
+  return result;
+}
+
+function typeMsapplicationTask({
+  name,
+  attribute,
+  node,
+  target,
+  html,
+  options,
+}) {
+  const { tagName, sourceCodeLocation } = node;
+  const [content] = typeSrc({ name, attribute, node, target, html, options });
+  const result = [];
+
+  if (!content) {
+    return result;
+  }
+
+  let startIndex = 0;
+  let endIndex = 0;
+  let foundIconUri;
+  let source;
+
+  content.value.split(';').forEach((i) => {
+    if (foundIconUri) {
+      return;
+    }
+
+    if (!i.includes('icon-uri')) {
+      // +1 because of ";"
+      startIndex += i.length + 1;
+      return;
+    }
+
+    foundIconUri = true;
+
+    const [, aValue] = i.split('=');
+
+    try {
+      source = parseSrc(aValue);
+    } catch (error) {
+      options.errors.push(
+        new HtmlSourceError(
+          `Bad value for attribute "icon-uri" on element "${tagName}": ${error.message}`,
+          sourceCodeLocation.attrs[name].startOffset,
+          sourceCodeLocation.attrs[name].endOffset,
+          html
+        )
+      );
+
+      return;
+    }
+
+    // +1 because of "="
+    startIndex += i.indexOf('=') + source.startIndex + 1;
+    endIndex = startIndex + source.value.length;
+  });
+
+  if (!source) {
+    return result;
+  }
+
+  result.push({
+    ...content,
+    startIndex: content.startIndex + startIndex,
+    endIndex: content.startIndex + endIndex,
+    name: 'icon-uri',
+    value: source.value,
+  });
+
+  return result;
+}
+
+function metaContentType({ name, attribute, node, target, html, options }) {
+  const isMsapplicationTask = node.attrs.filter(
+    (i) =>
+      i.name.toLowerCase() === 'name' &&
+      i.value.toLowerCase() === 'msapplication-task'
+  );
+
+  return isMsapplicationTask.length === 0
+    ? typeSrc({ name, attribute, node, target, html, options })
+    : typeMsapplicationTask({ name, attribute, node, target, html, options });
+}
+
 const defaultAttributes = [
   {
     tag: 'audio',
@@ -699,7 +879,7 @@ const defaultAttributes = [
   {
     tag: 'meta',
     attribute: 'content',
-    type: 'src',
+    type: metaContentType,
     filter: metaContentFilter,
   },
   {

@@ -1,15 +1,13 @@
 import SAXParser from 'parse5-sax-parser';
 
-import HtmlSourceError from '../HtmlSourceError';
 import {
   getFilter,
-  parseSrc,
-  parseSrcset,
   normalizeUrl,
   requestify,
   isUrlRequestable,
-  c0ControlCodesExclude,
   stringifyRequest,
+  typeSrc,
+  typeSrcset,
 } from '../utils';
 
 export default (options) =>
@@ -46,7 +44,7 @@ export default (options) =>
       const { tagName, attrs, sourceCodeLocation } = node;
 
       attrs.forEach((attribute) => {
-        const { value, prefix } = attribute;
+        const { prefix } = attribute;
         let { name } = attribute;
 
         name = prefix ? `${prefix}:${name}` : name;
@@ -72,96 +70,49 @@ export default (options) =>
           target[target.length - 1] !== '"' &&
           target[target.length - 1] !== "'";
 
+        const result = [];
+
         // eslint-disable-next-line default-case
         switch (type) {
           case 'src': {
-            let source;
-
-            try {
-              source = parseSrc(value);
-            } catch (error) {
-              options.errors.push(
-                new HtmlSourceError(
-                  `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-                  sourceCodeLocation.attrs[name].startOffset,
-                  sourceCodeLocation.attrs[name].endOffset,
-                  html
-                )
-              );
-
-              return;
-            }
-
-            source = c0ControlCodesExclude(source);
-
-            if (!isUrlRequestable(source.value)) {
-              return;
-            }
-
-            const startOffset =
-              sourceCodeLocation.attrs[name].startOffset +
-              target.indexOf(source.value, name.length);
-
-            sources.push({
-              name,
-              value: source.value,
-              unquoted,
-              startIndex: startOffset,
-              endIndex: startOffset + source.value.length,
-            });
-
+            typeSrc({ name, attribute, node, target, html, options }).forEach(
+              (i) => {
+                result.push(i);
+              }
+            );
             break;
           }
 
           case 'srcset': {
-            let sourceSet;
-
-            try {
-              sourceSet = parseSrcset(value);
-            } catch (error) {
-              options.errors.push(
-                new HtmlSourceError(
-                  `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-                  sourceCodeLocation.attrs[name].startOffset,
-                  sourceCodeLocation.attrs[name].endOffset,
-                  html
-                )
-              );
-
-              return;
-            }
-
-            sourceSet = sourceSet.map((item) => {
-              return {
-                source: c0ControlCodesExclude(item.source),
-              };
+            typeSrcset({
+              name,
+              attribute,
+              node,
+              target,
+              html,
+              options,
+            }).forEach((i) => {
+              result.push(i);
             });
-
-            let searchFrom = name.length;
-
-            sourceSet.forEach((sourceItem) => {
-              const { source } = sourceItem;
-
-              if (!isUrlRequestable(source.value)) {
-                return;
-              }
-
-              const startOffset =
-                sourceCodeLocation.attrs[name].startOffset +
-                target.indexOf(source.value, searchFrom);
-
-              searchFrom = target.indexOf(source.value, searchFrom) + 1;
-
-              sources.push({
-                name,
-                value: source.value,
-                unquoted,
-                startIndex: startOffset,
-                endIndex: startOffset + source.value.length,
-              });
-            });
-
             break;
+          }
+
+          default: {
+            type({ name, attribute, node, target, html, options }).forEach(
+              (i) => {
+                result.push(i);
+              }
+            );
+          }
+        }
+
+        for (const i of result) {
+          if (i) {
+            sources.push({
+              ...i,
+              name,
+              unquoted,
+            });
           }
         }
       });

@@ -34,7 +34,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           type: 'asset/inline',
         },
         {
-          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
+          test: /\.(png|jpg|gif|svg|ico|eot|ttf|woff|woff2|ogg|pdf|vtt|webp|xml|webmanifest|mp3|mp4)$/i,
           resourceQuery: /^(?!.*\?url).*$/,
           type: 'asset/resource',
         },
