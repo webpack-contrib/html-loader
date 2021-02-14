@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/webpack-contrib/html-loader/compare/v1.3.2...v2.0.0) (2021-02-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* `new URL('./source.ext', import.meta.url)` syntax is using for importing `sources` (i.e. `src`/`srcset`/etc) and the `esModule` option is `true` by default, you can disable it by setting the `esModule` option to `false`
+* rename the `attributes` option to `sources`
+* the `attributes.root` option was removed in favor [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots)
+* minimum supported `webpack` version is `5`
+* migrate from `htmlparser2` to `parse5`
+
+### Features
+
+* handle more attribute for `meta` and `link` tags ([348e4f5](https://github.com/webpack-contrib/html-loader/commit/348e4f5693d77cd5900e824ec13d730dc16c7e8f))
+* allow to disable default sources ([#351](https://github.com/webpack-contrib/html-loader/issues/351)) ([480656f](https://github.com/webpack-contrib/html-loader/commit/480656f5bdd448cfa043391a0aab67b1cbd84f18))
+
+### Bug Fixes
+
+* broken `src` with `#hash` ([#342](https://github.com/webpack-contrib/html-loader/issues/342)) ([d6590b0](https://github.com/webpack-contrib/html-loader/commit/d6590b081cb19ffb1fd397675977dda0b9dd04b9))
+* handle `\` character ([#353](https://github.com/webpack-contrib/html-loader/issues/353)) ([c124fae](https://github.com/webpack-contrib/html-loader/commit/c124faee3b20362b78fed26700c271a4bbe54852))
+* pass hash from request to other loaders ([#349](https://github.com/webpack-contrib/html-loader/issues/349)) ([e97d3c8](https://github.com/webpack-contrib/html-loader/commit/e97d3c858c70b9e13d4818b5f2ef2ac2d15df778))
+
 ### [1.3.2](https://github.com/webpack-contrib/html-loader/compare/v1.3.1...v1.3.2) (2020-10-09)
 
 ### Chore
