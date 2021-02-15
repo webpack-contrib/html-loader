@@ -661,7 +661,7 @@ function metaContentFilter(tag, attribute, attributes) {
   return false;
 }
 
-export function typeSrc({ name, attribute, node, target, html, options }) {
+export function typeSrc({ name, attribute, node, target, html }) {
   const { tagName, sourceCodeLocation } = node;
   const { value } = attribute;
   const result = [];
@@ -670,16 +670,12 @@ export function typeSrc({ name, attribute, node, target, html, options }) {
   try {
     source = parseSrc(value);
   } catch (error) {
-    options.errors.push(
-      new HtmlSourceError(
-        `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-        sourceCodeLocation.attrs[name].startOffset,
-        sourceCodeLocation.attrs[name].endOffset,
-        html
-      )
+    throw new HtmlSourceError(
+      `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
+      sourceCodeLocation.attrs[name].startOffset,
+      sourceCodeLocation.attrs[name].endOffset,
+      html
     );
-
-    return result;
   }
 
   source = c0ControlCodesExclude(source);
@@ -701,7 +697,7 @@ export function typeSrc({ name, attribute, node, target, html, options }) {
   return result;
 }
 
-export function typeSrcset({ name, attribute, node, target, html, options }) {
+export function typeSrcset({ name, attribute, node, target, html }) {
   const { tagName, sourceCodeLocation } = node;
   const { value } = attribute;
   const result = [];
@@ -710,16 +706,12 @@ export function typeSrcset({ name, attribute, node, target, html, options }) {
   try {
     sourceSet = parseSrcset(value);
   } catch (error) {
-    options.errors.push(
-      new HtmlSourceError(
-        `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-        sourceCodeLocation.attrs[name].startOffset,
-        sourceCodeLocation.attrs[name].endOffset,
-        html
-      )
+    throw new HtmlSourceError(
+      `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
+      sourceCodeLocation.attrs[name].startOffset,
+      sourceCodeLocation.attrs[name].endOffset,
+      html
     );
-
-    return result;
   }
 
   sourceSet = sourceSet.map((item) => {
@@ -755,16 +747,9 @@ export function typeSrcset({ name, attribute, node, target, html, options }) {
   return result;
 }
 
-function typeMsapplicationTask({
-  name,
-  attribute,
-  node,
-  target,
-  html,
-  options,
-}) {
+function typeMsapplicationTask({ name, attribute, node, target, html }) {
   const { tagName, sourceCodeLocation } = node;
-  const [content] = typeSrc({ name, attribute, node, target, html, options });
+  const [content] = typeSrc({ name, attribute, node, target, html });
   const result = [];
 
   if (!content) {
@@ -794,16 +779,12 @@ function typeMsapplicationTask({
     try {
       source = parseSrc(aValue);
     } catch (error) {
-      options.errors.push(
-        new HtmlSourceError(
-          `Bad value for attribute "icon-uri" on element "${tagName}": ${error.message}`,
-          sourceCodeLocation.attrs[name].startOffset,
-          sourceCodeLocation.attrs[name].endOffset,
-          html
-        )
+      throw new HtmlSourceError(
+        `Bad value for attribute "icon-uri" on element "${tagName}": ${error.message}`,
+        sourceCodeLocation.attrs[name].startOffset,
+        sourceCodeLocation.attrs[name].endOffset,
+        html
       );
-
-      return;
     }
 
     // +1 because of "="
@@ -826,7 +807,7 @@ function typeMsapplicationTask({
   return result;
 }
 
-function metaContentType({ name, attribute, node, target, html, options }) {
+function metaContentType({ name, attribute, node, target, html }) {
   const isMsapplicationTask = node.attrs.filter(
     (i) =>
       i.name.toLowerCase() === 'name' &&
@@ -834,8 +815,8 @@ function metaContentType({ name, attribute, node, target, html, options }) {
   );
 
   return isMsapplicationTask.length === 0
-    ? typeSrc({ name, attribute, node, target, html, options })
-    : typeMsapplicationTask({ name, attribute, node, target, html, options });
+    ? typeSrc({ name, attribute, node, target, html })
+    : typeMsapplicationTask({ name, attribute, node, target, html });
 }
 
 const defaultAttributes = [

@@ -72,38 +72,37 @@ export default (options) =>
 
         const result = [];
 
-        // eslint-disable-next-line default-case
-        switch (type) {
-          case 'src': {
-            typeSrc({ name, attribute, node, target, html, options }).forEach(
-              (i) => {
+        try {
+          // eslint-disable-next-line default-case
+          switch (type) {
+            case 'src': {
+              typeSrc({ name, attribute, node, target, html }).forEach((i) => {
                 result.push(i);
-              }
-            );
-            break;
-          }
+              });
+              break;
+            }
 
-          case 'srcset': {
-            typeSrcset({
-              name,
-              attribute,
-              node,
-              target,
-              html,
-              options,
-            }).forEach((i) => {
-              result.push(i);
-            });
-            break;
-          }
-
-          default: {
-            type({ name, attribute, node, target, html, options }).forEach(
-              (i) => {
+            case 'srcset': {
+              typeSrcset({
+                name,
+                attribute,
+                node,
+                target,
+                html,
+              }).forEach((i) => {
                 result.push(i);
-              }
-            );
+              });
+              break;
+            }
+
+            default: {
+              type({ name, attribute, node, target, html }).forEach((i) => {
+                result.push(i);
+              });
+            }
           }
+        } catch (error) {
+          options.errors.push(error);
         }
 
         for (const i of result) {
