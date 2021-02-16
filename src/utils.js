@@ -662,7 +662,6 @@ function metaContentFilter(tag, attribute, attributes) {
 }
 
 export function srcType(options) {
-  const result = [];
   let source;
 
   try {
@@ -679,19 +678,16 @@ export function srcType(options) {
   source = c0ControlCodesExclude(source);
 
   if (!isUrlRequestable(source.value)) {
-    return result;
+    return [];
   }
 
   const startOffset = options.valueStartOffset + source.startOffset;
   const endOffset = startOffset + source.value.length;
 
-  result.push({ value: source.value, startOffset, endOffset });
-
-  return result;
+  return [{ value: source.value, startOffset, endOffset }];
 }
 
 export function srcsetType(options) {
-  const result = [];
   let sourceSet;
 
   try {
@@ -704,6 +700,8 @@ export function srcsetType(options) {
       options.html
     );
   }
+
+  const result = [];
 
   sourceSet.forEach((sourceItem) => {
     let { source } = sourceItem;
@@ -725,65 +723,6 @@ export function srcsetType(options) {
   return result;
 }
 
-function msapplicationTaskType(options) {
-  const [content] = srcType(options);
-  const result = [];
-
-  if (!content) {
-    return result;
-  }
-
-  let startOffset = 0;
-  let endOffset = 0;
-  let foundIconUri;
-  let source;
-
-  content.value.split(';').forEach((i) => {
-    if (foundIconUri) {
-      return;
-    }
-
-    if (!i.includes('icon-uri')) {
-      // +1 because of ";"
-      startOffset += i.length + 1;
-      return;
-    }
-
-    foundIconUri = true;
-
-    const [, aValue] = i.split('=');
-
-    try {
-      source = parseSrc(aValue);
-    } catch (error) {
-      throw new HtmlSourceError(
-        `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
-        options.attributeStartOffset,
-        options.attributeEndOffset,
-        options.html
-      );
-    }
-
-    // +1 because of "="
-    startOffset += i.indexOf('=') + source.startOffset + 1;
-    endOffset = startOffset + source.value.length;
-  });
-
-  if (!source) {
-    return result;
-  }
-
-  result.push({
-    ...content,
-    startOffset: content.startOffset + startOffset,
-    endOffset: content.startOffset + endOffset,
-    name: 'icon-uri',
-    value: source.value,
-  });
-
-  return result;
-}
-
 function metaContentType(options) {
   const isMsapplicationTask = options.attributes.find(
     (i) =>
@@ -792,7 +731,59 @@ function metaContentType(options) {
   );
 
   if (isMsapplicationTask) {
-    return msapplicationTaskType(options);
+    const [content] = srcType(options);
+
+    if (!content) {
+      return [];
+    }
+
+    let startOffset = 0;
+    let endOffset = 0;
+    let foundIconUri;
+    let source;
+
+    content.value.split(';').forEach((i) => {
+      if (foundIconUri) {
+        return;
+      }
+
+      if (!i.includes('icon-uri')) {
+        // +1 because of ";"
+        startOffset += i.length + 1;
+        return;
+      }
+
+      foundIconUri = true;
+
+      const [, aValue] = i.split('=');
+
+      try {
+        source = parseSrc(aValue);
+      } catch (error) {
+        throw new HtmlSourceError(
+          `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
+          options.attributeStartOffset,
+          options.attributeEndOffset,
+          options.html
+        );
+      }
+
+      // +1 because of "="
+      startOffset += i.indexOf('=') + source.startOffset + 1;
+      endOffset = startOffset + source.value.length;
+    });
+
+    if (!source) {
+      return [];
+    }
+
+    return [
+      {
+        startOffset: content.startOffset + startOffset,
+        endOffset: content.startOffset + endOffset,
+        value: source.value,
+      },
+    ];
   }
 
   return srcType(options);
