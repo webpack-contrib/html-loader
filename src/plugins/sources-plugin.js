@@ -71,9 +71,11 @@ export default (options) =>
 
         const optionsForTypeFn = {
           tag: tagName,
+          attributes: attrs,
           attribute: name,
+          attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
+          attributeEndOffset: sourceCodeLocation.attrs[name].endOffset,
           value: attribute.value,
-          node,
           target,
           html,
         };

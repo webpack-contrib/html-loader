@@ -662,7 +662,6 @@ function metaContentFilter(tag, attribute, attributes) {
 }
 
 export function typeSrc(options) {
-  const { sourceCodeLocation } = options.node;
   const result = [];
   let source;
 
@@ -671,8 +670,8 @@ export function typeSrc(options) {
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-      sourceCodeLocation.attrs[options.attribute].startOffset,
-      sourceCodeLocation.attrs[options.attribute].endOffset,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
       options.html
     );
   }
@@ -684,7 +683,7 @@ export function typeSrc(options) {
   }
 
   const startOffset =
-    sourceCodeLocation.attrs[options.attribute].startOffset +
+    options.attributeStartOffset +
     options.target.indexOf(source.value, options.attribute.length);
   const endOffset = startOffset + source.value.length;
 
@@ -694,7 +693,6 @@ export function typeSrc(options) {
 }
 
 export function typeSrcset(options) {
-  const { sourceCodeLocation } = options.node;
   const result = [];
   let sourceSet;
 
@@ -703,8 +701,8 @@ export function typeSrcset(options) {
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-      sourceCodeLocation.attrs[options.attribute].startOffset,
-      sourceCodeLocation.attrs[options.attribute].endOffset,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
       options.html
     );
   }
@@ -725,7 +723,7 @@ export function typeSrcset(options) {
     }
 
     const startOffset =
-      sourceCodeLocation.attrs[options.attribute].startOffset +
+      options.attributeStartOffset +
       options.target.indexOf(source.value, searchFrom);
     const endOffset = startOffset + source.value.length;
 
@@ -740,7 +738,6 @@ export function typeSrcset(options) {
 }
 
 function typeMsapplicationTask(options) {
-  const { sourceCodeLocation } = options.node;
   const [content] = typeSrc(options);
   const result = [];
 
@@ -773,8 +770,8 @@ function typeMsapplicationTask(options) {
     } catch (error) {
       throw new HtmlSourceError(
         `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
-        sourceCodeLocation.attrs[options.attribute].startOffset,
-        sourceCodeLocation.attrs[options.attribute].endOffset,
+        options.attributeStartOffset,
+        options.attributeEndOffset,
         options.html
       );
     }
@@ -800,15 +797,17 @@ function typeMsapplicationTask(options) {
 }
 
 function metaContentType(options) {
-  const isMsapplicationTask = options.node.attrs.filter(
+  const isMsapplicationTask = options.attributes.find(
     (i) =>
       i.name.toLowerCase() === 'name' &&
       i.value.toLowerCase() === 'msapplication-task'
   );
 
-  return isMsapplicationTask.length === 0
-    ? typeSrc(options)
-    : typeMsapplicationTask(options);
+  if (isMsapplicationTask) {
+    return typeMsapplicationTask(options);
+  }
+
+  return typeSrc(options);
 }
 
 const defaultAttributes = [
