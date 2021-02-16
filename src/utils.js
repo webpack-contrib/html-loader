@@ -662,7 +662,7 @@ function metaContentFilter(tag, attribute, attributes) {
 }
 
 export function typeSrc(options) {
-  const { tagName, sourceCodeLocation } = options.node;
+  const { sourceCodeLocation } = options.node;
   const { value } = options.attribute;
   const result = [];
   let source;
@@ -671,7 +671,7 @@ export function typeSrc(options) {
     source = parseSrc(value);
   } catch (error) {
     throw new HtmlSourceError(
-      `Bad value for attribute "${options.attribute.name}" on element "${tagName}": ${error.message}`,
+      `Bad value for attribute "${options.attribute.name}" on element "${options.tagName}": ${error.message}`,
       sourceCodeLocation.attrs[options.name].startOffset,
       sourceCodeLocation.attrs[options.name].endOffset,
       options.html
@@ -695,7 +695,7 @@ export function typeSrc(options) {
 }
 
 export function typeSrcset(options) {
-  const { tagName, sourceCodeLocation } = options.node;
+  const { sourceCodeLocation } = options.node;
   const { value } = options.attribute;
   const result = [];
   let sourceSet;
@@ -704,7 +704,7 @@ export function typeSrcset(options) {
     sourceSet = parseSrcset(value);
   } catch (error) {
     throw new HtmlSourceError(
-      `Bad value for attribute "${options.attribute.name}" on element "${tagName}": ${error.message}`,
+      `Bad value for attribute "${options.attribute.name}" on element "${options.tagName}": ${error.message}`,
       sourceCodeLocation.attrs[options.name].startOffset,
       sourceCodeLocation.attrs[options.name].endOffset,
       options.html
@@ -742,7 +742,7 @@ export function typeSrcset(options) {
 }
 
 function typeMsapplicationTask(options) {
-  const { tagName, sourceCodeLocation } = options.node;
+  const { sourceCodeLocation } = options.node;
   const [content] = typeSrc(options);
   const result = [];
 
@@ -774,7 +774,7 @@ function typeMsapplicationTask(options) {
       source = parseSrc(aValue);
     } catch (error) {
       throw new HtmlSourceError(
-        `Bad value for attribute "icon-uri" on element "${tagName}": ${error.message}`,
+        `Bad value for attribute "icon-uri" on element "${options.tagName}": ${error.message}`,
         sourceCodeLocation.attrs[options.name].startOffset,
         sourceCodeLocation.attrs[options.name].endOffset,
         options.html
@@ -801,16 +801,16 @@ function typeMsapplicationTask(options) {
   return result;
 }
 
-function metaContentType({ name, attribute, node, target, html }) {
-  const isMsapplicationTask = node.attrs.filter(
+function metaContentType(options) {
+  const isMsapplicationTask = options.node.attrs.filter(
     (i) =>
       i.name.toLowerCase() === 'name' &&
       i.value.toLowerCase() === 'msapplication-task'
   );
 
   return isMsapplicationTask.length === 0
-    ? typeSrc({ name, attribute, node, target, html })
-    : typeMsapplicationTask({ name, attribute, node, target, html });
+    ? typeSrc(options)
+    : typeMsapplicationTask(options);
 }
 
 const defaultAttributes = [
