@@ -661,9 +661,9 @@ function metaContentFilter(tag, attribute, attributes) {
   return false;
 }
 
-export function typeSrc({ name, attribute, node, target, html }) {
-  const { tagName, sourceCodeLocation } = node;
-  const { value } = attribute;
+export function typeSrc(options) {
+  const { tagName, sourceCodeLocation } = options.node;
+  const { value } = options.attribute;
   const result = [];
   let source;
 
@@ -671,10 +671,10 @@ export function typeSrc({ name, attribute, node, target, html }) {
     source = parseSrc(value);
   } catch (error) {
     throw new HtmlSourceError(
-      `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-      sourceCodeLocation.attrs[name].startOffset,
-      sourceCodeLocation.attrs[name].endOffset,
-      html
+      `Bad value for attribute "${options.attribute.name}" on element "${tagName}": ${error.message}`,
+      sourceCodeLocation.attrs[options.name].startOffset,
+      sourceCodeLocation.attrs[options.name].endOffset,
+      options.html
     );
   }
 
@@ -685,8 +685,8 @@ export function typeSrc({ name, attribute, node, target, html }) {
   }
 
   const startOffset =
-    sourceCodeLocation.attrs[name].startOffset +
-    target.indexOf(source.value, name.length);
+    sourceCodeLocation.attrs[options.name].startOffset +
+    options.target.indexOf(source.value, options.name.length);
   const endOffset = startOffset + source.value.length;
 
   result.push({ value: source.value, startOffset, endOffset });
@@ -694,9 +694,9 @@ export function typeSrc({ name, attribute, node, target, html }) {
   return result;
 }
 
-export function typeSrcset({ name, attribute, node, target, html }) {
-  const { tagName, sourceCodeLocation } = node;
-  const { value } = attribute;
+export function typeSrcset(options) {
+  const { tagName, sourceCodeLocation } = options.node;
+  const { value } = options.attribute;
   const result = [];
   let sourceSet;
 
@@ -704,10 +704,10 @@ export function typeSrcset({ name, attribute, node, target, html }) {
     sourceSet = parseSrcset(value);
   } catch (error) {
     throw new HtmlSourceError(
-      `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-      sourceCodeLocation.attrs[name].startOffset,
-      sourceCodeLocation.attrs[name].endOffset,
-      html
+      `Bad value for attribute "${options.attribute.name}" on element "${tagName}": ${error.message}`,
+      sourceCodeLocation.attrs[options.name].startOffset,
+      sourceCodeLocation.attrs[options.name].endOffset,
+      options.html
     );
   }
 
@@ -717,7 +717,7 @@ export function typeSrcset({ name, attribute, node, target, html }) {
     };
   });
 
-  let searchFrom = name.length;
+  let searchFrom = options.name.length;
 
   sourceSet.forEach((sourceItem) => {
     const { source } = sourceItem;
@@ -727,11 +727,11 @@ export function typeSrcset({ name, attribute, node, target, html }) {
     }
 
     const startOffset =
-      sourceCodeLocation.attrs[name].startOffset +
-      target.indexOf(source.value, searchFrom);
+      sourceCodeLocation.attrs[options.name].startOffset +
+      options.target.indexOf(source.value, searchFrom);
     const endOffset = startOffset + source.value.length;
 
-    searchFrom = target.indexOf(source.value, searchFrom) + 1;
+    searchFrom = options.target.indexOf(source.value, searchFrom) + 1;
 
     result.push({ value: source.value, startOffset, endOffset });
 
@@ -741,9 +741,9 @@ export function typeSrcset({ name, attribute, node, target, html }) {
   return result;
 }
 
-function typeMsapplicationTask({ name, attribute, node, target, html }) {
-  const { tagName, sourceCodeLocation } = node;
-  const [content] = typeSrc({ name, attribute, node, target, html });
+function typeMsapplicationTask(options) {
+  const { tagName, sourceCodeLocation } = options.node;
+  const [content] = typeSrc(options);
   const result = [];
 
   if (!content) {
@@ -775,9 +775,9 @@ function typeMsapplicationTask({ name, attribute, node, target, html }) {
     } catch (error) {
       throw new HtmlSourceError(
         `Bad value for attribute "icon-uri" on element "${tagName}": ${error.message}`,
-        sourceCodeLocation.attrs[name].startOffset,
-        sourceCodeLocation.attrs[name].endOffset,
-        html
+        sourceCodeLocation.attrs[options.name].startOffset,
+        sourceCodeLocation.attrs[options.name].endOffset,
+        options.html
       );
     }
 

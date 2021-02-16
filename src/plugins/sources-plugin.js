@@ -69,7 +69,13 @@ export default (options) =>
           target[target.length - 1] !== '"' &&
           target[target.length - 1] !== "'";
 
-        const optionsForTypeFn = { name, attribute, node, target, html };
+        const optionsForTypeFn = {
+          name,
+          attribute,
+          node,
+          target,
+          html,
+        };
 
         let result;
 
