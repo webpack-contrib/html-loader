@@ -60,20 +60,21 @@ export default (options) =>
         }
 
         const { type } = foundAttribute;
-        const target = html.slice(
+        const attributeAndValue = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
           sourceCodeLocation.attrs[name].endOffset
         );
-        const unquoted =
-          target[target.length - 1] !== '"' &&
-          target[target.length - 1] !== "'";
+        const isValueQuoted =
+          attributeAndValue[attributeAndValue.length - 1] === '"' ||
+          attributeAndValue[attributeAndValue.length - 1] === "'";
         const valueStartOffset =
           sourceCodeLocation.attrs[name].startOffset +
-          target.indexOf(attribute.value);
+          attributeAndValue.indexOf(attribute.value);
         const valueEndOffset =
-          sourceCodeLocation.attrs[name].endOffset - (unquoted ? 0 : 1);
+          sourceCodeLocation.attrs[name].endOffset - (isValueQuoted ? 1 : 0);
         const optionsForTypeFn = {
           tag: tagName,
+          isSelfClosing: node.selfClosing,
           tagStartOffset: sourceCodeLocation.startOffset,
           tagEndOffset: sourceCodeLocation.endOffset,
           attributes: attrs,
@@ -81,6 +82,7 @@ export default (options) =>
           attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
           attributeEndOffset: sourceCodeLocation.attrs[name].endOffset,
           value: attribute.value,
+          isValueQuoted,
           valueEndOffset,
           valueStartOffset,
           html,
@@ -120,7 +122,7 @@ export default (options) =>
           sources.push({
             ...source,
             name,
-            unquoted,
+            isValueQuoted,
           });
         }
       });
@@ -134,7 +136,7 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, unquoted, startOffset, endOffset } = source;
+      const { name, value, isValueQuoted, startOffset, endOffset } = source;
 
       let normalizedUrl = value;
       let prefix = '';
@@ -176,7 +178,7 @@ export default (options) =>
         });
       }
 
-      const replacementKey = JSON.stringify({ newUrl, unquoted, hash });
+      const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });
       let replacementName = replacements.get(replacementKey);
 
       if (!replacementName) {
@@ -187,7 +189,7 @@ export default (options) =>
           replacementName,
           importName,
           hash,
-          unquoted,
+          isValueQuoted,
         });
       }
 

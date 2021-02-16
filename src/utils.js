@@ -1067,11 +1067,11 @@ export function getModuleCode(html, replacements) {
   let replacersCode = '';
 
   for (const item of replacements) {
-    const { importName, replacementName, unquoted, hash } = item;
+    const { importName, replacementName, isValueQuoted, hash } = item;
 
     const getUrlOptions = []
       .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-      .concat(unquoted ? 'maybeNeedQuotes: true' : []);
+      .concat(isValueQuoted ? [] : 'maybeNeedQuotes: true');
     const preparedOptions =
       getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
 
