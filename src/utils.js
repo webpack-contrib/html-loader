@@ -671,8 +671,8 @@ export function typeSrc(options) {
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-      sourceCodeLocation.attrs[options.name].startOffset,
-      sourceCodeLocation.attrs[options.name].endOffset,
+      sourceCodeLocation.attrs[options.attribute].startOffset,
+      sourceCodeLocation.attrs[options.attribute].endOffset,
       options.html
     );
   }
@@ -684,8 +684,8 @@ export function typeSrc(options) {
   }
 
   const startOffset =
-    sourceCodeLocation.attrs[options.name].startOffset +
-    options.target.indexOf(source.value, options.name.length);
+    sourceCodeLocation.attrs[options.attribute].startOffset +
+    options.target.indexOf(source.value, options.attribute.length);
   const endOffset = startOffset + source.value.length;
 
   result.push({ value: source.value, startOffset, endOffset });
@@ -703,8 +703,8 @@ export function typeSrcset(options) {
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-      sourceCodeLocation.attrs[options.name].startOffset,
-      sourceCodeLocation.attrs[options.name].endOffset,
+      sourceCodeLocation.attrs[options.attribute].startOffset,
+      sourceCodeLocation.attrs[options.attribute].endOffset,
       options.html
     );
   }
@@ -715,7 +715,7 @@ export function typeSrcset(options) {
     };
   });
 
-  let searchFrom = options.name.length;
+  let searchFrom = options.attribute.length;
 
   sourceSet.forEach((sourceItem) => {
     const { source } = sourceItem;
@@ -725,7 +725,7 @@ export function typeSrcset(options) {
     }
 
     const startOffset =
-      sourceCodeLocation.attrs[options.name].startOffset +
+      sourceCodeLocation.attrs[options.attribute].startOffset +
       options.target.indexOf(source.value, searchFrom);
     const endOffset = startOffset + source.value.length;
 
@@ -773,8 +773,8 @@ function typeMsapplicationTask(options) {
     } catch (error) {
       throw new HtmlSourceError(
         `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
-        sourceCodeLocation.attrs[options.name].startOffset,
-        sourceCodeLocation.attrs[options.name].endOffset,
+        sourceCodeLocation.attrs[options.attribute].startOffset,
+        sourceCodeLocation.attrs[options.attribute].endOffset,
         options.html
       );
     }

@@ -73,7 +73,6 @@ export default (options) =>
           tag: tagName,
           attribute: name,
           value: attribute.value,
-          name,
           node,
           target,
           html,
