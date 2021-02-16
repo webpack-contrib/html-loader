@@ -64,13 +64,13 @@ export default (options) =>
           sourceCodeLocation.attrs[name].startOffset,
           sourceCodeLocation.attrs[name].endOffset
         );
-
         const unquoted =
           target[target.length - 1] !== '"' &&
           target[target.length - 1] !== "'";
-
         const optionsForTypeFn = {
           tag: tagName,
+          tagStartOffset: sourceCodeLocation.startOffset,
+          tagEndOffset: sourceCodeLocation.endOffset,
           attributes: attrs,
           attribute: name,
           attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
