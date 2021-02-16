@@ -125,7 +125,7 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, unquoted, startIndex, endIndex } = source;
+      const { name, value, unquoted, startOffset, endOffset } = source;
 
       let normalizedUrl = value;
       let prefix = '';
@@ -184,11 +184,11 @@ export default (options) =>
 
       // eslint-disable-next-line no-param-reassign
       html =
-        html.slice(0, startIndex + offset) +
+        html.slice(0, startOffset + offset) +
         replacementName +
-        html.slice(endIndex + offset);
+        html.slice(endOffset + offset);
 
-      offset += startIndex + replacementName.length - endIndex;
+      offset += startOffset + replacementName.length - endOffset;
     }
 
     return html;

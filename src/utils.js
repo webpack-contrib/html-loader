@@ -47,7 +47,7 @@ export function parseSrcset(input) {
   // 2. Let position be a pointer into input, initially pointing at the start
   //    of the string.
   let position = 0;
-  let startUrlPosition;
+  let startOffset;
 
   // eslint-disable-next-line consistent-return
   function collectCharacters(regEx) {
@@ -84,7 +84,7 @@ export function parseSrcset(input) {
 
     // 6. Collect a sequence of characters that are not space characters,
     //    and let that be url.
-    startUrlPosition = position;
+    startOffset = position;
     url = collectCharacters(regexLeadingNotSpaces);
 
     // 7. Let descriptors be a new empty list.
@@ -325,7 +325,7 @@ export function parseSrcset(input) {
     // URL is url, associated with a width width if not absent and a pixel
     // density density if not absent. Otherwise, there is a parse error.
     if (!pError) {
-      candidate.source = { value: url, startIndex: startUrlPosition };
+      candidate.source = { value: url, startOffset };
 
       if (w) {
         candidate.width = { value: w };
@@ -353,11 +353,11 @@ export function parseSrc(input) {
     throw new Error('Must be non-empty');
   }
 
-  let startIndex = 0;
+  let startOffset = 0;
   let value = input;
 
   while (isASCIIWhitespace(value.substring(0, 1))) {
-    startIndex += 1;
+    startOffset += 1;
     value = value.substring(1, value.length);
   }
 
@@ -369,7 +369,7 @@ export function parseSrc(input) {
     throw new Error('Must be non-empty');
   }
 
-  return { value, startIndex };
+  return { value, startOffset };
 }
 
 const moduleRequestRegex = /^[^?]*~/;
@@ -687,12 +687,9 @@ export function typeSrc({ name, attribute, node, target, html }) {
   const startOffset =
     sourceCodeLocation.attrs[name].startOffset +
     target.indexOf(source.value, name.length);
+  const endOffset = startOffset + source.value.length;
 
-  result.push({
-    value: source.value,
-    startIndex: startOffset,
-    endIndex: startOffset + source.value.length,
-  });
+  result.push({ value: source.value, startOffset, endOffset });
 
   return result;
 }
@@ -732,14 +729,11 @@ export function typeSrcset({ name, attribute, node, target, html }) {
     const startOffset =
       sourceCodeLocation.attrs[name].startOffset +
       target.indexOf(source.value, searchFrom);
+    const endOffset = startOffset + source.value.length;
 
     searchFrom = target.indexOf(source.value, searchFrom) + 1;
 
-    result.push({
-      value: source.value,
-      startIndex: startOffset,
-      endIndex: startOffset + source.value.length,
-    });
+    result.push({ value: source.value, startOffset, endOffset });
 
     return false;
   });
@@ -756,8 +750,8 @@ function typeMsapplicationTask({ name, attribute, node, target, html }) {
     return result;
   }
 
-  let startIndex = 0;
-  let endIndex = 0;
+  let startOffset = 0;
+  let endOffset = 0;
   let foundIconUri;
   let source;
 
@@ -768,7 +762,7 @@ function typeMsapplicationTask({ name, attribute, node, target, html }) {
 
     if (!i.includes('icon-uri')) {
       // +1 because of ";"
-      startIndex += i.length + 1;
+      startOffset += i.length + 1;
       return;
     }
 
@@ -788,8 +782,8 @@ function typeMsapplicationTask({ name, attribute, node, target, html }) {
     }
 
     // +1 because of "="
-    startIndex += i.indexOf('=') + source.startIndex + 1;
-    endIndex = startIndex + source.value.length;
+    startOffset += i.indexOf('=') + source.startOffset + 1;
+    endOffset = startOffset + source.value.length;
   });
 
   if (!source) {
@@ -798,8 +792,8 @@ function typeMsapplicationTask({ name, attribute, node, target, html }) {
 
   result.push({
     ...content,
-    startIndex: content.startIndex + startIndex,
-    endIndex: content.startIndex + endIndex,
+    startOffset: content.startOffset + startOffset,
+    endOffset: content.startOffset + endOffset,
     name: 'icon-uri',
     value: source.value,
   });
@@ -984,11 +978,9 @@ function smartMergeSources(array, factory) {
     return factory();
   }
 
-  const result = array.some((i) => i === '...')
+  return array.some((i) => i === '...')
     ? createSourcesList(array, factory())
     : createSourcesList(array);
-
-  return result;
 }
 
 function getSourcesOption(rawOptions) {
@@ -1124,14 +1116,14 @@ function isASCIIC0group(character) {
 }
 
 export function c0ControlCodesExclude(source) {
-  let { value, startIndex } = source;
+  let { value, startOffset } = source;
 
   if (!value) {
     throw new Error('Must be non-empty');
   }
 
   while (isASCIIC0group(value.substring(0, 1))) {
-    startIndex += 1;
+    startOffset += 1;
     value = value.substring(1, value.length);
   }
 
@@ -1143,5 +1135,5 @@ export function c0ControlCodesExclude(source) {
     throw new Error('Must be non-empty');
   }
 
-  return { value, startIndex };
+  return { value, startOffset };
 }
