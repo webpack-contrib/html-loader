@@ -13,7 +13,6 @@ import {
 export default (options) =>
   function process(html) {
     const { list, urlFilter: maybeUrlFilter } = options.sources;
-    const sources = [];
     const urlFilter = getFilter(maybeUrlFilter, (value) =>
       isUrlRequestable(value)
     );
@@ -39,6 +38,7 @@ export default (options) =>
 
     const { resourcePath } = options;
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
+    const sources = [];
 
     parser5.on('startTag', (node) => {
       const { tagName, attrs, sourceCodeLocation } = node;
@@ -60,8 +60,6 @@ export default (options) =>
         }
 
         const { type } = foundAttribute;
-        const result = [];
-
         const target = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
           sourceCodeLocation.attrs[name].endOffset
@@ -73,41 +71,42 @@ export default (options) =>
 
         const optionsForTypeFn = { name, attribute, node, target, html };
 
+        let result;
+
         try {
           // eslint-disable-next-line default-case
           switch (type) {
             case 'src': {
-              typeSrc(optionsForTypeFn).forEach((i) => {
-                result.push(i);
-              });
+              result = typeSrc(optionsForTypeFn);
               break;
             }
 
             case 'srcset': {
-              typeSrcset(optionsForTypeFn).forEach((i) => {
-                result.push(i);
-              });
+              result = typeSrcset(optionsForTypeFn);
               break;
             }
 
             default: {
-              type(optionsForTypeFn).forEach((i) => {
-                result.push(i);
-              });
+              result = type(optionsForTypeFn);
             }
           }
         } catch (error) {
           options.errors.push(error);
         }
 
-        for (const i of result) {
-          if (i) {
-            sources.push({
-              ...i,
-              name,
-              unquoted,
-            });
+        result = Array.isArray(result) ? result : [result];
+
+        for (const source of result) {
+          if (!source) {
+            // eslint-disable-next-line no-continue
+            continue;
           }
+
+          sources.push({
+            ...source,
+            name,
+            unquoted,
+          });
         }
       });
     });
