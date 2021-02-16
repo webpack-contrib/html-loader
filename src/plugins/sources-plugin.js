@@ -6,8 +6,8 @@ import {
   requestify,
   isUrlRequestable,
   stringifyRequest,
-  typeSrc,
-  typeSrcset,
+  srcType,
+  srcsetType,
 } from '../utils';
 
 export default (options) =>
@@ -94,12 +94,12 @@ export default (options) =>
           // eslint-disable-next-line default-case
           switch (type) {
             case 'src': {
-              result = typeSrc(optionsForTypeFn);
+              result = srcType(optionsForTypeFn);
               break;
             }
 
             case 'srcset': {
-              result = typeSrcset(optionsForTypeFn);
+              result = srcsetType(optionsForTypeFn);
               break;
             }
 

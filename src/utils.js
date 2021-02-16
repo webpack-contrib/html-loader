@@ -661,7 +661,7 @@ function metaContentFilter(tag, attribute, attributes) {
   return false;
 }
 
-export function typeSrc(options) {
+export function srcType(options) {
   const result = [];
   let source;
 
@@ -690,7 +690,7 @@ export function typeSrc(options) {
   return result;
 }
 
-export function typeSrcset(options) {
+export function srcsetType(options) {
   const result = [];
   let sourceSet;
 
@@ -725,8 +725,8 @@ export function typeSrcset(options) {
   return result;
 }
 
-function typeMsapplicationTask(options) {
-  const [content] = typeSrc(options);
+function msapplicationTaskType(options) {
+  const [content] = srcType(options);
   const result = [];
 
   if (!content) {
@@ -792,10 +792,10 @@ function metaContentType(options) {
   );
 
   if (isMsapplicationTask) {
-    return typeMsapplicationTask(options);
+    return msapplicationTaskType(options);
   }
 
-  return typeSrc(options);
+  return srcType(options);
 }
 
 const defaultAttributes = [
