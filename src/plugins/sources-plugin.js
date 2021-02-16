@@ -60,6 +60,7 @@ export default (options) =>
         }
 
         const { type } = foundAttribute;
+        const result = [];
 
         const target = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
@@ -70,33 +71,27 @@ export default (options) =>
           target[target.length - 1] !== '"' &&
           target[target.length - 1] !== "'";
 
-        const result = [];
+        const optionsForTypeFn = { name, attribute, node, target, html };
 
         try {
           // eslint-disable-next-line default-case
           switch (type) {
             case 'src': {
-              typeSrc({ name, attribute, node, target, html }).forEach((i) => {
+              typeSrc(optionsForTypeFn).forEach((i) => {
                 result.push(i);
               });
               break;
             }
 
             case 'srcset': {
-              typeSrcset({
-                name,
-                attribute,
-                node,
-                target,
-                html,
-              }).forEach((i) => {
+              typeSrcset(optionsForTypeFn).forEach((i) => {
                 result.push(i);
               });
               break;
             }
 
             default: {
-              type({ name, attribute, node, target, html }).forEach((i) => {
+              type(optionsForTypeFn).forEach((i) => {
                 result.push(i);
               });
             }
