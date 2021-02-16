@@ -802,38 +802,38 @@ const defaultAttributes = [
   {
     tag: 'audio',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'embed',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'img',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'img',
     attribute: 'srcset',
-    type: 'srcset',
+    type: srcsetType,
   },
   {
     tag: 'input',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'link',
     attribute: 'href',
-    type: 'src',
+    type: srcType,
     filter: linkUnionFilter,
   },
   {
     tag: 'link',
     attribute: 'imagesrcset',
-    type: 'srcset',
+    type: srcsetType,
     filter: linkHrefFilter,
   },
   {
@@ -845,72 +845,72 @@ const defaultAttributes = [
   {
     tag: 'object',
     attribute: 'data',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'script',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
     filter: scriptSrcFilter,
   },
   // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
   {
     tag: 'script',
     attribute: 'href',
-    type: 'src',
+    type: srcType,
     filter: scriptSrcFilter,
   },
   {
     tag: 'script',
     attribute: 'xlink:href',
-    type: 'src',
+    type: srcType,
     filter: scriptSrcFilter,
   },
   {
     tag: 'source',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'source',
     attribute: 'srcset',
-    type: 'srcset',
+    type: srcsetType,
   },
   {
     tag: 'track',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'video',
     attribute: 'poster',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'video',
     attribute: 'src',
-    type: 'src',
+    type: srcType,
   },
   // SVG
   {
     tag: 'image',
     attribute: 'xlink:href',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'image',
     attribute: 'href',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'use',
     attribute: 'xlink:href',
-    type: 'src',
+    type: srcType,
   },
   {
     tag: 'use',
     attribute: 'href',
-    type: 'src',
+    type: srcType,
   },
 ];
 
