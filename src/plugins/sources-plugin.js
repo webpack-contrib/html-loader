@@ -67,6 +67,11 @@ export default (options) =>
         const unquoted =
           target[target.length - 1] !== '"' &&
           target[target.length - 1] !== "'";
+        const valueStartOffset =
+          sourceCodeLocation.attrs[name].startOffset +
+          target.indexOf(attribute.value);
+        const valueEndOffset =
+          sourceCodeLocation.attrs[name].endOffset - (unquoted ? 0 : 1);
         const optionsForTypeFn = {
           tag: tagName,
           tagStartOffset: sourceCodeLocation.startOffset,
@@ -76,7 +81,8 @@ export default (options) =>
           attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
           attributeEndOffset: sourceCodeLocation.attrs[name].endOffset,
           value: attribute.value,
-          target,
+          valueEndOffset,
+          valueStartOffset,
           html,
         };
 

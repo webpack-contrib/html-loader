@@ -682,9 +682,7 @@ export function typeSrc(options) {
     return result;
   }
 
-  const startOffset =
-    options.attributeStartOffset +
-    options.target.indexOf(source.value, options.attribute.length);
+  const startOffset = options.valueStartOffset + source.startOffset;
   const endOffset = startOffset + source.value.length;
 
   result.push({ value: source.value, startOffset, endOffset });
@@ -707,27 +705,17 @@ export function typeSrcset(options) {
     );
   }
 
-  sourceSet = sourceSet.map((item) => {
-    return {
-      source: c0ControlCodesExclude(item.source),
-    };
-  });
-
-  let searchFrom = options.attribute.length;
-
   sourceSet.forEach((sourceItem) => {
-    const { source } = sourceItem;
+    let { source } = sourceItem;
+
+    source = c0ControlCodesExclude(source);
 
     if (!isUrlRequestable(source.value)) {
       return false;
     }
 
-    const startOffset =
-      options.attributeStartOffset +
-      options.target.indexOf(source.value, searchFrom);
+    const startOffset = options.valueStartOffset + source.startOffset;
     const endOffset = startOffset + source.value.length;
-
-    searchFrom = options.target.indexOf(source.value, searchFrom) + 1;
 
     result.push({ value: source.value, startOffset, endOffset });
 
