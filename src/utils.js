@@ -663,15 +663,14 @@ function metaContentFilter(tag, attribute, attributes) {
 
 export function typeSrc(options) {
   const { sourceCodeLocation } = options.node;
-  const { value } = options.attribute;
   const result = [];
   let source;
 
   try {
-    source = parseSrc(value);
+    source = parseSrc(options.value);
   } catch (error) {
     throw new HtmlSourceError(
-      `Bad value for attribute "${options.attribute.name}" on element "${options.tagName}": ${error.message}`,
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
       sourceCodeLocation.attrs[options.name].startOffset,
       sourceCodeLocation.attrs[options.name].endOffset,
       options.html
@@ -696,15 +695,14 @@ export function typeSrc(options) {
 
 export function typeSrcset(options) {
   const { sourceCodeLocation } = options.node;
-  const { value } = options.attribute;
   const result = [];
   let sourceSet;
 
   try {
-    sourceSet = parseSrcset(value);
+    sourceSet = parseSrcset(options.value);
   } catch (error) {
     throw new HtmlSourceError(
-      `Bad value for attribute "${options.attribute.name}" on element "${options.tagName}": ${error.message}`,
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
       sourceCodeLocation.attrs[options.name].startOffset,
       sourceCodeLocation.attrs[options.name].endOffset,
       options.html
@@ -774,7 +772,7 @@ function typeMsapplicationTask(options) {
       source = parseSrc(aValue);
     } catch (error) {
       throw new HtmlSourceError(
-        `Bad value for attribute "icon-uri" on element "${options.tagName}": ${error.message}`,
+        `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
         sourceCodeLocation.attrs[options.name].startOffset,
         sourceCodeLocation.attrs[options.name].endOffset,
         options.html

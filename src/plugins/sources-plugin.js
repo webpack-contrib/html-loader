@@ -70,9 +70,10 @@ export default (options) =>
           target[target.length - 1] !== "'";
 
         const optionsForTypeFn = {
-          tagName,
+          tag: tagName,
+          attribute: name,
+          value: attribute.value,
           name,
-          attribute,
           node,
           target,
           html,
