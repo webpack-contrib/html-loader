@@ -1738,9 +1738,9 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 
 exports[`'sources' option should handle all src sources in all HTML tags when tag is undefined: warnings 1`] = `Array []`;
 
-exports[`'sources' option should handle default src sources in all HTML tags except img tag (testing filter option): errors 1`] = `Array []`;
+exports[`'sources' option should handle override the "src" attribute for all default sources: errors 1`] = `Array []`;
 
-exports[`'sources' option should handle default src sources in all HTML tags except img tag (testing filter option): module 1`] = `
+exports[`'sources' option should handle override the "src" attribute for all default sources: module 1`] = `
 "// Imports
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
@@ -1806,7 +1806,7 @@ var code = \\"<!doctype html>\\\\n\\\\n<h1>My First Heading</h1>\\\\n<p>My first
 export default code;"
 `;
 
-exports[`'sources' option should handle default src sources in all HTML tags except img tag (testing filter option): result 1`] = `
+exports[`'sources' option should handle override the "src" attribute for all default sources: result 1`] = `
 "<!doctype html>
 
 <h1>My First Heading</h1>
@@ -2250,7 +2250,7 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 "
 `;
 
-exports[`'sources' option should handle default src sources in all HTML tags except img tag (testing filter option): warnings 1`] = `Array []`;
+exports[`'sources' option should handle override the "src" attribute for all default sources: warnings 1`] = `Array []`;
 
 exports[`'sources' option should handle sources with a "boolean" notation equals "true": errors 1`] = `Array []`;
 

@@ -88,17 +88,17 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle default src sources in all HTML tags except img tag (testing filter option)', async () => {
+  it('should handle override the "src" attribute for all default sources', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
-          '...',
           {
             attribute: 'src',
             type: 'src',
             // eslint-disable-next-line no-unused-vars
             filter: (tag, attribute, sources) => tag.toLowerCase() !== 'img',
           },
+          '...',
         ],
       },
     });
