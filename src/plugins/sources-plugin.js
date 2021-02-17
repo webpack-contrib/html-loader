@@ -11,31 +11,6 @@ import {
 
 export default (options) =>
   function process(html) {
-    const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      const foundTag =
-        options.sources.list.get(tag.toLowerCase()) ||
-        options.sources.list.get('*');
-
-      if (!foundTag) {
-        return false;
-      }
-
-      const handler = foundTag.get(attribute.toLowerCase());
-
-      if (!handler) {
-        return false;
-      }
-
-      if (
-        handler.filter &&
-        !handler.filter(tag, attribute, attributes, resourcePath)
-      ) {
-        return false;
-      }
-
-      return handler;
-    };
-
     const { resourcePath } = options;
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
     const sources = [];
@@ -53,13 +28,28 @@ export default (options) =>
           return;
         }
 
-        const foundAttribute = getAttribute(tagName, name, attrs, resourcePath);
+        const foundTag =
+          options.sources.list.get(tagName.toLowerCase()) ||
+          options.sources.list.get('*');
 
-        if (!foundAttribute) {
+        if (!foundTag) {
           return;
         }
 
-        const { type } = foundAttribute;
+        const handler = foundTag.get(name.toLowerCase());
+
+        if (!handler) {
+          return;
+        }
+
+        if (
+          handler.filter &&
+          !handler.filter(tagName, name, attrs, resourcePath)
+        ) {
+          return;
+        }
+
+        const { type } = handler;
         const attributeAndValue = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
           sourceCodeLocation.attrs[name].endOffset
