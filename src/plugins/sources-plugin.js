@@ -9,31 +9,26 @@ import {
 
 export default (options) =>
   function process(html) {
-    const { resourcePath } = options;
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
     const sources = [];
 
     parser5.on('startTag', (node) => {
-      const { tagName, attrs, sourceCodeLocation } = node;
+      const { tagName, attrs: attributes, sourceCodeLocation } = node;
 
-      attrs.forEach((attribute) => {
+      attributes.forEach((attribute) => {
         let { name } = attribute;
 
         name = attribute.prefix ? `${attribute.prefix}:${name}` : name;
 
-        if (!sourceCodeLocation.attrs[name]) {
-          return;
-        }
-
-        const foundTag =
+        const handlers =
           options.sources.list.get(tagName.toLowerCase()) ||
           options.sources.list.get('*');
 
-        if (!foundTag) {
+        if (!handlers) {
           return;
         }
 
-        const handler = foundTag.get(name.toLowerCase());
+        const handler = handlers.get(name.toLowerCase());
 
         if (!handler) {
           return;
@@ -41,7 +36,7 @@ export default (options) =>
 
         if (
           handler.filter &&
-          !handler.filter(tagName, name, attrs, resourcePath)
+          !handler.filter(tagName, name, attributes, options.resourcePath)
         ) {
           return;
         }
@@ -63,7 +58,7 @@ export default (options) =>
           isSelfClosing: node.selfClosing,
           tagStartOffset: sourceCodeLocation.startOffset,
           tagEndOffset: sourceCodeLocation.endOffset,
-          attributes: attrs,
+          attributes,
           attribute: name,
           attributePrefix: attribute.prefix,
           attributeNamespace: attribute.namespace,
@@ -120,7 +115,7 @@ export default (options) =>
 
       normalizedUrl = normalizeUrl(normalizedUrl);
 
-      if (!urlFilter(name, value, resourcePath)) {
+      if (!urlFilter(name, value, options.resourcePath)) {
         // eslint-disable-next-line no-continue
         continue;
       }
