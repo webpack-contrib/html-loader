@@ -47,7 +47,6 @@ export default (options) =>
           return;
         }
 
-        const { type } = handler;
         const attributeAndValue = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
           sourceCodeLocation.attrs[name].endOffset
@@ -79,7 +78,7 @@ export default (options) =>
         let result;
 
         try {
-          result = type(optionsForTypeFn);
+          result = handler.type(optionsForTypeFn);
         } catch (error) {
           options.errors.push(error);
         }
