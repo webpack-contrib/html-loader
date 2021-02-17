@@ -17,10 +17,9 @@ export default (options) =>
       const { tagName, attrs, sourceCodeLocation } = node;
 
       attrs.forEach((attribute) => {
-        const { prefix } = attribute;
         let { name } = attribute;
 
-        name = prefix ? `${prefix}:${name}` : name;
+        name = attribute.prefix ? `${attribute.prefix}:${name}` : name;
 
         if (!sourceCodeLocation.attrs[name]) {
           return;
@@ -66,6 +65,8 @@ export default (options) =>
           tagEndOffset: sourceCodeLocation.endOffset,
           attributes: attrs,
           attribute: name,
+          attributePrefix: attribute.prefix,
+          attributeNamespace: attribute.namespace,
           attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
           attributeEndOffset: sourceCodeLocation.attrs[name].endOffset,
           value: attribute.value,
