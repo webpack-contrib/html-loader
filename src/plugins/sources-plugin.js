@@ -20,17 +20,17 @@ export default (options) =>
         return false;
       }
 
-      const foundAttribute = foundTag.get(attribute.toLowerCase());
+      const handler = foundTag.get(attribute.toLowerCase());
 
-      if (!foundAttribute) {
+      if (!handler) {
         return false;
       }
 
-      const result = foundAttribute.filter
-        ? foundAttribute.filter(tag, attribute, attributes, resourcePath)
+      const result = handler.filter
+        ? handler.filter(tag, attribute, attributes, resourcePath)
         : true;
 
-      return result ? foundAttribute : false;
+      return result ? handler : false;
     };
 
     const { resourcePath } = options;
