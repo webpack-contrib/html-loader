@@ -958,11 +958,7 @@ function getSourcesOption(rawOptions) {
         )
       : createSourcesList(rawOptions.sources.list);
 
-  return {
-    list: sources,
-    urlFilter: rawOptions.sources.urlFilter,
-    root: rawOptions.sources.root,
-  };
+  return { list: sources, urlFilter: rawOptions.sources.urlFilter };
 }
 
 export function normalizeOptions(rawOptions, loaderContext) {
