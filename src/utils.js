@@ -897,24 +897,6 @@ const defaultAttributes = [
   },
 ];
 
-function rewriteSourcesList(sourcesList, attribute, source) {
-  for (const key of sourcesList.keys()) {
-    const item = sourcesList.get(key);
-
-    if (!item.has(attribute)) {
-      // eslint-disable-next-line no-continue
-      continue;
-    }
-
-    item.set(attribute, {
-      ...item.get(attribute),
-      ...source,
-    });
-
-    sourcesList.set(key, item);
-  }
-}
-
 function createSourcesList(sources, accumulator = new Map()) {
   for (const source of sources) {
     if (source === '...') {
@@ -928,7 +910,21 @@ function createSourcesList(sources, accumulator = new Map()) {
     attribute = attribute.toLowerCase();
 
     if (tag === '*') {
-      rewriteSourcesList(accumulator, attribute, source);
+      for (const key of accumulator.keys()) {
+        const item = accumulator.get(key);
+
+        if (!item.has(attribute)) {
+          // eslint-disable-next-line no-continue
+          continue;
+        }
+
+        item.set(attribute, {
+          ...item.get(attribute),
+          ...source,
+        });
+
+        accumulator.set(key, item);
+      }
     }
 
     if (!accumulator.has(tag)) {
