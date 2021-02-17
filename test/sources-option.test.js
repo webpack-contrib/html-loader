@@ -81,7 +81,7 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with "..." syntax and disable source', async () => {
+  it('should work and override the "img" tag logic with "..."', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
@@ -111,7 +111,7 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should handle override the "src" attribute for all default sources', async () => {
+  it('should work and override the "src" tag logic with "..."', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
