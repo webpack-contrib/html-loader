@@ -731,59 +731,51 @@ function metaContentType(options) {
   );
 
   if (isMsapplicationTask) {
-    const [content] = srcType(options);
+    let startOffset = options.valueStartOffset;
+    let endOffset = options.valueStartOffset;
+    let value;
 
-    if (!content) {
+    const parts = options.value.split(';');
+
+    for (const [index, part] of parts.entries()) {
+      const isLastIteration = index === parts.length - 1;
+
+      if (/^icon-uri/i.test(part.trim())) {
+        const [name, src] = part.split('=');
+
+        startOffset += name.length + 1;
+
+        let source;
+
+        try {
+          source = parseSrc(src);
+        } catch (error) {
+          throw new HtmlSourceError(
+            `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
+            options.attributeStartOffset,
+            options.attributeEndOffset,
+            options.html
+          );
+        }
+
+        source = c0ControlCodesExclude(source);
+
+        ({ value } = source);
+        startOffset += source.startOffset;
+        endOffset = startOffset + value.length;
+
+        break;
+      }
+
+      // +1 because of ";"
+      startOffset += part.length + (isLastIteration ? 0 : 1);
+    }
+
+    if (!value) {
       return [];
     }
 
-    let startOffset = 0;
-    let endOffset = 0;
-    let foundIconUri;
-    let source;
-
-    content.value.split(';').forEach((i) => {
-      if (foundIconUri) {
-        return;
-      }
-
-      if (!i.includes('icon-uri')) {
-        // +1 because of ";"
-        startOffset += i.length + 1;
-        return;
-      }
-
-      foundIconUri = true;
-
-      const [, aValue] = i.split('=');
-
-      try {
-        source = parseSrc(aValue);
-      } catch (error) {
-        throw new HtmlSourceError(
-          `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
-          options.attributeStartOffset,
-          options.attributeEndOffset,
-          options.html
-        );
-      }
-
-      // +1 because of "="
-      startOffset += i.indexOf('=') + source.startOffset + 1;
-      endOffset = startOffset + source.value.length;
-    });
-
-    if (!source) {
-      return [];
-    }
-
-    return [
-      {
-        startOffset: content.startOffset + startOffset,
-        endOffset: content.startOffset + endOffset,
-        value: source.value,
-      },
-    ];
+    return [{ startOffset, endOffset, value }];
   }
 
   return srcType(options);
