@@ -941,16 +941,6 @@ function createSourcesList(sources, accumulator = new Map()) {
   return accumulator;
 }
 
-function smartMergeSources(array, factory) {
-  if (typeof array === 'undefined') {
-    return factory();
-  }
-
-  return array.some((i) => i === '...')
-    ? createSourcesList(array, factory())
-    : createSourcesList(array);
-}
-
 function getSourcesOption(rawOptions) {
   if (typeof rawOptions.sources === 'undefined') {
     return { list: createSourcesList(defaultAttributes) };
@@ -962,9 +952,15 @@ function getSourcesOption(rawOptions) {
       : false;
   }
 
-  const sources = smartMergeSources(rawOptions.sources.list, () =>
-    createSourcesList(defaultAttributes)
-  );
+  const sources =
+    typeof rawOptions.sources.list === 'undefined'
+      ? createSourcesList(defaultAttributes)
+      : rawOptions.sources.list.some((i) => i === '...')
+      ? createSourcesList(
+          rawOptions.sources.list,
+          createSourcesList(defaultAttributes)
+        )
+      : createSourcesList(rawOptions.sources.list);
 
   return {
     list: sources,
