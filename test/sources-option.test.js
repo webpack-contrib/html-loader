@@ -81,7 +81,37 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work and override the "img" tag logic with "..."', async () => {
+  it('should work and override the "img" tag logic with "..." (prepend)', async () => {
+    const compiler = getCompiler('simple.js', {
+      sources: {
+        list: [
+          {
+            tag: 'img',
+            attribute: 'src',
+            type: 'src',
+            filter: (tag) => tag.toLowerCase() !== 'img',
+          },
+          {
+            tag: 'img',
+            attribute: 'srcset',
+            type: 'srcset',
+            filter: (tag) => tag.toLowerCase() !== 'img',
+          },
+          '...',
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work and override the "img" tag logic with "..." (append)', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
@@ -111,7 +141,7 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work and override the "src" tag logic with "..."', async () => {
+  it('should work and override the "src" tag logic with "..." (prepend)', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
@@ -122,6 +152,30 @@ describe("'sources' option", () => {
             filter: (tag, attribute, sources) => tag.toLowerCase() !== 'img',
           },
           '...',
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work and override the "src" tag logic with "..." (append)', async () => {
+    const compiler = getCompiler('simple.js', {
+      sources: {
+        list: [
+          '...',
+          {
+            attribute: 'src',
+            type: 'src',
+            // eslint-disable-next-line no-unused-vars
+            filter: (tag, attribute, sources) => tag.toLowerCase() !== 'img',
+          },
         ],
       },
     });
