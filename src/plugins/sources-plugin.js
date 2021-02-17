@@ -4,7 +4,6 @@ import {
   getFilter,
   normalizeUrl,
   requestify,
-  isUrlRequestable,
   stringifyRequest,
   srcType,
   srcsetType,
@@ -12,12 +11,10 @@ import {
 
 export default (options) =>
   function process(html) {
-    const { list, urlFilter: maybeUrlFilter } = options.sources;
-    const urlFilter = getFilter(maybeUrlFilter, (value) =>
-      isUrlRequestable(value)
-    );
     const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      const foundTag = list.get(tag.toLowerCase()) || list.get('*');
+      const foundTag =
+        options.sources.list.get(tag.toLowerCase()) ||
+        options.sources.list.get('*');
 
       if (!foundTag) {
         return false;
@@ -130,6 +127,7 @@ export default (options) =>
 
     parser5.end(html);
 
+    const urlFilter = getFilter(options.sources.urlFilter);
     const imports = new Map();
     const replacements = new Map();
 

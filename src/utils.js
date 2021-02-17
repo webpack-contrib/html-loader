@@ -1000,12 +1000,8 @@ export function pluginRunner(plugins) {
   };
 }
 
-export function getFilter(filter, defaultFilter = null) {
+export function getFilter(filter) {
   return (attribute, value, resourcePath) => {
-    if (defaultFilter && !defaultFilter(value)) {
-      return false;
-    }
-
     if (typeof filter === 'function') {
       return filter(attribute, value, resourcePath);
     }
