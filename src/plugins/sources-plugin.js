@@ -26,11 +26,14 @@ export default (options) =>
         return false;
       }
 
-      const result = handler.filter
-        ? handler.filter(tag, attribute, attributes, resourcePath)
-        : true;
+      if (
+        handler.filter &&
+        !handler.filter(tag, attribute, attributes, resourcePath)
+      ) {
+        return false;
+      }
 
-      return result ? handler : false;
+      return handler;
     };
 
     const { resourcePath } = options;
