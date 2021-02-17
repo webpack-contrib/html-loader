@@ -1019,8 +1019,20 @@ function normalizeSourcesList(sources) {
       result.set(tag, new Map());
     }
 
+    let typeFn;
+
+    // eslint-disable-next-line default-case
+    switch (source.type) {
+      case 'src':
+        typeFn = srcType;
+        break;
+      case 'srcset':
+        typeFn = srcsetType;
+        break;
+    }
+
     result.get(tag).set(attribute, {
-      type: source.type,
+      type: typeFn,
       filter: source.filter,
     });
   }

@@ -5,8 +5,6 @@ import {
   normalizeUrl,
   requestify,
   stringifyRequest,
-  srcType,
-  srcsetType,
 } from '../utils';
 
 export default (options) =>
@@ -81,22 +79,7 @@ export default (options) =>
         let result;
 
         try {
-          // eslint-disable-next-line default-case
-          switch (type) {
-            case 'src': {
-              result = srcType(optionsForTypeFn);
-              break;
-            }
-
-            case 'srcset': {
-              result = srcsetType(optionsForTypeFn);
-              break;
-            }
-
-            default: {
-              result = type(optionsForTypeFn);
-            }
-          }
+          result = type(optionsForTypeFn);
         } catch (error) {
           options.errors.push(error);
         }
@@ -109,11 +92,7 @@ export default (options) =>
             continue;
           }
 
-          sources.push({
-            ...source,
-            name,
-            isValueQuoted,
-          });
+          sources.push({ ...source, name, isValueQuoted });
         }
       });
     });
