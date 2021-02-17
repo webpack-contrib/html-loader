@@ -781,125 +781,231 @@ function metaContentType(options) {
   return srcType(options);
 }
 
-const defaultAttributes = [
-  {
-    tag: 'audio',
-    attribute: 'src',
-    type: srcType,
-  },
-  {
-    tag: 'embed',
-    attribute: 'src',
-    type: srcType,
-  },
-  {
-    tag: 'img',
-    attribute: 'src',
-    type: srcType,
-  },
-  {
-    tag: 'img',
-    attribute: 'srcset',
-    type: srcsetType,
-  },
-  {
-    tag: 'input',
-    attribute: 'src',
-    type: srcType,
-  },
-  {
-    tag: 'link',
-    attribute: 'href',
-    type: srcType,
-    filter: linkUnionFilter,
-  },
-  {
-    tag: 'link',
-    attribute: 'imagesrcset',
-    type: srcsetType,
-    filter: linkHrefFilter,
-  },
-  {
-    tag: 'meta',
-    attribute: 'content',
-    type: metaContentType,
-    filter: metaContentFilter,
-  },
-  {
-    tag: 'object',
-    attribute: 'data',
-    type: srcType,
-  },
-  {
-    tag: 'script',
-    attribute: 'src',
-    type: srcType,
-    filter: scriptSrcFilter,
-  },
-  // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
-  {
-    tag: 'script',
-    attribute: 'href',
-    type: srcType,
-    filter: scriptSrcFilter,
-  },
-  {
-    tag: 'script',
-    attribute: 'xlink:href',
-    type: srcType,
-    filter: scriptSrcFilter,
-  },
-  {
-    tag: 'source',
-    attribute: 'src',
-    type: srcType,
-  },
-  {
-    tag: 'source',
-    attribute: 'srcset',
-    type: srcsetType,
-  },
-  {
-    tag: 'track',
-    attribute: 'src',
-    type: srcType,
-  },
-  {
-    tag: 'video',
-    attribute: 'poster',
-    type: srcType,
-  },
-  {
-    tag: 'video',
-    attribute: 'src',
-    type: srcType,
-  },
+const defaultSources = new Map([
+  [
+    'audio',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'embed',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'img',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'srcset',
+        {
+          type: srcsetType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'input',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'link',
+    new Map([
+      [
+        'href',
+        {
+          type: srcType,
+          filter: linkUnionFilter,
+        },
+      ],
+      [
+        'imagesrcset',
+        {
+          type: srcsetType,
+          filter: linkHrefFilter,
+        },
+      ],
+    ]),
+  ],
+  [
+    'meta',
+    new Map([
+      [
+        'content',
+        {
+          type: metaContentType,
+          filter: metaContentFilter,
+        },
+      ],
+    ]),
+  ],
+  [
+    'object',
+    new Map([
+      [
+        'data',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'script',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+          filter: scriptSrcFilter,
+        },
+      ],
+      // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
+      [
+        'href',
+        {
+          type: srcType,
+          filter: scriptSrcFilter,
+        },
+      ],
+      [
+        'xlink:href',
+        {
+          type: srcType,
+          filter: scriptSrcFilter,
+        },
+      ],
+    ]),
+  ],
+  [
+    'source',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'srcset',
+        {
+          type: srcsetType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'track',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'video',
+    new Map([
+      [
+        'poster',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
   // SVG
-  {
-    tag: 'image',
-    attribute: 'xlink:href',
-    type: srcType,
-  },
-  {
-    tag: 'image',
-    attribute: 'href',
-    type: srcType,
-  },
-  {
-    tag: 'use',
-    attribute: 'xlink:href',
-    type: srcType,
-  },
-  {
-    tag: 'use',
-    attribute: 'href',
-    type: srcType,
-  },
-];
+  [
+    'image',
+    new Map([
+      [
+        'xlink:href',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'href',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'use',
+    new Map([
+      [
+        'xlink:href',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'href',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+]);
 
-function createSourcesList(sources, accumulator = new Map()) {
+function normalizeSourcesList(sources) {
+  if (typeof sources === 'undefined') {
+    return defaultSources;
+  }
+
+  const result = new Map();
+
   for (const source of sources) {
     if (source === '...') {
+      for (const [tag, attributes] of defaultSources.entries()) {
+        let newAttributes;
+
+        const existingAttributes = result.get(tag);
+
+        if (existingAttributes) {
+          newAttributes = new Map([...existingAttributes, ...attributes]);
+        } else {
+          newAttributes = new Map(attributes);
+        }
+
+        result.set(tag, newAttributes);
+      }
+
       // eslint-disable-next-line no-continue
       continue;
     }
@@ -909,54 +1015,31 @@ function createSourcesList(sources, accumulator = new Map()) {
     tag = tag.toLowerCase();
     attribute = attribute.toLowerCase();
 
-    if (tag === '*') {
-      for (const key of accumulator.keys()) {
-        const item = accumulator.get(key);
-
-        if (!item.has(attribute)) {
-          // eslint-disable-next-line no-continue
-          continue;
-        }
-
-        item.set(attribute, {
-          ...item.get(attribute),
-          ...source,
-        });
-
-        accumulator.set(key, item);
-      }
+    if (!result.has(tag)) {
+      result.set(tag, new Map());
     }
 
-    if (!accumulator.has(tag)) {
-      accumulator.set(tag, new Map());
-    }
-
-    accumulator.get(tag).set(attribute, source);
+    result.get(tag).set(attribute, {
+      type: source.type,
+      filter: source.filter,
+    });
   }
 
-  return accumulator;
+  return result;
 }
 
 function getSourcesOption(rawOptions) {
   if (typeof rawOptions.sources === 'undefined') {
-    return { list: createSourcesList(defaultAttributes) };
+    return { list: normalizeSourcesList() };
   }
 
   if (typeof rawOptions.sources === 'boolean') {
     return rawOptions.sources === true
-      ? { list: createSourcesList(defaultAttributes) }
+      ? { list: normalizeSourcesList() }
       : false;
   }
 
-  const sources =
-    typeof rawOptions.sources.list === 'undefined'
-      ? createSourcesList(defaultAttributes)
-      : rawOptions.sources.list.some((i) => i === '...')
-      ? createSourcesList(
-          rawOptions.sources.list,
-          createSourcesList(defaultAttributes)
-        )
-      : createSourcesList(rawOptions.sources.list);
+  const sources = normalizeSourcesList(rawOptions.sources.list);
 
   return { list: sources, urlFilter: rawOptions.sources.urlFilter };
 }
