@@ -35,7 +35,30 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with "..." syntax', async () => {
+  it('should work with "..." syntax (prepend)', async () => {
+    const compiler = getCompiler('simple.js', {
+      sources: {
+        list: [
+          {
+            tag: 'flag-icon',
+            attribute: 'src',
+            type: 'src',
+          },
+          '...',
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work with "..." syntax (append)', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
