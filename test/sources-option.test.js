@@ -58,6 +58,33 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
+  it('should work prefer source with tag over without', async () => {
+    const compiler = getCompiler('simple.js', {
+      sources: {
+        list: [
+          {
+            tag: 'img',
+            attribute: 'src',
+            type: 'src',
+            filter: () => false,
+          },
+          {
+            attribute: 'src',
+            type: 'src',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
   it('should work and override the "img" tag logic with "..."', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
