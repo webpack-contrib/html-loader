@@ -47,7 +47,7 @@ export function parseSrcset(input) {
   // 2. Let position be a pointer into input, initially pointing at the start
   //    of the string.
   let position = 0;
-  let startUrlPosition;
+  let startOffset;
 
   // eslint-disable-next-line consistent-return
   function collectCharacters(regEx) {
@@ -84,7 +84,7 @@ export function parseSrcset(input) {
 
     // 6. Collect a sequence of characters that are not space characters,
     //    and let that be url.
-    startUrlPosition = position;
+    startOffset = position;
     url = collectCharacters(regexLeadingNotSpaces);
 
     // 7. Let descriptors be a new empty list.
@@ -325,7 +325,7 @@ export function parseSrcset(input) {
     // URL is url, associated with a width width if not absent and a pixel
     // density density if not absent. Otherwise, there is a parse error.
     if (!pError) {
-      candidate.source = { value: url, startIndex: startUrlPosition };
+      candidate.source = { value: url, startOffset };
 
       if (w) {
         candidate.width = { value: w };
@@ -353,11 +353,11 @@ export function parseSrc(input) {
     throw new Error('Must be non-empty');
   }
 
-  let startIndex = 0;
+  let startOffset = 0;
   let value = input;
 
   while (isASCIIWhitespace(value.substring(0, 1))) {
-    startIndex += 1;
+    startOffset += 1;
     value = value.substring(1, value.length);
   }
 
@@ -369,7 +369,7 @@ export function parseSrc(input) {
     throw new Error('Must be non-empty');
   }
 
-  return { value, startIndex };
+  return { value, startOffset };
 }
 
 const moduleRequestRegex = /^[^?]*~/;
@@ -661,93 +661,61 @@ function metaContentFilter(tag, attribute, attributes) {
   return false;
 }
 
-export function typeSrc({ name, attribute, node, target, html, options }) {
-  const { tagName, sourceCodeLocation } = node;
-  const { value } = attribute;
-  const result = [];
+export function srcType(options) {
   let source;
 
   try {
-    source = parseSrc(value);
+    source = parseSrc(options.value);
   } catch (error) {
-    options.errors.push(
-      new HtmlSourceError(
-        `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-        sourceCodeLocation.attrs[name].startOffset,
-        sourceCodeLocation.attrs[name].endOffset,
-        html
-      )
+    throw new HtmlSourceError(
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
+      options.html
     );
-
-    return result;
   }
 
   source = c0ControlCodesExclude(source);
 
   if (!isUrlRequestable(source.value)) {
-    return result;
+    return [];
   }
 
-  const startOffset =
-    sourceCodeLocation.attrs[name].startOffset +
-    target.indexOf(source.value, name.length);
+  const startOffset = options.valueStartOffset + source.startOffset;
+  const endOffset = startOffset + source.value.length;
 
-  result.push({
-    value: source.value,
-    startIndex: startOffset,
-    endIndex: startOffset + source.value.length,
-  });
-
-  return result;
+  return [{ value: source.value, startOffset, endOffset }];
 }
 
-export function typeSrcset({ name, attribute, node, target, html, options }) {
-  const { tagName, sourceCodeLocation } = node;
-  const { value } = attribute;
-  const result = [];
+export function srcsetType(options) {
   let sourceSet;
 
   try {
-    sourceSet = parseSrcset(value);
+    sourceSet = parseSrcset(options.value);
   } catch (error) {
-    options.errors.push(
-      new HtmlSourceError(
-        `Bad value for attribute "${attribute.name}" on element "${tagName}": ${error.message}`,
-        sourceCodeLocation.attrs[name].startOffset,
-        sourceCodeLocation.attrs[name].endOffset,
-        html
-      )
+    throw new HtmlSourceError(
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
+      options.html
     );
-
-    return result;
   }
 
-  sourceSet = sourceSet.map((item) => {
-    return {
-      source: c0ControlCodesExclude(item.source),
-    };
-  });
-
-  let searchFrom = name.length;
+  const result = [];
 
   sourceSet.forEach((sourceItem) => {
-    const { source } = sourceItem;
+    let { source } = sourceItem;
+
+    source = c0ControlCodesExclude(source);
 
     if (!isUrlRequestable(source.value)) {
       return false;
     }
 
-    const startOffset =
-      sourceCodeLocation.attrs[name].startOffset +
-      target.indexOf(source.value, searchFrom);
+    const startOffset = options.valueStartOffset + source.startOffset;
+    const endOffset = startOffset + source.value.length;
 
-    searchFrom = target.indexOf(source.value, searchFrom) + 1;
-
-    result.push({
-      value: source.value,
-      startIndex: startOffset,
-      endIndex: startOffset + source.value.length,
-    });
+    result.push({ value: source.value, startOffset, endOffset });
 
     return false;
   });
@@ -755,226 +723,289 @@ export function typeSrcset({ name, attribute, node, target, html, options }) {
   return result;
 }
 
-function typeMsapplicationTask({
-  name,
-  attribute,
-  node,
-  target,
-  html,
-  options,
-}) {
-  const { tagName, sourceCodeLocation } = node;
-  const [content] = typeSrc({ name, attribute, node, target, html, options });
-  const result = [];
-
-  if (!content) {
-    return result;
-  }
-
-  let startIndex = 0;
-  let endIndex = 0;
-  let foundIconUri;
-  let source;
-
-  content.value.split(';').forEach((i) => {
-    if (foundIconUri) {
-      return;
-    }
-
-    if (!i.includes('icon-uri')) {
-      // +1 because of ";"
-      startIndex += i.length + 1;
-      return;
-    }
-
-    foundIconUri = true;
-
-    const [, aValue] = i.split('=');
-
-    try {
-      source = parseSrc(aValue);
-    } catch (error) {
-      options.errors.push(
-        new HtmlSourceError(
-          `Bad value for attribute "icon-uri" on element "${tagName}": ${error.message}`,
-          sourceCodeLocation.attrs[name].startOffset,
-          sourceCodeLocation.attrs[name].endOffset,
-          html
-        )
-      );
-
-      return;
-    }
-
-    // +1 because of "="
-    startIndex += i.indexOf('=') + source.startIndex + 1;
-    endIndex = startIndex + source.value.length;
-  });
-
-  if (!source) {
-    return result;
-  }
-
-  result.push({
-    ...content,
-    startIndex: content.startIndex + startIndex,
-    endIndex: content.startIndex + endIndex,
-    name: 'icon-uri',
-    value: source.value,
-  });
-
-  return result;
-}
-
-function metaContentType({ name, attribute, node, target, html, options }) {
-  const isMsapplicationTask = node.attrs.filter(
+function metaContentType(options) {
+  const isMsapplicationTask = options.attributes.find(
     (i) =>
       i.name.toLowerCase() === 'name' &&
       i.value.toLowerCase() === 'msapplication-task'
   );
 
-  return isMsapplicationTask.length === 0
-    ? typeSrc({ name, attribute, node, target, html, options })
-    : typeMsapplicationTask({ name, attribute, node, target, html, options });
-}
+  if (isMsapplicationTask) {
+    let startOffset = options.valueStartOffset;
+    let endOffset = options.valueStartOffset;
+    let value;
 
-const defaultAttributes = [
-  {
-    tag: 'audio',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'embed',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'img',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'img',
-    attribute: 'srcset',
-    type: 'srcset',
-  },
-  {
-    tag: 'input',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'link',
-    attribute: 'href',
-    type: 'src',
-    filter: linkUnionFilter,
-  },
-  {
-    tag: 'link',
-    attribute: 'imagesrcset',
-    type: 'srcset',
-    filter: linkHrefFilter,
-  },
-  {
-    tag: 'meta',
-    attribute: 'content',
-    type: metaContentType,
-    filter: metaContentFilter,
-  },
-  {
-    tag: 'object',
-    attribute: 'data',
-    type: 'src',
-  },
-  {
-    tag: 'script',
-    attribute: 'src',
-    type: 'src',
-    filter: scriptSrcFilter,
-  },
-  // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
-  {
-    tag: 'script',
-    attribute: 'href',
-    type: 'src',
-    filter: scriptSrcFilter,
-  },
-  {
-    tag: 'script',
-    attribute: 'xlink:href',
-    type: 'src',
-    filter: scriptSrcFilter,
-  },
-  {
-    tag: 'source',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'source',
-    attribute: 'srcset',
-    type: 'srcset',
-  },
-  {
-    tag: 'track',
-    attribute: 'src',
-    type: 'src',
-  },
-  {
-    tag: 'video',
-    attribute: 'poster',
-    type: 'src',
-  },
-  {
-    tag: 'video',
-    attribute: 'src',
-    type: 'src',
-  },
-  // SVG
-  {
-    tag: 'image',
-    attribute: 'xlink:href',
-    type: 'src',
-  },
-  {
-    tag: 'image',
-    attribute: 'href',
-    type: 'src',
-  },
-  {
-    tag: 'use',
-    attribute: 'xlink:href',
-    type: 'src',
-  },
-  {
-    tag: 'use',
-    attribute: 'href',
-    type: 'src',
-  },
-];
+    const parts = options.value.split(';');
 
-function rewriteSourcesList(sourcesList, attribute, source) {
-  for (const key of sourcesList.keys()) {
-    const item = sourcesList.get(key);
+    for (const [index, part] of parts.entries()) {
+      const isLastIteration = index === parts.length - 1;
 
-    if (!item.has(attribute)) {
-      // eslint-disable-next-line no-continue
-      continue;
+      if (/^icon-uri/i.test(part.trim())) {
+        const [name, src] = part.split('=');
+
+        startOffset += name.length + 1;
+
+        let source;
+
+        try {
+          source = parseSrc(src);
+        } catch (error) {
+          throw new HtmlSourceError(
+            `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
+            options.attributeStartOffset,
+            options.attributeEndOffset,
+            options.html
+          );
+        }
+
+        source = c0ControlCodesExclude(source);
+
+        ({ value } = source);
+        startOffset += source.startOffset;
+        endOffset = startOffset + value.length;
+
+        break;
+      }
+
+      // +1 because of ";"
+      startOffset += part.length + (isLastIteration ? 0 : 1);
     }
 
-    item.set(attribute, {
-      ...item.get(attribute),
-      ...source,
-    });
+    if (!value) {
+      return [];
+    }
 
-    sourcesList.set(key, item);
+    return [{ startOffset, endOffset, value }];
   }
+
+  return srcType(options);
 }
 
-function createSourcesList(sources, accumulator = new Map()) {
+const defaultSources = new Map([
+  [
+    'audio',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'embed',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'img',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'srcset',
+        {
+          type: srcsetType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'input',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'link',
+    new Map([
+      [
+        'href',
+        {
+          type: srcType,
+          filter: linkUnionFilter,
+        },
+      ],
+      [
+        'imagesrcset',
+        {
+          type: srcsetType,
+          filter: linkHrefFilter,
+        },
+      ],
+    ]),
+  ],
+  [
+    'meta',
+    new Map([
+      [
+        'content',
+        {
+          type: metaContentType,
+          filter: metaContentFilter,
+        },
+      ],
+    ]),
+  ],
+  [
+    'object',
+    new Map([
+      [
+        'data',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'script',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+          filter: scriptSrcFilter,
+        },
+      ],
+      // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
+      [
+        'href',
+        {
+          type: srcType,
+          filter: scriptSrcFilter,
+        },
+      ],
+      [
+        'xlink:href',
+        {
+          type: srcType,
+          filter: scriptSrcFilter,
+        },
+      ],
+    ]),
+  ],
+  [
+    'source',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'srcset',
+        {
+          type: srcsetType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'track',
+    new Map([
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'video',
+    new Map([
+      [
+        'poster',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'src',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  // SVG
+  [
+    'image',
+    new Map([
+      [
+        'xlink:href',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'href',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+  [
+    'use',
+    new Map([
+      [
+        'xlink:href',
+        {
+          type: srcType,
+        },
+      ],
+      [
+        'href',
+        {
+          type: srcType,
+        },
+      ],
+    ]),
+  ],
+]);
+
+function normalizeSourcesList(sources) {
+  if (typeof sources === 'undefined') {
+    return defaultSources;
+  }
+
+  const result = new Map();
+
   for (const source of sources) {
     if (source === '...') {
+      for (const [tag, attributes] of defaultSources.entries()) {
+        let newAttributes;
+
+        const existingAttributes = result.get(tag);
+
+        if (existingAttributes) {
+          newAttributes = new Map([...existingAttributes, ...attributes]);
+        } else {
+          newAttributes = new Map(attributes);
+        }
+
+        result.set(tag, newAttributes);
+      }
+
       // eslint-disable-next-line no-continue
       continue;
     }
@@ -984,52 +1015,45 @@ function createSourcesList(sources, accumulator = new Map()) {
     tag = tag.toLowerCase();
     attribute = attribute.toLowerCase();
 
-    if (tag === '*') {
-      rewriteSourcesList(accumulator, attribute, source);
+    if (!result.has(tag)) {
+      result.set(tag, new Map());
     }
 
-    if (!accumulator.has(tag)) {
-      accumulator.set(tag, new Map());
+    let typeFn;
+
+    // eslint-disable-next-line default-case
+    switch (source.type) {
+      case 'src':
+        typeFn = srcType;
+        break;
+      case 'srcset':
+        typeFn = srcsetType;
+        break;
     }
 
-    accumulator.get(tag).set(attribute, source);
+    result.get(tag).set(attribute, {
+      type: typeFn,
+      filter: source.filter,
+    });
   }
-
-  return accumulator;
-}
-
-function smartMergeSources(array, factory) {
-  if (typeof array === 'undefined') {
-    return factory();
-  }
-
-  const result = array.some((i) => i === '...')
-    ? createSourcesList(array, factory())
-    : createSourcesList(array);
 
   return result;
 }
 
 function getSourcesOption(rawOptions) {
   if (typeof rawOptions.sources === 'undefined') {
-    return { list: createSourcesList(defaultAttributes) };
+    return { list: normalizeSourcesList() };
   }
 
   if (typeof rawOptions.sources === 'boolean') {
     return rawOptions.sources === true
-      ? { list: createSourcesList(defaultAttributes) }
+      ? { list: normalizeSourcesList() }
       : false;
   }
 
-  const sources = smartMergeSources(rawOptions.sources.list, () =>
-    createSourcesList(defaultAttributes)
-  );
+  const sources = normalizeSourcesList(rawOptions.sources.list);
 
-  return {
-    list: sources,
-    urlFilter: rawOptions.sources.urlFilter,
-    root: rawOptions.sources.root,
-  };
+  return { list: sources, urlFilter: rawOptions.sources.urlFilter };
 }
 
 export function normalizeOptions(rawOptions, loaderContext) {
@@ -1059,12 +1083,8 @@ export function pluginRunner(plugins) {
   };
 }
 
-export function getFilter(filter, defaultFilter = null) {
+export function getFilter(filter) {
   return (attribute, value, resourcePath) => {
-    if (defaultFilter && !defaultFilter(value)) {
-      return false;
-    }
-
     if (typeof filter === 'function') {
       return filter(attribute, value, resourcePath);
     }
@@ -1109,11 +1129,11 @@ export function getModuleCode(html, replacements) {
   let replacersCode = '';
 
   for (const item of replacements) {
-    const { importName, replacementName, unquoted, hash } = item;
+    const { importName, replacementName, isValueQuoted, hash } = item;
 
     const getUrlOptions = []
       .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-      .concat(unquoted ? 'maybeNeedQuotes: true' : []);
+      .concat(isValueQuoted ? [] : 'maybeNeedQuotes: true');
     const preparedOptions =
       getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
 
@@ -1143,14 +1163,14 @@ function isASCIIC0group(character) {
 }
 
 export function c0ControlCodesExclude(source) {
-  let { value, startIndex } = source;
+  let { value, startOffset } = source;
 
   if (!value) {
     throw new Error('Must be non-empty');
   }
 
   while (isASCIIC0group(value.substring(0, 1))) {
-    startIndex += 1;
+    startOffset += 1;
     value = value.substring(1, value.length);
   }
 
@@ -1162,5 +1182,5 @@ export function c0ControlCodesExclude(source) {
     throw new Error('Must be non-empty');
   }
 
-  return { value, startIndex };
+  return { value, startOffset };
 }

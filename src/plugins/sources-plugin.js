@@ -4,129 +4,104 @@ import {
   getFilter,
   normalizeUrl,
   requestify,
-  isUrlRequestable,
   stringifyRequest,
-  typeSrc,
-  typeSrcset,
 } from '../utils';
 
 export default (options) =>
   function process(html) {
-    const { list, urlFilter: maybeUrlFilter } = options.sources;
-    const sources = [];
-    const urlFilter = getFilter(maybeUrlFilter, (value) =>
-      isUrlRequestable(value)
-    );
-    const getAttribute = (tag, attribute, attributes, resourcePath) => {
-      const foundTag = list.get(tag.toLowerCase()) || list.get('*');
-
-      if (!foundTag) {
-        return false;
-      }
-
-      const foundAttribute = foundTag.get(attribute.toLowerCase());
-
-      if (!foundAttribute) {
-        return false;
-      }
-
-      const result = foundAttribute.filter
-        ? foundAttribute.filter(tag, attribute, attributes, resourcePath)
-        : true;
-
-      return result ? foundAttribute : false;
-    };
-
-    const { resourcePath } = options;
     const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
+    const sources = [];
 
     parser5.on('startTag', (node) => {
-      const { tagName, attrs, sourceCodeLocation } = node;
+      const { tagName, attrs: attributes, sourceCodeLocation } = node;
 
-      attrs.forEach((attribute) => {
-        const { prefix } = attribute;
+      attributes.forEach((attribute) => {
         let { name } = attribute;
 
-        name = prefix ? `${prefix}:${name}` : name;
+        name = attribute.prefix ? `${attribute.prefix}:${name}` : name;
 
-        if (!sourceCodeLocation.attrs[name]) {
+        const handlers =
+          options.sources.list.get(tagName.toLowerCase()) ||
+          options.sources.list.get('*');
+
+        if (!handlers) {
           return;
         }
 
-        const foundAttribute = getAttribute(tagName, name, attrs, resourcePath);
+        const handler = handlers.get(name.toLowerCase());
 
-        if (!foundAttribute) {
+        if (!handler) {
           return;
         }
 
-        const { type } = foundAttribute;
+        if (
+          handler.filter &&
+          !handler.filter(tagName, name, attributes, options.resourcePath)
+        ) {
+          return;
+        }
 
-        const target = html.slice(
+        const attributeAndValue = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
           sourceCodeLocation.attrs[name].endOffset
         );
+        const isValueQuoted =
+          attributeAndValue[attributeAndValue.length - 1] === '"' ||
+          attributeAndValue[attributeAndValue.length - 1] === "'";
+        const valueStartOffset =
+          sourceCodeLocation.attrs[name].startOffset +
+          attributeAndValue.indexOf(attribute.value);
+        const valueEndOffset =
+          sourceCodeLocation.attrs[name].endOffset - (isValueQuoted ? 1 : 0);
+        const optionsForTypeFn = {
+          tag: tagName,
+          isSelfClosing: node.selfClosing,
+          tagStartOffset: sourceCodeLocation.startOffset,
+          tagEndOffset: sourceCodeLocation.endOffset,
+          attributes,
+          attribute: name,
+          attributePrefix: attribute.prefix,
+          attributeNamespace: attribute.namespace,
+          attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
+          attributeEndOffset: sourceCodeLocation.attrs[name].endOffset,
+          value: attribute.value,
+          isValueQuoted,
+          valueEndOffset,
+          valueStartOffset,
+          html,
+        };
 
-        const unquoted =
-          target[target.length - 1] !== '"' &&
-          target[target.length - 1] !== "'";
+        let result;
 
-        const result = [];
-
-        // eslint-disable-next-line default-case
-        switch (type) {
-          case 'src': {
-            typeSrc({ name, attribute, node, target, html, options }).forEach(
-              (i) => {
-                result.push(i);
-              }
-            );
-            break;
-          }
-
-          case 'srcset': {
-            typeSrcset({
-              name,
-              attribute,
-              node,
-              target,
-              html,
-              options,
-            }).forEach((i) => {
-              result.push(i);
-            });
-            break;
-          }
-
-          default: {
-            type({ name, attribute, node, target, html, options }).forEach(
-              (i) => {
-                result.push(i);
-              }
-            );
-          }
+        try {
+          result = handler.type(optionsForTypeFn);
+        } catch (error) {
+          options.errors.push(error);
         }
 
-        for (const i of result) {
-          if (i) {
-            sources.push({
-              ...i,
-              name,
-              unquoted,
-            });
+        result = Array.isArray(result) ? result : [result];
+
+        for (const source of result) {
+          if (!source) {
+            // eslint-disable-next-line no-continue
+            continue;
           }
+
+          sources.push({ ...source, name, isValueQuoted });
         }
       });
     });
 
     parser5.end(html);
 
+    const urlFilter = getFilter(options.sources.urlFilter);
     const imports = new Map();
     const replacements = new Map();
 
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, unquoted, startIndex, endIndex } = source;
+      const { name, value, isValueQuoted, startOffset, endOffset } = source;
 
       let normalizedUrl = value;
       let prefix = '';
@@ -140,7 +115,7 @@ export default (options) =>
 
       normalizedUrl = normalizeUrl(normalizedUrl);
 
-      if (!urlFilter(name, value, resourcePath)) {
+      if (!urlFilter(name, value, options.resourcePath)) {
         // eslint-disable-next-line no-continue
         continue;
       }
@@ -168,7 +143,7 @@ export default (options) =>
         });
       }
 
-      const replacementKey = JSON.stringify({ newUrl, unquoted, hash });
+      const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });
       let replacementName = replacements.get(replacementKey);
 
       if (!replacementName) {
@@ -179,17 +154,17 @@ export default (options) =>
           replacementName,
           importName,
           hash,
-          unquoted,
+          isValueQuoted,
         });
       }
 
       // eslint-disable-next-line no-param-reassign
       html =
-        html.slice(0, startIndex + offset) +
+        html.slice(0, startOffset + offset) +
         replacementName +
-        html.slice(endIndex + offset);
+        html.slice(endOffset + offset);
 
-      offset += startIndex + replacementName.length - endIndex;
+      offset += startOffset + replacementName.length - endOffset;
     }
 
     return html;

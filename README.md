@@ -282,7 +282,9 @@ module.exports = {
 };
 ```
 
-Filter can also be used to extend the supported elements and attributes. For example, filter can help process meta tags that reference assets:
+Filter can also be used to extend the supported elements and attributes.
+
+For example, filter can help process meta tags that reference assets:
 
 ```js
 module.exports = {
@@ -305,8 +307,41 @@ module.exports = {
                   ) {
                     return true;
                   }
+
                   return false;
                 },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+**Note:** source with a `tag` option takes precedence over source without.
+
+Filter can be used to disable default sources.
+
+For example:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          sources: {
+            list: [
+              '...',
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src',
+                filter: () => false,
               },
             ],
           },
@@ -609,7 +644,7 @@ module.exports = {
     ],
   },
   output: {
-    publicPath: 'http://cdn.example.com/[hash]/',
+    publicPath: 'http://cdn.example.com/[fullhash]/',
   },
 };
 ```
@@ -639,14 +674,6 @@ require('html-loader?{"sources":{"list":[{"tag":"img","attribute":"src","type":"
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg" data-src="data:image/png;base64,..." >'
 ```
-
-```js
-require('html-loader?-sources!./file.html');
-
-// => '<img src="image.jpg"  data-src="image2x.png" >'
-```
-
-> :warning: `-sources` sets `sources: false`.
 
 ### Process `script` and `link` tags
 
