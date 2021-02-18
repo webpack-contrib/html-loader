@@ -26,6 +26,7 @@ export default async function loader(content) {
   if (options.sources) {
     plugins.push(
       sourcesPlugin({
+        defaultFormat: options.esModule ? 'url' : 'require',
         sources: options.sources,
         resourcePath: this.resourcePath,
         context: this.context,

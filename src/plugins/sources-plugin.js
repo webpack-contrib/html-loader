@@ -101,7 +101,14 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, isValueQuoted, startOffset, endOffset } = source;
+      const {
+        name,
+        value,
+        isValueQuoted,
+        format,
+        startOffset,
+        endOffset,
+      } = source;
 
       let normalizedUrl = value;
       let prefix = '';
@@ -138,6 +145,8 @@ export default (options) =>
         imports.set(importKey, importName);
 
         options.imports.push({
+          format:
+            typeof format !== 'undefined' ? format : options.defaultFormat,
           importName,
           source: stringifyRequest(options.context, newUrl),
         });

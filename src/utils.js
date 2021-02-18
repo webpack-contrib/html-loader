@@ -781,6 +781,36 @@ function metaContentType(options) {
   return srcType(options);
 }
 
+function webpackIncludeType(options) {
+  let source;
+
+  try {
+    source = parseSrc(options.value);
+  } catch (error) {
+    throw new HtmlSourceError(
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
+      options.html
+    );
+  }
+
+  source = c0ControlCodesExclude(source);
+
+  if (!isUrlRequestable(source.value)) {
+    return [];
+  }
+
+  return [
+    {
+      format: 'import',
+      value: source.value,
+      startOffset: options.tagStartOffset,
+      endOffset: options.tagEndOffset,
+    },
+  ];
+}
+
 const defaultSources = new Map([
   [
     'audio',
@@ -981,6 +1011,17 @@ const defaultSources = new Map([
       ],
     ]),
   ],
+  [
+    'webpack-import',
+    new Map([
+      [
+        'src',
+        {
+          type: webpackIncludeType,
+        },
+      ],
+    ]),
+  ],
 ]);
 
 function normalizeSourcesList(sources) {
@@ -1109,11 +1150,20 @@ export function getImportCode(html, loaderContext, imports, options) {
     : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${stringifiedHelperRequest});\n`;
 
   for (const item of imports) {
-    const { importName, source } = item;
+    const { format, importName, source } = item;
 
-    code += options.esModule
-      ? `var ${importName} = new URL(${source}, import.meta.url);\n`
-      : `var ${importName} = require(${source});\n`;
+    switch (format) {
+      case 'require':
+        code += `var ${importName} = require(${source});\n`;
+        break;
+      case 'import':
+        code += `import ${importName} from ${source};\n`;
+        break;
+      case 'url':
+      default:
+        code += `var ${importName} = new URL(${source}, import.meta.url);\n`;
+        break;
+    }
   }
 
   return `// Imports\n${code}`;
