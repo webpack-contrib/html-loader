@@ -35,29 +35,6 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with "..." syntax', async () => {
-    const compiler = getCompiler('simple.js', {
-      sources: {
-        list: [
-          '...',
-          {
-            tag: 'flag-icon',
-            attribute: 'src',
-            type: 'src',
-          },
-        ],
-      },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
   it('should work prefer source with tag over without', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
@@ -85,22 +62,15 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work and override the "img" tag logic with "..."', async () => {
+  it('should work with "..." syntax', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
           '...',
           {
-            tag: 'img',
+            tag: 'flag-icon',
             attribute: 'src',
             type: 'src',
-            filter: (tag) => tag.toLowerCase() !== 'img',
-          },
-          {
-            tag: 'img',
-            attribute: 'srcset',
-            type: 'srcset',
-            filter: (tag) => tag.toLowerCase() !== 'img',
           },
         ],
       },
@@ -115,16 +85,44 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work and override the "src" tag logic with "..."', async () => {
+  it('should allow to add more attributes ti default values', async () => {
     const compiler = getCompiler('simple.js', {
       sources: {
         list: [
           '...',
           {
+            tag: 'img',
+            attribute: 'data-src',
+            type: 'src',
+          },
+          {
+            tag: 'img',
+            attribute: 'data-srcset',
+            type: 'srcset',
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.html', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work and override the "img" tag logic with "..."', async () => {
+    const compiler = getCompiler('simple.js', {
+      sources: {
+        list: [
+          '...',
+          {
+            tag: 'img',
             attribute: 'src',
             type: 'src',
-            // eslint-disable-next-line no-unused-vars
-            filter: (tag, attribute, sources) => tag.toLowerCase() !== 'img',
+            filter: () => false,
           },
         ],
       },
