@@ -2,10 +2,6 @@ const traverse = (root, callback) => {
   const visit = (node, parent) => {
     let res;
 
-    if (!node) {
-      return;
-    }
-
     if (callback) {
       res = callback(node, parent);
     }
