@@ -190,4 +190,16 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
+
+  // it.only('should work with webpackIgnore comment', async () => {
+  //   const compiler = getCompiler('webpackIgnore.js');
+  //   const stats = await compile(compiler);
+  //
+  //   expect(getModuleSource('./webpackIgnore.html', stats)).toMatchSnapshot('module');
+  //   expect(
+  //     execute(readAsset('main.bundle.js', compiler, stats))
+  //   ).toMatchSnapshot('result');
+  //   expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  //   expect(getErrors(stats)).toMatchSnapshot('errors');
+  // });
 });
