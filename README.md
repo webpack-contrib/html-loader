@@ -589,7 +589,7 @@ module.exports = {
 
 ### Disable url resolving using the `<!-- webpackIgnore: true -->` comment
 
-With `<!-- webpackIgnore: true -->`comment, can to disable sources handling for next tag.
+With `<!-- webpackIgnore: true -->` comment, can to disable sources handling for next tag.
 
 ```html
 <!-- Disabled url handling for the src attribute -->
