@@ -1185,7 +1185,7 @@ export function c0ControlCodesExclude(source) {
   return { value, startOffset };
 }
 
-const webpackIgnoreCommentRegexp = /webpackIgnore:(\s+)?true/i;
+const webpackIgnoreCommentRegexp = /webpackIgnore:(\s+)?true/;
 
 export function isWebpackIgnoreComment(node) {
   if (node.nodeName !== '#comment') {
