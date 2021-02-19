@@ -1,4 +1,6 @@
-import SAXParser from 'parse5-sax-parser';
+import parse5 from 'parse5';
+
+import traverse from '../parse5-traverse';
 
 import {
   getFilter,
@@ -9,11 +11,15 @@ import {
 
 export default (options) =>
   function process(html) {
-    const parser5 = new SAXParser({ sourceCodeLocationInfo: true });
     const sources = [];
+    const document = parse5.parse(html, { sourceCodeLocationInfo: true });
 
-    parser5.on('startTag', (node) => {
+    traverse(document, (node) => {
       const { tagName, attrs: attributes, sourceCodeLocation } = node;
+
+      if (!tagName) {
+        return;
+      }
 
       attributes.forEach((attribute) => {
         let { name } = attribute;
@@ -91,8 +97,6 @@ export default (options) =>
         }
       });
     });
-
-    parser5.end(html);
 
     const urlFilter = getFilter(options.sources.urlFilter);
     const imports = new Map();
