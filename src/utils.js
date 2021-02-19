@@ -1184,3 +1184,13 @@ export function c0ControlCodesExclude(source) {
 
   return { value, startOffset };
 }
+
+const webpackIgnoreCommentRegexp = /webpackIgnore:(\s+)?true/i;
+
+export function isWebpackIgnoreComment(node) {
+  if (node.nodeName !== '#comment') {
+    return false;
+  }
+
+  return webpackIgnoreCommentRegexp.test(node.data);
+}

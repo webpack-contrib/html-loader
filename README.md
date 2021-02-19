@@ -587,6 +587,32 @@ module.exports = {
 
 ## Examples
 
+### Disable url resolving using the `<!-- webpackIgnore: true -->` comment
+
+With `<!-- webpackIgnore: true -->`comment, can to disable sources handling for next tag.
+
+```html
+<!-- Disabled url handling for the src attribute -->
+<!-- webpackIgnore: true -->
+<img src="image.png" />
+
+<!-- Disabled url handling for the src and srcset attributes -->
+<!-- webpackIgnore: true -->
+<img
+  srcset="image.png 480w, image.png 768w"
+  src="image.png"
+  alt="Elva dressed as a fairy"
+/>
+
+<!-- Disabled url handling for the content attribute -->
+<!-- webpackIgnore: true -->
+<meta itemprop="image" content="./image.png" />
+
+<!-- Disabled url handling for the href attribute -->
+<!-- webpackIgnore: true -->
+<link rel="icon" type="image/png" sizes="192x192" href="./image.png" />
+```
+
 ### roots
 
 With [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots) can specify a list of directories where requests of server-relative URLs (starting with '/') are resolved.
