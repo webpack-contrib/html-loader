@@ -155,8 +155,12 @@ exports[`loader should work with server-relative url: warnings 1`] = `Array []`;
 exports[`loader should work with webpackIgnore comment: errors 1`] = `Array []`;
 
 exports[`loader should work with webpackIgnore comment: module 1`] = `
-"// Module
-var code = \\"<!doctype html>\\\\n<html lang=\\\\\\"en\\\\\\">\\\\n<head>\\\\n  <meta charset=\\\\\\"UTF-8\\\\\\">\\\\n  <meta name=\\\\\\"viewport\\\\\\"\\\\n        content=\\\\\\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\\\\\\">\\\\n  <meta http-equiv=\\\\\\"X-UA-Compatible\\\\\\" content=\\\\\\"ie=edge\\\\\\">\\\\n  <title>Document</title>\\\\n</head>\\\\n<body>\\\\n\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<img src=\\\\\\"image.png\\\\\\" />\\\\n<!-- webpackIgnore: true --> <img src=\\\\\\"image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<img srcset=\\\\\\"image.png 480w, image.png 768w\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<img data-srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" data-src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<meta itemprop=\\\\\\"image\\\\\\" content=\\\\\\"./image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta itemprop=\\\\\\"logo\\\\\\" content=\\\\\\"./image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta itemprop=\\\\\\"screenshot\\\\\\" content=\\\\\\"./image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta property=\\\\\\"og:audio\\\\\\" content=\\\\\\"./sound.mp3\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta property=\\\\\\"og:audio:secure_url\\\\\\" content=\\\\\\"./sound.mp3\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<link itemprop=\\\\\\"downloadUrl\\\\\\" href=\\\\\\"image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link itemprop=\\\\\\"contentUrl\\\\\\" href=\\\\\\"image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link itemprop=\\\\\\"installUrl\\\\\\" href=\\\\\\"image.png\\\\\\">\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<link rel=\\\\\\"icon\\\\\\" type=\\\\\\"image/png\\\\\\" sizes=\\\\\\"192x192\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link rel=\\\\\\"apple-touch-icon\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link rel=\\\\\\"manifest\\\\\\" href=\\\\\\"./site.webmanifest\\\\\\">\\\\n\\\\n<svg width=\\\\\\"200\\\\\\" height=\\\\\\"200\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <image xlink:href=\\\\\\"./webpack.svg\\\\\\" height=\\\\\\"200\\\\\\" width=\\\\\\"200\\\\\\"/>\\\\n</svg>\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<div data-videomp4=\\\\\\"video.mp4\\\\\\"></div>\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<video controls poster=\\\\\\"./image.png\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <source src=\\\\\\"example.ogg\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <track src=\\\\\\"example.vtt\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<picture>\\\\n  <!-- webpackIgnore: true -->\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\\\n\\\\n</body>\\\\n</html>\\";
+"// Imports
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
+var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
+// Module
+var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var code = \\"<!doctype html>\\\\n<html lang=\\\\\\"en\\\\\\">\\\\n<head>\\\\n  <meta charset=\\\\\\"UTF-8\\\\\\">\\\\n  <meta name=\\\\\\"viewport\\\\\\"\\\\n        content=\\\\\\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\\\\\\">\\\\n  <meta http-equiv=\\\\\\"X-UA-Compatible\\\\\\" content=\\\\\\"ie=edge\\\\\\">\\\\n  <title>Document</title>\\\\n</head>\\\\n<body>\\\\n\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<img src=\\\\\\"image.png\\\\\\" />\\\\n<!-- webpackIgnore: true --> <img src=\\\\\\"image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<img srcset=\\\\\\"image.png 480w, image.png 768w\\\\\\" src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<img data-srcset=\\\\\\"image.png 480w, image.png 800w\\\\\\" sizes=\\\\\\"(max-width: 600px) 480px, 800px\\\\\\" data-src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Elva dressed as a fairy\\\\\\">\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<meta itemprop=\\\\\\"image\\\\\\" content=\\\\\\"./image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta itemprop=\\\\\\"logo\\\\\\" content=\\\\\\"./image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta itemprop=\\\\\\"screenshot\\\\\\" content=\\\\\\"./image.png\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta property=\\\\\\"og:audio\\\\\\" content=\\\\\\"./sound.mp3\\\\\\" />\\\\n<!-- webpackIgnore: true -->\\\\n<meta property=\\\\\\"og:audio:secure_url\\\\\\" content=\\\\\\"./sound.mp3\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<link itemprop=\\\\\\"downloadUrl\\\\\\" href=\\\\\\"image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link itemprop=\\\\\\"contentUrl\\\\\\" href=\\\\\\"image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link itemprop=\\\\\\"installUrl\\\\\\" href=\\\\\\"image.png\\\\\\">\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<link rel=\\\\\\"icon\\\\\\" type=\\\\\\"image/png\\\\\\" sizes=\\\\\\"192x192\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link rel=\\\\\\"apple-touch-icon\\\\\\" href=\\\\\\"./image.png\\\\\\">\\\\n<!-- webpackIgnore: true -->\\\\n<link rel=\\\\\\"manifest\\\\\\" href=\\\\\\"./site.webmanifest\\\\\\">\\\\n\\\\n<svg width=\\\\\\"200\\\\\\" height=\\\\\\"200\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <image xlink:href=\\\\\\"./webpack.svg\\\\\\" height=\\\\\\"200\\\\\\" width=\\\\\\"200\\\\\\"/>\\\\n</svg>\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<div data-videomp4=\\\\\\"video.mp4\\\\\\"></div>\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<video controls poster=\\\\\\"./image.png\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <source src=\\\\\\"example.ogg\\\\\\" type=\\\\\\"video/ogg\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <track src=\\\\\\"example.vtt\\\\\\" kind=\\\\\\"subtitles\\\\\\" srclang=\\\\\\"en\\\\\\" label=\\\\\\"English\\\\\\">\\\\n</video>\\\\n\\\\n<picture>\\\\n  <!-- webpackIgnore: true -->\\\\n  <source media=\\\\\\"(min-width: 650px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <source media=\\\\\\"(min-width: 465px)\\\\\\" srcset=\\\\\\"image.png\\\\\\">\\\\n  <!-- webpackIgnore: true -->\\\\n  <img src=\\\\\\"image.png\\\\\\" alt=\\\\\\"Flowers\\\\\\" style=\\\\\\"width:auto;\\\\\\">\\\\n</picture>\\\\n\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<!-- webpackIgnore: false -->\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<!-- webpackIgnore: false -->\\\\n<!-- webpackIgnore: true -->\\\\n<img src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n<!-- webpackIgnore:  -->\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: q -->\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n\\\\n<!-- webpackIgnore:true -->\\\\n<img src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n<!--    webpackIgnore:   true   -->\\\\n<img src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: true --><img src=\\\\\\"image.png\\\\\\" />\\\\n<!-- webpackIgnore: false --><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n<!-- webpackIgnore: true --><!-- webpackIgnore: false --><img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n<!-- webpackIgnore: false --><!-- webpackIgnore: true --><img src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<div></div>\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<br>\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n\\\\n<!-- webpackIgnore: true -->\\\\n<br />\\\\n<img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" />\\\\n\\\\n<br />\\\\n<!-- webpackIgnore: true -->\\\\n<img src=\\\\\\"image.png\\\\\\" />\\\\n\\\\n</body>\\\\n</html>\\";
 // Exports
 export default code;"
 `;
@@ -232,6 +236,49 @@ exports[`loader should work with webpackIgnore comment: result 1`] = `
   <img src=\\"image.png\\" alt=\\"Flowers\\" style=\\"width:auto;\\">
 </picture>
 
+
+<!-- webpackIgnore: true -->
+<!-- webpackIgnore: false -->
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+
+<!-- webpackIgnore: true -->
+<!-- webpackIgnore: false -->
+<!-- webpackIgnore: true -->
+<img src=\\"image.png\\" />
+
+<!-- webpackIgnore:  -->
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+
+<!-- webpackIgnore: q -->
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+
+<!-- webpackIgnore:true -->
+<img src=\\"image.png\\" />
+
+<!--    webpackIgnore:   true   -->
+<img src=\\"image.png\\" />
+
+<!-- webpackIgnore: true --><img src=\\"image.png\\" />
+<!-- webpackIgnore: false --><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<!-- webpackIgnore: true --><!-- webpackIgnore: false --><img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+<!-- webpackIgnore: false --><!-- webpackIgnore: true --><img src=\\"image.png\\" />
+
+
+<!-- webpackIgnore: true -->
+<div></div>
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+
+<!-- webpackIgnore: true -->
+<br>
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+
+<!-- webpackIgnore: true -->
+<br />
+<img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" />
+
+<br />
+<!-- webpackIgnore: true -->
+<img src=\\"image.png\\" />
 
 </body>
 </html>"

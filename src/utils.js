@@ -1185,12 +1185,29 @@ export function c0ControlCodesExclude(source) {
   return { value, startOffset };
 }
 
-const webpackIgnoreCommentRegexp = /webpackIgnore:(\s+)?true/;
+export function traverse(root, callback) {
+  const visit = (node, parent) => {
+    let res;
 
-export function isWebpackIgnoreComment(node) {
-  if (node.nodeName !== '#comment') {
-    return false;
-  }
+    if (callback) {
+      res = callback(node, parent);
+    }
 
-  return webpackIgnoreCommentRegexp.test(node.data);
+    let { childNodes } = node;
+
+    // in case a <template> tag is in the middle of the HTML: https://github.com/JPeer264/node-rcs-core/issues/58
+    if (node.content && Array.isArray(node.content.childNodes)) {
+      ({ childNodes } = node.content);
+    }
+
+    if (res !== false && Array.isArray(childNodes) && childNodes.length >= 0) {
+      childNodes.forEach((child) => {
+        visit(child, node);
+      });
+    }
+  };
+
+  visit(root, null);
 }
+
+export const webpackIgnoreCommentRegexp = /webpackIgnore:(\s+)?(true|false)/;

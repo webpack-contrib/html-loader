@@ -1,13 +1,12 @@
 import parse5 from 'parse5';
 
-import traverse from '../parse5-traverse';
-
 import {
+  traverse,
   getFilter,
   normalizeUrl,
   requestify,
   stringifyRequest,
-  isWebpackIgnoreComment,
+  webpackIgnoreCommentRegexp,
 } from '../utils';
 
 export default (options) =>
@@ -15,13 +14,18 @@ export default (options) =>
     const sources = [];
     const document = parse5.parse(html, { sourceCodeLocationInfo: true });
 
-    let webpackIgnore = false;
+    let needIgnore = false;
 
     traverse(document, (node) => {
       const { tagName, attrs: attributes, sourceCodeLocation } = node;
 
-      if (isWebpackIgnoreComment(node)) {
-        webpackIgnore = true;
+      if (node.nodeName === '#comment') {
+        const match = node.data.match(webpackIgnoreCommentRegexp);
+
+        if (match) {
+          needIgnore = match[2] === 'true';
+        }
+
         return;
       }
 
@@ -29,8 +33,8 @@ export default (options) =>
         return;
       }
 
-      if (webpackIgnore) {
-        webpackIgnore = false;
+      if (needIgnore) {
+        needIgnore = false;
         return;
       }
 
