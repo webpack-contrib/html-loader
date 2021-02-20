@@ -7,6 +7,7 @@ import {
   normalizeUrl,
   requestify,
   stringifyRequest,
+  isWebpackIgnoreComment,
 } from '../utils';
 
 export default (options) =>
@@ -14,10 +15,22 @@ export default (options) =>
     const sources = [];
     const document = parse5.parse(html, { sourceCodeLocationInfo: true });
 
+    let webpackIgnore = false;
+
     traverse(document, (node) => {
       const { tagName, attrs: attributes, sourceCodeLocation } = node;
 
+      if (isWebpackIgnoreComment(node)) {
+        webpackIgnore = true;
+        return;
+      }
+
       if (!tagName) {
+        return;
+      }
+
+      if (webpackIgnore) {
+        webpackIgnore = false;
         return;
       }
 
