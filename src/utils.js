@@ -579,6 +579,7 @@ const META = new Map([
       'msapplication-wide310x150logo',
       'msapplication-square310x310logo',
       'msapplication-config',
+      'msapplication-task',
       'twitter:image',
     ]),
   ],
@@ -610,7 +611,6 @@ const META = new Map([
       'layoutimage',
     ]),
   ],
-  ['name', new Set(['msapplication-task'])],
 ]);
 
 function linkItempropFilter(tag, attribute, attributes) {
