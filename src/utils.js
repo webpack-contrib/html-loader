@@ -1,4 +1,3 @@
-import path from 'path';
 import { pathToFileURL } from 'url';
 
 import HtmlSourceError from './HtmlSourceError';
@@ -428,30 +427,6 @@ export function isUrlRequestable(url) {
   }
 
   return true;
-}
-
-export function stringifyRequest(context, request) {
-  const splitted = request.split('!');
-
-  return JSON.stringify(
-    splitted
-      .map((part) => {
-        // First, separate singlePath from query, because the query might contain paths again
-        const splittedPart = part.match(/^(.*?)(\?.*)/);
-        const query = splittedPart ? splittedPart[2] : '';
-        const singlePath = splittedPart ? splittedPart[1] : part;
-
-        if (
-          path.posix.isAbsolute(singlePath) ||
-          path.win32.isAbsolute(singlePath)
-        ) {
-          return singlePath + query;
-        }
-
-        return singlePath.replace(/\\/g, '/') + query;
-      })
-      .join('!')
-  );
 }
 
 function isProductionMode(loaderContext) {
@@ -1082,20 +1057,18 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const fileURLToHelper = `"${pathToFileURL(
-    require.resolve('./runtime/getUrl.js')
-  )}"`;
+  const fileURLToHelper = pathToFileURL(require.resolve('./runtime/getUrl.js'));
 
   let code = options.esModule
-    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${fileURLToHelper};\n`
-    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${fileURLToHelper});\n`;
+    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from "${fileURLToHelper}";\n`
+    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n`;
 
   for (const item of imports) {
     const { importName, source } = item;
 
     code += options.esModule
-      ? `var ${importName} = new URL(${source}, import.meta.url);\n`
-      : `var ${importName} = require(${source});\n`;
+      ? `var ${importName} = new URL("${source}", import.meta.url);\n`
+      : `var ${importName} = require("${source}");\n`;
   }
 
   return `// Imports\n${code}`;

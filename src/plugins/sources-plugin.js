@@ -5,7 +5,6 @@ import {
   getFilter,
   normalizeUrl,
   requestify,
-  stringifyRequest,
   webpackIgnoreCommentRegexp,
 } from '../utils';
 
@@ -158,10 +157,7 @@ export default (options) =>
         importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
         imports.set(importKey, importName);
 
-        options.imports.push({
-          importName,
-          source: stringifyRequest(options.context, newUrl),
-        });
+        options.imports.push({ importName, source: newUrl });
       }
 
       const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });
