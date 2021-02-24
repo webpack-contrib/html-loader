@@ -1,4 +1,5 @@
 import path from 'path';
+import { pathToFileURL } from 'url';
 
 import HtmlSourceError from './HtmlSourceError';
 
@@ -1081,10 +1082,9 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const fileURLToHelper = stringifyRequest(
-    loaderContext.context,
+  const fileURLToHelper = `"${pathToFileURL(
     require.resolve('./runtime/getUrl.js')
-  );
+  )}"`;
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${fileURLToHelper};\n`

@@ -4,7 +4,7 @@ exports[`'sources' option should allow to add more attributes ti default values:
 
 exports[`'sources' option should allow to add more attributes ti default values: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -972,7 +972,7 @@ HtmlSourceError: Bad value for attribute \\"srcset\\" on element \\"img\\": Must
 
 exports[`'sources' option should handle "sources" tags: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
@@ -1280,7 +1280,7 @@ exports[`'sources' option should handle all src sources in all HTML tags except 
 
 exports[`'sources' option should handle all src sources in all HTML tags except img tag (testing filter option): module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./script.file.js\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"./example.ogg\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"./example.pdf\\", import.meta.url);
@@ -1766,7 +1766,7 @@ exports[`'sources' option should handle all src sources in all HTML tags when ta
 
 exports[`'sources' option should handle all src sources in all HTML tags when tag is undefined: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -2271,7 +2271,7 @@ exports[`'sources' option should handle sources with a "boolean" notation equals
 
 exports[`'sources' option should handle sources with a "boolean" notation equals "true": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -3254,7 +3254,7 @@ exports[`'sources' option should work and override the "img" tag logic with "...
 
 exports[`'sources' option should work and override the "img" tag logic with "...": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./script.file.js\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"./image.png?foo=bar,baz\\", import.meta.url);
@@ -3761,7 +3761,7 @@ exports[`'sources' option should work by default with CommonJS module syntax and
 
 exports[`'sources' option should work by default with CommonJS module syntax and ES module syntax from other loader: module 1`] = `
 "// Imports
-var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"/<cwd>/src/runtime/getUrl.js\\");
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"file:///<cwd>/\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IMPORT_1___ = require(\\"/image.png\\");
 var ___HTML_LOADER_IMPORT_2___ = require(\\"aliasImg\\");
@@ -4280,7 +4280,7 @@ exports[`'sources' option should work by default with CommonJS module syntax: er
 
 exports[`'sources' option should work by default with CommonJS module syntax: module 1`] = `
 "// Imports
-var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"/<cwd>/src/runtime/getUrl.js\\");
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"file:///<cwd>/\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IMPORT_1___ = require(\\"/image.png\\");
 var ___HTML_LOADER_IMPORT_2___ = require(\\"aliasImg\\");
@@ -4799,7 +4799,7 @@ exports[`'sources' option should work by default with ES module syntax from Comm
 
 exports[`'sources' option should work by default with ES module syntax from CommonJS module syntax from other loader: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -5318,7 +5318,7 @@ exports[`'sources' option should work by default with ES module syntax: errors 1
 
 exports[`'sources' option should work by default with ES module syntax: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -5837,7 +5837,7 @@ exports[`'sources' option should work by default: errors 1`] = `Array []`;
 
 exports[`'sources' option should work by default: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -6356,7 +6356,7 @@ exports[`'sources' option should work prefer source with tag over without: error
 
 exports[`'sources' option should work prefer source with tag over without: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./script.file.js\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"./example.ogg\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"./example.pdf\\", import.meta.url);
@@ -6842,7 +6842,7 @@ exports[`'sources' option should work with "..." syntax: errors 1`] = `Array []`
 
 exports[`'sources' option should work with "..." syntax: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -7361,7 +7361,7 @@ exports[`'sources' option should work with an "object" notations: errors 1`] = `
 
 exports[`'sources' option should work with an "object" notations: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -7848,7 +7848,7 @@ exports[`'sources' option should work with an empty "object" notations: errors 1
 
 exports[`'sources' option should work with an empty "object" notations: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"/<cwd>/src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>/\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
