@@ -1,5 +1,4 @@
 import path from 'path';
-import url from 'url';
 
 import HtmlSourceError from './HtmlSourceError';
 
@@ -430,16 +429,6 @@ export function isUrlRequestable(url) {
   return true;
 }
 
-const matchRelativePath = /^\.\.?[/\\]/;
-
-function isAbsolutePath(str) {
-  return matchNativeWin32Path.test(str) && path.win32.isAbsolute(str);
-}
-
-function isRelativePath(str) {
-  return matchRelativePath.test(str);
-}
-
 export function stringifyRequest(context, request) {
   const splitted = request.split('!');
 
@@ -449,22 +438,13 @@ export function stringifyRequest(context, request) {
         // First, separate singlePath from query, because the query might contain paths again
         const splittedPart = part.match(/^(.*?)(\?.*)/);
         const query = splittedPart ? splittedPart[2] : '';
-        let singlePath = splittedPart ? splittedPart[1] : part;
+        const singlePath = splittedPart ? splittedPart[1] : part;
 
-        if (isAbsolutePath(singlePath) && context) {
-          singlePath = path.relative(context, singlePath);
-
-          if (isAbsolutePath(singlePath)) {
-            // If singlePath still matches an absolute path, singlePath was on a different drive than context.
-            // In this case, we leave the path platform-specific without replacing any separators.
-            // @see https://github.com/webpack/loader-utils/pull/14
-            return singlePath + query;
-          }
-
-          if (isRelativePath(singlePath) === false) {
-            // Ensure that the relative path starts at least with ./ otherwise it would be a request into the modules directory (like node_modules).
-            singlePath = `./${singlePath}`;
-          }
+        if (
+          path.posix.isAbsolute(singlePath) ||
+          path.win32.isAbsolute(singlePath)
+        ) {
+          return singlePath + query;
         }
 
         return singlePath.replace(/\\/g, '/') + query;
@@ -1101,9 +1081,10 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const fileURLToHelper = `"${url.pathToFileURL(
+  const fileURLToHelper = stringifyRequest(
+    loaderContext.context,
     require.resolve('./runtime/getUrl.js')
-  )}"`;
+  );
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${fileURLToHelper};\n`
