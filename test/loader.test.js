@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 import {
   compile,
   getCompiler,
@@ -201,6 +203,36 @@ describe('loader', () => {
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work with "html-webpack-plugin" plugin', async () => {
+    const compiler = getCompiler(
+      'entry.js',
+      {},
+      {
+        output: {
+          publicPath: 'http://example.com',
+        },
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              loader: path.resolve(__dirname, '../src'),
+            },
+          ],
+        },
+        plugins: [
+          new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'fixtures/template-html.html'),
+          }),
+        ],
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(readAsset('index.html', compiler, stats)).toMatchSnapshot('result');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
