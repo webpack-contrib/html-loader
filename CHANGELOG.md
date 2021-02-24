@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/webpack-contrib/html-loader/compare/v2.1.0...v2.1.1) (2021-02-24)
+
+
+### Bug Fixes
+
+* handle the `content` attribute ([#372](https://github.com/webpack-contrib/html-loader/issues/372)) ([002e2a1](https://github.com/webpack-contrib/html-loader/commit/002e2a144c26601136cca1073cd84f1a18e67033))
+* invalid URL for runtime helpers ([#373](https://github.com/webpack-contrib/html-loader/issues/373)) ([b19cfd0](https://github.com/webpack-contrib/html-loader/commit/b19cfd0e9344f15edf69df58afd8def96436b11d))
+
 ## [2.1.0](https://github.com/webpack-contrib/html-loader/compare/v2.0.0...v2.1.0) (2021-02-20)
 
 
