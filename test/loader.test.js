@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 import {
   compile,
   getCompiler,
@@ -115,25 +117,6 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it('should work with absolute paths', async () => {
-    const file = path.resolve(__dirname, 'fixtures', 'generated-1.html');
-    const absolutePath = path.resolve(__dirname, 'fixtures', 'image.png');
-
-    fs.writeFileSync(file, `<img src="${absolutePath}">`);
-
-    const compiler = getCompiler('absolute.js');
-    const stats = await compile(compiler);
-
-    // expect(getModuleSource('./generated-1.html', stats)).toMatchSnapshot(
-    //   'module'
-    // );
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-  });
-
   it('should work with file protocol', async () => {
     const file = path.resolve(__dirname, 'fixtures', 'generated-2.html');
     const absolutePath = path.resolve(__dirname, 'fixtures', 'image.png');
@@ -201,6 +184,36 @@ describe('loader', () => {
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+  });
+
+  it('should work with "html-webpack-plugin" plugin', async () => {
+    const compiler = getCompiler(
+      'entry.js',
+      {},
+      {
+        output: {
+          publicPath: 'http://example.com',
+        },
+        module: {
+          rules: [
+            {
+              test: /\.html$/i,
+              loader: path.resolve(__dirname, '../src'),
+            },
+          ],
+        },
+        plugins: [
+          new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'fixtures/template-html.html'),
+          }),
+        ],
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(readAsset('index.html', compiler, stats)).toMatchSnapshot('result');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });

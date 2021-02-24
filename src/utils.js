@@ -1,4 +1,4 @@
-import path from 'path';
+import { pathToFileURL } from 'url';
 
 import HtmlSourceError from './HtmlSourceError';
 
@@ -427,49 +427,6 @@ export function isUrlRequestable(url) {
   }
 
   return true;
-}
-
-const matchRelativePath = /^\.\.?[/\\]/;
-
-function isAbsolutePath(str) {
-  return matchNativeWin32Path.test(str) && path.win32.isAbsolute(str);
-}
-
-function isRelativePath(str) {
-  return matchRelativePath.test(str);
-}
-
-export function stringifyRequest(context, request) {
-  const splitted = request.split('!');
-
-  return JSON.stringify(
-    splitted
-      .map((part) => {
-        // First, separate singlePath from query, because the query might contain paths again
-        const splittedPart = part.match(/^(.*?)(\?.*)/);
-        const query = splittedPart ? splittedPart[2] : '';
-        let singlePath = splittedPart ? splittedPart[1] : part;
-
-        if (isAbsolutePath(singlePath) && context) {
-          singlePath = path.relative(context, singlePath);
-
-          if (isAbsolutePath(singlePath)) {
-            // If singlePath still matches an absolute path, singlePath was on a different drive than context.
-            // In this case, we leave the path platform-specific without replacing any separators.
-            // @see https://github.com/webpack/loader-utils/pull/14
-            return singlePath + query;
-          }
-
-          if (isRelativePath(singlePath) === false) {
-            // Ensure that the relative path starts at least with ./ otherwise it would be a request into the modules directory (like node_modules).
-            singlePath = `./${singlePath}`;
-          }
-        }
-
-        return singlePath.replace(/\\/g, '/') + query;
-      })
-      .join('!')
-  );
 }
 
 function isProductionMode(loaderContext) {
@@ -1100,20 +1057,18 @@ export function getImportCode(html, loaderContext, imports, options) {
     return '';
   }
 
-  const stringifiedHelperRequest = `"${path
-    .relative(loaderContext.context, require.resolve('./runtime/getUrl.js'))
-    .replace(/\\/g, '/')}"`;
+  const fileURLToHelper = pathToFileURL(require.resolve('./runtime/getUrl.js'));
 
   let code = options.esModule
-    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from ${stringifiedHelperRequest};\n`
-    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require(${stringifiedHelperRequest});\n`;
+    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from "${fileURLToHelper}";\n`
+    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n`;
 
   for (const item of imports) {
     const { importName, source } = item;
 
     code += options.esModule
-      ? `var ${importName} = new URL(${source}, import.meta.url);\n`
-      : `var ${importName} = require(${source});\n`;
+      ? `var ${importName} = new URL("${source}", import.meta.url);\n`
+      : `var ${importName} = require("${source}");\n`;
   }
 
   return `// Imports\n${code}`;
