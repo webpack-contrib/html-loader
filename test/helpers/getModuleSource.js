@@ -5,10 +5,7 @@ export default (id, stats) => {
   const module = modules.find((m) => m.name === id);
   let { source } = module;
 
-  source = source.replace(
-    pathToFileURL(require.resolve('../../src/runtime/getUrl.js')),
-    'file:///<cwd>/'
-  );
+  source = source.replace(pathToFileURL(process.cwd()), 'file:///<cwd>/');
 
   return source;
 };
