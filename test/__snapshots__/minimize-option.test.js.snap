@@ -4,7 +4,7 @@ exports[`"minimize" option should be turned off by default: errors 1`] = `Array 
 
 exports[`"minimize" option should be turned off by default: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -523,7 +523,7 @@ exports[`"minimize" option should be turned off in "development" mode: errors 1`
 
 exports[`"minimize" option should be turned off in "development" mode: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -1042,7 +1042,7 @@ exports[`"minimize" option should be turned on in "production" mode: errors 1`] 
 
 exports[`"minimize" option should be turned on in "production" mode: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -1126,7 +1126,7 @@ Parse Error: < img src=\\"image.png\\" >",
 
 exports[`"minimize" option should emit an error on broken HTML syntax: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
@@ -1153,7 +1153,7 @@ exports[`"minimize" option should not work with a value equal to "false": errors
 
 exports[`"minimize" option should not work with a value equal to "false": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -1672,7 +1672,7 @@ exports[`"minimize" option should support options for minimizer: errors 1`] = `A
 
 exports[`"minimize" option should support options for minimizer: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -1766,7 +1766,7 @@ exports[`"minimize" option should work with a value equal to "true": errors 1`] 
 
 exports[`"minimize" option should work with a value equal to "true": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
