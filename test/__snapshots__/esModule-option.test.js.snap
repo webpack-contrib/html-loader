@@ -4,7 +4,7 @@ exports[`'esModule' option should use a CommonJS export by default: errors 1`] =
 
 exports[`'esModule' option should use a CommonJS export by default: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);
@@ -523,7 +523,7 @@ exports[`'esModule' option should use a CommonJS export when the value is "false
 
 exports[`'esModule' option should use a CommonJS export when the value is "false": module 1`] = `
 "// Imports
-var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"file:///<cwd>//src/runtime/getUrl.js\\");
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require(\\"../../src/runtime/getUrl.js\\");
 var ___HTML_LOADER_IMPORT_0___ = require(\\"./image.png\\");
 var ___HTML_LOADER_IMPORT_1___ = require(\\"/image.png\\");
 var ___HTML_LOADER_IMPORT_2___ = require(\\"aliasImg\\");
@@ -1042,7 +1042,7 @@ exports[`'esModule' option should use an ES module export when the value is "tru
 
 exports[`'esModule' option should use an ES module export when the value is "true": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"/image.png\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL(\\"aliasImg\\", import.meta.url);

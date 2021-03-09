@@ -4,7 +4,7 @@ exports[`'process' option should work with Async "preprocessor" Function option:
 
 exports[`'process' option should work with Async "preprocessor" Function option: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
@@ -27,7 +27,7 @@ exports[`'process' option should work with the "preprocessor" option #2: errors 
 
 exports[`'process' option should work with the "preprocessor" option #2: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png.webp\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
@@ -49,7 +49,7 @@ exports[`'process' option should work with the "preprocessor" option: errors 1`]
 
 exports[`'process' option should work with the "preprocessor" option: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
@@ -72,7 +72,7 @@ exports[`'process' option should work with the Async "preprocessor" Function opt
 
 exports[`'process' option should work with the Async "preprocessor" Function option #2: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"file:///<cwd>//src/runtime/getUrl.js\\";
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
 var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png.webp\\", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
