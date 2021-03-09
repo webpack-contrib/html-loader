@@ -1,6 +1,6 @@
 {
   "name": "html-loader",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Html loader module for webpack",
   "license": "MIT",
   "repository": "webpack-contrib/html-loader",
