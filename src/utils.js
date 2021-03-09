@@ -399,6 +399,7 @@ export function isUrlRequestable(url) {
 }
 
 const WINDOWS_PATH_SEPARATOR_REGEXP = /\\/g;
+const RELATIVE_PATH_REGEXP = /^\.\.?[/\\]/;
 
 const absoluteToRequest = (context, maybeAbsolutePath) => {
   if (maybeAbsolutePath[0] === '/') {
@@ -450,6 +451,10 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
       : resource + maybeAbsolutePath.slice(querySplitPos);
   }
 
+  if (!RELATIVE_PATH_REGEXP.test(maybeAbsolutePath)) {
+    return `./${maybeAbsolutePath.replace(WINDOWS_PATH_SEPARATOR_REGEXP, '/')}`;
+  }
+
   // not an absolute path
   return maybeAbsolutePath;
 };
@@ -470,7 +475,7 @@ export function normalizeUrl(url, isWindowsAbsolutePath) {
         .replace(/\\/g, '/');
 }
 
-export function requestify(request) {
+export function requestify(context, request) {
   const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
 
   if (isWindowsAbsolutePath || request[0] === '/') {
@@ -491,7 +496,7 @@ export function requestify(request) {
   }
 
   // every other url is threaded like a relative url
-  return `./${normalizeUrl(request)}`;
+  return contextify(context, normalizeUrl(request));
 }
 
 function isProductionMode(loaderContext) {

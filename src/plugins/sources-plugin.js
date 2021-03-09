@@ -164,7 +164,7 @@ export default (options) =>
         request = request.substring(0, indexHash);
       }
 
-      request = requestify(request);
+      request = requestify(options.context, request);
       const newUrl = prefix ? `${prefix}!${request}` : request;
 
       let importName = imports.get(newUrl);
