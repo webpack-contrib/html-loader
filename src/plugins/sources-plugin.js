@@ -142,6 +142,11 @@ export default (options) =>
       let normalizedUrl = value;
       let prefix = '';
 
+      if (!urlFilter(name, value, options.resourcePath)) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
       const queryParts = normalizedUrl.split('!');
 
       if (queryParts.length > 1) {
@@ -150,11 +155,6 @@ export default (options) =>
       }
 
       normalizedUrl = normalizeUrl(normalizedUrl);
-
-      if (!urlFilter(name, value, options.resourcePath)) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
 
       let hash;
       const indexHash = normalizedUrl.lastIndexOf('#');
