@@ -765,7 +765,15 @@ function webpackImportType(options) {
     ({ endOffset } = options.endTag);
   }
 
-  return [{ format: 'import', value: source.value, startOffset, endOffset }];
+  return [
+    {
+      format: 'import',
+      runtime: false,
+      value: source.value,
+      startOffset,
+      endOffset,
+    },
+  ];
 }
 
 const defaultSources = new Map([
@@ -1200,20 +1208,27 @@ export function getModuleCode(html, replacements) {
   let replacersCode = '';
 
   for (const item of replacements) {
-    const { importName, replacementName, isValueQuoted, hash } = item;
+    const { runtime, importName, replacementName, isValueQuoted, hash } = item;
 
-    const getUrlOptions = []
-      .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-      .concat(isValueQuoted ? [] : 'maybeNeedQuotes: true');
-    const preparedOptions =
-      getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
+    if (typeof runtime === 'undefined' || runtime === true) {
+      const getUrlOptions = []
+        .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
+        .concat(isValueQuoted ? [] : 'maybeNeedQuotes: true');
+      const preparedOptions =
+        getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
 
-    replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
+      replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
 
-    code = code.replace(
-      new RegExp(replacementName, 'g'),
-      () => `" + ${replacementName} + "`
-    );
+      code = code.replace(
+        new RegExp(replacementName, 'g'),
+        () => `" + ${replacementName} + "`
+      );
+    } else {
+      code = code.replace(
+        new RegExp(replacementName, 'g'),
+        () => `" + ${importName} + "`
+      );
+    }
   }
 
   return `// Module\n${replacersCode}var code = ${code};\n`;

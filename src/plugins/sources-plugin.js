@@ -134,6 +134,7 @@ export default (options) =>
         value,
         isValueQuoted,
         format,
+        runtime,
         startOffset,
         endOffset,
       } = source;
@@ -187,6 +188,7 @@ export default (options) =>
           importName,
           hash,
           isValueQuoted,
+          runtime,
         });
       }
 
