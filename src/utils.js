@@ -469,29 +469,27 @@ const MODULE_REQUEST_REGEXP = /^[^?]*~/;
 
 export function requestify(context, request) {
   const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
-
-  // eslint-disable-next-line no-param-reassign
-  request = isWindowsAbsolutePath
+  const newRequest = isWindowsAbsolutePath
     ? decodeURI(request).replace(/[\t\n\r]/g, '')
     : decodeURI(request)
         .replace(/[\t\n\r]/g, '')
         .replace(/\\/g, '/');
 
-  if (isWindowsAbsolutePath || request[0] === '/') {
-    return request;
+  if (isWindowsAbsolutePath || newRequest[0] === '/') {
+    return newRequest;
   }
 
-  if (/^file:/i.test(request)) {
-    return request;
+  if (/^file:/i.test(newRequest)) {
+    return newRequest;
   }
 
   // A `~` makes the url an module
-  if (MODULE_REQUEST_REGEXP.test(request)) {
-    return request.replace(MODULE_REQUEST_REGEXP, '');
+  if (MODULE_REQUEST_REGEXP.test(newRequest)) {
+    return newRequest.replace(MODULE_REQUEST_REGEXP, '');
   }
 
   // every other url is threaded like a relative url
-  return contextify(context, request);
+  return contextify(context, newRequest);
 }
 
 function isProductionMode(loaderContext) {
