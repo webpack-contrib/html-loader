@@ -173,7 +173,7 @@ export default (options) =>
         importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
         imports.set(newUrl, importName);
 
-        options.imports.push({ format, importName, source: newUrl });
+        options.imports.push({ format, importName, request: newUrl });
       }
 
       const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });

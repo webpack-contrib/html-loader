@@ -1186,19 +1186,21 @@ export function getImportCode(html, loaderContext, imports, options) {
     : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n`;
 
   for (const item of imports) {
-    const { importName, source, format } = item;
+    const { format, importName, request } = item;
 
     switch (format) {
       case 'import':
         code += options.esModule
-          ? `import ${importName} from ${JSON.stringify(source)};\n`
-          : `var ${importName} = require("${source}");\n`;
+          ? `import ${importName} from ${JSON.stringify(request)};\n`
+          : `var ${importName} = require(${JSON.stringify(request)});\n`;
         break;
       case 'url':
       default:
         code += options.esModule
-          ? `var ${importName} = new URL("${source}", import.meta.url);\n`
-          : `var ${importName} = require("${source}");\n`;
+          ? `var ${importName} = new URL(${JSON.stringify(
+              request
+            )}, import.meta.url);\n`
+          : `var ${importName} = require(${JSON.stringify(request)});\n`;
     }
   }
 
