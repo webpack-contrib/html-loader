@@ -485,10 +485,6 @@ export function requestify(context, request) {
     return request;
   }
 
-  if (/^\.\.?\//.test(request)) {
-    return request;
-  }
-
   // A `~` makes the url an module
   if (MODULE_REQUEST_REGEXP.test(request)) {
     return request.replace(MODULE_REQUEST_REGEXP, '');
