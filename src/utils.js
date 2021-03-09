@@ -398,14 +398,6 @@ export function isUrlRequestable(url) {
   return true;
 }
 
-export function normalizeUrl(url) {
-  return WINDOWS_ABS_PATH_REGEXP.test(url)
-    ? decodeURI(url).replace(/[\t\n\r]/g, '')
-    : decodeURI(url)
-        .replace(/[\t\n\r]/g, '')
-        .replace(/\\/g, '/');
-}
-
 const WINDOWS_PATH_SEPARATOR_REGEXP = /\\/g;
 
 const absoluteToRequest = (context, maybeAbsolutePath) => {
@@ -470,26 +462,36 @@ const contextify = (context, request) =>
 
 const MODULE_REQUEST_REGEXP = /^[^?]*~/;
 
+export function normalizeUrl(url, isWindowsAbsolutePath) {
+  return isWindowsAbsolutePath
+    ? decodeURI(url).replace(/[\t\n\r]/g, '')
+    : decodeURI(url)
+        .replace(/[\t\n\r]/g, '')
+        .replace(/\\/g, '/');
+}
+
 export function requestify(request) {
-  if (WINDOWS_ABS_PATH_REGEXP.test(request) || request[0] === '/') {
-    return request;
+  const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
+
+  if (isWindowsAbsolutePath || request[0] === '/') {
+    return normalizeUrl(request, isWindowsAbsolutePath);
   }
 
   if (/^file:/i.test(request)) {
-    return request;
+    return normalizeUrl(request);
   }
 
   if (/^\.\.?\//.test(request)) {
-    return request;
+    return normalizeUrl(request);
   }
 
   // A `~` makes the url an module
   if (MODULE_REQUEST_REGEXP.test(request)) {
-    return request.replace(MODULE_REQUEST_REGEXP, '');
+    return normalizeUrl(request.replace(MODULE_REQUEST_REGEXP, ''));
   }
 
   // every other url is threaded like a relative url
-  return `./${request}`;
+  return `./${normalizeUrl(request)}`;
 }
 
 function isProductionMode(loaderContext) {
