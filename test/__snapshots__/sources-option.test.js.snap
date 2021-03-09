@@ -1285,14 +1285,10 @@ exports[`'sources' option should handle "webpack-import" and \`webpack-partial\`
 exports[`'sources' option should handle "webpack-import" and \`webpack-partial\` tags: module 1`] = `
 "// Imports
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
-import ___HTML_LOADER_IMPORT_0___ from \\"./webpack-import-header.html\\";
-import ___HTML_LOADER_IMPORT_1___ from \\"./webpack-import-footer.html\\";
-import ___HTML_LOADER_IMPORT_2___ from \\"./webpack-import-content.html\\";
-var ___HTML_LOADER_IMPORT_3___ = new URL(\\"./image.png\\", import.meta.url);
-import ___HTML_LOADER_IMPORT_4___ from \\"./webpack-import-partial.html\\";
+var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
 // Module
-var ___HTML_LOADER_REPLACEMENT_3___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_3___);
-var code = \\"<div>\\\\n  <article>\\\\n    BeforeHeaderText\\" + ___HTML_LOADER_IMPORT_0___ + \\"AfterHeaderText\\\\n    <ol>\\\\n      <li>Grow a long, majestic beard.</li>\\\\n      <li>Wear a tall, pointed hat.</li>\\\\n      <li>Have I mentioned the beard?</li>\\\\n    </ol>\\\\n    BeforeFooterText\\" + ___HTML_LOADER_IMPORT_1___ + \\"AfterFooterText\\\\n    TextBeforeOpenDiv<div>TextAfterOpenDiv\\" + ___HTML_LOADER_IMPORT_2___ + \\"TextBeforeCloseDiv</div>TextAfterCloseDiv\\\\n  </article>\\\\n</div>\\\\n\\\\n<div>\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_3___ + \\"\\\\\\" alt=\\\\\\"test\\\\\\">\\\\n</div>\\\\n\\\\n<div>\\\\n  \\" + ___HTML_LOADER_IMPORT_2___ + \\"\\\\n  \\" + ___HTML_LOADER_IMPORT_2___ + \\"\\\\n</div>\\\\n\\\\n<div>\\\\n  \\" + ___HTML_LOADER_IMPORT_2___ + \\"\\\\n</div>\\\\n\\\\nBEFORE\\\\n\\" + ___HTML_LOADER_IMPORT_4___ + \\"\\\\nAFTER\\\\n\\";
+var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var code = \\"<div>\\\\n  <article>\\\\n    BeforeHeaderText<webpack-import src=\\\\\\"./webpack-import-header.html\\\\\\" />AfterHeaderText\\\\n    <ol>\\\\n      <li>Grow a long, majestic beard.</li>\\\\n      <li>Wear a tall, pointed hat.</li>\\\\n      <li>Have I mentioned the beard?</li>\\\\n    </ol>\\\\n    BeforeFooterText<webpack-import src=\\\\\\"./webpack-import-footer.html\\\\\\" />AfterFooterText\\\\n    TextBeforeOpenDiv<div>TextAfterOpenDiv<webpack-import src=\\\\\\"./webpack-import-content.html\\\\\\" />TextBeforeCloseDiv</div>TextAfterCloseDiv\\\\n  </article>\\\\n</div>\\\\n\\\\n<div>\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" alt=\\\\\\"test\\\\\\">\\\\n</div>\\\\n\\\\n<div>\\\\n  <webpack-import src=\\\\\\"./webpack-import-content.html\\\\\\" />\\\\n  <webpack-import   src   =   \\\\\\"./webpack-import-content.html\\\\\\"   />\\\\n</div>\\\\n\\\\n<div>\\\\n  <webpack-import src=\\\\\\"./webpack-import-content.html\\\\\\"></webpack-import>\\\\n</div>\\\\n\\\\nBEFORE\\\\n<webpack-import src=\\\\\\"./webpack-import-partial.html\\\\\\">\\\\n  <header partial=\\\\\\"header\\\\\\">Header</header>\\\\n  <div partial=\\\\\\"content\\\\\\">Header</div>\\\\n  <footer partial=\\\\\\"footer\\\\\\">Footer</footer>\\\\n  <custom partial=\\\\\\"custom\\\\\\">Custom</custom>\\\\n</webpack-import>\\\\nAFTER\\\\n\\";
 // Exports
 export default code;"
 `;
@@ -1300,18 +1296,14 @@ export default code;"
 exports[`'sources' option should handle "webpack-import" and \`webpack-partial\` tags: result 1`] = `
 "<div>
   <article>
-    BeforeHeaderText<header>
-  <h1>How to be a wizard</h1>
-</header>AfterHeaderText
+    BeforeHeaderText<webpack-import src=\\"./webpack-import-header.html\\" />AfterHeaderText
     <ol>
       <li>Grow a long, majestic beard.</li>
       <li>Wear a tall, pointed hat.</li>
       <li>Have I mentioned the beard?</li>
     </ol>
-    BeforeFooterText<footer>
-  <p>© 2018 Gandalf</p>
-</footer>AfterFooterText
-    TextBeforeOpenDiv<div>TextAfterOpenDiv<span>Text</span>TextBeforeCloseDiv</div>TextAfterCloseDiv
+    BeforeFooterText<webpack-import src=\\"./webpack-import-footer.html\\" />AfterFooterText
+    TextBeforeOpenDiv<div>TextAfterOpenDiv<webpack-import src=\\"./webpack-import-content.html\\" />TextBeforeCloseDiv</div>TextAfterCloseDiv
   </article>
 </div>
 
@@ -1320,31 +1312,21 @@ exports[`'sources' option should handle "webpack-import" and \`webpack-partial\`
 </div>
 
 <div>
-  <span>Text</span>
-  <span>Text</span>
+  <webpack-import src=\\"./webpack-import-content.html\\" />
+  <webpack-import   src   =   \\"./webpack-import-content.html\\"   />
 </div>
 
 <div>
-  <span>Text</span>
+  <webpack-import src=\\"./webpack-import-content.html\\"></webpack-import>
 </div>
 
 BEFORE
-<div>
-  <span>Example</span>
-  <div class=\\"header\\">
-    <webpack-partial name=\\"header\\"></webpack-partial>
-  </div>
-  <hr />
-  <div class=\\"content\\">
-    <webpack-partial name=\\"content\\"></webpack-partial>
-  </div>
-  <div class=\\"footer\\">
-    <webpack-partial name=\\"footer\\"></webpack-partial>
-  </div>
-  <div class=\\"custom\\">
-    <webpack-partial name=\\"custom\\" />
-  </div>
-</div>
+<webpack-import src=\\"./webpack-import-partial.html\\">
+  <header partial=\\"header\\">Header</header>
+  <div partial=\\"content\\">Header</div>
+  <footer partial=\\"footer\\">Footer</footer>
+  <custom partial=\\"custom\\">Custom</custom>
+</webpack-import>
 AFTER
 "
 `;

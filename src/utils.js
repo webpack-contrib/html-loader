@@ -801,43 +801,43 @@ function metaContentType(options) {
   return srcType(options);
 }
 
-function webpackImportType(options) {
-  let source;
-
-  try {
-    source = parseSrc(options.value);
-  } catch (error) {
-    throw new HtmlSourceError(
-      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-      options.attributeStartOffset,
-      options.attributeEndOffset,
-      options.html
-    );
-  }
-
-  source = c0ControlCodesExclude(source);
-
-  if (!isUrlRequestable(source.value)) {
-    return [];
-  }
-
-  const { startOffset } = options.startTag;
-  let { endOffset } = options.startTag;
-
-  if (options.endTag) {
-    ({ endOffset } = options.endTag);
-  }
-
-  return [
-    {
-      format: 'import',
-      runtime: false,
-      value: source.value,
-      startOffset,
-      endOffset,
-    },
-  ];
-}
+// function webpackImportType(options) {
+//   let source;
+//
+//   try {
+//     source = parseSrc(options.value);
+//   } catch (error) {
+//     throw new HtmlSourceError(
+//       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+//       options.attributeStartOffset,
+//       options.attributeEndOffset,
+//       options.html
+//     );
+//   }
+//
+//   source = c0ControlCodesExclude(source);
+//
+//   if (!isUrlRequestable(source.value)) {
+//     return [];
+//   }
+//
+//   const { startOffset } = options.startTag;
+//   let { endOffset } = options.startTag;
+//
+//   if (options.endTag) {
+//     ({ endOffset } = options.endTag);
+//   }
+//
+//   return [
+//     {
+//       format: 'import',
+//       runtime: false,
+//       value: source.value,
+//       startOffset,
+//       endOffset,
+//     },
+//   ];
+// }
 
 const defaultSources = new Map([
   [
@@ -1039,17 +1039,17 @@ const defaultSources = new Map([
       ],
     ]),
   ],
-  [
-    'webpack-import',
-    new Map([
-      [
-        'src',
-        {
-          type: webpackImportType,
-        },
-      ],
-    ]),
-  ],
+  // [
+  //   'webpack-import',
+  //   new Map([
+  //     [
+  //       'src',
+  //       {
+  //         type: webpackImportType,
+  //       },
+  //     ],
+  //   ]),
+  // ],
 ]);
 
 function normalizeSourcesList(sources) {
