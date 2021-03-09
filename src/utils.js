@@ -467,39 +467,35 @@ const contextify = (context, request) =>
 
 const MODULE_REQUEST_REGEXP = /^[^?]*~/;
 
-function normalizeUrl(url, isWindowsAbsolutePath) {
-  return isWindowsAbsolutePath
-    ? decodeURI(url).replace(/[\t\n\r]/g, '')
-    : decodeURI(url)
-        .replace(/[\t\n\r]/g, '')
-        .replace(/\\/g, '/');
-}
-
 export function requestify(context, request) {
-  // eslint-disable-next-line no-param-reassign
-  request = normalizeUrl(request);
-
   const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
 
+  // eslint-disable-next-line no-param-reassign
+  request = isWindowsAbsolutePath
+    ? decodeURI(request).replace(/[\t\n\r]/g, '')
+    : decodeURI(request)
+        .replace(/[\t\n\r]/g, '')
+        .replace(/\\/g, '/');
+
   if (isWindowsAbsolutePath || request[0] === '/') {
-    return normalizeUrl(request, isWindowsAbsolutePath);
+    return request;
   }
 
   if (/^file:/i.test(request)) {
-    return normalizeUrl(request);
+    return request;
   }
 
   if (/^\.\.?\//.test(request)) {
-    return normalizeUrl(request);
+    return request;
   }
 
   // A `~` makes the url an module
   if (MODULE_REQUEST_REGEXP.test(request)) {
-    return normalizeUrl(request.replace(MODULE_REQUEST_REGEXP, ''));
+    return request.replace(MODULE_REQUEST_REGEXP, '');
   }
 
   // every other url is threaded like a relative url
-  return contextify(context, normalizeUrl(request));
+  return contextify(context, request);
 }
 
 function isProductionMode(loaderContext) {
