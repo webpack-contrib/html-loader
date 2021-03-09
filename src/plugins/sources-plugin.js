@@ -139,7 +139,7 @@ export default (options) =>
         endOffset,
       } = source;
 
-      let normalizedUrl = value;
+      let request = value;
       let prefix = '';
 
       if (!urlFilter(name, value, options.resourcePath)) {
@@ -147,24 +147,24 @@ export default (options) =>
         continue;
       }
 
-      const queryParts = normalizedUrl.split('!');
+      const queryParts = request.split('!');
 
       if (queryParts.length > 1) {
-        normalizedUrl = queryParts.pop();
+        request = queryParts.pop();
         prefix = queryParts.join('!');
       }
 
-      normalizedUrl = normalizeUrl(normalizedUrl);
+      request = normalizeUrl(request);
 
       let hash;
-      const indexHash = normalizedUrl.lastIndexOf('#');
+      const indexHash = request.lastIndexOf('#');
 
       if (indexHash >= 0) {
-        hash = normalizedUrl.substring(indexHash);
-        normalizedUrl = normalizedUrl.substring(0, indexHash);
+        hash = request.substring(indexHash);
+        request = request.substring(0, indexHash);
       }
 
-      const request = requestify(normalizedUrl);
+      request = requestify(request);
       const newUrl = prefix ? `${prefix}!${request}` : request;
 
       let importName = imports.get(newUrl);
