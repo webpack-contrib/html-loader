@@ -137,21 +137,13 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
   });
 
-  it.skip('should handle the "include" tags', async () => {
-    const compiler = getCompiler('include.js', {
-      sources: {
-        list: [
-          {
-            tag: 'include',
-            attribute: 'src',
-            type: 'include',
-          },
-        ],
-      },
-    });
+  it('should handle "webpack-import" and `webpack-partial` tags', async () => {
+    const compiler = getCompiler('webpack-import.js');
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./include.html', stats)).toMatchSnapshot('module');
+    expect(getModuleSource('./webpack-import.html', stats)).toMatchSnapshot(
+      'module'
+    );
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');

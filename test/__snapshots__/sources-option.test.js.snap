@@ -1280,6 +1280,59 @@ exports[`'sources' option should handle "sources" tags: result 1`] = `
 
 exports[`'sources' option should handle "sources" tags: warnings 1`] = `Array []`;
 
+exports[`'sources' option should handle "webpack-import" and \`webpack-partial\` tags: errors 1`] = `Array []`;
+
+exports[`'sources' option should handle "webpack-import" and \`webpack-partial\` tags: module 1`] = `
+"// Imports
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from \\"../../src/runtime/getUrl.js\\";
+var ___HTML_LOADER_IMPORT_0___ = new URL(\\"./image.png\\", import.meta.url);
+// Module
+var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var code = \\"<div>\\\\n  <article>\\\\n    BeforeHeaderText<webpack-import src=\\\\\\"./webpack-import-header.html\\\\\\" />AfterHeaderText\\\\n    <ol>\\\\n      <li>Grow a long, majestic beard.</li>\\\\n      <li>Wear a tall, pointed hat.</li>\\\\n      <li>Have I mentioned the beard?</li>\\\\n    </ol>\\\\n    BeforeFooterText<webpack-import src=\\\\\\"./webpack-import-footer.html\\\\\\" />AfterFooterText\\\\n    TextBeforeOpenDiv<div>TextAfterOpenDiv<webpack-import src=\\\\\\"./webpack-import-content.html\\\\\\" />TextBeforeCloseDiv</div>TextAfterCloseDiv\\\\n  </article>\\\\n</div>\\\\n\\\\n<div>\\\\n  <img src=\\\\\\"\\" + ___HTML_LOADER_REPLACEMENT_0___ + \\"\\\\\\" alt=\\\\\\"test\\\\\\">\\\\n</div>\\\\n\\\\n<div>\\\\n  <webpack-import src=\\\\\\"./webpack-import-content.html\\\\\\" />\\\\n  <webpack-import   src   =   \\\\\\"./webpack-import-content.html\\\\\\"   />\\\\n</div>\\\\n\\\\n<div>\\\\n  <webpack-import src=\\\\\\"./webpack-import-content.html\\\\\\"></webpack-import>\\\\n</div>\\\\n\\\\nBEFORE\\\\n<webpack-import src=\\\\\\"./webpack-import-partial.html\\\\\\">\\\\n  <header partial=\\\\\\"header\\\\\\">Header</header>\\\\n  <div partial=\\\\\\"content\\\\\\">Header</div>\\\\n  <footer partial=\\\\\\"footer\\\\\\">Footer</footer>\\\\n  <custom partial=\\\\\\"custom\\\\\\">Custom</custom>\\\\n</webpack-import>\\\\nAFTER\\\\n\\";
+// Exports
+export default code;"
+`;
+
+exports[`'sources' option should handle "webpack-import" and \`webpack-partial\` tags: result 1`] = `
+"<div>
+  <article>
+    BeforeHeaderText<webpack-import src=\\"./webpack-import-header.html\\" />AfterHeaderText
+    <ol>
+      <li>Grow a long, majestic beard.</li>
+      <li>Wear a tall, pointed hat.</li>
+      <li>Have I mentioned the beard?</li>
+    </ol>
+    BeforeFooterText<webpack-import src=\\"./webpack-import-footer.html\\" />AfterFooterText
+    TextBeforeOpenDiv<div>TextAfterOpenDiv<webpack-import src=\\"./webpack-import-content.html\\" />TextBeforeCloseDiv</div>TextAfterCloseDiv
+  </article>
+</div>
+
+<div>
+  <img src=\\"replaced_file_protocol_/webpack/public/path/image.png\\" alt=\\"test\\">
+</div>
+
+<div>
+  <webpack-import src=\\"./webpack-import-content.html\\" />
+  <webpack-import   src   =   \\"./webpack-import-content.html\\"   />
+</div>
+
+<div>
+  <webpack-import src=\\"./webpack-import-content.html\\"></webpack-import>
+</div>
+
+BEFORE
+<webpack-import src=\\"./webpack-import-partial.html\\">
+  <header partial=\\"header\\">Header</header>
+  <div partial=\\"content\\">Header</div>
+  <footer partial=\\"footer\\">Footer</footer>
+  <custom partial=\\"custom\\">Custom</custom>
+</webpack-import>
+AFTER
+"
+`;
+
+exports[`'sources' option should handle "webpack-import" and \`webpack-partial\` tags: warnings 1`] = `Array []`;
+
 exports[`'sources' option should handle all src sources in all HTML tags except img tag (testing filter option): errors 1`] = `Array []`;
 
 exports[`'sources' option should handle all src sources in all HTML tags except img tag (testing filter option): module 1`] = `

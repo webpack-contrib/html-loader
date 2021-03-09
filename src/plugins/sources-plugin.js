@@ -3,7 +3,6 @@ import parse5 from 'parse5';
 import {
   traverse,
   getFilter,
-  normalizeUrl,
   requestify,
   webpackIgnoreCommentRegexp,
 } from '../utils';
@@ -77,9 +76,17 @@ export default (options) =>
           sourceCodeLocation.attrs[name].endOffset - (isValueQuoted ? 1 : 0);
         const optionsForTypeFn = {
           tag: tagName,
-          isSelfClosing: node.selfClosing,
-          tagStartOffset: sourceCodeLocation.startOffset,
-          tagEndOffset: sourceCodeLocation.endOffset,
+          startTag: {
+            startOffset: sourceCodeLocation.startTag.startOffset,
+            endOffset: sourceCodeLocation.startTag.endOffset,
+          },
+          endTag: sourceCodeLocation.endTag
+            ? {
+                startOffset: sourceCodeLocation.endTag.startOffset,
+                endOffset: sourceCodeLocation.endTag.endOffset,
+              }
+            : // eslint-disable-next-line no-undefined
+              undefined,
           attributes,
           attribute: name,
           attributePrefix: attribute.prefix,
@@ -121,19 +128,17 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, isValueQuoted, startOffset, endOffset } = source;
+      const {
+        name,
+        value,
+        isValueQuoted,
+        format,
+        runtime,
+        startOffset,
+        endOffset,
+      } = source;
 
-      let normalizedUrl = value;
-      let prefix = '';
-
-      const queryParts = normalizedUrl.split('!');
-
-      if (queryParts.length > 1) {
-        normalizedUrl = queryParts.pop();
-        prefix = queryParts.join('!');
-      }
-
-      normalizedUrl = normalizeUrl(normalizedUrl);
+      let request = value;
 
       if (!urlFilter(name, value, options.resourcePath)) {
         // eslint-disable-next-line no-continue
@@ -141,26 +146,25 @@ export default (options) =>
       }
 
       let hash;
-      const indexHash = normalizedUrl.lastIndexOf('#');
+      const indexHash = request.lastIndexOf('#');
 
       if (indexHash >= 0) {
-        hash = normalizedUrl.substring(indexHash);
-        normalizedUrl = normalizedUrl.substring(0, indexHash);
+        hash = request.substring(indexHash);
+        request = request.substring(0, indexHash);
       }
 
-      const request = requestify(normalizedUrl);
-      const newUrl = prefix ? `${prefix}!${request}` : request;
-      const importKey = newUrl;
-      let importName = imports.get(importKey);
+      request = requestify(options.context, request);
+
+      let importName = imports.get(request);
 
       if (!importName) {
         importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
-        imports.set(importKey, importName);
+        imports.set(request, importName);
 
-        options.imports.push({ importName, source: newUrl });
+        options.imports.push({ format, importName, request });
       }
 
-      const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });
+      const replacementKey = JSON.stringify({ request, isValueQuoted, hash });
       let replacementName = replacements.get(replacementKey);
 
       if (!replacementName) {
@@ -172,6 +176,7 @@ export default (options) =>
           importName,
           hash,
           isValueQuoted,
+          runtime,
         });
       }
 
