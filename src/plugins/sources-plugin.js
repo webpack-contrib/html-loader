@@ -3,7 +3,6 @@ import parse5 from 'parse5';
 import {
   traverse,
   getFilter,
-  normalizeUrl,
   requestify,
   webpackIgnoreCommentRegexp,
 } from '../utils';
@@ -140,21 +139,11 @@ export default (options) =>
       } = source;
 
       let request = value;
-      let prefix = '';
 
       if (!urlFilter(name, value, options.resourcePath)) {
         // eslint-disable-next-line no-continue
         continue;
       }
-
-      const queryParts = request.split('!');
-
-      if (queryParts.length > 1) {
-        request = queryParts.pop();
-        prefix = queryParts.join('!');
-      }
-
-      request = normalizeUrl(request);
 
       let hash;
       const indexHash = request.lastIndexOf('#');
@@ -165,7 +154,6 @@ export default (options) =>
       }
 
       request = requestify(options.context, request);
-      request = prefix ? `${prefix}!${request}` : request;
 
       let importName = imports.get(request);
 

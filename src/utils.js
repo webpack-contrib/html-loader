@@ -467,7 +467,7 @@ const contextify = (context, request) =>
 
 const MODULE_REQUEST_REGEXP = /^[^?]*~/;
 
-export function normalizeUrl(url, isWindowsAbsolutePath) {
+function normalizeUrl(url, isWindowsAbsolutePath) {
   return isWindowsAbsolutePath
     ? decodeURI(url).replace(/[\t\n\r]/g, '')
     : decodeURI(url)
@@ -476,6 +476,9 @@ export function normalizeUrl(url, isWindowsAbsolutePath) {
 }
 
 export function requestify(context, request) {
+  // eslint-disable-next-line no-param-reassign
+  request = normalizeUrl(request);
+
   const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
 
   if (isWindowsAbsolutePath || request[0] === '/') {
