@@ -1,0 +1,34 @@
+<div>
+  <article>
+    BeforeHeaderText<webpack-import src="./webpack-import-header.html" />AfterHeaderText
+    <ol>
+      <li>Grow a long, majestic beard.</li>
+      <li>Wear a tall, pointed hat.</li>
+      <li>Have I mentioned the beard?</li>
+    </ol>
+    BeforeFooterText<webpack-import src="./webpack-import-footer.html" />AfterFooterText
+    TextBeforeOpenDiv<div>TextAfterOpenDiv<webpack-import src="./webpack-import-content.html" />TextBeforeCloseDiv</div>TextAfterCloseDiv
+  </article>
+</div>
+
+<div>
+  <img src="./image.png" alt="test">
+</div>
+
+<div>
+  <webpack-import src="./webpack-import-content.html" />
+  <webpack-import   src   =   "./webpack-import-content.html"   />
+</div>
+
+<div>
+  <webpack-import src="./webpack-import-content.html"></webpack-import>
+</div>
+
+BEFORE
+<webpack-import src="./webpack-import-partial.html">
+  <header partial="header">Header</header>
+  <div partial="content">Header</div>
+  <footer partial="footer">Footer</footer>
+  <custom partial="custom">Custom</custom>
+</webpack-import>
+AFTER

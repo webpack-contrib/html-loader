@@ -738,6 +738,36 @@ function metaContentType(options) {
   return srcType(options);
 }
 
+function webpackImportType(options) {
+  let source;
+
+  try {
+    source = parseSrc(options.value);
+  } catch (error) {
+    throw new HtmlSourceError(
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
+      options.html
+    );
+  }
+
+  source = c0ControlCodesExclude(source);
+
+  if (!isUrlRequestable(source.value)) {
+    return [];
+  }
+
+  const { startOffset } = options.startTag;
+  let { endOffset } = options.startTag;
+
+  if (options.endTag) {
+    ({ endOffset } = options.endTag);
+  }
+
+  return [{ format: 'import', value: source.value, startOffset, endOffset }];
+}
+
 const defaultSources = new Map([
   [
     'audio',
@@ -938,6 +968,17 @@ const defaultSources = new Map([
       ],
     ]),
   ],
+  [
+    'webpack-import',
+    new Map([
+      [
+        'src',
+        {
+          type: webpackImportType,
+        },
+      ],
+    ]),
+  ],
 ]);
 
 function normalizeSourcesList(sources) {
@@ -1130,11 +1171,20 @@ export function getImportCode(html, loaderContext, imports, options) {
     : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n`;
 
   for (const item of imports) {
-    const { importName, source } = item;
+    const { importName, source, format } = item;
 
-    code += options.esModule
-      ? `var ${importName} = new URL("${source}", import.meta.url);\n`
-      : `var ${importName} = require("${source}");\n`;
+    switch (format) {
+      case 'import':
+        code += options.esModule
+          ? `import ${importName} from ${JSON.stringify(source)};\n`
+          : `var ${importName} = require("${source}");\n`;
+        break;
+      case 'url':
+      default:
+        code += options.esModule
+          ? `var ${importName} = new URL("${source}", import.meta.url);\n`
+          : `var ${importName} = require("${source}");\n`;
+    }
   }
 
   return `// Imports\n${code}`;

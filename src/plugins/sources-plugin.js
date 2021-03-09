@@ -77,9 +77,17 @@ export default (options) =>
           sourceCodeLocation.attrs[name].endOffset - (isValueQuoted ? 1 : 0);
         const optionsForTypeFn = {
           tag: tagName,
-          isSelfClosing: node.selfClosing,
-          tagStartOffset: sourceCodeLocation.startOffset,
-          tagEndOffset: sourceCodeLocation.endOffset,
+          startTag: {
+            startOffset: sourceCodeLocation.startTag.startOffset,
+            endOffset: sourceCodeLocation.startTag.endOffset,
+          },
+          endTag: sourceCodeLocation.endTag
+            ? {
+                startOffset: sourceCodeLocation.endTag.startOffset,
+                endOffset: sourceCodeLocation.endTag.endOffset,
+              }
+            : // eslint-disable-next-line no-undefined
+              undefined,
           attributes,
           attribute: name,
           attributePrefix: attribute.prefix,
@@ -121,7 +129,14 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, isValueQuoted, startOffset, endOffset } = source;
+      const {
+        name,
+        value,
+        isValueQuoted,
+        format,
+        startOffset,
+        endOffset,
+      } = source;
 
       let normalizedUrl = value;
       let prefix = '';
@@ -150,14 +165,14 @@ export default (options) =>
 
       const request = requestify(normalizedUrl);
       const newUrl = prefix ? `${prefix}!${request}` : request;
-      const importKey = newUrl;
-      let importName = imports.get(importKey);
+
+      let importName = imports.get(newUrl);
 
       if (!importName) {
         importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
-        imports.set(importKey, importName);
+        imports.set(newUrl, importName);
 
-        options.imports.push({ importName, source: newUrl });
+        options.imports.push({ format, importName, source: newUrl });
       }
 
       const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });
