@@ -165,18 +165,18 @@ export default (options) =>
       }
 
       request = requestify(options.context, request);
-      const newUrl = prefix ? `${prefix}!${request}` : request;
+      request = prefix ? `${prefix}!${request}` : request;
 
-      let importName = imports.get(newUrl);
+      let importName = imports.get(request);
 
       if (!importName) {
         importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
-        imports.set(newUrl, importName);
+        imports.set(request, importName);
 
-        options.imports.push({ format, importName, request: newUrl });
+        options.imports.push({ format, importName, request });
       }
 
-      const replacementKey = JSON.stringify({ newUrl, isValueQuoted, hash });
+      const replacementKey = JSON.stringify({ request, isValueQuoted, hash });
       let replacementName = replacements.get(replacementKey);
 
       if (!replacementName) {
