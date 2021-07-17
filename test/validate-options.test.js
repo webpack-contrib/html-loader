@@ -129,6 +129,14 @@ describe('validate options', () => {
       success: [true, false],
       failure: ['true'],
     },
+    minimize: {
+      success: [true, false, {}],
+      failure: ['true'],
+    },
+    preprocessor: {
+      success: [() => []],
+      failure: ['true'],
+    },
     unknown: {
       success: [],
       failure: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],
