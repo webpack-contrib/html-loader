@@ -41,7 +41,9 @@
   },
   "properties": {
     "preprocessor": {
-      "instanceof": "Function"
+      "instanceof": "Function",
+      "description": "Allows pre-processing of content before handling.",
+      "link": "https://github.com/webpack-contrib/html-loader#preprocessor"
     },
     "sources": {
       "anyOf": [
@@ -58,13 +60,19 @@
           },
           "additionalProperties": false
         }
-      ]
+      ],
+      "description": "By default every loadable attributes (for example - <img src='image.png'>) is imported (const img = require('./image.png'). You may need to specify loaders for images in your configuration.",
+      "link": "https://github.com/webpack-contrib/html-loader#sources"
     },
     "minimize": {
-      "anyOf": [{ "type": "boolean" }, { "type": "object" }]
+      "anyOf": [{ "type": "boolean" }, { "type": "object" }],
+      "description": "Tell html-loader to minimize HTML.",
+      "link": "https://github.com/webpack-contrib/html-loader#minimize"
     },
     "esModule": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Enable or disable ES modules syntax.",
+      "link": "https://github.com/webpack-contrib/html-loader#esmodule"
     }
   },
   "additionalProperties": false
