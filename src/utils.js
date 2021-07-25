@@ -1,19 +1,19 @@
-import path from 'path';
+import path from "path";
 
-import HtmlSourceError from './HtmlSourceError';
+import HtmlSourceError from "./HtmlSourceError";
 
 function isASCIIWhitespace(character) {
   return (
     // Horizontal tab
-    character === '\u0009' ||
+    character === "\u0009" ||
     // New line
-    character === '\u000A' ||
+    character === "\u000A" ||
     // Form feed
-    character === '\u000C' ||
+    character === "\u000C" ||
     // Carriage return
-    character === '\u000D' ||
+    character === "\u000D" ||
     // Space
-    character === '\u0020'
+    character === "\u0020"
   );
 }
 
@@ -75,7 +75,7 @@ export function parseSrcset(input) {
     // 5. If position is past the end of input, return candidates and abort these steps.
     if (position >= inputLength) {
       if (candidates.length === 0) {
-        throw new Error('Must contain one or more image candidate strings');
+        throw new Error("Must contain one or more image candidate strings");
       }
 
       // (we're done, this is the sole return path)
@@ -93,8 +93,8 @@ export function parseSrcset(input) {
     // 8. If url ends with a U+002C COMMA character (,), follow these substeps:
     //		(1). Remove all trailing U+002C COMMA characters from url. If this removed
     //         more than one character, that is a parse error.
-    if (url.slice(-1) === ',') {
-      url = url.replace(regexTrailingCommas, '');
+    if (url.slice(-1) === ",") {
+      url = url.replace(regexTrailingCommas, "");
 
       // (Jump ahead to step 9 to skip tokenization and just push the candidate).
       parseDescriptors();
@@ -116,10 +116,10 @@ export function parseSrcset(input) {
     collectCharacters(regexLeadingSpaces);
 
     // 8.2. Let current descriptor be the empty string.
-    currentDescriptor = '';
+    currentDescriptor = "";
 
     // 8.3. Let state be in descriptor.
-    state = 'in descriptor';
+    state = "in descriptor";
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -131,7 +131,7 @@ export function parseSrcset(input) {
       //  that position is past the end of input.
 
       // In descriptor
-      if (state === 'in descriptor') {
+      if (state === "in descriptor") {
         // Do the following, depending on the value of c:
 
         // Space character
@@ -141,15 +141,15 @@ export function parseSrcset(input) {
         if (isASCIIWhitespace(c)) {
           if (currentDescriptor) {
             descriptors.push(currentDescriptor);
-            currentDescriptor = '';
-            state = 'after descriptor';
+            currentDescriptor = "";
+            state = "after descriptor";
           }
         }
         // U+002C COMMA (,)
         // Advance position to the next character in input. If current descriptor
         // is not empty, append current descriptor to descriptors. Jump to the step
         // labeled descriptor parser.
-        else if (c === ',') {
+        else if (c === ",") {
           position += 1;
 
           if (currentDescriptor) {
@@ -162,14 +162,14 @@ export function parseSrcset(input) {
         }
         // U+0028 LEFT PARENTHESIS (()
         // Append c to current descriptor. Set state to in parens.
-        else if (c === '\u0028') {
+        else if (c === "\u0028") {
           currentDescriptor += c;
-          state = 'in parens';
+          state = "in parens";
         }
         // EOF
         // If current descriptor is not empty, append current descriptor to
         // descriptors. Jump to the step labeled descriptor parser.
-        else if (c === '') {
+        else if (c === "") {
           if (currentDescriptor) {
             descriptors.push(currentDescriptor);
           }
@@ -185,17 +185,17 @@ export function parseSrcset(input) {
         }
       }
       // In parens
-      else if (state === 'in parens') {
+      else if (state === "in parens") {
         // U+0029 RIGHT PARENTHESIS ())
         // Append c to current descriptor. Set state to in descriptor.
-        if (c === ')') {
+        if (c === ")") {
           currentDescriptor += c;
-          state = 'in descriptor';
+          state = "in descriptor";
         }
         // EOF
         // Append current descriptor to descriptors. Jump to the step labeled
         // descriptor parser.
-        else if (c === '') {
+        else if (c === "") {
           descriptors.push(currentDescriptor);
           parseDescriptors();
           return;
@@ -207,20 +207,20 @@ export function parseSrcset(input) {
         }
       }
       // After descriptor
-      else if (state === 'after descriptor') {
+      else if (state === "after descriptor") {
         // Do the following, depending on the value of c:
         if (isASCIIWhitespace(c)) {
           // Space character: Stay in this state.
         }
         // EOF: Jump to the step labeled descriptor parser.
-        else if (c === '') {
+        else if (c === "") {
           parseDescriptors();
           return;
         }
         // Anything else
         // Set state to in descriptor. Set position to the previous character in input.
         else {
-          state = 'in descriptor';
+          state = "in descriptor";
           position -= 1;
         }
       }
@@ -265,7 +265,7 @@ export function parseSrcset(input) {
 
       // If the descriptor consists of a valid non-negative integer followed by
       // a U+0077 LATIN SMALL LETTER W character
-      if (regexNonNegativeInteger.test(value) && lastChar === 'w') {
+      if (regexNonNegativeInteger.test(value) && lastChar === "w") {
         // If width and density are not both absent, then let error be yes.
         if (w || d) {
           pError = true;
@@ -282,7 +282,7 @@ export function parseSrcset(input) {
       }
       // If the descriptor consists of a valid floating-point number followed by
       // a U+0078 LATIN SMALL LETTER X character
-      else if (regexFloatingPoint.test(value) && lastChar === 'x') {
+      else if (regexFloatingPoint.test(value) && lastChar === "x") {
         // If width, density and future-compat-h are not all absent, then let error
         // be yes.
         if (w || d || h) {
@@ -300,7 +300,7 @@ export function parseSrcset(input) {
       }
       // If the descriptor consists of a valid non-negative integer followed by
       // a U+0068 LATIN SMALL LETTER H character
-      else if (regexNonNegativeInteger.test(value) && lastChar === 'h') {
+      else if (regexNonNegativeInteger.test(value) && lastChar === "h") {
         // If height and density are not both absent, then let error be yes.
         if (h || d) {
           pError = true;
@@ -350,7 +350,7 @@ export function parseSrcset(input) {
 
 export function parseSrc(input) {
   if (!input) {
-    throw new Error('Must be non-empty');
+    throw new Error("Must be non-empty");
   }
 
   let startOffset = 0;
@@ -366,7 +366,7 @@ export function parseSrc(input) {
   }
 
   if (!value) {
-    throw new Error('Must be non-empty');
+    throw new Error("Must be non-empty");
   }
 
   return { value, startOffset };
@@ -402,17 +402,17 @@ const WINDOWS_PATH_SEPARATOR_REGEXP = /\\/g;
 const RELATIVE_PATH_REGEXP = /^\.\.?[/\\]/;
 
 const absoluteToRequest = (context, maybeAbsolutePath) => {
-  if (maybeAbsolutePath[0] === '/') {
+  if (maybeAbsolutePath[0] === "/") {
     if (
       maybeAbsolutePath.length > 1 &&
-      maybeAbsolutePath[maybeAbsolutePath.length - 1] === '/'
+      maybeAbsolutePath[maybeAbsolutePath.length - 1] === "/"
     ) {
       // this 'path' is actually a regexp generated by dynamic requires.
       // Don't treat it as an absolute path.
       return maybeAbsolutePath;
     }
 
-    const querySplitPos = maybeAbsolutePath.indexOf('?');
+    const querySplitPos = maybeAbsolutePath.indexOf("?");
 
     let resource =
       querySplitPos === -1
@@ -420,7 +420,7 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
         : maybeAbsolutePath.slice(0, querySplitPos);
     resource = path.posix.relative(context, resource);
 
-    if (!resource.startsWith('../')) {
+    if (!resource.startsWith("../")) {
       resource = `./${resource}`;
     }
 
@@ -430,7 +430,7 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
   }
 
   if (WINDOWS_ABS_PATH_REGEXP.test(maybeAbsolutePath)) {
-    const querySplitPos = maybeAbsolutePath.indexOf('?');
+    const querySplitPos = maybeAbsolutePath.indexOf("?");
     let resource =
       querySplitPos === -1
         ? maybeAbsolutePath
@@ -439,9 +439,9 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
     resource = path.win32.relative(context, resource);
 
     if (!WINDOWS_ABS_PATH_REGEXP.test(resource)) {
-      resource = resource.replace(WINDOWS_PATH_SEPARATOR_REGEXP, '/');
+      resource = resource.replace(WINDOWS_PATH_SEPARATOR_REGEXP, "/");
 
-      if (!resource.startsWith('../')) {
+      if (!resource.startsWith("../")) {
         resource = `./${resource}`;
       }
     }
@@ -452,7 +452,7 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
   }
 
   if (!RELATIVE_PATH_REGEXP.test(maybeAbsolutePath)) {
-    return `./${maybeAbsolutePath.replace(WINDOWS_PATH_SEPARATOR_REGEXP, '/')}`;
+    return `./${maybeAbsolutePath.replace(WINDOWS_PATH_SEPARATOR_REGEXP, "/")}`;
   }
 
   // not an absolute path
@@ -461,21 +461,21 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
 
 const contextify = (context, request) =>
   request
-    .split('!')
+    .split("!")
     .map((r) => absoluteToRequest(context, r))
-    .join('!');
+    .join("!");
 
 const MODULE_REQUEST_REGEXP = /^[^?]*~/;
 
 export function requestify(context, request) {
   const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
   const newRequest = isWindowsAbsolutePath
-    ? decodeURI(request).replace(/[\t\n\r]/g, '')
+    ? decodeURI(request).replace(/[\t\n\r]/g, "")
     : decodeURI(request)
-        .replace(/[\t\n\r]/g, '')
-        .replace(/\\/g, '/');
+        .replace(/[\t\n\r]/g, "")
+        .replace(/\\/g, "/");
 
-  if (isWindowsAbsolutePath || newRequest[0] === '/') {
+  if (isWindowsAbsolutePath || newRequest[0] === "/") {
     return newRequest;
   }
 
@@ -485,7 +485,7 @@ export function requestify(context, request) {
 
   // A `~` makes the url an module
   if (MODULE_REQUEST_REGEXP.test(newRequest)) {
-    return newRequest.replace(MODULE_REQUEST_REGEXP, '');
+    return newRequest.replace(MODULE_REQUEST_REGEXP, "");
   }
 
   // every other url is threaded like a relative url
@@ -493,7 +493,7 @@ export function requestify(context, request) {
 }
 
 function isProductionMode(loaderContext) {
-  return loaderContext.mode === 'production' || !loaderContext.mode;
+  return loaderContext.mode === "production" || !loaderContext.mode;
 }
 
 const defaultMinimizerOptions = {
@@ -516,11 +516,11 @@ const defaultMinimizerOptions = {
 };
 
 function getMinimizeOption(rawOptions, loaderContext) {
-  if (typeof rawOptions.minimize === 'undefined') {
+  if (typeof rawOptions.minimize === "undefined") {
     return isProductionMode(loaderContext) ? defaultMinimizerOptions : false;
   }
 
-  if (typeof rawOptions.minimize === 'boolean') {
+  if (typeof rawOptions.minimize === "boolean") {
     return rawOptions.minimize === true ? defaultMinimizerOptions : false;
   }
 
@@ -530,11 +530,11 @@ function getMinimizeOption(rawOptions, loaderContext) {
 function getAttributeValue(attributes, name) {
   const [result] = attributes.filter((i) => i.name.toLowerCase() === name);
 
-  return typeof result === 'undefined' ? result : result.value;
+  return typeof result === "undefined" ? result : result.value;
 }
 
 function scriptSrcFilter(tag, attribute, attributes) {
-  let type = getAttributeValue(attributes, 'type');
+  let type = getAttributeValue(attributes, "type");
 
   if (!type) {
     return true;
@@ -547,9 +547,9 @@ function scriptSrcFilter(tag, attribute, attributes) {
   }
 
   if (
-    type !== 'module' &&
-    type !== 'text/javascript' &&
-    type !== 'application/javascript'
+    type !== "module" &&
+    type !== "text/javascript" &&
+    type !== "application/javascript"
   ) {
     return false;
   }
@@ -558,7 +558,7 @@ function scriptSrcFilter(tag, attribute, attributes) {
 }
 
 function linkHrefFilter(tag, attribute, attributes) {
-  let rel = getAttributeValue(attributes, 'rel');
+  let rel = getAttributeValue(attributes, "rel");
 
   if (!rel) {
     return false;
@@ -572,17 +572,17 @@ function linkHrefFilter(tag, attribute, attributes) {
 
   rel = rel.toLowerCase();
 
-  const usedRels = rel.split(' ').filter((value) => value);
+  const usedRels = rel.split(" ").filter((value) => value);
   const allowedRels = [
-    'stylesheet',
-    'icon',
-    'mask-icon',
-    'apple-touch-icon',
-    'apple-touch-icon-precomposed',
-    'apple-touch-startup-image',
-    'manifest',
-    'prefetch',
-    'preload',
+    "stylesheet",
+    "icon",
+    "mask-icon",
+    "apple-touch-icon",
+    "apple-touch-icon-precomposed",
+    "apple-touch-startup-image",
+    "manifest",
+    "prefetch",
+    "preload",
   ];
 
   return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
@@ -590,51 +590,51 @@ function linkHrefFilter(tag, attribute, attributes) {
 
 const META = new Map([
   [
-    'name',
+    "name",
     new Set([
       // msapplication-TileImage
-      'msapplication-tileimage',
-      'msapplication-square70x70logo',
-      'msapplication-square150x150logo',
-      'msapplication-wide310x150logo',
-      'msapplication-square310x310logo',
-      'msapplication-config',
-      'msapplication-task',
-      'twitter:image',
+      "msapplication-tileimage",
+      "msapplication-square70x70logo",
+      "msapplication-square150x150logo",
+      "msapplication-wide310x150logo",
+      "msapplication-square310x310logo",
+      "msapplication-config",
+      "msapplication-task",
+      "twitter:image",
     ]),
   ],
   [
-    'property',
+    "property",
     new Set([
-      'og:image',
-      'og:image:url',
-      'og:image:secure_url',
-      'og:audio',
-      'og:audio:secure_url',
-      'og:video',
-      'og:video:secure_url',
-      'vk:image',
+      "og:image",
+      "og:image:url",
+      "og:image:secure_url",
+      "og:audio",
+      "og:audio:secure_url",
+      "og:video",
+      "og:video:secure_url",
+      "vk:image",
     ]),
   ],
   [
-    'itemprop',
+    "itemprop",
     new Set([
-      'image',
-      'logo',
-      'screenshot',
-      'thumbnailurl',
-      'contenturl',
-      'downloadurl',
-      'duringmedia',
-      'embedurl',
-      'installurl',
-      'layoutimage',
+      "image",
+      "logo",
+      "screenshot",
+      "thumbnailurl",
+      "contenturl",
+      "downloadurl",
+      "duringmedia",
+      "embedurl",
+      "installurl",
+      "layoutimage",
     ]),
   ],
 ]);
 
 function linkItempropFilter(tag, attribute, attributes) {
-  let name = getAttributeValue(attributes, 'itemprop');
+  let name = getAttributeValue(attributes, "itemprop");
 
   if (name) {
     name = name.trim();
@@ -645,7 +645,7 @@ function linkItempropFilter(tag, attribute, attributes) {
 
     name = name.toLowerCase();
 
-    return META.get('itemprop').has(name);
+    return META.get("itemprop").has(name);
   }
 
   return false;
@@ -746,8 +746,8 @@ export function srcsetType(options) {
 function metaContentType(options) {
   const isMsapplicationTask = options.attributes.find(
     (i) =>
-      i.name.toLowerCase() === 'name' &&
-      i.value.toLowerCase() === 'msapplication-task'
+      i.name.toLowerCase() === "name" &&
+      i.value.toLowerCase() === "msapplication-task"
   );
 
   if (isMsapplicationTask) {
@@ -755,13 +755,13 @@ function metaContentType(options) {
     let endOffset = options.valueStartOffset;
     let value;
 
-    const parts = options.value.split(';');
+    const parts = options.value.split(";");
 
     for (const [index, part] of parts.entries()) {
       const isLastIteration = index === parts.length - 1;
 
       if (/^icon-uri/i.test(part.trim())) {
-        const [name, src] = part.split('=');
+        const [name, src] = part.split("=");
 
         startOffset += name.length + 1;
 
@@ -841,10 +841,10 @@ function metaContentType(options) {
 
 const defaultSources = new Map([
   [
-    'audio',
+    "audio",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
@@ -852,10 +852,10 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'embed',
+    "embed",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
@@ -863,16 +863,16 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'img',
+    "img",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
       ],
       [
-        'srcset',
+        "srcset",
         {
           type: srcsetType,
         },
@@ -880,10 +880,10 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'input',
+    "input",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
@@ -891,17 +891,17 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'link',
+    "link",
     new Map([
       [
-        'href',
+        "href",
         {
           type: srcType,
           filter: linkUnionFilter,
         },
       ],
       [
-        'imagesrcset',
+        "imagesrcset",
         {
           type: srcsetType,
           filter: linkHrefFilter,
@@ -910,10 +910,10 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'meta',
+    "meta",
     new Map([
       [
-        'content',
+        "content",
         {
           type: metaContentType,
           filter: metaContentFilter,
@@ -922,10 +922,10 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'object',
+    "object",
     new Map([
       [
-        'data',
+        "data",
         {
           type: srcType,
         },
@@ -933,10 +933,10 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'script',
+    "script",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
           filter: scriptSrcFilter,
@@ -944,14 +944,14 @@ const defaultSources = new Map([
       ],
       // Using href with <script> is described here: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script
       [
-        'href',
+        "href",
         {
           type: srcType,
           filter: scriptSrcFilter,
         },
       ],
       [
-        'xlink:href',
+        "xlink:href",
         {
           type: srcType,
           filter: scriptSrcFilter,
@@ -960,16 +960,16 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'source',
+    "source",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
       ],
       [
-        'srcset',
+        "srcset",
         {
           type: srcsetType,
         },
@@ -977,10 +977,10 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'track',
+    "track",
     new Map([
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
@@ -988,16 +988,16 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'video',
+    "video",
     new Map([
       [
-        'poster',
+        "poster",
         {
           type: srcType,
         },
       ],
       [
-        'src',
+        "src",
         {
           type: srcType,
         },
@@ -1006,16 +1006,16 @@ const defaultSources = new Map([
   ],
   // SVG
   [
-    'image',
+    "image",
     new Map([
       [
-        'xlink:href',
+        "xlink:href",
         {
           type: srcType,
         },
       ],
       [
-        'href',
+        "href",
         {
           type: srcType,
         },
@@ -1023,16 +1023,16 @@ const defaultSources = new Map([
     ]),
   ],
   [
-    'use',
+    "use",
     new Map([
       [
-        'xlink:href',
+        "xlink:href",
         {
           type: srcType,
         },
       ],
       [
-        'href',
+        "href",
         {
           type: srcType,
         },
@@ -1053,14 +1053,14 @@ const defaultSources = new Map([
 ]);
 
 function normalizeSourcesList(sources) {
-  if (typeof sources === 'undefined') {
+  if (typeof sources === "undefined") {
     return defaultSources;
   }
 
   const result = new Map();
 
   for (const source of sources) {
-    if (source === '...') {
+    if (source === "...") {
       for (const [tag, attributes] of defaultSources.entries()) {
         let newAttributes;
 
@@ -1079,7 +1079,7 @@ function normalizeSourcesList(sources) {
       continue;
     }
 
-    let { tag = '*', attribute = '*' } = source;
+    let { tag = "*", attribute = "*" } = source;
 
     tag = tag.toLowerCase();
     attribute = attribute.toLowerCase();
@@ -1092,10 +1092,10 @@ function normalizeSourcesList(sources) {
 
     // eslint-disable-next-line default-case
     switch (source.type) {
-      case 'src':
+      case "src":
         typeFn = srcType;
         break;
-      case 'srcset':
+      case "srcset":
         typeFn = srcsetType;
         break;
     }
@@ -1110,11 +1110,11 @@ function normalizeSourcesList(sources) {
 }
 
 function getSourcesOption(rawOptions) {
-  if (typeof rawOptions.sources === 'undefined') {
+  if (typeof rawOptions.sources === "undefined") {
     return { list: normalizeSourcesList() };
   }
 
-  if (typeof rawOptions.sources === 'boolean') {
+  if (typeof rawOptions.sources === "boolean") {
     return rawOptions.sources === true
       ? { list: normalizeSourcesList() }
       : false;
@@ -1131,7 +1131,7 @@ export function normalizeOptions(rawOptions, loaderContext) {
     sources: getSourcesOption(rawOptions),
     minimize: getMinimizeOption(rawOptions, loaderContext),
     esModule:
-      typeof rawOptions.esModule === 'undefined' ? true : rawOptions.esModule,
+      typeof rawOptions.esModule === "undefined" ? true : rawOptions.esModule,
   };
 }
 
@@ -1154,7 +1154,7 @@ export function pluginRunner(plugins) {
 
 export function getFilter(filter) {
   return (attribute, value, resourcePath) => {
-    if (typeof filter === 'function') {
+    if (typeof filter === "function") {
       return filter(attribute, value, resourcePath);
     }
 
@@ -1162,16 +1162,16 @@ export function getFilter(filter) {
   };
 }
 
-const GET_SOURCE_FROM_IMPORT_NAME = '___HTML_LOADER_GET_SOURCE_FROM_IMPORT___';
+const GET_SOURCE_FROM_IMPORT_NAME = "___HTML_LOADER_GET_SOURCE_FROM_IMPORT___";
 
 export function getImportCode(html, loaderContext, imports, options) {
   if (imports.length === 0) {
-    return '';
+    return "";
   }
 
   const fileURLToHelper = contextify(
     loaderContext.context,
-    require.resolve('./runtime/getUrl.js')
+    require.resolve("./runtime/getUrl.js")
   );
 
   let code = options.esModule
@@ -1182,12 +1182,12 @@ export function getImportCode(html, loaderContext, imports, options) {
     const { format, importName, request } = item;
 
     switch (format) {
-      case 'import':
+      case "import":
         code += options.esModule
           ? `import ${importName} from ${JSON.stringify(request)};\n`
           : `var ${importName} = require(${JSON.stringify(request)});\n`;
         break;
-      case 'url':
+      case "url":
       default:
         code += options.esModule
           ? `var ${importName} = new URL(${JSON.stringify(
@@ -1204,30 +1204,30 @@ export function getModuleCode(html, replacements) {
   let code = JSON.stringify(html)
     // Invalid in JavaScript but valid HTML
     .replace(/[\u2028\u2029]/g, (str) =>
-      str === '\u2029' ? '\\u2029' : '\\u2028'
+      str === "\u2029" ? "\\u2029" : "\\u2028"
     );
 
-  let replacersCode = '';
+  let replacersCode = "";
 
   for (const item of replacements) {
     const { runtime, importName, replacementName, isValueQuoted, hash } = item;
 
-    if (typeof runtime === 'undefined' || runtime === true) {
+    if (typeof runtime === "undefined" || runtime === true) {
       const getUrlOptions = []
         .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-        .concat(isValueQuoted ? [] : 'maybeNeedQuotes: true');
+        .concat(isValueQuoted ? [] : "maybeNeedQuotes: true");
       const preparedOptions =
-        getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(', ')} }` : '';
+        getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
 
       replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
 
       code = code.replace(
-        new RegExp(replacementName, 'g'),
+        new RegExp(replacementName, "g"),
         () => `" + ${replacementName} + "`
       );
     } else {
       code = code.replace(
-        new RegExp(replacementName, 'g'),
+        new RegExp(replacementName, "g"),
         () => `" + ${importName} + "`
       );
     }
@@ -1254,7 +1254,7 @@ export function c0ControlCodesExclude(source) {
   let { value, startOffset } = source;
 
   if (!value) {
-    throw new Error('Must be non-empty');
+    throw new Error("Must be non-empty");
   }
 
   while (isASCIIC0group(value.substring(0, 1))) {
@@ -1267,7 +1267,7 @@ export function c0ControlCodesExclude(source) {
   }
 
   if (!value) {
-    throw new Error('Must be non-empty');
+    throw new Error("Must be non-empty");
   }
 
   return { value, startOffset };

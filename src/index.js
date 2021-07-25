@@ -1,13 +1,13 @@
-import { sourcesPlugin, minimizerPlugin } from './plugins';
+import { sourcesPlugin, minimizerPlugin } from "./plugins";
 import {
   pluginRunner,
   normalizeOptions,
   getImportCode,
   getModuleCode,
   getExportCode,
-} from './utils';
+} from "./utils";
 
-import schema from './options.json';
+import schema from "./options.json";
 
 export default async function loader(content) {
   const rawOptions = this.getOptions(schema);

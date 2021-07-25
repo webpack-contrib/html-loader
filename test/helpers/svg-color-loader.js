@@ -1,9 +1,9 @@
-const querystring = require('querystring');
+const querystring = require("querystring");
 
 module.exports = function loader() {
   const query = querystring.parse(this.resourceQuery.slice(1));
 
-  if (typeof query.color === 'undefined' || query.color !== '#BAAFDB?') {
+  if (typeof query.color === "undefined" || query.color !== "#BAAFDB?") {
     throw new Error(`Error, 'color' is '${query.color}'`);
   }
 

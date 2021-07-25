@@ -1,10 +1,10 @@
 function getIndices(value) {
   const result = [];
-  let index = value.indexOf('\n');
+  let index = value.indexOf("\n");
 
   while (index !== -1) {
     result.push(index + 1);
-    index = value.indexOf('\n', index + 1);
+    index = value.indexOf("\n", index + 1);
   }
 
   result.push(value.length + 1);
@@ -39,7 +39,7 @@ export default class HtmlSourceError extends Error {
   constructor(error, startOffset, endOffset, source) {
     super(error);
 
-    this.name = 'HtmlSourceError';
+    this.name = "HtmlSourceError";
     this.message = `${this.name}: ${this.message}`;
     this.startOffset = startOffset;
     this.endOffset = endOffset;

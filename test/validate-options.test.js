@@ -1,6 +1,6 @@
-import { getCompiler, compile } from './helpers';
+import { getCompiler, compile } from "./helpers";
 
-describe('validate options', () => {
+describe("validate options", () => {
   const tests = {
     sources: {
       success: [
@@ -9,26 +9,26 @@ describe('validate options', () => {
         {
           list: [
             {
-              attribute: 'src',
-              type: 'src',
+              attribute: "src",
+              type: "src",
             },
           ],
         },
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
+              tag: "img",
+              attribute: "src",
+              type: "src",
             },
           ],
         },
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
+              tag: "img",
+              attribute: "src",
+              type: "src",
               filter: () => true,
             },
           ],
@@ -36,24 +36,24 @@ describe('validate options', () => {
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
+              tag: "img",
+              attribute: "src",
+              type: "src",
             },
             {
-              tag: 'img',
-              attribute: 'srcset',
-              type: 'srcset',
+              tag: "img",
+              attribute: "srcset",
+              type: "srcset",
             },
           ],
         },
         {
           list: [
-            '...',
+            "...",
             {
-              tag: 'img',
-              attribute: 'srcset',
-              type: 'srcset',
+              tag: "img",
+              attribute: "srcset",
+              type: "srcset",
             },
           ],
         },
@@ -61,21 +61,21 @@ describe('validate options', () => {
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
+              tag: "img",
+              attribute: "src",
+              type: "src",
             },
             {
-              tag: 'img',
-              attribute: 'srcset',
-              type: 'srcset',
+              tag: "img",
+              attribute: "srcset",
+              type: "srcset",
             },
           ],
           urlFilter: () => true,
         },
       ],
       failure: [
-        'true',
+        "true",
         [],
         {
           list: [],
@@ -83,41 +83,41 @@ describe('validate options', () => {
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
+              tag: "img",
+              attribute: "src",
             },
           ],
         },
         {
           list: [
             {
-              tag: '',
-              attribute: 'src',
-              type: 'src',
+              tag: "",
+              attribute: "src",
+              type: "src",
             },
           ],
         },
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
+              tag: "img",
+              attribute: "src",
+              type: "src",
             },
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
+              tag: "img",
+              attribute: "src",
+              type: "src",
             },
           ],
         },
         {
           list: [
             {
-              tag: 'img',
-              attribute: 'src',
-              type: 'src',
-              filter: 'test',
+              tag: "img",
+              attribute: "src",
+              type: "src",
+              filter: "test",
             },
           ],
         },
@@ -127,26 +127,26 @@ describe('validate options', () => {
     },
     esModule: {
       success: [true, false],
-      failure: ['true'],
+      failure: ["true"],
     },
     minimize: {
       success: [true, false, {}],
-      failure: ['true'],
+      failure: ["true"],
     },
     preprocessor: {
       success: [() => []],
-      failure: ['true'],
+      failure: ["true"],
     },
     unknown: {
       success: [],
-      failure: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],
+      failure: [1, true, false, "test", /test/, [], {}, { foo: "bar" }],
     },
   };
 
   function stringifyValue(value) {
     if (
       Array.isArray(value) ||
-      (value && typeof value === 'object' && value.constructor === Object)
+      (value && typeof value === "object" && value.constructor === Object)
     ) {
       return JSON.stringify(value);
     }
@@ -156,19 +156,19 @@ describe('validate options', () => {
 
   async function createTestCase(key, value, type) {
     it(`should ${
-      type === 'success' ? 'successfully validate' : 'throw an error on'
+      type === "success" ? "successfully validate" : "throw an error on"
     } the "${key}" option with "${stringifyValue(value)}" value`, async () => {
       // For loaders
-      const compiler = getCompiler('simple.js', { [key]: value });
+      const compiler = getCompiler("simple.js", { [key]: value });
 
       let stats;
 
       try {
         stats = await compile(compiler);
       } finally {
-        if (type === 'success') {
+        if (type === "success") {
           expect(stats.hasErrors()).toBe(false);
-        } else if (type === 'failure') {
+        } else if (type === "failure") {
           const {
             compilation: { errors },
           } = stats;
