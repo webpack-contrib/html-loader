@@ -1,11 +1,11 @@
-import parse5 from 'parse5';
+import parse5 from "parse5";
 
 import {
   traverse,
   getFilter,
   requestify,
   webpackIgnoreCommentRegexp,
-} from '../utils';
+} from "../utils";
 
 export default (options) =>
   function process(html) {
@@ -17,11 +17,11 @@ export default (options) =>
     traverse(document, (node) => {
       const { tagName, attrs: attributes, sourceCodeLocation } = node;
 
-      if (node.nodeName === '#comment') {
+      if (node.nodeName === "#comment") {
         const match = node.data.match(webpackIgnoreCommentRegexp);
 
         if (match) {
-          needIgnore = match[2] === 'true';
+          needIgnore = match[2] === "true";
         }
 
         return;
@@ -43,7 +43,7 @@ export default (options) =>
 
         const handlers =
           options.sources.list.get(tagName.toLowerCase()) ||
-          options.sources.list.get('*');
+          options.sources.list.get("*");
 
         if (!handlers) {
           return;
@@ -146,7 +146,7 @@ export default (options) =>
       }
 
       let hash;
-      const indexHash = request.lastIndexOf('#');
+      const indexHash = request.lastIndexOf("#");
 
       if (indexHash >= 0) {
         hash = request.substring(indexHash);

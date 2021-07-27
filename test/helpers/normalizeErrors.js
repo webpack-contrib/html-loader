@@ -1,20 +1,20 @@
 function removeCWD(str) {
-  const isWin = process.platform === 'win32';
+  const isWin = process.platform === "win32";
   let cwd = process.cwd();
 
   if (isWin) {
     // eslint-disable-next-line no-param-reassign
-    str = str.replace(/\\/g, '/');
+    str = str.replace(/\\/g, "/");
     // eslint-disable-next-line no-param-reassign
-    cwd = cwd.replace(/\\/g, '/');
+    cwd = cwd.replace(/\\/g, "/");
   }
 
   return str
-    .replace(new RegExp(cwd, 'g'), '')
-    .replace(/\(from (.*)\)/, '(from /path/to/file.js)');
+    .replace(new RegExp(cwd, "g"), "")
+    .replace(/\(from (.*)\)/, "(from /path/to/file.js)");
 }
 
 export default (errors) =>
   errors.map((error) =>
-    removeCWD(error.toString().split('\n').slice(0, 2).join('\n'))
+    removeCWD(error.toString().split("\n").slice(0, 2).join("\n"))
   );

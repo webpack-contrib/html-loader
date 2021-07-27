@@ -30,7 +30,7 @@ Then add the plugin to your `webpack` config. For example:
 **file.js**
 
 ```js
-import html from './file.html';
+import html from "./file.html";
 ```
 
 **webpack.config.js**
@@ -41,7 +41,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
       },
     ],
   },
@@ -102,7 +102,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           // Disables attributes processing
           sources: false,
@@ -127,21 +127,21 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           sources: {
             list: [
               // All default supported tags and attributes
-              '...',
+              "...",
               {
-                tag: 'img',
-                attribute: 'data-src',
-                type: 'src',
+                tag: "img",
+                attribute: "data-src",
+                type: "src",
               },
               {
-                tag: 'img',
-                attribute: 'data-srcset',
-                type: 'srcset',
+                tag: "img",
+                attribute: "data-srcset",
+                type: "srcset",
               },
             ],
             urlFilter: (attribute, value, resourcePath) => {
@@ -182,29 +182,29 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           sources: {
             list: [
               // All default supported tags and attributes
-              '...',
+              "...",
               {
-                tag: 'img',
-                attribute: 'data-src',
-                type: 'src',
+                tag: "img",
+                attribute: "data-src",
+                type: "src",
               },
               {
-                tag: 'img',
-                attribute: 'data-srcset',
-                type: 'srcset',
+                tag: "img",
+                attribute: "data-srcset",
+                type: "srcset",
               },
               {
                 // Tag name
-                tag: 'link',
+                tag: "link",
                 // Attribute name
-                attribute: 'href',
+                attribute: "href",
                 // Type of processing, can be `src` or `scrset`
-                type: 'src',
+                type: "src",
                 // Allow to filter some attributes
                 filter: (tag, attribute, attributes, resourcePath) => {
                   // The `tag` argument contains a name of the HTML tag.
@@ -222,7 +222,7 @@ module.exports = {
 
                   if (
                     attributes.type &&
-                    attributes.type.trim().toLowerCase() !== 'text/css'
+                    attributes.type.trim().toLowerCase() !== "text/css"
                   ) {
                     return false;
                   }
@@ -253,15 +253,15 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           sources: {
             list: [
               {
                 // Attribute name
-                attribute: 'src',
+                attribute: "src",
                 // Type of processing, can be `src` or `scrset`
-                type: 'src',
+                type: "src",
                 // Allow to filter some attributes (optional)
                 filter: (tag, attribute, attributes, resourcePath) => {
                   // The `tag` argument contains a name of the HTML tag.
@@ -270,7 +270,7 @@ module.exports = {
                   // The `resourcePath` argument contains a path to the loaded HTML file.
 
                   // choose all HTML tags except img tag
-                  return tag.toLowerCase() !== 'img';
+                  return tag.toLowerCase() !== "img";
                 },
               },
             ],
@@ -292,18 +292,18 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           sources: {
             list: [
               {
-                tag: 'meta',
-                attribute: 'content',
-                type: 'src',
+                tag: "meta",
+                attribute: "content",
+                type: "src",
                 filter: (tag, attribute, attributes, resourcePath) => {
                   if (
-                    attributes.value === 'og:image' ||
-                    attributes.name === 'twitter:image'
+                    attributes.value === "og:image" ||
+                    attributes.name === "twitter:image"
                   ) {
                     return true;
                   }
@@ -332,15 +332,15 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           sources: {
             list: [
-              '...',
+              "...",
               {
-                tag: 'img',
-                attribute: 'src',
-                type: 'src',
+                tag: "img",
+                attribute: "src",
+                type: "src",
                 filter: () => false,
               },
             ],
@@ -366,7 +366,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           sources: {
             urlFilter: (attribute, value, resourcePath) => {
@@ -413,22 +413,22 @@ You can set the `preprocessor` option as a `Function` instance.
 **webpack.config.js**
 
 ```js
-const Handlebars = require('handlebars');
+const Handlebars = require("handlebars");
 
 module.exports = {
   module: {
     rules: [
       {
         test: /\.hbs$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           preprocessor: (content, loaderContext) => {
             let result;
 
             try {
               result = Handlebars.compile(content)({
-                firstname: 'Value',
-                lastname: 'OtherValue',
+                firstname: "Value",
+                lastname: "OtherValue",
               });
             } catch (error) {
               loaderContext.emitError(error);
@@ -452,22 +452,22 @@ For example:
 **webpack.config.js**
 
 ```js
-const Handlebars = require('handlebars');
+const Handlebars = require("handlebars");
 
 module.exports = {
   module: {
     rules: [
       {
         test: /\.hbs$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           preprocessor: async (content, loaderContext) => {
             let result;
 
             try {
               result = await Handlebars.compile(content)({
-                firstname: 'Value',
-                lastname: 'OtherValue',
+                firstname: "Value",
+                lastname: "OtherValue",
               });
             } catch (error) {
               await loaderContext.emitError(error);
@@ -518,7 +518,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           minimize: true,
         },
@@ -544,7 +544,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           minimize: {
             removeComments: false,
@@ -575,7 +575,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           esModule: false,
         },
@@ -626,17 +626,17 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {},
       },
       {
         test: /\.jpg$/,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
   },
   resolve: {
-    roots: [path.resolve(__dirname, 'fixtures')],
+    roots: [path.resolve(__dirname, "fixtures")],
   },
 };
 ```
@@ -661,16 +661,16 @@ module.exports = {
     rules: [
       {
         test: /\.jpg$/,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
       {
         test: /\.png$/,
-        type: 'asset/inline',
+        type: "asset/inline",
       },
     ],
   },
   output: {
-    publicPath: 'http://cdn.example.com/[fullhash]/',
+    publicPath: "http://cdn.example.com/[fullhash]/",
   },
 };
 ```
@@ -684,7 +684,7 @@ module.exports = {
 **index.js**
 
 ```js
-require('html-loader!./file.html');
+require("html-loader!./file.html");
 
 // => '<img src="http://cdn.example.com/49eba9f/a992ca.jpg" data-src="image2x.png">'
 ```
@@ -742,32 +742,32 @@ module.exports = {
     rules: [
       {
         test: /\.html$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: '[name][ext]',
+          filename: "[name][ext]",
         },
       },
       {
         test: /\.html$/i,
-        use: ['extract-loader', 'html-loader'],
+        use: ["extract-loader", "html-loader"],
       },
       {
         test: /\.js$/i,
         exclude: /\.file.js$/i,
-        loader: 'babel-loader',
+        loader: "babel-loader",
       },
       {
         test: /\.file.js$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
       {
         test: /\.css$/i,
         exclude: /\.file.css$/i,
-        loader: 'css-loader',
+        loader: "css-loader",
       },
       {
         test: /\.file.css$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
   },
@@ -790,22 +790,22 @@ You can use any template system. Below is an example for [handlebars](https://ha
 **webpack.config.js**
 
 ```js
-const Handlebars = require('handlebars');
+const Handlebars = require("handlebars");
 
 module.exports = {
   module: {
     rules: [
       {
         test: /\.hbs$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           preprocessor: (content, loaderContext) => {
             let result;
 
             try {
               result = Handlebars.compile(content)({
-                firstname: 'Value',
-                lastname: 'OtherValue',
+                firstname: "Value",
+                lastname: "OtherValue",
               });
             } catch (error) {
               loaderContext.emitError(error);
@@ -835,15 +835,15 @@ You can use [PostHTML](https://github.com/posthtml/posthtml) without any additio
 **webpack.config.js**
 
 ```js
-const posthtml = require('posthtml');
-const posthtmlWebp = require('posthtml-webp');
+const posthtml = require("posthtml");
+const posthtmlWebp = require("posthtml-webp");
 
 module.exports = {
   module: {
     rules: [
       {
         test: /\.hbs$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
         options: {
           preprocessor: (content, loaderContext) => {
             let result;
@@ -886,20 +886,20 @@ will write the _.html_ file for you. Example:
 ```js
 module.exports = {
   output: {
-    assetModuleFilename: '[name][ext]',
+    assetModuleFilename: "[name][ext]",
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: '[name][ext]',
+          filename: "[name][ext]",
         },
       },
       {
         test: /\.html$/i,
-        use: ['extract-loader', 'html-loader'],
+        use: ["extract-loader", "html-loader"],
       },
     ],
   },

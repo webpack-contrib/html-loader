@@ -1,4 +1,4 @@
-import { minify } from 'html-minifier-terser';
+import { minify } from "html-minifier-terser";
 
 export default (options) =>
   function process(html) {
