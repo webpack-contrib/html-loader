@@ -85,7 +85,7 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
 
-  it("should allow to add more attributes ti default values", async () => {
+  it("should allow to add more attributes to default values", async () => {
     const compiler = getCompiler("simple.js", {
       sources: {
         list: [
@@ -324,6 +324,28 @@ describe("'sources' option", () => {
     const stats = await compile(compiler);
 
     expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats))
+    ).toMatchSnapshot("result");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+  });
+
+  it("should work and supports `resolve.roots`", async () => {
+    const compiler = getCompiler(
+      "resolve-roots.js",
+      {},
+      {
+        resolve: {
+          roots: [path.resolve(__dirname, "fixtures/nested/")],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource("./resolve-roots.html", stats)).toMatchSnapshot(
+      "module"
+    );
     expect(
       execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
