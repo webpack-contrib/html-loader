@@ -1137,12 +1137,12 @@ export function normalizeOptions(rawOptions, loaderContext) {
 
 export function pluginRunner(plugins) {
   return {
-    process: (content) => {
+    async process(content) {
       const result = {};
 
       for (const plugin of plugins) {
-        // eslint-disable-next-line no-param-reassign
-        content = plugin(content, result);
+        // eslint-disable-next-line no-param-reassign, no-await-in-loop
+        content = await plugin(content, result);
       }
 
       result.html = content;
@@ -1169,10 +1169,13 @@ export function getImportCode(html, loaderContext, imports, options) {
     return "";
   }
 
-  const fileURLToHelper = contextify(
-    loaderContext.context,
-    require.resolve("./runtime/getUrl.js")
-  );
+  // TODO simplif in the next major release
+  const getURLRuntime = require.resolve("./runtime/getUrl.js");
+  const fileURLToHelper =
+    typeof loaderContext.utils !== "undefined" &&
+    typeof loaderContext.utils.contextify === "function"
+      ? loaderContext.utils.contextify(loaderContext.context, getURLRuntime)
+      : contextify(loaderContext.context, getURLRuntime);
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from "${fileURLToHelper}";\n`
