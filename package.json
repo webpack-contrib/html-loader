@@ -42,7 +42,7 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
-    "html-minifier-terser": "^5.1.1",
+    "html-minifier-terser": "^6.0.2",
     "parse5": "^6.0.1"
   },
   "devDependencies": {
@@ -57,7 +57,7 @@
     "del": "^6.0.0",
     "del-cli": "^4.0.0",
     "es-check": "^6.0.0",
-    "eslint": "^7.29.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "handlebars": "^4.7.7",
