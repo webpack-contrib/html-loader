@@ -195,7 +195,7 @@ describe("loader", () => {
       {
         output: {
           publicPath: "http://example.com",
-          hashFunction: "md5",
+          hashFunction: "xxhash64",
         },
         module: {
           rules: [
