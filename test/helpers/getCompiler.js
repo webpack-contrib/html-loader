@@ -17,6 +17,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
       publicPath: "/webpack/public/path/",
       library: "___TEST___",
       assetModuleFilename: "[name][ext]",
+      hashFunction: "xxhash64",
     },
     module: {
       rules: [

@@ -93,7 +93,7 @@ exports[`loader should work with "html-webpack-plugin" plugin: result 1`] = `
 <script defer src=\\"http://example.com/main.js\\"></script></head>
 <body>
     <div>Text</div>
-    <img src=\\"http://example.com/09a1a1112c577c279435.png\\" alt=\\"image\\">
+    <img src=\\"http://example.com/7bc91c245a8a10a4.png\\" alt=\\"image\\">
 </body>
 </html>"
 `;
