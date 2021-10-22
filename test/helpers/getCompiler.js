@@ -17,7 +17,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
       publicPath: "/webpack/public/path/",
       library: "___TEST___",
       assetModuleFilename: "[name][ext]",
-      hashingFunction: "md5"
+      hashFunction: "md5"
     },
     module: {
       rules: [
