@@ -241,6 +241,8 @@ module.exports = {
 
 If the tag name is not specified it will process all the tags.
 
+> ⚠ You must specify the tag name if using `...` to extend the default sources list
+
 > You can use your custom filter to specify html elements to be processed.
 
 For example:
