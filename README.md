@@ -241,69 +241,6 @@ module.exports = {
 
 If the tag name is not specified it will process all the tags.
 
-**Note:** source with a `tag` option takes precedence over source without.
-
-For example, to process `data-src` attributes on _all_ tags, omit the tag name:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: "html-loader",
-        options: {
-          sources: {
-            list: [
-              {
-                attribute: "data-src",
-                type: "src",
-              },
-            ],
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-> ⚠ You **must** specify a tag name if using `...` to extend attributes for tags already in the default sources list
-
-For example, to extend the default source list so that it also processes `data-src` attributes on _all_ tags, you might be tempted to do this:
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: "html-loader",
-        options: {
-          sources: {
-            list: [
-              // All default supported tags and attributes
-              "...",
-              {
-                attribute: "data-src",
-                type: "src",
-              },
-            ],
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-However this will only process `data-src` attributes on tags that _aren't in the default list_:
-
-- `<p data-src="..">` will be processed, as `p` is not in the default sources list
-- `<img data-src="..">` won't be processed, as `img` is already in the default sources list
-
 > You can use your custom filter to specify html elements to be processed.
 
 For example:
@@ -382,6 +319,8 @@ module.exports = {
   },
 };
 ```
+
+**Note:** source with a `tag` option takes precedence over source without.
 
 Filter can be used to disable default sources.
 
