@@ -41,9 +41,10 @@ export default (options) =>
 
         name = attribute.prefix ? `${attribute.prefix}:${name}` : name;
 
-        const handlers =
-          options.sources.list.get(tagName.toLowerCase()) ||
-          options.sources.list.get("*");
+        const handlers = new Map([
+          ...(options.sources.list.get("*") || new Map()),
+          ...(options.sources.list.get(tagName.toLowerCase()) || new Map()),
+        ]);
 
         if (!handlers) {
           return;
