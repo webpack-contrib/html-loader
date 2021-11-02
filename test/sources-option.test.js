@@ -137,7 +137,7 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
 
-  it.only("should process attributes specific to a tag and attributes for any tag", async () => {
+  it("should process attributes specific to a tag and attributes for any tag", async () => {
     const compiler = getCompiler("simple.js", {
       sources: {
         list: [
