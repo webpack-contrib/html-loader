@@ -137,6 +137,28 @@ describe("'sources' option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
 
+  it.only("should process attributes specific to a tag and attributes for any tag", async () => {
+    const compiler = getCompiler("simple.js", {
+      sources: {
+        list: [
+          "...",
+          {
+            attribute: "data-src",
+            type: "src",
+          },
+        ],
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats))
+    ).toMatchSnapshot("result");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+  });
+
   it('should handle "webpack-import" and `webpack-partial` tags', async () => {
     const compiler = getCompiler("webpack-import.js");
     const stats = await compile(compiler);
