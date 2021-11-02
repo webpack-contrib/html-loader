@@ -1169,13 +1169,14 @@ export function getImportCode(html, loaderContext, imports, options) {
     return "";
   }
 
-  // TODO simplif in the next major release
+  // TODO simpify in the next major release
   const getURLRuntime = require.resolve("./runtime/getUrl.js");
+  const context = loaderContext.context || loaderContext.rootContext;
   const fileURLToHelper =
     typeof loaderContext.utils !== "undefined" &&
     typeof loaderContext.utils.contextify === "function"
-      ? loaderContext.utils.contextify(loaderContext.context, getURLRuntime)
-      : contextify(loaderContext.context, getURLRuntime);
+      ? loaderContext.utils.contextify(context, getURLRuntime)
+      : contextify(context, getURLRuntime);
 
   let code = options.esModule
     ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from "${fileURLToHelper}";\n`
