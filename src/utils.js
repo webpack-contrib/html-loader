@@ -496,7 +496,7 @@ function isProductionMode(loaderContext) {
   return loaderContext.mode === "production" || !loaderContext.mode;
 }
 
-const defaultMinimizerOptions = {
+export const defaultMinimizerOptions = {
   caseSensitive: true,
   // `collapseBooleanAttributes` is not always safe, since this can break CSS attribute selectors and not safe for XHTML
   collapseWhitespace: true,

@@ -534,7 +534,7 @@ module.exports = {
 
 See [html-minifier-terser](https://github.com/DanielRuf/html-minifier-terser)'s documentation for more information on the available options.
 
-The rules can be disabled using the following options in your `webpack.conf.js`
+The default rules can be overridden using the following options in your `webpack.conf.js`
 
 **webpack.config.js**
 
@@ -547,6 +547,32 @@ module.exports = {
         loader: "html-loader",
         options: {
           minimize: {
+            removeComments: false,
+            collapseWhitespace: false,
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+The default rules can be extended:
+
+**webpack.config.js**
+
+```js
+const { defaultMinimizerOptions } = require("html-loader");
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+        options: {
+          minimize: {
+            ...defaultMinimizerOptions,
             removeComments: false,
             collapseWhitespace: false,
           },

@@ -5,6 +5,7 @@ import {
   getImportCode,
   getModuleCode,
   getExportCode,
+  defaultMinimizerOptions,
 } from "./utils";
 
 import schema from "./options.json";
@@ -52,3 +53,5 @@ export default async function loader(content) {
 
   return `${importCode}${moduleCode}${exportCode}`;
 }
+
+export { defaultMinimizerOptions };
