@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/webpack-contrib/html-loader/compare/v3.0.1...v3.1.0) (2022-01-08)
+
+
+### Features
+
+* add possibility to extend default minimize options ([#414](https://github.com/webpack-contrib/html-loader/issues/414)) ([0fa36af](https://github.com/webpack-contrib/html-loader/commit/0fa36af3950adecf49efc875694c327d0137347f))
+
 ### [3.0.1](https://github.com/webpack-contrib/html-loader/compare/v3.0.0...v3.0.1) (2021-11-02)
 
 
