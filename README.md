@@ -25,6 +25,18 @@ To begin, you'll need to install `html-loader`:
 npm install --save-dev html-loader
 ```
 
+or
+
+```console
+yarn add -D html-loader
+```
+
+or
+
+```console
+pnpm add -D html-loader
+```
+
 Then add the plugin to your `webpack` config. For example:
 
 **file.js**
