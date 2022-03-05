@@ -787,7 +787,7 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        use: ["extract-loader", "html-loader"],
+        use: ["html-loader"],
       },
       {
         test: /\.js$/i,
@@ -937,7 +937,7 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        use: ["extract-loader", "html-loader"],
+        use: ["html-loader"],
       },
     ],
   },
