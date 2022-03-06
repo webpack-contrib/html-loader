@@ -62,16 +62,38 @@ module.exports = {
 
 ## Options
 
-|                Name                 |        Type         |                   Default                    | Description                                      |
-| :---------------------------------: | :-----------------: | :------------------------------------------: | :----------------------------------------------- |
-|      **[`sources`](#sources)**      | `{Boolean\|Object}` |                    `true`                    | Enables/Disables sources handling                |
-| **[`preprocessor`](#preprocessor)** |    `{Function}`     |                 `undefined`                  | Allows pre-processing of content before handling |
-|     **[`minimize`](#minimize)**     | `{Boolean\|Object}` | `true` in production mode, otherwise `false` | Tell `html-loader` to minimize HTML              |
-|     **[`esModule`](#esmodule)**     |     `{Boolean}`     |                    `true`                    | Enable/disable ES modules syntax                 |
+- **[`sources`](#sources)**
+- **[`preprocessor`](#preprocessor)**
+- **[`minimize`](#minimize)**
+- **[`esModule`](#esmodule)**
 
 ### `sources`
 
-Type: `Boolean|Object`
+Type:
+
+```ts
+type sources =
+  | boolean
+  | {
+      list?: Array<{
+        tag?: string;
+        attribute?: string;
+        type?: string;
+        filter?: (
+          tag: string,
+          attribute: string,
+          attributes: string,
+          resourcePath: string
+        ) => boolean;
+      }>;
+      urlFilter?: (
+        attribute: string,
+        value: string,
+        resourcePath: string
+      ) => boolean;
+    };
+```
+
 Default: `true`
 
 By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
@@ -102,7 +124,7 @@ Supported tags and attributes:
 - the `content` attribute of the `meta` tag when the `name` attribute is `msapplication-tileimage`, `msapplication-square70x70logo`, `msapplication-square150x150logo`, `msapplication-wide310x150logo`, `msapplication-square310x310logo`, `msapplication-config`, `twitter:image` or when the `property` attribute is `og:image`, `og:image:url`, `og:image:secure_url`, `og:audio`, `og:audio:secure_url`, `og:video`, `og:video:secure_url`, `vk:image` or when the `itemprop` attribute is `image`, `logo`, `screenshot`, `thumbnailurl`, `contenturl`, `downloadurl`, `duringmedia`, `embedurl`, `installurl`, `layoutimage`
 - the `icon-uri` value component in `content` attribute of the `meta` tag when the `name` attribute is `msapplication-task`
 
-#### `Boolean`
+#### `boolean`
 
 The `true` value enables processing of all default elements and attributes, the `false` disable processing of all attributes.
 
@@ -125,7 +147,7 @@ module.exports = {
 };
 ```
 
-#### `Object`
+#### `object`
 
 Allows you to specify which tags and attributes to process, filter them, filter urls and process sources starts with `/`.
 
@@ -177,7 +199,22 @@ module.exports = {
 
 #### `list`
 
-Type: `Array`
+Type:
+
+```ts
+type list = Array<{
+  tag?: string;
+  attribute?: string;
+  type?: string;
+  filter?: (
+    tag: string,
+    attribute: string,
+    attributes: string,
+    resourcePath: string
+  ) => boolean;
+}>;
+```
+
 Default: [supported tags and attributes](#sources).
 
 Allows to setup which tags and attributes to process and how, and the ability to filter some of them.
@@ -366,7 +403,16 @@ module.exports = {
 
 #### `urlFilter`
 
-Type: `Function`
+Type:
+
+```ts
+type urlFilter = (
+  attribute: string,
+  value: string,
+  resourcePath: string
+) => boolean;
+```
+
 Default: `undefined`
 
 Allow to filter urls. All filtered urls will not be resolved (left in the code as they were written).
@@ -402,7 +448,15 @@ module.exports = {
 
 ### `preprocessor`
 
-Type: `Function`
+Type:
+
+```ts
+type preprocessor = (
+  content: string | Buffer,
+  loaderContext: LoaderContext
+) => HTMLElement;
+```
+
 Default: `undefined`
 
 Allows pre-processing of content before handling.
@@ -418,9 +472,9 @@ Allows pre-processing of content before handling.
 <div>
 ```
 
-#### `Function`
+#### `function`
 
-You can set the `preprocessor` option as a `Function` instance.
+You can set the `preprocessor` option as a `function` instance.
 
 **webpack.config.js**
 
@@ -498,12 +552,30 @@ module.exports = {
 
 ### `minimize`
 
-Type: `Boolean|Object`
+Type:
+
+```ts
+type minimize =
+  | boolean
+  | {
+      caseSensitive?: boolean;
+      collapseWhitespace?: boolean;
+      conservativeCollapse?: boolean;
+      keepClosingSlash?: boolean;
+      minifyCSS?: boolean;
+      minifyJS?: boolean;
+      removeComments?: boolean;
+      removeRedundantAttributes?: boolean;
+      removeScriptTypeAttributes?: boolean;
+      removeStyleLinkTypeAttributes?: boolean;
+    };
+```
+
 Default: `true` in production mode, otherwise `false`
 
 Tell `html-loader` to minimize HTML.
 
-#### `Boolean`
+#### `boolean`
 
 The enabled rules for minimizing by default are the following ones:
 
@@ -540,7 +612,7 @@ module.exports = {
 };
 ```
 
-#### `Object`
+#### `object`
 
 **webpack.config.js**
 
@@ -597,7 +669,12 @@ module.exports = {
 
 ### `esModule`
 
-Type: `Boolean`
+Type:
+
+```ts
+type esModule = boolean;
+```
+
 Default: `true`
 
 By default, `html-loader` generates JS modules that use the ES modules syntax.
