@@ -5,7 +5,6 @@
   </a>
 </div>
 
-
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![tests][tests]][tests-url]
