@@ -21,3 +21,4 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 /test/fixtures/generated-2.html
+yarn.lock
