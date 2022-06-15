@@ -1237,6 +1237,9 @@ export function getModuleCode(html, replacements) {
     }
   }
 
+  // Replaces "<script>" or "</script>" to "<" + "script>" or "<" + "/script>".
+  code = code.replace(/<(\/?script)/g, (_, s) => `<" + "${s}`);
+
   return `// Module\n${replacersCode}var code = ${code};\n`;
 }
 
