@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.0](https://github.com/webpack-contrib/html-loader/compare/v3.1.0...v4.0.0) (2022-06-15)
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported `Node.js` version is `14.15.0`
+* update `parse5` to `7.0.0`
+
+
+### Bug Fixes
+
+* handle text with `<script>` in the `script` element ([#444](https://github.com/webpack-contrib/html-loader/issues/444)) ([9949d82](https://github.com/webpack-contrib/html-loader/commit/9949d825f5026951700a1f57c0d8a88970762a0a))
+
 ## [3.1.0](https://github.com/webpack-contrib/html-loader/compare/v3.0.1...v3.1.0) (2022-01-08)
 
 
