@@ -1,4 +1,4 @@
-import parse5 from "parse5";
+import { parse } from "parse5";
 
 import {
   traverse,
@@ -10,7 +10,7 @@ import {
 export default (options) =>
   function process(html) {
     const sources = [];
-    const document = parse5.parse(html, { sourceCodeLocationInfo: true });
+    const document = parse(html, { sourceCodeLocationInfo: true });
 
     let needIgnore = false;
 
