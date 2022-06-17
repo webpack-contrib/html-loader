@@ -368,7 +368,9 @@ module.exports = {
 };
 ```
 
-**Note:** source with a `tag` option takes precedence over source without.
+> **Note**
+>
+> source with a `tag` option takes precedence over source without.
 
 Filter can be used to disable default sources.
 
@@ -460,7 +462,9 @@ Default: `undefined`
 
 Allows pre-processing of content before handling.
 
-> ⚠ You should always return valid HTML
+> **Warning**
+>
+> You should always return valid HTML
 
 **file.hbs**
 
