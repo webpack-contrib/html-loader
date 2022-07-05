@@ -10,7 +10,10 @@ import {
 export default (options) =>
   function process(html) {
     const sources = [];
-    const document = parse(html, { sourceCodeLocationInfo: true });
+    const document = parse(html, {
+      sourceCodeLocationInfo: true,
+      scriptingEnabled: options.sources.scriptingEnabled,
+    });
 
     let needIgnore = false;
 

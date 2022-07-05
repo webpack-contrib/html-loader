@@ -58,6 +58,8 @@ describe("validate options", () => {
           ],
         },
         { urlFilter: () => true },
+        { scriptingEnabled: true },
+        { scriptingEnabled: false },
         {
           list: [
             {
@@ -122,6 +124,7 @@ describe("validate options", () => {
           ],
         },
         { urlFilter: false },
+        { scriptingEnabled: "true" },
         { unknown: true },
       ],
     },

@@ -56,6 +56,9 @@
             },
             "urlFilter": {
               "instanceof": "Function"
+            },
+            "scriptingEnabled": {
+              "type": "boolean"
             }
           },
           "additionalProperties": false

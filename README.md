@@ -90,6 +90,7 @@ type sources =
         value: string,
         resourcePath: string
       ) => boolean;
+      scriptingEnabled?: boolean;
     };
 ```
 
@@ -439,6 +440,43 @@ module.exports = {
 
               return true;
             },
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `scriptingEnabled`
+
+Type:
+
+```ts
+type scriptingEnabled = boolean;
+```
+
+Default: `true`
+
+By default, the parser in `html-loader` interprets content inside `<noscript>` tags as `#text`, so processing of content inside this tag will be ignored.
+
+In order to enable processing inside `<noscript>` for content recognition by the parser as `#AST`, set this parameter to: `false`
+
+Additional information: [scriptingEnabled](https://parse5.js.org/interfaces/parse5.ParserOptions.html#scriptingEnabled)
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+        options: {
+          sources: {
+            // Enables processing inside the <noscript> tag
+            scriptingEnabled: false,
           },
         },
       },
