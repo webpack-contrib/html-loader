@@ -1122,7 +1122,14 @@ function getSourcesOption(rawOptions) {
 
   const sources = normalizeSourcesList(rawOptions.sources.list);
 
-  return { list: sources, urlFilter: rawOptions.sources.urlFilter };
+  return {
+    list: sources,
+    urlFilter: rawOptions.sources.urlFilter,
+    scriptingEnabled:
+      typeof rawOptions.sources.scriptingEnabled === "undefined"
+        ? true
+        : rawOptions.sources.scriptingEnabled,
+  };
 }
 
 export function normalizeOptions(rawOptions, loaderContext) {

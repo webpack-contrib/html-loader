@@ -29,13 +29,13 @@ exports[`validate options should throw an error on the "preprocessor" option wit
 exports[`validate options should throw an error on the "sources" option with "[]" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.sources should be one of these:
-   boolean | object { list?, urlFilter? }
+   boolean | object { list?, urlFilter?, scriptingEnabled? }
    -> By default every loadable attributes (for example - <img src='image.png'>) is imported (const img = require('./image.png'). You may need to specify loaders for images in your configuration.
    -> Read more at https://github.com/webpack-contrib/html-loader#sources
    Details:
     * options.sources should be a boolean.
     * options.sources should be an object:
-      object { list?, urlFilter? }"
+      object { list?, urlFilter?, scriptingEnabled? }"
 `;
 
 exports[`validate options should throw an error on the "sources" option with "{"list":[]}" value 1`] = `
@@ -64,10 +64,15 @@ exports[`validate options should throw an error on the "sources" option with "{"
    \\"src\\" | \\"srcset\\""
 `;
 
+exports[`validate options should throw an error on the "sources" option with "{"scriptingEnabled":"true"}" value 1`] = `
+"Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
+ - options.sources.scriptingEnabled should be a boolean."
+`;
+
 exports[`validate options should throw an error on the "sources" option with "{"unknown":true}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.sources has an unknown property 'unknown'. These properties are valid:
-   object { list?, urlFilter? }"
+   object { list?, urlFilter?, scriptingEnabled? }"
 `;
 
 exports[`validate options should throw an error on the "sources" option with "{"urlFilter":false}" value 1`] = `
@@ -78,13 +83,13 @@ exports[`validate options should throw an error on the "sources" option with "{"
 exports[`validate options should throw an error on the "sources" option with "true" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.sources should be one of these:
-   boolean | object { list?, urlFilter? }
+   boolean | object { list?, urlFilter?, scriptingEnabled? }
    -> By default every loadable attributes (for example - <img src='image.png'>) is imported (const img = require('./image.png'). You may need to specify loaders for images in your configuration.
    -> Read more at https://github.com/webpack-contrib/html-loader#sources
    Details:
     * options.sources should be a boolean.
     * options.sources should be an object:
-      object { list?, urlFilter? }"
+      object { list?, urlFilter?, scriptingEnabled? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `

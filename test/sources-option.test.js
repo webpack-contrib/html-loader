@@ -297,6 +297,7 @@ describe("'sources' option", () => {
 
           return true;
         },
+        scriptingEnabled: false,
       },
     });
     const stats = await compile(compiler);
