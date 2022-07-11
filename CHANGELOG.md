@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/webpack-contrib/html-loader/compare/v4.0.0...v4.1.0) (2022-07-11)
+
+
+### Features
+
+* added the `scriptingEnabled` option ([#448](https://github.com/webpack-contrib/html-loader/issues/448)) ([6ed9f9c](https://github.com/webpack-contrib/html-loader/commit/6ed9f9c8df1e8ac2722bed01a9d28b660d64e744))
+
 ### [4.0.0](https://github.com/webpack-contrib/html-loader/compare/v3.1.0...v4.0.0) (2022-06-15)
 
 ### ⚠ BREAKING CHANGES
