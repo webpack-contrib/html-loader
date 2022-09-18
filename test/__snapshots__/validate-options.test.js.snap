@@ -61,7 +61,7 @@ exports[`validate options should throw an error on the "sources" option with "{"
 exports[`validate options should throw an error on the "sources" option with "{"list":[{"tag":"img","attribute":"src"}]}" value 1`] = `
 "Invalid options object. HTML Loader has been initialized using an options object that does not match the API schema.
  - options.sources.list[0] misses the property 'type'. Should be:
-   \\"src\\" | \\"srcset\\""
+   "src" | "srcset""
 `;
 
 exports[`validate options should throw an error on the "sources" option with "{"scriptingEnabled":"true"}" value 1`] = `

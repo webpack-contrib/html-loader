@@ -24,7 +24,7 @@ image.png"
 
 exports[`getUrl should work 9`] = `"image image.png"`;
 
-exports[`getUrl should work 10`] = `"image\\"image.png"`;
+exports[`getUrl should work 10`] = `"image"image.png"`;
 
 exports[`getUrl should work 11`] = `"image'image.png"`;
 
@@ -38,63 +38,63 @@ exports[`getUrl should work 15`] = `"image\`image.png"`;
 
 exports[`getUrl should work 16`] = `"image.png"`;
 
-exports[`getUrl should work 17`] = `"\\"image	image.png\\""`;
+exports[`getUrl should work 17`] = `""image	image.png""`;
 
 exports[`getUrl should work 18`] = `
-"\\"image
-image.png\\""
+""image
+image.png""
 `;
 
-exports[`getUrl should work 19`] = `"\\"imageimage.png\\""`;
+exports[`getUrl should work 19`] = `""imageimage.png""`;
 
 exports[`getUrl should work 20`] = `
-"\\"image
-image.png\\""
+""image
+image.png""
 `;
 
-exports[`getUrl should work 21`] = `"\\"image image.png\\""`;
+exports[`getUrl should work 21`] = `""image image.png""`;
 
-exports[`getUrl should work 22`] = `"\\"image\\"image.png\\""`;
+exports[`getUrl should work 22`] = `""image"image.png""`;
 
-exports[`getUrl should work 23`] = `"\\"image'image.png\\""`;
+exports[`getUrl should work 23`] = `""image'image.png""`;
 
-exports[`getUrl should work 24`] = `"\\"image=image.png\\""`;
+exports[`getUrl should work 24`] = `""image=image.png""`;
 
-exports[`getUrl should work 25`] = `"\\"image>image.png\\""`;
+exports[`getUrl should work 25`] = `""image>image.png""`;
 
-exports[`getUrl should work 26`] = `"\\"image<image.png\\""`;
+exports[`getUrl should work 26`] = `""image<image.png""`;
 
-exports[`getUrl should work 27`] = `"\\"image\`image.png\\""`;
+exports[`getUrl should work 27`] = `""image\`image.png""`;
 
 exports[`getUrl should work 28`] = `"image.png#hash"`;
 
-exports[`getUrl should work 29`] = `"\\"image	image.png#hash\\""`;
+exports[`getUrl should work 29`] = `""image	image.png#hash""`;
 
 exports[`getUrl should work 30`] = `
-"\\"image
-image.png#hash\\""
+""image
+image.png#hash""
 `;
 
-exports[`getUrl should work 31`] = `"\\"imageimage.png#hash\\""`;
+exports[`getUrl should work 31`] = `""imageimage.png#hash""`;
 
 exports[`getUrl should work 32`] = `
-"\\"image
-image.png#hash\\""
+""image
+image.png#hash""
 `;
 
-exports[`getUrl should work 33`] = `"\\"image image.png#hash\\""`;
+exports[`getUrl should work 33`] = `""image image.png#hash""`;
 
-exports[`getUrl should work 34`] = `"\\"image\\"image.png#hash\\""`;
+exports[`getUrl should work 34`] = `""image"image.png#hash""`;
 
-exports[`getUrl should work 35`] = `"\\"image'image.png#hash\\""`;
+exports[`getUrl should work 35`] = `""image'image.png#hash""`;
 
-exports[`getUrl should work 36`] = `"\\"image=image.png#hash\\""`;
+exports[`getUrl should work 36`] = `""image=image.png#hash""`;
 
-exports[`getUrl should work 37`] = `"\\"image>image.png#hash\\""`;
+exports[`getUrl should work 37`] = `""image>image.png#hash""`;
 
-exports[`getUrl should work 38`] = `"\\"image<image.png#hash\\""`;
+exports[`getUrl should work 38`] = `""image<image.png#hash""`;
 
-exports[`getUrl should work 39`] = `"\\"image\`image.png#hash\\""`;
+exports[`getUrl should work 39`] = `""image\`image.png#hash""`;
 
 exports[`getUrl should work 40`] = `"image.png#hash"`;
 
@@ -114,7 +114,7 @@ image.png#hash"
 
 exports[`getUrl should work 45`] = `"image image.png#hash"`;
 
-exports[`getUrl should work 46`] = `"image\\"image.png#hash"`;
+exports[`getUrl should work 46`] = `"image"image.png#hash"`;
 
 exports[`getUrl should work 47`] = `"image'image.png#hash"`;
 
