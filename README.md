@@ -1055,7 +1055,7 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        use: ["html-loader"],
+        use: ["extract-loader", "html-loader"],
       },
     ],
   },
