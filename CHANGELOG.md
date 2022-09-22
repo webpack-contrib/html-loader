@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/webpack-contrib/html-loader/compare/v4.1.0...v4.2.0) (2022-09-22)
+
+
+### Features
+
+* update html minifier ([#462](https://github.com/webpack-contrib/html-loader/issues/462)) ([27a6caf](https://github.com/webpack-contrib/html-loader/commit/27a6cafeabbfd506d7e2571ea5918dd8e8cb8d29))
+
 ## [4.1.0](https://github.com/webpack-contrib/html-loader/compare/v4.0.0...v4.1.0) (2022-07-11)
 
 
