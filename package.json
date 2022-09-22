@@ -42,7 +42,7 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
-    "html-minifier-terser": "^6.1.0",
+    "html-minifier-terser": "^7.0.0",
     "parse5": "^7.0.0"
   },
   "devDependencies": {
