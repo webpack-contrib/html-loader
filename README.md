@@ -96,7 +96,7 @@ type sources =
 
 Default: `true`
 
-By default every loadable attributes (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
+By default every loadable attribute (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
 You may need to specify loaders for images in your configuration (recommended [`asset modules`](https://webpack.js.org/guides/asset-modules/)).
 
 Supported tags and attributes:
@@ -126,7 +126,7 @@ Supported tags and attributes:
 
 #### `boolean`
 
-The `true` value enables processing of all default elements and attributes, the `false` disable processing of all attributes.
+The `true` value enables the processing of all default elements and attributes, the `false` value disables the processing of all attributes.
 
 **webpack.config.js**
 
@@ -149,7 +149,7 @@ module.exports = {
 
 #### `object`
 
-Allows you to specify which tags and attributes to process, filter them, filter urls and process sources starts with `/`.
+Allows you to specify which tags and attributes to process, filter them, filter urls and process sources starting with `/`.
 
 For example:
 
@@ -217,7 +217,7 @@ type list = Array<{
 
 Default: [supported tags and attributes](#sources).
 
-Allows to setup which tags and attributes to process and how, and the ability to filter some of them.
+Allows to setup which tags and attributes to process and how, as well as the ability to filter some of them.
 
 Using `...` syntax allows you to extend [default supported tags and attributes](#sources).
 
@@ -418,7 +418,7 @@ type urlFilter = (
 Default: `undefined`
 
 Allow to filter urls. All filtered urls will not be resolved (left in the code as they were written).
-All non requestable sources (for example `<img src="javascript:void(0)">`) do not handle by default.
+Non-requestable sources (for example `<img src="javascript:void(0)">`) are not handled by default.
 
 ```js
 module.exports = {
@@ -719,7 +719,7 @@ type esModule = boolean;
 Default: `true`
 
 By default, `html-loader` generates JS modules that use the ES modules syntax.
-There are some cases in which using ES modules is beneficial, like in the case of [module concatenation](https://webpack.js.org/plugins/module-concatenation-plugin/) and [tree shaking](https://webpack.js.org/guides/tree-shaking/).
+There are some cases in which using ES modules is beneficial, such as [module concatenation](https://webpack.js.org/plugins/module-concatenation-plugin/) and [tree shaking](https://webpack.js.org/guides/tree-shaking/).
 
 You can enable a CommonJS modules syntax using:
 
@@ -745,7 +745,7 @@ module.exports = {
 
 ### Disable url resolving using the `<!-- webpackIgnore: true -->` comment
 
-With `<!-- webpackIgnore: true -->` comment, can to disable sources handling for next tag.
+With `<!-- webpackIgnore: true -->` comment, one can disable sources handling for next tag.
 
 ```html
 <!-- Disabled url handling for the src attribute -->
@@ -771,7 +771,7 @@ With `<!-- webpackIgnore: true -->` comment, can to disable sources handling for
 
 ### roots
 
-With [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots) can specify a list of directories where requests of server-relative URLs (starting with '/') are resolved.
+With [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots) one can specify a list of directories where requests of server-relative URLs (starting with '/') are resolved.
 
 **webpack.config.js**
 
