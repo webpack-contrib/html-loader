@@ -149,7 +149,7 @@ module.exports = {
 
 #### `object`
 
-Allows you to specify which tags and attributes to process, filter them, filter urls and process sources starting with `/`.
+Allows you to specify which tags and attributes to process, filter them, filter URL's and process sources starting with `/`.
 
 For example:
 
@@ -417,7 +417,7 @@ type urlFilter = (
 
 Default: `undefined`
 
-Allow to filter urls. All filtered urls will not be resolved (left in the code as they were written).
+Allow to filter URL's. All filtered URL's will not be resolved (left in the code as they were written).
 Non-requestable sources (for example `<img src="javascript:void(0)">`) are not handled by default.
 
 ```js
@@ -771,7 +771,7 @@ With `<!-- webpackIgnore: true -->` comment, one can disable sources handling fo
 
 ### roots
 
-With [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots) one can specify a list of directories where requests of server-relative URLs (starting with '/') are resolved.
+With [`resolve.roots`](https://webpack.js.org/configuration/resolve/#resolveroots) one can specify a list of directories where requests of server-relative URL's (starting with '/') are resolved.
 
 **webpack.config.js**
 
@@ -1032,7 +1032,7 @@ with a combination of 2 loaders:
 
 and [`asset modules`](https://webpack.js.org/guides/asset-modules/)
 
-The html-loader will parse the URLs, require the images and everything you
+The html-loader will parse the URL's, require the images and everything you
 expect. The extract loader will parse the javascript back into a proper html
 file, ensuring images are required and point to proper path, and the [`asset modules`](https://webpack.js.org/guides/asset-modules/)
 will write the _.html_ file for you. Example:
