@@ -1062,17 +1062,13 @@ function normalizeSourcesList(sources) {
   for (const source of sources) {
     if (source === "...") {
       for (const [tag, attributes] of defaultSources.entries()) {
-        let newAttributes;
-
         const existingAttributes = result.get(tag);
 
         if (existingAttributes) {
-          newAttributes = new Map([...existingAttributes, ...attributes]);
+          attributes.forEach(([k, v]) => existingAttributes.set(k, v));
         } else {
-          newAttributes = new Map(attributes);
+          result.set(tag, new Map(attributes));
         }
-
-        result.set(tag, newAttributes);
       }
 
       // eslint-disable-next-line no-continue
@@ -1083,10 +1079,6 @@ function normalizeSourcesList(sources) {
 
     tag = tag.toLowerCase();
     attribute = attribute.toLowerCase();
-
-    if (!result.has(tag)) {
-      result.set(tag, new Map());
-    }
 
     let typeFn;
 
@@ -1100,7 +1092,14 @@ function normalizeSourcesList(sources) {
         break;
     }
 
-    result.get(tag).set(attribute, {
+    let attrMap = result.get(tag);
+
+    if (!attrMap) {
+      attrMap = new Map();
+      result.set(tag, attrMap);
+    }
+
+    attrMap.set(attribute, {
       type: typeFn,
       filter: source.filter,
     });
