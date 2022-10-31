@@ -353,23 +353,23 @@ export function parseSrc(input) {
     throw new Error("Must be non-empty");
   }
 
-  let startOffset = 0;
+  let start = 0;
+  for (; start < input.length && isASCIIWhitespace(input[start]); start++);
+
+  let end = input.length - 1;
+  for (; end > -1 && isASCIIWhitespace(input[end]); end--);
+  end += 1;
+
   let value = input;
+  if (start !== 0 || end !== value.length) {
+    value = value.substring(start, end);
 
-  while (isASCIIWhitespace(value.substring(0, 1))) {
-    startOffset += 1;
-    value = value.substring(1, value.length);
+    if (!value) {
+      throw new Error("Must be non-empty");
+    }
   }
 
-  while (isASCIIWhitespace(value.substring(value.length - 1, value.length))) {
-    value = value.substring(0, value.length - 1);
-  }
-
-  if (!value) {
-    throw new Error("Must be non-empty");
-  }
-
-  return { value, startOffset };
+  return { value, startOffset: start };
 }
 
 const WINDOWS_ABS_PATH_REGEXP = /^[a-zA-Z]:[\\/]|^\\\\/;
@@ -1265,26 +1265,28 @@ function isASCIIC0group(character) {
 }
 
 export function c0ControlCodesExclude(source) {
-  let { value, startOffset } = source;
+  let { value } = source;
 
   if (!value) {
     throw new Error("Must be non-empty");
   }
 
-  while (isASCIIC0group(value.substring(0, 1))) {
-    startOffset += 1;
-    value = value.substring(1, value.length);
+  let start = 0;
+  for (; start < value.length && isASCIIC0group(value[start]); start++);
+
+  let end = value.length - 1;
+  for (; end > -1 && isASCIIC0group(value[end]); end--);
+  end += 1;
+
+  if (start !== 0 || end !== value.length) {
+    value = value.substring(start, end);
+
+    if (!value) {
+      throw new Error("Must be non-empty");
+    }
   }
 
-  while (isASCIIC0group(value.substring(value.length - 1, value.length))) {
-    value = value.substring(0, value.length - 1);
-  }
-
-  if (!value) {
-    throw new Error("Must be non-empty");
-  }
-
-  return { value, startOffset };
+  return { value, startOffset: source.startOffset + start };
 }
 
 export function traverse(root, callback) {
