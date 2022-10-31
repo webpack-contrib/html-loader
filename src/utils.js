@@ -572,7 +572,7 @@ function linkHrefFilter(tag, attribute, attributes) {
 
   rel = rel.toLowerCase();
 
-  const usedRels = rel.split(" ").filter((value) => value);
+  const usedRels = rel.split(" ").filter(Boolean);
   const allowedRels = [
     "stylesheet",
     "icon",
@@ -585,7 +585,7 @@ function linkHrefFilter(tag, attribute, attributes) {
     "preload",
   ];
 
-  return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
+  return allowedRels.some((value) => usedRels.includes(value));
 }
 
 const META = new Map([
