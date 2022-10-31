@@ -348,7 +348,7 @@ export function parseSrcset(input) {
   }
 }
 
-export function parseSrc(input) {
+function trimASCIIWhitespace(input) {
   if (!input) {
     throw new Error("Must be non-empty");
   }
@@ -685,7 +685,7 @@ export function srcType(options) {
   let source;
 
   try {
-    source = parseSrc(options.value);
+    source = trimASCIIWhitespace(options.value);
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -695,7 +695,16 @@ export function srcType(options) {
     );
   }
 
-  source = c0ControlCodesExclude(source);
+  try {
+    source = trimC0ControlCodes(source);
+  } catch (error) {
+    throw new HtmlSourceError(
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
+      options.html
+    );
+  }
 
   if (!isUrlRequestable(source.value)) {
     return [];
@@ -726,7 +735,16 @@ export function srcsetType(options) {
   sourceSet.forEach((sourceItem) => {
     let { source } = sourceItem;
 
-    source = c0ControlCodesExclude(source);
+    try {
+      source = trimC0ControlCodes(source);
+    } catch (error) {
+      throw new HtmlSourceError(
+        `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+        options.attributeStartOffset,
+        options.attributeEndOffset,
+        options.html
+      );
+    }
 
     if (!isUrlRequestable(source.value)) {
       return false;
@@ -768,7 +786,7 @@ function metaContentType(options) {
         let source;
 
         try {
-          source = parseSrc(src);
+          source = trimASCIIWhitespace(src);
         } catch (error) {
           throw new HtmlSourceError(
             `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
@@ -778,7 +796,16 @@ function metaContentType(options) {
           );
         }
 
-        source = c0ControlCodesExclude(source);
+        try {
+          source = trimC0ControlCodes(source);
+        } catch (error) {
+          throw new HtmlSourceError(
+            `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
+            options.attributeStartOffset,
+            options.attributeEndOffset,
+            options.html
+          );
+        }
 
         ({ value } = source);
         startOffset += source.startOffset;
@@ -805,7 +832,7 @@ function metaContentType(options) {
 //   let source;
 //
 //   try {
-//     source = parseSrc(options.value);
+//     source = trimASCIIWhitespace(options.value);
 //   } catch (error) {
 //     throw new HtmlSourceError(
 //       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -815,7 +842,16 @@ function metaContentType(options) {
 //     );
 //   }
 //
-//   source = c0ControlCodesExclude(source);
+//   try {
+//     source = trimC0ControlCodes(source);
+//   } catch (error) {
+//     throw new HtmlSourceError(
+//       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+//       options.attributeStartOffset,
+//       options.attributeEndOffset,
+//       options.html
+//     );
+//   }
 //
 //   if (!isUrlRequestable(source.value)) {
 //     return [];
@@ -1263,7 +1299,7 @@ function isASCIIC0group(character) {
   return /^[\u0001-\u0019\u00a0]/.test(character);
 }
 
-export function c0ControlCodesExclude(source) {
+function trimC0ControlCodes(source) {
   let { value } = source;
 
   if (!value) {
