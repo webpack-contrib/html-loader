@@ -348,7 +348,7 @@ export function parseSrcset(input) {
   }
 }
 
-function trimASCIIWhitespace(input) {
+export function parseSrc(input) {
   if (!input) {
     throw new Error("Must be non-empty");
   }
@@ -685,7 +685,7 @@ export function srcType(options) {
   let source;
 
   try {
-    source = trimASCIIWhitespace(options.value);
+    source = parseSrc(options.value);
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -696,7 +696,7 @@ export function srcType(options) {
   }
 
   try {
-    source = trimC0ControlCodes(source);
+    source = c0ControlCodesExclude(source);
   } catch (error) {
     throw new HtmlSourceError(
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -736,7 +736,7 @@ export function srcsetType(options) {
     let { source } = sourceItem;
 
     try {
-      source = trimC0ControlCodes(source);
+      source = c0ControlCodesExclude(source);
     } catch (error) {
       throw new HtmlSourceError(
         `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -786,7 +786,7 @@ function metaContentType(options) {
         let source;
 
         try {
-          source = trimASCIIWhitespace(src);
+          source = parseSrc(src);
         } catch (error) {
           throw new HtmlSourceError(
             `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
@@ -797,7 +797,7 @@ function metaContentType(options) {
         }
 
         try {
-          source = trimC0ControlCodes(source);
+          source = c0ControlCodesExclude(source);
         } catch (error) {
           throw new HtmlSourceError(
             `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
@@ -843,7 +843,7 @@ function metaContentType(options) {
 //   }
 //
 //   try {
-//     source = trimC0ControlCodes(source);
+//     source = c0ControlCodesExclude(source);
 //   } catch (error) {
 //     throw new HtmlSourceError(
 //       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -1299,7 +1299,7 @@ function isASCIIC0group(character) {
   return /^[\u0001-\u0019\u00a0]/.test(character);
 }
 
-function trimC0ControlCodes(source) {
+export function c0ControlCodesExclude(source) {
   let { value } = source;
 
   if (!value) {
