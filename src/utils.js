@@ -353,23 +353,27 @@ export function parseSrc(input) {
     throw new Error("Must be non-empty");
   }
 
-  let startOffset = 0;
-  let value = input;
+  let start = 0;
+  for (; start < input.length && isASCIIWhitespace(input[start]); start++);
 
-  while (isASCIIWhitespace(value.substring(0, 1))) {
-    startOffset += 1;
-    value = value.substring(1, value.length);
-  }
-
-  while (isASCIIWhitespace(value.substring(value.length - 1, value.length))) {
-    value = value.substring(0, value.length - 1);
-  }
-
-  if (!value) {
+  if (start === input.length) {
     throw new Error("Must be non-empty");
   }
 
-  return { value, startOffset };
+  let end = input.length - 1;
+  for (; end > -1 && isASCIIWhitespace(input[end]); end--);
+  end += 1;
+
+  let value = input;
+  if (start !== 0 || end !== value.length) {
+    value = value.substring(start, end);
+
+    if (!value) {
+      throw new Error("Must be non-empty");
+    }
+  }
+
+  return { value, startOffset: start };
 }
 
 const WINDOWS_ABS_PATH_REGEXP = /^[a-zA-Z]:[\\/]|^\\\\/;
@@ -572,7 +576,7 @@ function linkHrefFilter(tag, attribute, attributes) {
 
   rel = rel.toLowerCase();
 
-  const usedRels = rel.split(" ").filter((value) => value);
+  const usedRels = rel.split(" ").filter(Boolean);
   const allowedRels = [
     "stylesheet",
     "icon",
@@ -585,7 +589,7 @@ function linkHrefFilter(tag, attribute, attributes) {
     "preload",
   ];
 
-  return allowedRels.filter((value) => usedRels.includes(value)).length > 0;
+  return allowedRels.some((value) => usedRels.includes(value));
 }
 
 const META = new Map([
@@ -695,7 +699,16 @@ export function srcType(options) {
     );
   }
 
-  source = c0ControlCodesExclude(source);
+  try {
+    source = c0ControlCodesExclude(source);
+  } catch (error) {
+    throw new HtmlSourceError(
+      `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+      options.attributeStartOffset,
+      options.attributeEndOffset,
+      options.html
+    );
+  }
 
   if (!isUrlRequestable(source.value)) {
     return [];
@@ -726,7 +739,16 @@ export function srcsetType(options) {
   sourceSet.forEach((sourceItem) => {
     let { source } = sourceItem;
 
-    source = c0ControlCodesExclude(source);
+    try {
+      source = c0ControlCodesExclude(source);
+    } catch (error) {
+      throw new HtmlSourceError(
+        `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+        options.attributeStartOffset,
+        options.attributeEndOffset,
+        options.html
+      );
+    }
 
     if (!isUrlRequestable(source.value)) {
       return false;
@@ -778,7 +800,16 @@ function metaContentType(options) {
           );
         }
 
-        source = c0ControlCodesExclude(source);
+        try {
+          source = c0ControlCodesExclude(source);
+        } catch (error) {
+          throw new HtmlSourceError(
+            `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
+            options.attributeStartOffset,
+            options.attributeEndOffset,
+            options.html
+          );
+        }
 
         ({ value } = source);
         startOffset += source.startOffset;
@@ -805,7 +836,7 @@ function metaContentType(options) {
 //   let source;
 //
 //   try {
-//     source = parseSrc(options.value);
+//     source = trimASCIIWhitespace(options.value);
 //   } catch (error) {
 //     throw new HtmlSourceError(
 //       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
@@ -815,7 +846,16 @@ function metaContentType(options) {
 //     );
 //   }
 //
-//   source = c0ControlCodesExclude(source);
+//   try {
+//     source = c0ControlCodesExclude(source);
+//   } catch (error) {
+//     throw new HtmlSourceError(
+//       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
+//       options.attributeStartOffset,
+//       options.attributeEndOffset,
+//       options.html
+//     );
+//   }
 //
 //   if (!isUrlRequestable(source.value)) {
 //     return [];
@@ -1062,17 +1102,13 @@ function normalizeSourcesList(sources) {
   for (const source of sources) {
     if (source === "...") {
       for (const [tag, attributes] of defaultSources.entries()) {
-        let newAttributes;
-
         const existingAttributes = result.get(tag);
 
         if (existingAttributes) {
-          newAttributes = new Map([...existingAttributes, ...attributes]);
+          attributes.forEach(([k, v]) => existingAttributes.set(k, v));
         } else {
-          newAttributes = new Map(attributes);
+          result.set(tag, new Map(attributes));
         }
-
-        result.set(tag, newAttributes);
       }
 
       // eslint-disable-next-line no-continue
@@ -1083,10 +1119,6 @@ function normalizeSourcesList(sources) {
 
     tag = tag.toLowerCase();
     attribute = attribute.toLowerCase();
-
-    if (!result.has(tag)) {
-      result.set(tag, new Map());
-    }
 
     let typeFn;
 
@@ -1100,7 +1132,14 @@ function normalizeSourcesList(sources) {
         break;
     }
 
-    result.get(tag).set(attribute, {
+    let attrMap = result.get(tag);
+
+    if (!attrMap) {
+      attrMap = new Map();
+      result.set(tag, attrMap);
+    }
+
+    attrMap.set(attribute, {
       type: typeFn,
       filter: source.filter,
     });
@@ -1265,26 +1304,32 @@ function isASCIIC0group(character) {
 }
 
 export function c0ControlCodesExclude(source) {
-  let { value, startOffset } = source;
+  let { value } = source;
 
   if (!value) {
     throw new Error("Must be non-empty");
   }
 
-  while (isASCIIC0group(value.substring(0, 1))) {
-    startOffset += 1;
-    value = value.substring(1, value.length);
-  }
+  let start = 0;
+  for (; start < value.length && isASCIIC0group(value[start]); start++);
 
-  while (isASCIIC0group(value.substring(value.length - 1, value.length))) {
-    value = value.substring(0, value.length - 1);
-  }
-
-  if (!value) {
+  if (start === value.length) {
     throw new Error("Must be non-empty");
   }
 
-  return { value, startOffset };
+  let end = value.length - 1;
+  for (; end > -1 && isASCIIC0group(value[end]); end--);
+  end += 1;
+
+  if (start !== 0 || end !== value.length) {
+    value = value.substring(start, end);
+
+    if (!value) {
+      throw new Error("Must be non-empty");
+    }
+  }
+
+  return { value, startOffset: source.startOffset + start };
 }
 
 export function traverse(root, callback) {
