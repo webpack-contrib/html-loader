@@ -356,13 +356,13 @@ export function parseSrc(input) {
   let start = 0;
   for (; start < input.length && isASCIIWhitespace(input[start]); start++);
 
+  if (start === input.length) {
+    throw new Error("Must be non-empty");
+  }
+
   let end = input.length - 1;
   for (; end > -1 && isASCIIWhitespace(input[end]); end--);
   end += 1;
-
-  if (start > end) {
-    throw new Error("Must be non-empty");
-  }
 
   let value = input;
   if (start !== 0 || end !== value.length) {
@@ -1313,13 +1313,13 @@ export function c0ControlCodesExclude(source) {
   let start = 0;
   for (; start < value.length && isASCIIC0group(value[start]); start++);
 
+  if (start === value.length) {
+    throw new Error("Must be non-empty");
+  }
+
   let end = value.length - 1;
   for (; end > -1 && isASCIIC0group(value[end]); end--);
   end += 1;
-
-  if (start > end) {
-    throw new Error("Must be non-empty");
-  }
 
   if (start !== 0 || end !== value.length) {
     value = value.substring(start, end);
