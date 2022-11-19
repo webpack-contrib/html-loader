@@ -90,7 +90,7 @@ export function parseSrcset(input) {
     // 7. Let descriptors be a new empty list.
     descriptors = [];
 
-    // 8. If url ends with a U+002C COMMA character (,), follow these substeps:
+    // 8. If url ends with a U+002C COMMA character (,), follow these sub steps:
     //		(1). Remove all trailing U+002C COMMA characters from url. If this removed
     //         more than one character, that is a parse error.
     if (url.slice(-1) === ",") {
@@ -99,7 +99,7 @@ export function parseSrcset(input) {
       // (Jump ahead to step 9 to skip tokenization and just push the candidate).
       parseDescriptors();
     }
-    //	Otherwise, follow these substeps:
+    //	Otherwise, follow these sub steps:
     else {
       tokenize();
     }
@@ -1215,7 +1215,7 @@ export function getImportCode(html, loaderContext, imports, options) {
     return "";
   }
 
-  // TODO simpify in the next major release
+  // TODO simplify in the next major release
   const getURLRuntime = require.resolve("./runtime/getUrl.js");
   const context = loaderContext.context || loaderContext.rootContext;
   const fileURLToHelper =
