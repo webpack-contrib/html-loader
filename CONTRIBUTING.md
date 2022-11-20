@@ -38,5 +38,5 @@ your pull request should be accepted quickly.
 Some things that will increase the chance that your pull request is accepted:
 
 - Write tests
-- Follow the existing Webpack coding style defined in the eslint jsbeutify and editor config rules.
+- Follow the existing Webpack coding style defined in the eslint jsbeautify and editor config rules.
 - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
