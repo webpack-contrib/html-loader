@@ -48,6 +48,9 @@
     "*.xml",
     "*.ogg",
     "*.html",
-    "*.webp"
+    "*.webp",
+    "node_modules",
+    "coverage",
+    "*.log"
   ]
 }
