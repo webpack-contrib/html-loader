@@ -9,7 +9,7 @@
 [![node][node]][node-url]
 [![tests][tests]][tests-url]
 [![coverage][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![discussion][discussion]][discussion-url]
 [![size][size]][size-url]
 
 # html-loader
@@ -1080,7 +1080,7 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [tests-url]: https://github.com/webpack-contrib/html-loader/actions
 [cover]: https://codecov.io/gh/webpack-contrib/html-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/html-loader
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
-[chat-url]: https://gitter.im/webpack/webpack
+[discussion]: https://img.shields.io/github/discussions/webpack/webpack
+[discussion-url]: https://github.com/webpack/webpack/discussions
 [size]: https://packagephobia.now.sh/badge?p=html-loader
 [size-url]: https://packagephobia.now.sh/result?p=html-loader
