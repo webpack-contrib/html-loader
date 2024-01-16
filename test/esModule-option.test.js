@@ -15,7 +15,7 @@ describe("'esModule' option", () => {
 
     expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -27,7 +27,7 @@ describe("'esModule' option", () => {
 
     expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -39,7 +39,7 @@ describe("'esModule' option", () => {
 
     expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");

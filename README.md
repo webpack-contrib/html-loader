@@ -82,13 +82,13 @@ type sources =
           tag: string,
           attribute: string,
           attributes: string,
-          resourcePath: string
+          resourcePath: string,
         ) => boolean;
       }>;
       urlFilter?: (
         attribute: string,
         value: string,
-        resourcePath: string
+        resourcePath: string,
       ) => boolean;
       scriptingEnabled?: boolean;
     };
@@ -210,7 +210,7 @@ type list = Array<{
     tag: string,
     attribute: string,
     attributes: string,
-    resourcePath: string
+    resourcePath: string,
   ) => boolean;
 }>;
 ```
@@ -411,7 +411,7 @@ Type:
 type urlFilter = (
   attribute: string,
   value: string,
-  resourcePath: string
+  resourcePath: string,
 ) => boolean;
 ```
 
@@ -492,7 +492,7 @@ Type:
 ```ts
 type preprocessor = (
   content: string | Buffer,
-  loaderContext: LoaderContext
+  loaderContext: LoaderContext,
 ) => HTMLElement;
 ```
 
@@ -876,7 +876,7 @@ a {
 **file.html**
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />

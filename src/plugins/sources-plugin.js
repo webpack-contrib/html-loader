@@ -68,7 +68,7 @@ export default (options) =>
 
         const attributeAndValue = html.slice(
           sourceCodeLocation.attrs[name].startOffset,
-          sourceCodeLocation.attrs[name].endOffset
+          sourceCodeLocation.attrs[name].endOffset,
         );
         const isValueQuoted =
           attributeAndValue[attributeAndValue.length - 1] === '"' ||
