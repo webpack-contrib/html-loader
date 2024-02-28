@@ -342,7 +342,7 @@ export function parseSrcset(input) {
       candidates.push(candidate);
     } else {
       throw new Error(
-        `Invalid srcset descriptor found in '${input}' at '${desc}'`
+        `Invalid srcset descriptor found in '${input}' at '${desc}'`,
       );
     }
   }
@@ -695,7 +695,7 @@ export function srcType(options) {
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
       options.attributeStartOffset,
       options.attributeEndOffset,
-      options.html
+      options.html,
     );
   }
 
@@ -706,7 +706,7 @@ export function srcType(options) {
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
       options.attributeStartOffset,
       options.attributeEndOffset,
-      options.html
+      options.html,
     );
   }
 
@@ -730,7 +730,7 @@ export function srcsetType(options) {
       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
       options.attributeStartOffset,
       options.attributeEndOffset,
-      options.html
+      options.html,
     );
   }
 
@@ -746,7 +746,7 @@ export function srcsetType(options) {
         `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
         options.attributeStartOffset,
         options.attributeEndOffset,
-        options.html
+        options.html,
       );
     }
 
@@ -769,7 +769,7 @@ function metaContentType(options) {
   const isMsapplicationTask = options.attributes.find(
     (i) =>
       i.name.toLowerCase() === "name" &&
-      i.value.toLowerCase() === "msapplication-task"
+      i.value.toLowerCase() === "msapplication-task",
   );
 
   if (isMsapplicationTask) {
@@ -796,7 +796,7 @@ function metaContentType(options) {
             `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
             options.attributeStartOffset,
             options.attributeEndOffset,
-            options.html
+            options.html,
           );
         }
 
@@ -807,7 +807,7 @@ function metaContentType(options) {
             `Bad value for attribute "icon-uri" on element "${options.tag}": ${error.message}`,
             options.attributeStartOffset,
             options.attributeEndOffset,
-            options.html
+            options.html,
           );
         }
 
@@ -1241,7 +1241,7 @@ export function getImportCode(html, loaderContext, imports, options) {
       default:
         code += options.esModule
           ? `var ${importName} = new URL(${JSON.stringify(
-              request
+              request,
             )}, import.meta.url);\n`
           : `var ${importName} = require(${JSON.stringify(request)});\n`;
     }
@@ -1254,7 +1254,7 @@ export function getModuleCode(html, replacements) {
   let code = JSON.stringify(html)
     // Invalid in JavaScript but valid HTML
     .replace(/[\u2028\u2029]/g, (str) =>
-      str === "\u2029" ? "\\u2029" : "\\u2028"
+      str === "\u2029" ? "\\u2029" : "\\u2028",
     );
 
   let replacersCode = "";
@@ -1273,12 +1273,12 @@ export function getModuleCode(html, replacements) {
 
       code = code.replace(
         new RegExp(replacementName, "g"),
-        () => `" + ${replacementName} + "`
+        () => `" + ${replacementName} + "`,
       );
     } else {
       code = code.replace(
         new RegExp(replacementName, "g"),
-        () => `" + ${importName} + "`
+        () => `" + ${importName} + "`,
       );
     }
   }
