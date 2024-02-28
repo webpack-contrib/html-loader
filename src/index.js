@@ -33,7 +33,7 @@ export default async function loader(content) {
         imports,
         errors,
         replacements,
-      }),
+      })
     );
   }
 

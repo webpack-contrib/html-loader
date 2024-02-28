@@ -20,7 +20,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -32,7 +32,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./empty.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -44,7 +44,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./template.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -52,7 +52,7 @@ describe("loader", () => {
 
   it("should not failed contain invisible spaces", async () => {
     const source = fs.readFileSync(
-      path.resolve(__dirname, "./fixtures/invisible-space.html"),
+      path.resolve(__dirname, "./fixtures/invisible-space.html")
     );
 
     expect(/[\u2028\u2029]/.test(source)).toBe(true);
@@ -65,7 +65,7 @@ describe("loader", () => {
     expect(moduleSource).toMatchSnapshot("module");
     expect(/[\u2028\u2029]/.test(moduleSource)).toBe(false);
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -76,10 +76,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(getModuleSource("./broken-html-syntax.html", stats)).toMatchSnapshot(
-      "module",
+      "module"
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -91,7 +91,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./nested.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -105,13 +105,13 @@ describe("loader", () => {
         resolve: {
           roots: [path.resolve(__dirname, "fixtures/roots")],
         },
-      },
+      }
     );
     const stats = await compile(compiler);
 
     expect(getModuleSource("./roots.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -130,7 +130,7 @@ describe("loader", () => {
     //   'module'
     // );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -150,7 +150,7 @@ describe("loader", () => {
               use: {
                 loader: path.resolve(
                   __dirname,
-                  "./helpers/svg-color-loader.js",
+                  "./helpers/svg-color-loader.js"
                 ),
               },
             },
@@ -160,15 +160,15 @@ describe("loader", () => {
             },
           ],
         },
-      },
+      }
     );
     const stats = await compile(compiler);
 
     expect(getModuleSource("./other-loader-query.html", stats)).toMatchSnapshot(
-      "module",
+      "module"
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -179,10 +179,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(getModuleSource("./webpackIgnore.html", stats)).toMatchSnapshot(
-      "module",
+      "module"
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -210,7 +210,7 @@ describe("loader", () => {
             template: path.resolve(__dirname, "fixtures/template-html.html"),
           }),
         ],
-      },
+      }
     );
     const stats = await compile(compiler);
 

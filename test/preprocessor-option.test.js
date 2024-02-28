@@ -38,10 +38,10 @@ describe("'process' option", () => {
     const stats = await compile(compiler);
 
     expect(getModuleSource("./preprocessor.hbs", stats)).toMatchSnapshot(
-      "module",
+      "module"
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -72,10 +72,10 @@ describe("'process' option", () => {
     const stats = await compile(compiler);
 
     expect(getModuleSource("./preprocessor.hbs", stats)).toMatchSnapshot(
-      "module",
+      "module"
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -105,7 +105,7 @@ describe("'process' option", () => {
 
     expect(getModuleSource("./posthtml.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -136,7 +136,7 @@ describe("'process' option", () => {
 
     expect(getModuleSource("./posthtml.html", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats)),
+      execute(readAsset("main.bundle.js", compiler, stats))
     ).toMatchSnapshot("result");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");

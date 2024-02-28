@@ -14,14 +14,14 @@ export default (code) => {
   const module = new Module(resource, parentModule);
   // eslint-disable-next-line no-underscore-dangle
   module.paths = Module._nodeModulePaths(
-    path.resolve(__dirname, "../fixtures"),
+    path.resolve(__dirname, "../fixtures")
   );
   module.filename = resource;
 
   // eslint-disable-next-line no-underscore-dangle
   module._compile(
     `${code};module.exports = ___TEST___.default ?___TEST___.default : ___TEST___;`,
-    resource,
+    resource
   );
 
   return replaceAbsolutePath(module.exports);
