@@ -369,7 +369,7 @@ module.exports = {
 };
 ```
 
-> **Note**
+> [!NOTE]
 >
 > source with a `tag` option takes precedence over source without.
 
@@ -500,7 +500,7 @@ Default: `undefined`
 
 Allows pre-processing of content before handling.
 
-> **Warning**
+> [!WARNING]
 >
 > You should always return valid HTML
 
