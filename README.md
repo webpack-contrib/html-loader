@@ -589,7 +589,7 @@ module.exports = {
 };
 ```
 
-### `preprocessor`
+### `postprocessor`
 
 Type:
 
@@ -600,10 +600,6 @@ type postprocessor = (content: string, loaderContext: LoaderContext) => string;
 Default: `undefined`
 
 Allows post-processing of content after replacing all attributes (like `src`/`srcset`/etc).
-
-> [!WARNING]
->
-> You should always return valid HTML
 
 **file.html**
 
