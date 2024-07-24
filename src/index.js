@@ -41,7 +41,18 @@ export default async function loader(content) {
     plugins.push(minimizerPlugin({ minimize: options.minimize, errors }));
   }
 
-  const { html } = await pluginRunner(plugins).process(content);
+  let { html } = await pluginRunner(plugins).process(content);
+
+  html = JSON.stringify(html)
+    // Invalid in JavaScript but valid HTML
+    .replace(/[\u2028\u2029]/g, (str) =>
+      str === "\u2029" ? "\\u2029" : "\\u2028",
+    );
+
+  if (options.postprocessor) {
+    // eslint-disable-next-line no-param-reassign
+    html = await options.postprocessor(html, this);
+  }
 
   for (const error of errors) {
     this.emitError(error instanceof Error ? error : new Error(error));

@@ -36,9 +36,10 @@
     "vspace",
     "jsbeautify",
     "Gitter",
-    "commitlint"
+    "commitlint",
+    "postprocessor",
+    "eslintcache"
   ],
-
   "ignorePaths": [
     "CHANGELOG.md",
     "package.json",

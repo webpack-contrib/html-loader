@@ -12,7 +12,7 @@ import {
   readAsset,
 } from "./helpers";
 
-describe("'process' option", () => {
+describe("'preprocess' option", () => {
   it('should work with the "preprocessor" option', async () => {
     const compiler = getCompiler("preprocessor.hbs", {
       preprocessor: (content, loaderContext) => {
@@ -110,6 +110,7 @@ describe("'process' option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
+
   it('should work with the Async "preprocessor" Function option #2', async () => {
     const plugin = posthtmlWebp();
     const compiler = getCompiler("posthtml.html", {

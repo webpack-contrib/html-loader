@@ -1,0 +1,6 @@
+<img src="image.png">
+<img src="<%= 'Hello ' + (1+1) %>">
+<img src="<%= require('./image.png') %>">
+<img src="<%= new URL('./image.png', import.meta.url) %>">
+<div><%= require('./gallery.html').default %></div>
+<!--Works fine, but need improve testing <div>< %= (await import('./gallery.html')).default % ></div>-->

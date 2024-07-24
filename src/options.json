@@ -45,6 +45,11 @@
       "description": "Allows pre-processing of content before handling.",
       "link": "https://github.com/webpack-contrib/html-loader#preprocessor"
     },
+    "postprocessor": {
+      "instanceof": "Function",
+      "description": "Allows post-processing of content before handling.",
+      "link": "https://github.com/webpack-contrib/html-loader#postprocessor"
+    },
     "sources": {
       "anyOf": [
         { "type": "boolean" },
