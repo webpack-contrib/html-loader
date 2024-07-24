@@ -47,7 +47,7 @@ describe("'preprocess' option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
 
-  it('should work with Async "preprocessor" Function option', async () => {
+  it('should work with async "preprocessor" function option', async () => {
     const compiler = getCompiler("preprocessor.hbs", {
       preprocessor: async (content, loaderContext) => {
         await expect(typeof content).toBe("string");
@@ -111,7 +111,7 @@ describe("'preprocess' option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
 
-  it('should work with the Async "preprocessor" Function option #2', async () => {
+  it('should work with the async "preprocessor" function option #2', async () => {
     const plugin = posthtmlWebp();
     const compiler = getCompiler("posthtml.html", {
       preprocessor: async (content, loaderContext) => {

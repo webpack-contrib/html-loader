@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`'postprocess' option should work with Async "postprocessor" Function option: errors 1`] = `[]`;
+exports[`'postprocess' option should work with async "postprocessor" function option: errors 1`] = `[]`;
 
-exports[`'postprocess' option should work with Async "postprocessor" Function option: module 1`] = `
+exports[`'postprocess' option should work with async "postprocessor" function option: module 1`] = `
 "// Imports
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
@@ -13,7 +13,7 @@ var code = "<div>\\n  <p>{{firstname}} {{lastname}}</p>\\n  <img src=\\"" + ___H
 export default code;"
 `;
 
-exports[`'postprocess' option should work with Async "postprocessor" Function option: result 1`] = `
+exports[`'postprocess' option should work with async "postprocessor" function option: result 1`] = `
 "<div>
   <p>{{firstname}} {{lastname}}</p>
   <img src="replaced_file_protocol_/webpack/public/path/image.png" alt="alt" />
@@ -21,7 +21,7 @@ exports[`'postprocess' option should work with Async "postprocessor" Function op
 "
 `;
 
-exports[`'postprocess' option should work with Async "postprocessor" Function option: warnings 1`] = `[]`;
+exports[`'postprocess' option should work with async "postprocessor" function option: warnings 1`] = `[]`;
 
 exports[`'postprocess' option should work with the "postprocessor" option: errors 1`] = `[]`;
 

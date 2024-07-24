@@ -30,7 +30,7 @@ describe("'postprocess' option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
 
-  it('should work with Async "postprocessor" Function option', async () => {
+  it('should work with async "postprocessor" function option', async () => {
     const compiler = getCompiler("preprocessor.hbs", {
       postprocessor: async (content, loaderContext) => {
         await expect(typeof content).toBe("string");
