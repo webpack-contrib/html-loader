@@ -63,6 +63,7 @@ module.exports = {
 
 - **[`sources`](#sources)**
 - **[`preprocessor`](#preprocessor)**
+- **[`postprocessor`](#postprocessor)**
 - **[`minimize`](#minimize)**
 - **[`esModule`](#esmodule)**
 
@@ -490,10 +491,7 @@ module.exports = {
 Type:
 
 ```ts
-type preprocessor = (
-  content: string | Buffer,
-  loaderContext: LoaderContext,
-) => HTMLElement;
+type preprocessor = (content: string, loaderContext: LoaderContext) => string;
 ```
 
 Default: `undefined`
@@ -583,6 +581,85 @@ module.exports = {
             }
 
             return result;
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+### `postprocessor`
+
+Type:
+
+```ts
+type postprocessor = (content: string, loaderContext: LoaderContext) => string;
+```
+
+Default: `undefined`
+
+Allows post-processing of content after replacing all attributes (like `src`/`srcset`/etc).
+
+**file.html**
+
+```html
+<img src="image.png" />
+<img src="<%= 'Hello ' + (1+1) %>" />
+<img src="<%= require('./image.png') %>" />
+<img src="<%= new URL('./image.png', import.meta.url) %>" />
+<div><%= require('./gallery.html').default %></div>
+```
+
+#### `function`
+
+You can set the `postprocessor` option as a `function` instance.
+
+**webpack.config.js**
+
+```js
+const Handlebars = require("handlebars");
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+        options: {
+          postprocessor: (content, loaderContext) => {
+            return content.replace(/<%=/g, '" +').replace(/%>/g, '+ "');
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+You can also set the `postprocessor` option as an asynchronous function instance.
+
+For example:
+
+**webpack.config.js**
+
+```js
+const Handlebars = require("handlebars");
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.hbs$/i,
+        loader: "html-loader",
+        options: {
+          postprocessor: async (content, loaderContext) => {
+            const value = await getValue();
+
+            return content
+              .replace(/<%=/g, '" +')
+              .replace(/%>/g, '+ "')
+              .replace("my-value", value);
           },
         },
       },

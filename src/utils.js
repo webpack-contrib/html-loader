@@ -1174,6 +1174,7 @@ function getSourcesOption(rawOptions) {
 export function normalizeOptions(rawOptions, loaderContext) {
   return {
     preprocessor: rawOptions.preprocessor,
+    postprocessor: rawOptions.postprocessor,
     sources: getSourcesOption(rawOptions),
     minimize: getMinimizeOption(rawOptions, loaderContext),
     esModule:
@@ -1251,12 +1252,7 @@ export function getImportCode(html, loaderContext, imports, options) {
 }
 
 export function getModuleCode(html, replacements) {
-  let code = JSON.stringify(html)
-    // Invalid in JavaScript but valid HTML
-    .replace(/[\u2028\u2029]/g, (str) =>
-      str === "\u2029" ? "\\u2029" : "\\u2028",
-    );
-
+  let code = html;
   let replacersCode = "";
 
   for (const item of replacements) {
