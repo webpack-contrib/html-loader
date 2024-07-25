@@ -139,8 +139,7 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const { name, value, isValueQuoted, runtime, startOffset, endOffset } =
-        source;
+      const { name, value, isValueQuoted, startOffset, endOffset } = source;
 
       let request = value;
 
@@ -180,7 +179,6 @@ export default (options) =>
           importName,
           hash,
           isValueQuoted,
-          runtime,
         });
       }
 

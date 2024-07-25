@@ -1268,37 +1268,28 @@ export function getModuleCode(html, replacements, loaderContext, options) {
   let needHelperImport = false;
 
   for (const item of replacements) {
-    const { runtime, importName, replacementName, isValueQuoted, hash } = item;
+    const { importName, replacementName, isValueQuoted, hash } = item;
+    const getUrlOptions = []
+      .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
+      .concat(isValueQuoted ? [] : "maybeNeedQuotes: true");
+    const preparedOptions =
+      getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
 
-    if (typeof runtime === "undefined" || runtime === true) {
-      const getUrlOptions = []
-        .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-        .concat(isValueQuoted ? [] : "maybeNeedQuotes: true");
-      const preparedOptions =
-        getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
+    const needHelperFn = getUrlOptions.length > 0;
 
-      const needHelperFn = getUrlOptions.length > 0;
-
-      if (needHelperFn) {
-        if (!needHelperImport) {
-          needHelperImport = true;
-        }
-
-        replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
+    if (needHelperFn) {
+      if (!needHelperImport) {
+        needHelperImport = true;
       }
 
-      const name = needHelperFn ? replacementName : importName;
-
-      code = code.replace(new RegExp(replacementName, "g"), () =>
-        isTemplateLiteralSupported ? `\${${name}}` : `" + ${name} + "`,
-      );
-    } else {
-      code = code.replace(new RegExp(replacementName, "g"), () =>
-        isTemplateLiteralSupported
-          ? `\${${replacementName}}`
-          : `" + ${replacementName} + "`,
-      );
+      replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
     }
+
+    const name = needHelperFn ? replacementName : importName;
+
+    code = code.replace(new RegExp(replacementName, "g"), () =>
+      isTemplateLiteralSupported ? `\${${name}}` : `" + ${name} + "`,
+    );
   }
 
   // Replaces "<script>" or "</script>" to "<" + "script>" or "<" + "/script>".
