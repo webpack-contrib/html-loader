@@ -7,10 +7,9 @@ exports[`'postprocess' option should work with async "postprocessor" function op
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
-var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var code = \`<div>
   <p>{{firstname}} {{lastname}}</p>
-  <img src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="alt" />
+  <img src="\${___HTML_LOADER_IMPORT_0___}" alt="alt" />
 <div>
 \`;
 // Exports
@@ -34,8 +33,7 @@ exports[`'postprocess' option should work with the "postprocessor" option #1: mo
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
-var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<img src=\\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\\">\\n<img src=\\"" + 'Hello ' + (1+1) + "\\">\\n<img src=\\"" + require('./image.png') + "\\">\\n<img src=\\"" + new URL('./image.png', import.meta.url) + "\\">\\n<div>" + require('./gallery.html').default + "</div>\\n<!--Works fine, but need improve testing <div>< %= (await import('./gallery.html')).default % ></div>-->\\n";
+var code = "<img src=\\"" + ___HTML_LOADER_IMPORT_0___ + "\\">\\n<img src=\\"" + 'Hello ' + (1+1) + "\\">\\n<img src=\\"" + require('./image.png') + "\\">\\n<img src=\\"" + new URL('./image.png', import.meta.url) + "\\">\\n<div>" + require('./gallery.html').default + "</div>\\n<!--Works fine, but need improve testing <div>< %= (await import('./gallery.html')).default % ></div>-->\\n";
 // Exports
 export default code;"
 `;
@@ -59,8 +57,7 @@ exports[`'postprocess' option should work with the "postprocessor" option: modul
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
-var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = \`<img src="\${___HTML_LOADER_REPLACEMENT_0___}">
+var code = \`<img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${ 'Hello ' + (1+1) }">
 <img src="\${ require('./image.png') }">
 <img src="\${ new URL('./image.png', import.meta.url) }">

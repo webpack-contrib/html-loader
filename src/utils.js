@@ -1239,22 +1239,13 @@ export function getImportCode(html, loaderContext, imports, options) {
     : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n`;
 
   for (const item of imports) {
-    const { format, importName, request } = item;
+    const { importName, request } = item;
 
-    switch (format) {
-      case "import":
-        code += options.esModule
-          ? `import ${importName} from ${JSON.stringify(request)};\n`
-          : `var ${importName} = require(${JSON.stringify(request)});\n`;
-        break;
-      case "url":
-      default:
-        code += options.esModule
-          ? `var ${importName} = new URL(${JSON.stringify(
-              request,
-            )}, import.meta.url);\n`
-          : `var ${importName} = require(${JSON.stringify(request)});\n`;
-    }
+    code += options.esModule
+      ? `var ${importName} = new URL(${JSON.stringify(
+          request,
+        )}, import.meta.url);\n`
+      : `var ${importName} = require(${JSON.stringify(request)});\n`;
   }
 
   return `// Imports\n${code}`;
@@ -1295,12 +1286,16 @@ export function getModuleCode(html, replacements, options) {
       const preparedOptions =
         getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
 
-      replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
+      const needHelperFn = getUrlOptions.length > 0;
+
+      if (needHelperFn) {
+        replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
+      }
+
+      const name = needHelperFn ? replacementName : importName;
 
       code = code.replace(new RegExp(replacementName, "g"), () =>
-        isTemplateLiteralSupported
-          ? `\${${replacementName}}`
-          : `" + ${replacementName} + "`,
+        isTemplateLiteralSupported ? `\${${name}}` : `" + ${name} + "`,
       );
     } else {
       code = code.replace(new RegExp(replacementName, "g"), () =>

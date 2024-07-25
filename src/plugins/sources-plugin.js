@@ -139,15 +139,8 @@ export default (options) =>
     let offset = 0;
 
     for (const source of sources) {
-      const {
-        name,
-        value,
-        isValueQuoted,
-        format,
-        runtime,
-        startOffset,
-        endOffset,
-      } = source;
+      const { name, value, isValueQuoted, runtime, startOffset, endOffset } =
+        source;
 
       let request = value;
 
@@ -172,7 +165,7 @@ export default (options) =>
         importName = `___HTML_LOADER_IMPORT_${imports.size}___`;
         imports.set(request, importName);
 
-        options.imports.push({ format, importName, request });
+        options.imports.push({ importName, request });
       }
 
       const replacementKey = JSON.stringify({ request, isValueQuoted, hash });
