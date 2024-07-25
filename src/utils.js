@@ -1240,9 +1240,30 @@ export function getImportCode(html, loaderContext, imports, options) {
   return `// Imports\n${code}`;
 }
 
-export function getModuleCode(html, replacements) {
+const SLASH = "\\".charCodeAt(0);
+const BACKTICK = "`".charCodeAt(0);
+const DOLLAR = "$".charCodeAt(0);
+
+export function convertToTemplateLiteral(str) {
+  let escapedString = "";
+
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+
+    escapedString +=
+      code === SLASH || code === BACKTICK || code === DOLLAR
+        ? `\\${str[i]}`
+        : str[i];
+  }
+
+  return `\`${escapedString}\``;
+}
+
+export function getModuleCode(html, replacements, options) {
   let code = html;
   let replacersCode = "";
+
+  const { isTemplateLiteralSupported } = options;
 
   for (const item of replacements) {
     const { runtime, importName, replacementName, isValueQuoted, hash } = item;
@@ -1256,20 +1277,24 @@ export function getModuleCode(html, replacements) {
 
       replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
 
-      code = code.replace(
-        new RegExp(replacementName, "g"),
-        () => `" + ${replacementName} + "`,
+      code = code.replace(new RegExp(replacementName, "g"), () =>
+        isTemplateLiteralSupported
+          ? `\${${replacementName}}`
+          : `" + ${replacementName} + "`,
       );
     } else {
-      code = code.replace(
-        new RegExp(replacementName, "g"),
-        () => `" + ${importName} + "`,
+      code = code.replace(new RegExp(replacementName, "g"), () =>
+        isTemplateLiteralSupported
+          ? `\${${replacementName}}`
+          : `" + ${replacementName} + "`,
       );
     }
   }
 
   // Replaces "<script>" or "</script>" to "<" + "script>" or "<" + "/script>".
-  code = code.replace(/<(\/?script)/g, (_, s) => `<" + "${s}`);
+  code = code.replace(/<(\/?script)/g, (_, s) =>
+    isTemplateLiteralSupported ? `\${"<" + "${s}"}` : `<" + "${s}`,
+  );
 
   return `// Module\n${replacersCode}var code = ${code};\n`;
 }
@@ -1340,6 +1365,30 @@ export function traverse(root, callback) {
   };
 
   visit(root, null);
+}
+
+export function supportTemplateLiteral(loaderContext) {
+  if (loaderContext.environment && loaderContext.environment.templateLiteral) {
+    return true;
+  }
+
+  // TODO remove in the next major release
+  if (
+    // eslint-disable-next-line no-underscore-dangle
+    loaderContext._compilation &&
+    // eslint-disable-next-line no-underscore-dangle
+    loaderContext._compilation.options &&
+    // eslint-disable-next-line no-underscore-dangle
+    loaderContext._compilation.options.output &&
+    // eslint-disable-next-line no-underscore-dangle
+    loaderContext._compilation.options.output.environment &&
+    // eslint-disable-next-line no-underscore-dangle
+    loaderContext._compilation.options.output.environment.templateLiteral
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 export const webpackIgnoreCommentRegexp = /webpackIgnore:(\s+)?(true|false)/;

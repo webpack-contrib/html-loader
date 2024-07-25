@@ -628,7 +628,12 @@ module.exports = {
         loader: "html-loader",
         options: {
           postprocessor: (content, loaderContext) => {
-            return content.replace(/<%=/g, '" +').replace(/%>/g, '+ "');
+            // When you environment supports template literals (using browserslist or options) we will generate code using them
+            const isTemplateLiteralSupported = content[0] === "`";
+
+            return content
+              .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
+              .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "');
           },
         },
       },
