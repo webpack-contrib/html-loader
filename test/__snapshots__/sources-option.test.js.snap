@@ -33,11 +33,6 @@ var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url)
 var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -73,7 +68,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -274,25 +269,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -309,14 +304,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" data-src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -3070,11 +3065,6 @@ var ___HTML_LOADER_IMPORT_19___ = new URL("/nested/image3.png", import.meta.url)
 var ___HTML_LOADER_IMPORT_20___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -3110,7 +3100,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -3311,25 +3301,25 @@ image.png
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_10___}" />
 <img src='\${___HTML_LOADER_IMPORT_10___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset=image.png />
 <img srcset="image%20image.png" />
 <img srcset='image%20image.png' />
 <img srcset=~aliasImageWithSpace />
 <img srcset="image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="image.png#hash" />
 <img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -3346,14 +3336,14 @@ image.png
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_22___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="./webpack.svg" height="200" width="200"/>
@@ -4026,11 +4016,6 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -4066,7 +4051,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -4267,25 +4252,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -4302,14 +4287,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -5916,11 +5901,6 @@ var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url)
 var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -5956,7 +5936,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -6157,25 +6137,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -6192,14 +6172,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -6863,8 +6843,6 @@ var ___HTML_LOADER_IMPORT_17___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_18___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_10___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_12___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_11___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -7105,10 +7083,10 @@ image.png
 <img src="image image.png" />
 <img src='image image.png' />
 <img src=~aliasImageWithSpace />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_10___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_10___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_10___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_12___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_11___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_1___} 480w, \${___HTML_LOADER_IMPORT_10___} 640w, \${___HTML_LOADER_IMPORT_11___} 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 <img src      =       image.png />
 <img src      =      ~aliasImageWithSpace      />
@@ -7847,11 +7825,6 @@ var ___HTML_LOADER_IMPORT_24___ = require("./noscript.png");
 var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require("../../src/runtime/getUrl.js");
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_15___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -7887,7 +7860,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -8088,25 +8061,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_11___}" />
 <img src='\${___HTML_LOADER_IMPORT_11___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_15___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_11___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_11___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_15___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_11___} 640w, \${___HTML_LOADER_IMPORT_14___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_15___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_14___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_14___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_18___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -8123,14 +8096,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_23___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_15___}" height="200" width="200"/>
@@ -8807,11 +8780,6 @@ var ___HTML_LOADER_IMPORT_24___ = require("./noscript.png");
 var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require("../../src/runtime/getUrl.js");
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_15___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -8847,7 +8815,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -9048,25 +9016,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_11___}" />
 <img src='\${___HTML_LOADER_IMPORT_11___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_15___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_11___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_11___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_15___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_11___} 640w, \${___HTML_LOADER_IMPORT_14___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_15___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_14___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_14___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_18___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -9083,14 +9051,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_23___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_15___}" height="200" width="200"/>
@@ -9769,11 +9737,6 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -9809,7 +9772,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -10010,25 +9973,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -10045,14 +10008,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -10725,11 +10688,6 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -10765,7 +10723,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -10966,25 +10924,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -11001,14 +10959,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -11681,11 +11639,6 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -11721,7 +11674,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -11922,25 +11875,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -11957,14 +11910,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -13582,11 +13535,6 @@ var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url)
 var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -13622,7 +13570,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -13823,25 +13771,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -13858,14 +13806,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -14523,11 +14471,6 @@ var ___HTML_LOADER_IMPORT_11___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_12___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_7___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_10___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_11___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_13___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -14563,7 +14506,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -14764,25 +14707,25 @@ image.png
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_5___}" />
 <img src='\${___HTML_LOADER_IMPORT_5___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_7___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, true)} />
 <img srcset=image.png />
 <img srcset="image%20image.png" />
 <img srcset='image%20image.png' />
 <img srcset=~aliasImageWithSpace />
 <img srcset="image.png 480w, image%20image.png 640w, ~aliasImageWithSpace 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_7___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_6___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_6___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_10___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_11___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="image.png#hash" />
 <img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -14799,14 +14742,14 @@ image.png
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" data-src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_13___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="./webpack.svg" height="200" width="200"/>
@@ -15478,11 +15421,6 @@ var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url)
 var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
-var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -15518,7 +15456,7 @@ var code = \`<!doctype html>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
-<img src=\${___HTML_LOADER_REPLACEMENT_1___}>
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}>
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src="\${___HTML_LOADER_IMPORT_1___}">
 <img src="\${___HTML_LOADER_IMPORT_2___}">
@@ -15719,25 +15657,25 @@ or
   function test() {}
 \${"<" + "/script"}>
 
-<img src=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
 <img src='\${___HTML_LOADER_IMPORT_12___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_16___} />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_1___} />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_12___}" />
 <img srcset='\${___HTML_LOADER_IMPORT_12___}' />
-<img srcset=\${___HTML_LOADER_REPLACEMENT_16___} />
+<img srcset=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)} />
 <img srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_12___} 640w, \${___HTML_LOADER_IMPORT_15___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
-<img src      =       \${___HTML_LOADER_REPLACEMENT_1___} />
-<img src      =      \${___HTML_LOADER_REPLACEMENT_16___}      />
+<img src      =       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
+<img src      =      \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}      />
 <img src      =      "\${___HTML_LOADER_IMPORT_15___}"      />
 <img src      =      '\${___HTML_LOADER_IMPORT_15___}'      />
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
 <img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}# />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
 <img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
@@ -15754,14 +15692,14 @@ or
 <img src=
 
 
-       \${___HTML_LOADER_REPLACEMENT_1___}
+       \${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)}
 
 
 />
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
+<img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, true)}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>

@@ -18,39 +18,17 @@ describe("getUrl", () => {
     expect(getUrl("image>image.png")).toMatchSnapshot();
     expect(getUrl("image<image.png")).toMatchSnapshot();
     expect(getUrl("image`image.png")).toMatchSnapshot();
-    expect(getUrl("image.png", { maybeNeedQuotes: true })).toMatchSnapshot();
-    expect(
-      getUrl("image\timage.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image\nimage.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image\fimage.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image\rimage.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image image.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl('image"image.png', { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image'image.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image=image.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image>image.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image<image.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
-    expect(
-      getUrl("image`image.png", { maybeNeedQuotes: true }),
-    ).toMatchSnapshot();
+    expect(getUrl("image.png", true)).toMatchSnapshot();
+    expect(getUrl("image\timage.png", true)).toMatchSnapshot();
+    expect(getUrl("image\nimage.png", true)).toMatchSnapshot();
+    expect(getUrl("image\fimage.png", true)).toMatchSnapshot();
+    expect(getUrl("image\rimage.png", true)).toMatchSnapshot();
+    expect(getUrl("image image.png", true)).toMatchSnapshot();
+    expect(getUrl('image"image.png', true)).toMatchSnapshot();
+    expect(getUrl("image'image.png", true)).toMatchSnapshot();
+    expect(getUrl("image=image.png", true)).toMatchSnapshot();
+    expect(getUrl("image>image.png", true)).toMatchSnapshot();
+    expect(getUrl("image<image.png", true)).toMatchSnapshot();
+    expect(getUrl("image`image.png", true)).toMatchSnapshot();
   });
 });

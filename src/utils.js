@@ -1261,7 +1261,6 @@ const GET_SOURCE_FROM_IMPORT_NAME = "___HTML_LOADER_GET_SOURCE_FROM_IMPORT___";
 
 export function getModuleCode(html, replacements, loaderContext, options) {
   let code = html;
-  let replacersCode = "";
 
   const { isTemplateLiteralSupported } = options;
 
@@ -1269,23 +1268,14 @@ export function getModuleCode(html, replacements, loaderContext, options) {
 
   for (const item of replacements) {
     const { importName, replacementName, isValueQuoted, hash } = item;
-    const getUrlOptions = [].concat(
-      isValueQuoted ? [] : "maybeNeedQuotes: true",
-    );
-    const preparedOptions =
-      getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
 
-    const needHelperFn = getUrlOptions.length > 0;
-
-    if (needHelperFn) {
-      if (!needHelperImport) {
-        needHelperImport = true;
-      }
-
-      replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
+    if (!isValueQuoted && !needHelperImport) {
+      needHelperImport = true;
     }
 
-    const name = needHelperFn ? replacementName : importName;
+    const name = !isValueQuoted
+      ? `${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${!isValueQuoted ? ", true" : ""})`
+      : importName;
 
     code = code.replace(new RegExp(replacementName, "g"), () =>
       isTemplateLiteralSupported
@@ -1299,7 +1289,7 @@ export function getModuleCode(html, replacements, loaderContext, options) {
     isTemplateLiteralSupported ? `\${"<" + "${s}"}` : `<" + "${s}`,
   );
 
-  code = `// Module\n${replacersCode}var code = ${code};\n`;
+  code = `// Module\nvar code = ${code};\n`;
 
   if (needHelperImport) {
     // TODO simplify in the next major release
