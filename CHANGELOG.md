@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/webpack-contrib/html-loader/compare/v5.0.0...v5.1.0) (2024-07-25)
+
+
+### Features
+
+* added the `postprocessor` option ([#518](https://github.com/webpack-contrib/html-loader/issues/518)) ([536a204](https://github.com/webpack-contrib/html-loader/commit/536a204696c655b500c4805db8e857ac28aab7ed))
+* reduce runtime code ([61f9a69](https://github.com/webpack-contrib/html-loader/commit/61f9a69a60196abdc85afaa8658faf7736cf08a9))
+* support absolute URLs and DataURI ([#519](https://github.com/webpack-contrib/html-loader/issues/519)) ([cc34b06](https://github.com/webpack-contrib/html-loader/commit/cc34b068accee66d2f8ef10fb03ed90b866395db))
+* using template literals in code when it supported ([#520](https://github.com/webpack-contrib/html-loader/issues/520)) ([6fa80d5](https://github.com/webpack-contrib/html-loader/commit/6fa80d51fed22613c39ffb240a0e875c9151b5b6))
+
 ## [5.0.0](https://github.com/webpack-contrib/html-loader/compare/v4.2.0...v5.0.0) (2024-01-16)
 
 
