@@ -1218,43 +1218,21 @@ export function getFilter(filter) {
   };
 }
 
-const GET_SOURCE_FROM_IMPORT_NAME = "___HTML_LOADER_GET_SOURCE_FROM_IMPORT___";
-
-export function getImportCode(html, loaderContext, imports, options) {
+export function getImportCode(html, imports, options) {
   if (imports.length === 0) {
     return "";
   }
 
-  // TODO simplify in the next major release
-  const getURLRuntime = require.resolve("./runtime/getUrl.js");
-  const context = loaderContext.context || loaderContext.rootContext;
-  const fileURLToHelper =
-    typeof loaderContext.utils !== "undefined" &&
-    typeof loaderContext.utils.contextify === "function"
-      ? loaderContext.utils.contextify(context, getURLRuntime)
-      : contextify(context, getURLRuntime);
-
-  let code = options.esModule
-    ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from "${fileURLToHelper}";\n`
-    : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n`;
+  let code = "";
 
   for (const item of imports) {
-    const { format, importName, request } = item;
+    const { importName, request } = item;
 
-    switch (format) {
-      case "import":
-        code += options.esModule
-          ? `import ${importName} from ${JSON.stringify(request)};\n`
-          : `var ${importName} = require(${JSON.stringify(request)});\n`;
-        break;
-      case "url":
-      default:
-        code += options.esModule
-          ? `var ${importName} = new URL(${JSON.stringify(
-              request,
-            )}, import.meta.url);\n`
-          : `var ${importName} = require(${JSON.stringify(request)});\n`;
-    }
+    code += options.esModule
+      ? `var ${importName} = new URL(${JSON.stringify(
+          request,
+        )}, import.meta.url);\n`
+      : `var ${importName} = require(${JSON.stringify(request)});\n`;
   }
 
   return `// Imports\n${code}`;
@@ -1279,36 +1257,31 @@ export function convertToTemplateLiteral(str) {
   return `\`${escapedString}\``;
 }
 
-export function getModuleCode(html, replacements, options) {
+const GET_SOURCE_FROM_IMPORT_NAME = "___HTML_LOADER_GET_SOURCE_FROM_IMPORT___";
+
+export function getModuleCode(html, replacements, loaderContext, options) {
   let code = html;
-  let replacersCode = "";
 
   const { isTemplateLiteralSupported } = options;
 
+  let needHelperImport = false;
+
   for (const item of replacements) {
-    const { runtime, importName, replacementName, isValueQuoted, hash } = item;
+    const { importName, replacementName, isValueQuoted, hash } = item;
 
-    if (typeof runtime === "undefined" || runtime === true) {
-      const getUrlOptions = []
-        .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-        .concat(isValueQuoted ? [] : "maybeNeedQuotes: true");
-      const preparedOptions =
-        getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
-
-      replacersCode += `var ${replacementName} = ${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${preparedOptions});\n`;
-
-      code = code.replace(new RegExp(replacementName, "g"), () =>
-        isTemplateLiteralSupported
-          ? `\${${replacementName}}`
-          : `" + ${replacementName} + "`,
-      );
-    } else {
-      code = code.replace(new RegExp(replacementName, "g"), () =>
-        isTemplateLiteralSupported
-          ? `\${${replacementName}}`
-          : `" + ${replacementName} + "`,
-      );
+    if (!isValueQuoted && !needHelperImport) {
+      needHelperImport = true;
     }
+
+    const name = !isValueQuoted
+      ? `${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${!isValueQuoted ? ", true" : ""})`
+      : importName;
+
+    code = code.replace(new RegExp(replacementName, "g"), () =>
+      isTemplateLiteralSupported
+        ? `\${${name}}${typeof hash !== "undefined" ? hash : ""}`
+        : `" + ${name}${typeof hash !== "undefined" ? ` + ${JSON.stringify(hash)}` : ""} + "`,
+    );
   }
 
   // Replaces "<script>" or "</script>" to "<" + "script>" or "<" + "/script>".
@@ -1316,7 +1289,23 @@ export function getModuleCode(html, replacements, options) {
     isTemplateLiteralSupported ? `\${"<" + "${s}"}` : `<" + "${s}`,
   );
 
-  return `// Module\n${replacersCode}var code = ${code};\n`;
+  code = `// Module\nvar code = ${code};\n`;
+
+  if (needHelperImport) {
+    // TODO simplify in the next major release
+    const getURLRuntime = require.resolve("./runtime/getUrl.js");
+    const context = loaderContext.context || loaderContext.rootContext;
+    const fileURLToHelper =
+      typeof loaderContext.utils !== "undefined" &&
+      typeof loaderContext.utils.contextify === "function"
+        ? loaderContext.utils.contextify(context, getURLRuntime)
+        : contextify(context, getURLRuntime);
+    code = options.esModule
+      ? `import ${GET_SOURCE_FROM_IMPORT_NAME} from "${fileURLToHelper}";\n${code}`
+      : `var ${GET_SOURCE_FROM_IMPORT_NAME} = require("${fileURLToHelper}");\n${code}`;
+  }
+
+  return code;
 }
 
 export function getExportCode(html, options) {
