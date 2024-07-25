@@ -9,12 +9,7 @@ module.exports = (url, options) => {
   }
 
   // eslint-disable-next-line no-underscore-dangle, no-param-reassign
-  url = String(url.__esModule ? url.default : url);
-
-  if (options.hash) {
-    // eslint-disable-next-line no-param-reassign
-    url += options.hash;
-  }
+  url = String(url);
 
   if (options.maybeNeedQuotes && /[\t\n\f\r "'=<>`]/.test(url)) {
     return `"${url}"`;

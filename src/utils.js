@@ -1269,9 +1269,9 @@ export function getModuleCode(html, replacements, loaderContext, options) {
 
   for (const item of replacements) {
     const { importName, replacementName, isValueQuoted, hash } = item;
-    const getUrlOptions = []
-      .concat(hash ? [`hash: ${JSON.stringify(hash)}`] : [])
-      .concat(isValueQuoted ? [] : "maybeNeedQuotes: true");
+    const getUrlOptions = [].concat(
+      isValueQuoted ? [] : "maybeNeedQuotes: true",
+    );
     const preparedOptions =
       getUrlOptions.length > 0 ? `, { ${getUrlOptions.join(", ")} }` : "";
 
@@ -1288,7 +1288,9 @@ export function getModuleCode(html, replacements, loaderContext, options) {
     const name = needHelperFn ? replacementName : importName;
 
     code = code.replace(new RegExp(replacementName, "g"), () =>
-      isTemplateLiteralSupported ? `\${${name}}` : `" + ${name} + "`,
+      isTemplateLiteralSupported
+        ? `\${${name}}${typeof hash !== "undefined" ? hash : ""}`
+        : `" + ${name}${typeof hash !== "undefined" ? ` + ${JSON.stringify(hash)}` : ""} + "`,
     );
   }
 

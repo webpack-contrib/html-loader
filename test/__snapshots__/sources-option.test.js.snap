@@ -34,15 +34,10 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -93,7 +88,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -295,11 +290,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -321,7 +316,7 @@ or
 
 <img data-srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" data-src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -3076,13 +3071,10 @@ var ___HTML_LOADER_IMPORT_20___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -3133,7 +3125,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -3335,11 +3327,11 @@ image.png
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
 <img srcset="image.png#hash" />
-<img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_21___}" alt="Elva dressed as a fairy">
+<img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -3361,7 +3353,7 @@ image.png
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_22___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_22___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="./webpack.svg" height="200" width="200"/>
@@ -4035,15 +4027,10 @@ var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -4094,7 +4081,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -4296,11 +4283,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -4322,7 +4309,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -5930,15 +5917,10 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -5989,7 +5971,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -6191,11 +6173,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -6217,7 +6199,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -6883,9 +6865,6 @@ import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.j
 // Module
 var ___HTML_LOADER_REPLACEMENT_10___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_12___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_11___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_14___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_15___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___, { hash: "#bar" });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -7141,8 +7120,8 @@ image.png
 <img src='image.png#hash' />
 <img src=image.png#hash />
 <img src=image.png# />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_14___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_15___} 480w, \${___HTML_LOADER_REPLACEMENT_16___} 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png#baz" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_IMPORT_1___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_1___}#foo 480w, \${___HTML_LOADER_IMPORT_1___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -7869,15 +7848,10 @@ var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require("../../src/runtime/getUrl.js");
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_15___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_17___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -7928,7 +7902,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -8130,11 +8104,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_17___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_18___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_17___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_20___} 480w, \${___HTML_LOADER_REPLACEMENT_21___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_22___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_18___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -8156,7 +8130,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_23___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_23___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_15___}" height="200" width="200"/>
@@ -8618,7 +8592,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src="/webpack/public/path/image image.png#hash" />
+<img src="/webpack/public/path/image image.png"#hash />
 
 <svg width="200" height="200">
   <image xlink:href="/webpack/public/path/webpack.svg" height="200" width="200"/>
@@ -8834,15 +8808,10 @@ var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
 var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require("../../src/runtime/getUrl.js");
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_15___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_17___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_14___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -8893,7 +8862,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -9095,11 +9064,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_17___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_18___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_17___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_20___} 480w, \${___HTML_LOADER_REPLACEMENT_21___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_22___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_18___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -9121,7 +9090,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_23___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_23___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_15___}" height="200" width="200"/>
@@ -9583,7 +9552,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src="/webpack/public/path/image image.png#hash" />
+<img src="/webpack/public/path/image image.png"#hash />
 
 <svg width="200" height="200">
   <image xlink:href="/webpack/public/path/webpack.svg" height="200" width="200"/>
@@ -9801,15 +9770,10 @@ var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -9860,7 +9824,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -10062,11 +10026,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -10088,7 +10052,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -10762,15 +10726,10 @@ var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -10821,7 +10780,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -11023,11 +10982,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -11049,7 +11008,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -11723,15 +11682,10 @@ var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -11782,7 +11736,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -11984,11 +11938,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -12010,7 +11964,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -13629,15 +13583,10 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -13688,7 +13637,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -13890,11 +13839,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -13916,7 +13865,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
@@ -14575,13 +14524,10 @@ var ___HTML_LOADER_IMPORT_12___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_4___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_3___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_7___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_9___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_10___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_11___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_12___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_13___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_10___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_11___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_13___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_6___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -14632,7 +14578,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_4___}">
+<img src="\${___HTML_LOADER_IMPORT_3___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -14834,11 +14780,11 @@ image.png
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_9___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_10___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_11___} />
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_10___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_11___}# />
 <img srcset="image.png#hash" />
-<img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_12___}" alt="Elva dressed as a fairy">
+<img srcset="image.png#foo 480w, image.png#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -14860,7 +14806,7 @@ image.png
 
 <img data-srcset="\${___HTML_LOADER_IMPORT_0___} 480w, \${___HTML_LOADER_IMPORT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" data-src="\${___HTML_LOADER_IMPORT_0___}" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_13___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_13___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="./webpack.svg" height="200" width="200"/>
@@ -15533,15 +15479,10 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash" });
-var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#hash", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#", maybeNeedQuotes: true });
-var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
-var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#bar" });
-var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#baz" });
-var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { hash: "#hash", maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
+var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___, { maybeNeedQuotes: true });
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -15592,7 +15533,7 @@ var code = \`<!doctype html>
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
 
-<img src="\${___HTML_LOADER_REPLACEMENT_5___}">
+<img src="\${___HTML_LOADER_IMPORT_4___}#icon-chevron-with-circle-up">
 
 <a href="mailto:username@exampledomain.com"></a>
 
@@ -15794,11 +15735,11 @@ or
 
 <img src="#hash" />
 <img src="javascript:void(0)" />
-<img src='\${___HTML_LOADER_REPLACEMENT_18___}' />
-<img src=\${___HTML_LOADER_REPLACEMENT_19___} />
-<img src=\${___HTML_LOADER_REPLACEMENT_20___} />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_18___}" />
-<img srcset="\${___HTML_LOADER_REPLACEMENT_21___} 480w, \${___HTML_LOADER_REPLACEMENT_22___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_23___}" alt="Elva dressed as a fairy">
+<img src='\${___HTML_LOADER_IMPORT_0___}#hash' />
+<img src=\${___HTML_LOADER_REPLACEMENT_19___}#hash />
+<img src=\${___HTML_LOADER_REPLACEMENT_20___}# />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#hash" />
+<img srcset="\${___HTML_LOADER_IMPORT_0___}#foo 480w, \${___HTML_LOADER_IMPORT_0___}#bar 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_IMPORT_0___}#baz" alt="Elva dressed as a fairy">
 <img src="#" alt="test"/>
 <img src="#" srcset="#" alt="test" />
 <img src="###" srcset="#" alt="test" />
@@ -15820,7 +15761,7 @@ or
 
 <img data-srcset="image.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" data-src="image.png" alt="Elva dressed as a fairy">
 
-<img src=\${___HTML_LOADER_REPLACEMENT_24___} />
+<img src=\${___HTML_LOADER_REPLACEMENT_24___}#hash />
 
 <svg width="200" height="200">
   <image xlink:href="\${___HTML_LOADER_IMPORT_16___}" height="200" width="200"/>
