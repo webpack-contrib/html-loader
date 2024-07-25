@@ -660,10 +660,12 @@ module.exports = {
         options: {
           postprocessor: async (content, loaderContext) => {
             const value = await getValue();
+            // When you environment supports template literals (using browserslist or options) we will generate code using them
+            const isTemplateLiteralSupported = content[0] === "`";
 
             return content
-              .replace(/<%=/g, '" +')
-              .replace(/%>/g, '+ "')
+              .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
+              .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "')
               .replace("my-value", value);
           },
         },
