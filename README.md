@@ -97,7 +97,7 @@ type sources =
 
 Default: `true`
 
-By default every loadable attribute (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `import img from "./image.png""`).
+By default every loadable attribute (for example - `<img src="image.png">`) is imported (`const img = require('./image.png')` or `new URL("./image.png", import.meta.url)`).
 You may need to specify loaders for images in your configuration (recommended [`asset modules`](https://webpack.js.org/guides/asset-modules/)).
 
 Supported tags and attributes:
