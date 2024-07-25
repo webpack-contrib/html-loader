@@ -7,6 +7,9 @@ import {
   webpackIgnoreCommentRegexp,
 } from "../utils";
 
+const DOUBLE_QUOTE = '"'.charCodeAt(0);
+const SINGLE_QUOTE = "'".charCodeAt(0);
+
 export default (options) =>
   function process(html) {
     const sources = [];
@@ -71,8 +74,10 @@ export default (options) =>
           sourceCodeLocation.attrs[name].endOffset,
         );
         const isValueQuoted =
-          attributeAndValue[attributeAndValue.length - 1] === '"' ||
-          attributeAndValue[attributeAndValue.length - 1] === "'";
+          attributeAndValue.charCodeAt(attributeAndValue.length - 1) ===
+            DOUBLE_QUOTE ||
+          attributeAndValue.charCodeAt(attributeAndValue.length - 1) ===
+            SINGLE_QUOTE;
         const valueStartOffset =
           sourceCodeLocation.attrs[name].startOffset +
           attributeAndValue.indexOf(attribute.value);
