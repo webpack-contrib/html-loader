@@ -2,18 +2,24 @@ import path from "path";
 
 import HtmlSourceError from "./HtmlSourceError";
 
+const HORIZONTAL_TAB = "\u0009".charCodeAt(0);
+const NEWLINE = "\u000A".charCodeAt(0);
+const FORM_FEED = "\u000C".charCodeAt(0);
+const CARRIAGE_RETURN = "\u000D".charCodeAt(0);
+const SPACE = "\u0020".charCodeAt(0);
+
 function isASCIIWhitespace(character) {
   return (
     // Horizontal tab
-    character === "\u0009" ||
+    character === HORIZONTAL_TAB ||
     // New line
-    character === "\u000A" ||
+    character === NEWLINE ||
     // Form feed
-    character === "\u000C" ||
+    character === FORM_FEED ||
     // Carriage return
-    character === "\u000D" ||
+    character === CARRIAGE_RETURN ||
     // Space
-    character === "\u0020"
+    character === SPACE
   );
 }
 
@@ -26,6 +32,12 @@ const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000c]+/;
 const regexLeadingNotSpaces = /^[^ \t\n\r\u000c]+/;
 const regexTrailingCommas = /[,]+$/;
 const regexNonNegativeInteger = /^\d+$/;
+const COMMA = ",".charCodeAt(0);
+const LEFT_PARENTHESIS = "(".charCodeAt(0);
+const RIGHT_PARENTHESIS = ")".charCodeAt(0);
+const SMALL_LETTER_W = "w".charCodeAt(0);
+const SMALL_LETTER_X = "x".charCodeAt(0);
+const SMALL_LETTER_H = "h".charCodeAt(0);
 
 // ( Positive or negative or unsigned integers or decimals, without or without exponents.
 // Must include at least one digit.
@@ -93,7 +105,7 @@ export function parseSrcset(input) {
     // 8. If url ends with a U+002C COMMA character (,), follow these sub steps:
     //		(1). Remove all trailing U+002C COMMA characters from url. If this removed
     //         more than one character, that is a parse error.
-    if (url.slice(-1) === ",") {
+    if (url.charCodeAt(url.length - 1) === COMMA) {
       url = url.replace(regexTrailingCommas, "");
 
       // (Jump ahead to step 9 to skip tokenization and just push the candidate).
@@ -124,7 +136,7 @@ export function parseSrcset(input) {
     // eslint-disable-next-line no-constant-condition
     while (true) {
       // 8.4. Let c be the character at position.
-      c = input.charAt(position);
+      c = input.charCodeAt(position);
 
       //  Do the following depending on the value of state.
       //  For the purpose of this step, "EOF" is a special character representing
@@ -149,7 +161,7 @@ export function parseSrcset(input) {
         // Advance position to the next character in input. If current descriptor
         // is not empty, append current descriptor to descriptors. Jump to the step
         // labeled descriptor parser.
-        else if (c === ",") {
+        else if (c === COMMA) {
           position += 1;
 
           if (currentDescriptor) {
@@ -162,14 +174,14 @@ export function parseSrcset(input) {
         }
         // U+0028 LEFT PARENTHESIS (()
         // Append c to current descriptor. Set state to in parens.
-        else if (c === "\u0028") {
-          currentDescriptor += c;
+        else if (c === LEFT_PARENTHESIS) {
+          currentDescriptor += input.charAt(position);
           state = "in parens";
         }
         // EOF
         // If current descriptor is not empty, append current descriptor to
         // descriptors. Jump to the step labeled descriptor parser.
-        else if (c === "") {
+        else if (isNaN(c)) {
           if (currentDescriptor) {
             descriptors.push(currentDescriptor);
           }
@@ -181,21 +193,21 @@ export function parseSrcset(input) {
           // Anything else
           // Append c to current descriptor.
         } else {
-          currentDescriptor += c;
+          currentDescriptor += input.charAt(position);
         }
       }
       // In parens
       else if (state === "in parens") {
         // U+0029 RIGHT PARENTHESIS ())
         // Append c to current descriptor. Set state to in descriptor.
-        if (c === ")") {
-          currentDescriptor += c;
+        if (c === RIGHT_PARENTHESIS) {
+          currentDescriptor += input.charAt(position);
           state = "in descriptor";
         }
         // EOF
         // Append current descriptor to descriptors. Jump to the step labeled
         // descriptor parser.
-        else if (c === "") {
+        else if (isNaN(c)) {
           descriptors.push(currentDescriptor);
           parseDescriptors();
           return;
@@ -203,7 +215,7 @@ export function parseSrcset(input) {
         // Anything else
         // Append c to current descriptor.
         else {
-          currentDescriptor += c;
+          currentDescriptor += input.charAt(position);
         }
       }
       // After descriptor
@@ -213,7 +225,7 @@ export function parseSrcset(input) {
           // Space character: Stay in this state.
         }
         // EOF: Jump to the step labeled descriptor parser.
-        else if (c === "") {
+        else if (isNaN(c)) {
           parseDescriptors();
           return;
         }
@@ -258,14 +270,14 @@ export function parseSrcset(input) {
     for (i = 0; i < descriptors.length; i++) {
       desc = descriptors[i];
 
-      lastChar = desc[desc.length - 1];
+      lastChar = desc[desc.length - 1].charCodeAt(0);
       value = desc.substring(0, desc.length - 1);
       intVal = parseInt(value, 10);
       floatVal = parseFloat(value);
 
       // If the descriptor consists of a valid non-negative integer followed by
       // a U+0077 LATIN SMALL LETTER W character
-      if (regexNonNegativeInteger.test(value) && lastChar === "w") {
+      if (regexNonNegativeInteger.test(value) && lastChar === SMALL_LETTER_W) {
         // If width and density are not both absent, then let error be yes.
         if (w || d) {
           pError = true;
@@ -282,7 +294,7 @@ export function parseSrcset(input) {
       }
       // If the descriptor consists of a valid floating-point number followed by
       // a U+0078 LATIN SMALL LETTER X character
-      else if (regexFloatingPoint.test(value) && lastChar === "x") {
+      else if (regexFloatingPoint.test(value) && lastChar === SMALL_LETTER_X) {
         // If width, density and future-compat-h are not all absent, then let error
         // be yes.
         if (w || d || h) {
@@ -300,7 +312,10 @@ export function parseSrcset(input) {
       }
       // If the descriptor consists of a valid non-negative integer followed by
       // a U+0068 LATIN SMALL LETTER H character
-      else if (regexNonNegativeInteger.test(value) && lastChar === "h") {
+      else if (
+        regexNonNegativeInteger.test(value) &&
+        lastChar === SMALL_LETTER_H
+      ) {
         // If height and density are not both absent, then let error be yes.
         if (h || d) {
           pError = true;
@@ -354,14 +369,18 @@ export function parseSrc(input) {
   }
 
   let start = 0;
-  for (; start < input.length && isASCIIWhitespace(input[start]); start++);
+  for (
+    ;
+    start < input.length && isASCIIWhitespace(input.charCodeAt(start));
+    start++
+  );
 
   if (start === input.length) {
     throw new Error("Must be non-empty");
   }
 
   let end = input.length - 1;
-  for (; end > -1 && isASCIIWhitespace(input[end]); end--);
+  for (; end > -1 && isASCIIWhitespace(input.charCodeAt(end)); end--);
   end += 1;
 
   let value = input;
@@ -430,12 +449,13 @@ export function isURLRequestable(url, options = {}) {
 
 const WINDOWS_PATH_SEPARATOR_REGEXP = /\\/g;
 const RELATIVE_PATH_REGEXP = /^\.\.?[/\\]/;
+const SLASH = "/".charCodeAt(0);
 
 const absoluteToRequest = (context, maybeAbsolutePath) => {
-  if (maybeAbsolutePath[0] === "/") {
+  if (maybeAbsolutePath.charCodeAt(0) === SLASH) {
     if (
       maybeAbsolutePath.length > 1 &&
-      maybeAbsolutePath[maybeAbsolutePath.length - 1] === "/"
+      maybeAbsolutePath.charCodeAt(maybeAbsolutePath.length - 1) === SLASH
     ) {
       // this 'path' is actually a regexp generated by dynamic requires.
       // Don't treat it as an absolute path.
@@ -505,7 +525,7 @@ export function requestify(context, request) {
         .replace(/[\t\n\r]/g, "")
         .replace(/\\/g, "/");
 
-  if (isWindowsAbsolutePath || newRequest[0] === "/") {
+  if (isWindowsAbsolutePath || newRequest.charCodeAt(0) === SLASH) {
     return newRequest;
   }
 
@@ -1240,7 +1260,7 @@ export function getImportCode(html, loaderContext, imports, options) {
   return `// Imports\n${code}`;
 }
 
-const SLASH = "\\".charCodeAt(0);
+const BACKSLASH = "\\".charCodeAt(0);
 const BACKTICK = "`".charCodeAt(0);
 const DOLLAR = "$".charCodeAt(0);
 
@@ -1251,7 +1271,7 @@ export function convertToTemplateLiteral(str) {
     const code = str.charCodeAt(i);
 
     escapedString +=
-      code === SLASH || code === BACKTICK || code === DOLLAR
+      code === BACKSLASH || code === BACKTICK || code === DOLLAR
         ? `\\${str[i]}`
         : str[i];
   }
