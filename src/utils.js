@@ -378,7 +378,15 @@ export function parseSrc(input) {
 
 const WINDOWS_ABS_PATH_REGEXP = /^[a-zA-Z]:[\\/]|^\\\\/;
 
-export function isUrlRequestable(url) {
+function isDataUrl(url) {
+  if (/^data:/i.test(url)) {
+    return true;
+  }
+
+  return false;
+}
+
+export function isURLRequestable(url, options = {}) {
   // Protocol-relative URLs
   if (/^\/\//.test(url)) {
     return false;
@@ -389,8 +397,26 @@ export function isUrlRequestable(url) {
     return true;
   }
 
+  if (isDataUrl(url) && options.isSupportDataURL) {
+    try {
+      decodeURIComponent(url);
+    } catch (ignoreError) {
+      return false;
+    }
+
+    return true;
+  }
+
+  if (/^file:/i.test(url)) {
+    return true;
+  }
+
   // Absolute URLs
   if (/^[a-z][a-z0-9+.-]*:/i.test(url) && !WINDOWS_ABS_PATH_REGEXP.test(url)) {
+    if (/^https?:/i.test(url)) {
+      return options.isSupportAbsoluteURL;
+    }
+
     return false;
   }
 
@@ -483,7 +509,7 @@ export function requestify(context, request) {
     return newRequest;
   }
 
-  if (/^file:/i.test(newRequest)) {
+  if (/^[a-z]+:/i.test(newRequest)) {
     return newRequest;
   }
 
@@ -710,7 +736,12 @@ export function srcType(options) {
     );
   }
 
-  if (!isUrlRequestable(source.value)) {
+  if (
+    !isURLRequestable(source.value, {
+      isSupportDataURL: options.isSupportDataURL,
+      isSupportAbsoluteURL: options.isSupportAbsoluteURL,
+    })
+  ) {
     return [];
   }
 
@@ -750,7 +781,12 @@ export function srcsetType(options) {
       );
     }
 
-    if (!isUrlRequestable(source.value)) {
+    if (
+      !isURLRequestable(source.value, {
+        isSupportDataURL: options.isSupportDataURL,
+        isSupportAbsoluteURL: options.isSupportAbsoluteURL,
+      })
+    ) {
       return false;
     }
 
@@ -831,53 +867,6 @@ function metaContentType(options) {
 
   return srcType(options);
 }
-
-// function webpackImportType(options) {
-//   let source;
-//
-//   try {
-//     source = trimASCIIWhitespace(options.value);
-//   } catch (error) {
-//     throw new HtmlSourceError(
-//       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-//       options.attributeStartOffset,
-//       options.attributeEndOffset,
-//       options.html
-//     );
-//   }
-//
-//   try {
-//     source = c0ControlCodesExclude(source);
-//   } catch (error) {
-//     throw new HtmlSourceError(
-//       `Bad value for attribute "${options.attribute}" on element "${options.tag}": ${error.message}`,
-//       options.attributeStartOffset,
-//       options.attributeEndOffset,
-//       options.html
-//     );
-//   }
-//
-//   if (!isUrlRequestable(source.value)) {
-//     return [];
-//   }
-//
-//   const { startOffset } = options.startTag;
-//   let { endOffset } = options.startTag;
-//
-//   if (options.endTag) {
-//     ({ endOffset } = options.endTag);
-//   }
-//
-//   return [
-//     {
-//       format: 'import',
-//       runtime: false,
-//       value: source.value,
-//       startOffset,
-//       endOffset,
-//     },
-//   ];
-// }
 
 const defaultSources = new Map([
   [

@@ -1,0 +1,11 @@
+{
+  "https://github.com/webpack-contrib/css-loader/blob/master/src/index.js": {
+    "integrity": "sha512-1wkV5mn4eBNNjlMgq1+MyEUf8ucfKfJBsq+0oZelJZ7Y5L/ksHDSBojxLj6YbgrWNQfWfp3/SxCYLd/jS+u17g==",
+    "contentType": "text/html; charset=utf-8"
+  },
+  "https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png": {
+    "integrity": "sha512-bHqIPBYwzPsVLYcTDqJzwgvIaxLjmezufiCVXAMI0Naelf3eWVdydMA40hXbSuB0dZCGjCepuGaI7Ze8kLM+Ew==",
+    "contentType": "image/png"
+  },
+  "version": 1
+}

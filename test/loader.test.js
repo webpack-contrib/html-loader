@@ -218,4 +218,31 @@ describe("loader", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
   });
+
+  it("should work with `experiments.buildHttp`", async () => {
+    const compiler = getCompiler(
+      "simple.js",
+      {},
+      {
+        experiments: {
+          buildHttp: {
+            allowedUris: [() => true],
+            lockfileLocation: path.resolve(
+              __dirname,
+              "./lock-files/url/lock.json",
+            ),
+            cacheLocation: path.resolve(__dirname, "./lock-files/url"),
+          },
+        },
+      },
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource("./simple.html", stats)).toMatchSnapshot("module");
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats)),
+    ).toMatchSnapshot("result");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+  });
 });
