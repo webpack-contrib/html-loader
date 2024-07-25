@@ -98,6 +98,8 @@ export default (options) =>
           attributeStartOffset: sourceCodeLocation.attrs[name].startOffset,
           attributeEndOffset: sourceCodeLocation.attrs[name].endOffset,
           value: attribute.value,
+          isSupportAbsoluteURL: options.isSupportAbsoluteURL,
+          isSupportDataURL: options.isSupportDataURL,
           isValueQuoted,
           valueEndOffset,
           valueStartOffset,

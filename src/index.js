@@ -24,9 +24,23 @@ export default async function loader(content) {
   const imports = [];
   const replacements = [];
 
+  let isSupportAbsoluteURL = false;
+
+  // TODO enable by default in the next major release
+  if (
+    this._compilation &&
+    this._compilation.options &&
+    this._compilation.options.experiments &&
+    this._compilation.options.experiments.buildHttp
+  ) {
+    isSupportAbsoluteURL = true;
+  }
+
   if (options.sources) {
     plugins.push(
       sourcesPlugin({
+        isSupportAbsoluteURL,
+        isSupportDataURL: options.esModule,
         sources: options.sources,
         resourcePath: this.resourcePath,
         context: this.context,
