@@ -6,6 +6,8 @@ import {
   getModuleCode,
   getExportCode,
   defaultMinimizerOptions,
+  supportTemplateLiteral,
+  convertToTemplateLiteral,
 } from "./utils";
 
 import schema from "./options.json";
@@ -57,7 +59,17 @@ export default async function loader(content) {
 
   let { html } = await pluginRunner(plugins).process(content);
 
-  html = JSON.stringify(html)
+  for (const error of errors) {
+    this.emitError(error instanceof Error ? error : new Error(error));
+  }
+
+  const isTemplateLiteralSupported = supportTemplateLiteral(this);
+
+  html = (
+    isTemplateLiteralSupported
+      ? convertToTemplateLiteral(html)
+      : JSON.stringify(html)
+  )
     // Invalid in JavaScript but valid HTML
     .replace(/[\u2028\u2029]/g, (str) =>
       str === "\u2029" ? "\\u2029" : "\\u2028",
@@ -68,12 +80,10 @@ export default async function loader(content) {
     html = await options.postprocessor(html, this);
   }
 
-  for (const error of errors) {
-    this.emitError(error instanceof Error ? error : new Error(error));
-  }
-
   const importCode = getImportCode(html, this, imports, options);
-  const moduleCode = getModuleCode(html, replacements, options);
+  const moduleCode = getModuleCode(html, replacements, {
+    isTemplateLiteralSupported,
+  });
   const exportCode = getExportCode(html, options);
 
   return `${importCode}${moduleCode}${exportCode}`;
