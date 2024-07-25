@@ -31,6 +31,7 @@ var ___HTML_LOADER_IMPORT_22___ = new URL("./sound.mp3", import.meta.url);
 var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -67,6 +68,7 @@ var ___HTML_LOADER_REPLACEMENT_31___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_23___);
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
+var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -516,6 +518,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_35___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_35___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -971,6 +977,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -2609,6 +2619,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -3071,6 +3085,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -3101,6 +3119,7 @@ var ___HTML_LOADER_IMPORT_16___ = new URL("./pixel.png?url", import.meta.url);
 var ___HTML_LOADER_IMPORT_17___ = new URL("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==", import.meta.url);
 var ___HTML_LOADER_IMPORT_18___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_19___ = new URL("/nested/image3.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_20___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -3129,6 +3148,7 @@ var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_24___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_17___);
 var ___HTML_LOADER_REPLACEMENT_25___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_18___);
 var ___HTML_LOADER_REPLACEMENT_26___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_19___);
+var ___HTML_LOADER_REPLACEMENT_27___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_20___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -3578,6 +3598,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_27___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_27___}" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -4033,6 +4057,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -4070,6 +4098,7 @@ var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -4107,6 +4136,7 @@ var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
 var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
+var ___HTML_LOADER_REPLACEMENT_36___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_27___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -4556,6 +4586,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_36___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_36___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -5011,6 +5045,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -5476,6 +5514,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -5938,6 +5980,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -5974,6 +6020,7 @@ var ___HTML_LOADER_IMPORT_22___ = new URL("./sound.mp3", import.meta.url);
 var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -6010,6 +6057,7 @@ var ___HTML_LOADER_REPLACEMENT_31___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_23___);
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
+var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -6459,6 +6507,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_35___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_35___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -6914,6 +6966,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -6942,6 +6998,7 @@ var ___HTML_LOADER_IMPORT_14___ = new URL("./browserconfig.xml", import.meta.url
 var ___HTML_LOADER_IMPORT_15___ = new URL("./favicon.ico", import.meta.url);
 var ___HTML_LOADER_IMPORT_16___ = new URL("./sound.mp3", import.meta.url);
 var ___HTML_LOADER_IMPORT_17___ = new URL("./video.mp4", import.meta.url);
+var ___HTML_LOADER_IMPORT_18___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_1___);
@@ -6966,6 +7023,7 @@ var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_20___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_15___);
 var ___HTML_LOADER_REPLACEMENT_21___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_16___);
 var ___HTML_LOADER_REPLACEMENT_22___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_17___);
+var ___HTML_LOADER_REPLACEMENT_23___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_18___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -7422,6 +7480,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_23___} 480w, \${___HTML_LOADER_REPLACEMENT_1___} 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_1___} 480w, \${___HTML_LOADER_REPLACEMENT_23___} 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -7884,6 +7946,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -7940,6 +8006,7 @@ var ___HTML_LOADER_IMPORT_21___ = require("./video.mp4");
 var ___HTML_LOADER_IMPORT_22___ = require("./nested/image3.png");
 var ___HTML_LOADER_IMPORT_23___ = require("/nested/image3.png");
 var ___HTML_LOADER_IMPORT_24___ = require("./noscript.png");
+var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -7975,6 +8042,7 @@ var ___HTML_LOADER_REPLACEMENT_30___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_31___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_22___);
 var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_23___);
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
+var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -8427,6 +8495,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_34___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_34___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_34___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_34___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 module.exports = code;"
@@ -8885,6 +8957,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="/webpack/public/path/😀abc.png" alt="Smiley face">
+<img src="/webpack/public/path/😀abc.png" alt="Smiley face">
+<img srcset="/webpack/public/path/😀abc.png 480w, /webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="/webpack/public/path/image.png 480w, /webpack/public/path/😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -8920,6 +8996,7 @@ var ___HTML_LOADER_IMPORT_21___ = require("./video.mp4");
 var ___HTML_LOADER_IMPORT_22___ = require("./nested/image3.png");
 var ___HTML_LOADER_IMPORT_23___ = require("/nested/image3.png");
 var ___HTML_LOADER_IMPORT_24___ = require("./noscript.png");
+var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -8955,6 +9032,7 @@ var ___HTML_LOADER_REPLACEMENT_30___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_31___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_22___);
 var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_23___);
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
+var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -9407,6 +9485,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_34___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_34___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_34___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_34___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 module.exports = code;"
@@ -9865,6 +9947,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="/webpack/public/path/😀abc.png" alt="Smiley face">
+<img src="/webpack/public/path/😀abc.png" alt="Smiley face">
+<img srcset="/webpack/public/path/😀abc.png 480w, /webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="/webpack/public/path/image.png 480w, /webpack/public/path/😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -9902,6 +9988,7 @@ var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -9939,6 +10026,7 @@ var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
 var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
+var ___HTML_LOADER_REPLACEMENT_36___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_27___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -10388,6 +10476,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_36___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_36___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -10843,6 +10935,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -10880,6 +10976,7 @@ var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -10917,6 +11014,7 @@ var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
 var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
+var ___HTML_LOADER_REPLACEMENT_36___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_27___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -11366,6 +11464,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_36___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_36___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -11821,6 +11923,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -11858,6 +11964,7 @@ var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -11895,6 +12002,7 @@ var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
 var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
+var ___HTML_LOADER_REPLACEMENT_36___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_27___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -12344,6 +12452,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_36___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_36___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_36___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -12799,6 +12911,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -13286,6 +13402,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -13748,6 +13868,10 @@ ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="./😀abc.png" alt="Smiley face">
+<img src="😀abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -13784,6 +13908,7 @@ var ___HTML_LOADER_IMPORT_22___ = new URL("./sound.mp3", import.meta.url);
 var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -13820,6 +13945,7 @@ var ___HTML_LOADER_REPLACEMENT_31___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_23___);
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
+var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -14269,6 +14395,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_35___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_35___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -14724,6 +14854,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -14746,6 +14880,7 @@ var ___HTML_LOADER_IMPORT_8___ = new URL("data:image/png;base64,iVBORw0KGgoAAAAN
 var ___HTML_LOADER_IMPORT_9___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_10___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_11___ = new URL("./noscript.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_12___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -14766,6 +14901,7 @@ var ___HTML_LOADER_REPLACEMENT_15___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_16___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_9___);
 var ___HTML_LOADER_REPLACEMENT_17___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_10___);
 var ___HTML_LOADER_REPLACEMENT_18___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_11___);
+var ___HTML_LOADER_REPLACEMENT_19___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_12___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -15215,6 +15351,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_19___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_19___}" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -15670,6 +15810,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="😀abc.png 480w, image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="image.png 480w, 😀abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
@@ -15706,6 +15850,7 @@ var ___HTML_LOADER_IMPORT_22___ = new URL("./sound.mp3", import.meta.url);
 var ___HTML_LOADER_IMPORT_23___ = new URL("./video.mp4", import.meta.url);
 var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
+var ___HTML_LOADER_IMPORT_26___ = new URL("./😀abc.png", import.meta.url);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
@@ -15742,6 +15887,7 @@ var ___HTML_LOADER_REPLACEMENT_31___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(
 var ___HTML_LOADER_REPLACEMENT_32___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_23___);
 var ___HTML_LOADER_REPLACEMENT_33___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_24___);
 var ___HTML_LOADER_REPLACEMENT_34___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_25___);
+var ___HTML_LOADER_REPLACEMENT_35___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_26___);
 var code = \`<!doctype html>
 
 <h1>My First Heading</h1>
@@ -16191,6 +16337,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img src="\${___HTML_LOADER_REPLACEMENT_35___}" alt="Smiley face">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_35___} 480w, \${___HTML_LOADER_REPLACEMENT_0___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
+<img srcset="\${___HTML_LOADER_REPLACEMENT_0___} 480w, \${___HTML_LOADER_REPLACEMENT_35___} 800w" sizes="(max-width: 600px) 480px, 800px" src="\${___HTML_LOADER_REPLACEMENT_0___}" alt="Elva dressed as a fairy">
 \`;
 // Exports
 export default code;"
@@ -16646,6 +16796,10 @@ alt" />
 </noscript>
 
 <img src="https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img src="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png" alt="Smiley face">
+<img srcset="replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 480w, replaced_file_protocol_/webpack/public/path/image.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
+<img srcset="replaced_file_protocol_/webpack/public/path/image.png 480w, replaced_file_protocol_/webpack/public/path/%F0%9F%98%80abc.png 800w" sizes="(max-width: 600px) 480px, 800px" src="replaced_file_protocol_/webpack/public/path/image.png" alt="Elva dressed as a fairy">
 "
 `;
 
