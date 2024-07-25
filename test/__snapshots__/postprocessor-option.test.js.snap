@@ -4,7 +4,6 @@ exports[`'postprocess' option should work with async "postprocessor" function op
 
 exports[`'postprocess' option should work with async "postprocessor" function option: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`<div>
@@ -30,7 +29,6 @@ exports[`'postprocess' option should work with the "postprocessor" option #1: er
 
 exports[`'postprocess' option should work with the "postprocessor" option #1: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = "<img src=\\"" + ___HTML_LOADER_IMPORT_0___ + "\\">\\n<img src=\\"" + 'Hello ' + (1+1) + "\\">\\n<img src=\\"" + require('./image.png') + "\\">\\n<img src=\\"" + new URL('./image.png', import.meta.url) + "\\">\\n<div>" + require('./gallery.html').default + "</div>\\n<!--Works fine, but need improve testing <div>< %= (await import('./gallery.html')).default % ></div>-->\\n";
@@ -54,7 +52,6 @@ exports[`'postprocess' option should work with the "postprocessor" option: error
 
 exports[`'postprocess' option should work with the "postprocessor" option: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`<img src="\${___HTML_LOADER_IMPORT_0___}">

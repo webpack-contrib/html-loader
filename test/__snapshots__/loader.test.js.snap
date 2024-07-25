@@ -4,7 +4,6 @@ exports[`loader should emit an error on broken HTML syntax: errors 1`] = `[]`;
 
 exports[`loader should emit an error on broken HTML syntax: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`Text < img src="image.png" >
@@ -80,8 +79,8 @@ exports[`loader should pass queries to other loader: errors 1`] = `[]`;
 
 exports[`loader should pass queries to other loader: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./icons.svg?color=%23BAAFDB%3F", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { hash: "#foo" });
 var code = \`<img src="\${___HTML_LOADER_REPLACEMENT_0___}">\`;
@@ -118,7 +117,6 @@ exports[`loader should work with "resolve.roots": errors 1`] = `[]`;
 
 exports[`loader should work with "resolve.roots": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("/image2.png", import.meta.url);
 // Module
 var code = \`<!doctype html>
@@ -142,7 +140,6 @@ exports[`loader should work with \`experiments.buildHttp\`: errors 1`] = `[]`;
 
 exports[`loader should work with \`experiments.buildHttp\`: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -173,6 +170,7 @@ var ___HTML_LOADER_IMPORT_26___ = new URL("/nested/image3.png", import.meta.url)
 var ___HTML_LOADER_IMPORT_27___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_28___ = new URL("https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_29___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -1128,7 +1126,6 @@ exports[`loader should work with server-relative url: errors 1`] = `[]`;
 
 exports[`loader should work with server-relative url: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("/nested/image3.png", import.meta.url);
 // Module
 var code = \`<!doctype html>
@@ -1152,7 +1149,6 @@ exports[`loader should work with webpackIgnore comment: errors 1`] = `[]`;
 
 exports[`loader should work with webpackIgnore comment: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`<!doctype html>
@@ -1400,7 +1396,6 @@ exports[`loader should work: errors 1`] = `[]`;
 
 exports[`loader should work: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -1429,6 +1424,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });

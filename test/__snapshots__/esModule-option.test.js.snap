@@ -4,7 +4,6 @@ exports[`'esModule' option should use a CommonJS export by default: errors 1`] =
 
 exports[`'esModule' option should use a CommonJS export by default: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -33,6 +32,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -965,7 +965,6 @@ exports[`'esModule' option should use a CommonJS export when the value is "false
 
 exports[`'esModule' option should use a CommonJS export when the value is "false": module 1`] = `
 "// Imports
-var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require("../../src/runtime/getUrl.js");
 var ___HTML_LOADER_IMPORT_0___ = require("./image.png");
 var ___HTML_LOADER_IMPORT_1___ = require("/image.png");
 var ___HTML_LOADER_IMPORT_2___ = require("aliasImg");
@@ -992,6 +991,7 @@ var ___HTML_LOADER_IMPORT_22___ = require("./nested/image3.png");
 var ___HTML_LOADER_IMPORT_23___ = require("/nested/image3.png");
 var ___HTML_LOADER_IMPORT_24___ = require("./noscript.png");
 var ___HTML_LOADER_IMPORT_25___ = require("./😀abc.png");
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = require("../../src/runtime/getUrl.js");
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -1930,7 +1930,6 @@ exports[`'esModule' option should use an ES module export when the value is "tru
 
 exports[`'esModule' option should use an ES module export when the value is "true": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -1959,6 +1958,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });

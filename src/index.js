@@ -80,8 +80,9 @@ export default async function loader(content) {
     html = await options.postprocessor(html, this);
   }
 
-  const importCode = getImportCode(html, this, imports, options);
-  const moduleCode = getModuleCode(html, replacements, {
+  const importCode = getImportCode(html, imports, options);
+  const moduleCode = getModuleCode(html, replacements, this, {
+    esModule: options.esModule,
     isTemplateLiteralSupported,
   });
   const exportCode = getExportCode(html, options);

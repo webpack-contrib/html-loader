@@ -4,7 +4,6 @@ exports[`"minimize" option should be turned off by default: errors 1`] = `[]`;
 
 exports[`"minimize" option should be turned off by default: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -33,6 +32,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -965,7 +965,6 @@ exports[`"minimize" option should be turned off in "development" mode: errors 1`
 
 exports[`"minimize" option should be turned off in "development" mode: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -994,6 +993,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -1926,7 +1926,6 @@ exports[`"minimize" option should be turned on in "production" mode: errors 1`] 
 
 exports[`"minimize" option should be turned on in "production" mode: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -1955,6 +1954,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -1990,7 +1990,6 @@ Parse Error: < img src="image.png" >",
 
 exports[`"minimize" option should emit an error on broken HTML syntax: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`Text < img src="image.png" >
@@ -2024,7 +2023,6 @@ exports[`"minimize" option should not work with a value equal to "false": errors
 
 exports[`"minimize" option should not work with a value equal to "false": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -2053,6 +2051,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -2985,7 +2984,6 @@ exports[`"minimize" option should support options for minimizer: errors 1`] = `[
 
 exports[`"minimize" option should support options for minimizer: module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -3014,6 +3012,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
@@ -3061,7 +3060,6 @@ exports[`"minimize" option should work with a value equal to "true": errors 1`] 
 
 exports[`"minimize" option should work with a value equal to "true": module 1`] = `
 "// Imports
-import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_1___ = new URL("/image.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_2___ = new URL("aliasImg", import.meta.url);
@@ -3090,6 +3088,7 @@ var ___HTML_LOADER_IMPORT_24___ = new URL("./nested/image3.png", import.meta.url
 var ___HTML_LOADER_IMPORT_25___ = new URL("/nested/image3.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_26___ = new URL("./noscript.png", import.meta.url);
 var ___HTML_LOADER_IMPORT_27___ = new URL("./😀abc.png", import.meta.url);
+import ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ from "../../src/runtime/getUrl.js";
 // Module
 var ___HTML_LOADER_REPLACEMENT_1___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, { maybeNeedQuotes: true });
 var ___HTML_LOADER_REPLACEMENT_5___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_4___, { hash: "#icon-chevron-with-circle-up" });
