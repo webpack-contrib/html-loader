@@ -36,6 +36,12 @@ or
 pnpm add -D html-loader
 ```
 
+or
+
+```console
+bun add -D html-loader
+```
+
 Then add the plugin to your `webpack` config. For example:
 
 **file.js**
