@@ -36,7 +36,7 @@ or
 pnpm add -D html-loader
 ```
 
-Then add the plugin to your `webpack` config. For example:
+Then add the loader to your `webpack` configuration. For example:
 
 **file.js**
 
@@ -102,32 +102,33 @@ You may need to specify loaders for images in your configuration (recommended [`
 
 Supported tags and attributes:
 
-- the `src` attribute of the `audio` tag
-- the `src` attribute of the `embed` tag
-- the `src` attribute of the `img` tag
-- the `srcset` attribute of the `img` tag
-- the `src` attribute of the `input` tag
-- the `data` attribute of the `object` tag
-- the `src` attribute of the `script` tag
-- the `href` attribute of the `script` tag
-- the `xlink:href` attribute of the `script` tag
-- the `src` attribute of the `source` tag
-- the `srcset` attribute of the `source` tag
-- the `src` attribute of the `track` tag
-- the `poster` attribute of the `video` tag
-- the `src` attribute of the `video` tag
-- the `xlink:href` attribute of the `image` tag
-- the `href` attribute of the `image` tag
-- the `xlink:href` attribute of the `use` tag
-- the `href` attribute of the `use` tag
-- the `href` attribute of the `link` tag when the `rel` attribute contains `stylesheet`, `icon`, `shortcut icon`, `mask-icon`, `apple-touch-icon`, `apple-touch-icon-precomposed`, `apple-touch-startup-image`, `manifest`, `prefetch`, `preload` or when the `itemprop` attribute is `image`, `logo`, `screenshot`, `thumbnailurl`, `contenturl`, `downloadurl`, `duringmedia`, `embedurl`, `installurl`, `layoutimage`
-- the `imagesrcset` attribute of the `link` tag when the `rel` attribute contains `stylesheet`, `icon`, `shortcut icon`, `mask-icon`, `apple-touch-icon`, `apple-touch-icon-precomposed`, `apple-touch-startup-image`, `manifest`, `prefetch`, `preload`
-- the `content` attribute of the `meta` tag when the `name` attribute is `msapplication-tileimage`, `msapplication-square70x70logo`, `msapplication-square150x150logo`, `msapplication-wide310x150logo`, `msapplication-square310x310logo`, `msapplication-config`, `twitter:image` or when the `property` attribute is `og:image`, `og:image:url`, `og:image:secure_url`, `og:audio`, `og:audio:secure_url`, `og:video`, `og:video:secure_url`, `vk:image` or when the `itemprop` attribute is `image`, `logo`, `screenshot`, `thumbnailurl`, `contenturl`, `downloadurl`, `duringmedia`, `embedurl`, `installurl`, `layoutimage`
-- the `icon-uri` value component in `content` attribute of the `meta` tag when the `name` attribute is `msapplication-task`
+- The `src` attribute of the `audio` tag
+- The `src` attribute of the `embed` tag
+- The `src` attribute of the `img` tag
+- The `srcset` attribute of the `img` tag
+- The `src` attribute of the `input` tag
+- The `data` attribute of the `object` tag
+- The `src` attribute of the `script` tag
+- The `href` attribute of the `script` tag
+- The `xlink:href` attribute of the `script` tag
+- The `src` attribute of the `source` tag
+- The `srcset` attribute of the `source` tag
+- The `src` attribute of the `track` tag
+- The `poster` attribute of the `video` tag
+- The `src` attribute of the `video` tag
+- The `xlink:href` attribute of the `image` tag
+- The `href` attribute of the `image` tag
+- The `xlink:href` attribute of the `use` tag
+- The `href` attribute of the `use` tag
+- The `href` attribute of the `link` tag when the `rel` attribute contains `stylesheet`, `icon`, `shortcut icon`, `mask-icon`, `apple-touch-icon`, `apple-touch-icon-precomposed`, `apple-touch-startup-image`, `manifest`, `prefetch`, `preload` or when the `itemprop` attribute is `image`, `logo`, `screenshot`, `thumbnailurl`, `contenturl`, `downloadurl`, `duringmedia`, `embedurl`, `installurl`, `layoutimage`
+- The `imagesrcset` attribute of the `link` tag when the `rel` attribute contains `stylesheet`, `icon`, `shortcut icon`, `mask-icon`, `apple-touch-icon`, `apple-touch-icon-precomposed`, `apple-touch-startup-image`, `manifest`, `prefetch`, `preload`
+- The `content` attribute of the `meta` tag when the `name` attribute is `msapplication-tileimage`, `msapplication-square70x70logo`, `msapplication-square150x150logo`, `msapplication-wide310x150logo`, `msapplication-square310x310logo`, `msapplication-config`, `twitter:image` or when the `property` attribute is `og:image`, `og:image:url`, `og:image:secure_url`, `og:audio`, `og:audio:secure_url`, `og:video`, `og:video:secure_url`, `vk:image` or when the `itemprop` attribute is `image`, `logo`, `screenshot`, `thumbnailurl`, `contenturl`, `downloadurl`, `duringmedia`, `embedurl`, `installurl`, `layoutimage`
+- The `icon-uri` value component in `content` attribute of the `meta` tag when the `name` attribute is `msapplication-task`
 
 #### `boolean`
 
-The `true` value enables the processing of all default elements and attributes, the `false` value disables the processing of all attributes.
+- true: Enables processing of all default tags and attributes
+- false: Disables processing entirely
 
 **webpack.config.js**
 
@@ -150,7 +151,7 @@ module.exports = {
 
 #### `object`
 
-Allows you to specify which tags and attributes to process, filter them, filter urls and process sources starting with `/`.
+Allows you to specify which tags and attributes to process, filter them, filter URLs and process sources starting with `/`.
 
 For example:
 
@@ -291,7 +292,7 @@ module.exports = {
 
 If the tag name is not specified it will process all the tags.
 
-> You can use your custom filter to specify html elements to be processed.
+> You can use your custom filter to specify HTML elements to be processed.
 
 For example:
 
@@ -418,7 +419,7 @@ type urlFilter = (
 
 Default: `undefined`
 
-Allow to filter urls. All filtered urls will not be resolved (left in the code as they were written).
+Allow to filter URLs. All filtered URLs will not be resolved (left in the code as they were written).
 Non-requestable sources (for example `<img src="javascript:void(0)">`) are not handled by default.
 
 ```js
@@ -459,9 +460,9 @@ type scriptingEnabled = boolean;
 
 Default: `true`
 
-By default, the parser in `html-loader` interprets content inside `<noscript>` tags as `#text`, so processing of content inside this tag will be ignored.
+By default, the parser in `html-loader` interprets content inside `<noscript>` tags as plain `#text`, so processing of content inside these tags will is ignored during processing.
 
-In order to enable processing inside `<noscript>` for content recognition by the parser as `#AST`, set this parameter to: `false`
+In order to enable processing inside `<noscript>` for content recognition by the parser as `#AST`, set this option to: `false`
 
 Additional information: [scriptingEnabled](https://parse5.js.org/interfaces/parse5.ParserOptions.html#scriptingEnabled)
 
@@ -496,11 +497,11 @@ type preprocessor = (content: string, loaderContext: LoaderContext) => string;
 
 Default: `undefined`
 
-Allows pre-processing of content before handling.
+Allows pre-processing of content before handling by the loader.
 
 > [!WARNING]
 >
-> You should always return valid HTML
+> You should always return valid HTML.
 
 **file.hbs**
 
@@ -642,7 +643,7 @@ module.exports = {
 };
 ```
 
-You can also set the `postprocessor` option as an asynchronous function instance.
+You can also set the `postprocessor` option as an asynchronous `function` instance.
 
 For example:
 
@@ -698,7 +699,7 @@ type minimize =
 
 Default: `true` in production mode, otherwise `false`
 
-Tell `html-loader` to minimize HTML.
+Use this option to enable or customize HTML minimization with `html-loader`.
 
 #### `boolean`
 
@@ -743,7 +744,7 @@ module.exports = {
 
 See [html-minifier-terser](https://github.com/DanielRuf/html-minifier-terser)'s documentation for more information on the available options.
 
-The default rules can be overridden using the following options in your `webpack.conf.js`
+The default rules can be overridden using the following options in your `webpack.config.js`
 
 **webpack.config.js**
 
@@ -805,7 +806,7 @@ Default: `true`
 By default, `html-loader` generates JS modules that use the ES modules syntax.
 There are some cases in which using ES modules is beneficial, such as [module concatenation](https://webpack.js.org/plugins/module-concatenation-plugin/) and [tree shaking](https://webpack.js.org/guides/tree-shaking/).
 
-You can enable a CommonJS modules syntax using:
+If you want to generate CommonJS modules instead (e.g., `module.exports =`), set:
 
 **webpack.config.js**
 
@@ -827,9 +828,9 @@ module.exports = {
 
 ## Examples
 
-### Disable url resolving using the `<!-- webpackIgnore: true -->` comment
+### Disable URL resolving using the `<!-- webpackIgnore: true -->` comment
 
-With `<!-- webpackIgnore: true -->` comment, one can disable sources handling for next tag.
+Use the `<!-- webpackIgnore: true -->` comment to prevent html-loader from processing URLs for the next HTML tag. This is useful when you don’t want Webpack to handle asset imports automatically.
 
 ```html
 <!-- Disabled url handling for the src attribute -->
@@ -1016,7 +1017,9 @@ module.exports = {
 
 ### Templating
 
-You can use any template system. Below is an example for [handlebars](https://handlebarsjs.com/).
+You can use any templating engine by leveraging the preprocessor option in html-loader. The preprocessor function receives the file content and the loader context, allowing you to transform the HTML before it’s processed by webpack.
+
+Below is an example for [handlebars](https://handlebarsjs.com/).
 
 **file.hbs**
 
@@ -1062,9 +1065,12 @@ module.exports = {
 };
 ```
 
+This setup will transform the `file.hbs` template using Handlebars before passing the result to `html-loader`.
+
 ### PostHTML
 
-You can use [PostHTML](https://github.com/posthtml/posthtml) without any additional loaders.
+You can use [PostHTML](https://github.com/posthtml/posthtml) to transform HTML before it's processed, without needing additional loaders.
+This is useful for tasks like converting image formats, adding attributes, or restructuring markup.
 
 **file.html**
 
@@ -1142,7 +1148,8 @@ module.exports = {
 
 ## Contributing
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+We welcome all contributions!
+If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
