@@ -1,6 +1,6 @@
 ---
 name: 🆘 Support, Help, and Advice
-about: 👉🏽 Need support, help, or advice? Don't open an issue! Head to "GitHub Discussions" or "Stack Overflow"
+about: 👉🏽 Need support, help, or advice? Don't open an issue - visit "GitHub Discussions" or "Stack Overflow" instead.
 ---
 
 Hey there! 👋
