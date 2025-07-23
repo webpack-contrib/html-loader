@@ -1,5 +1,11 @@
 {
-  "https://github.com/webpack-contrib/css-loader/blob/master/src/index.js": { "integrity": "sha512-dZRWrTZWnsxYi/CCZToZspC0u3qeby+Rlv0K2N8xkFu+wRZ6xYCI6/3/uur79dI2ITaS2AHBkubp3LrnuVceDQ==", "contentType": "text/html; charset=utf-8" },
-  "https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png": { "integrity": "sha512-bHqIPBYwzPsVLYcTDqJzwgvIaxLjmezufiCVXAMI0Naelf3eWVdydMA40hXbSuB0dZCGjCepuGaI7Ze8kLM+Ew==", "contentType": "image/png" },
+  "https://github.com/webpack-contrib/css-loader/blob/master/src/index.js": {
+    "integrity": "sha512-30CY7kxIy/A2crE5iESluuELzynobvlb/MapqLxRWrgI117LeHeAHmucwVj9pQgorBS5H9Z5BT7QcKtMpxbhMg==",
+    "contentType": "text/html; charset=utf-8"
+  },
+  "https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png": {
+    "integrity": "sha512-bHqIPBYwzPsVLYcTDqJzwgvIaxLjmezufiCVXAMI0Naelf3eWVdydMA40hXbSuB0dZCGjCepuGaI7Ze8kLM+Ew==",
+    "contentType": "image/png"
+  },
   "version": 1
 }
