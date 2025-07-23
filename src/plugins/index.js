@@ -1,4 +1,2 @@
-import sourcesPlugin from "./sources-plugin";
-import minimizerPlugin from "./minimizer-plugin";
-
-export { sourcesPlugin, minimizerPlugin };
+export { default as minimizerPlugin } from "./minimizer-plugin";
+export { default as sourcesPlugin } from "./sources-plugin";

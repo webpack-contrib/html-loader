@@ -21,7 +21,6 @@ function offsetToPosition(source, offset) {
     return {};
   }
 
-  // eslint-disable-next-line no-plusplus
   while (++index < length) {
     if (indices[index] > offset) {
       return {

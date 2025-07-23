@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`loader should emit an error on broken HTML syntax: errors 1`] = `[]`;
 
@@ -53,7 +53,7 @@ exports[`loader should not make bad things with templates: module 1`] = `
 var code = \`<img src="\\\${"Hello " + (1+1)}">
 <img src="\\\${\\\`Hello \\\` + (1+1)}">
 <p>Something about the \\\\\\\` character</p>
-\${"<" + "script"}>{"json": "with \\\\"quotes\\\\" in value"}\${"<" + "/script"}>
+<script>{"json": "with \\\\"quotes\\\\" in value"}</script>
 <h3>#{number} {customer}</h3>
 <p>   {title}   </p>
 <img src="\\\${require("./image.png")}" /></a>
@@ -190,7 +190,7 @@ var code = \`<!doctype html>
   <li>Milk</li>
 </ol>
 
-\${"<" + "script"}>console.log({"json": "with \\\\"quotes\\\\" in value"})\${"<" + "/script"}>
+<script>console.log({"json": "with \\\\"quotes\\\\" in value"})</script>
 
 <!-- comment -->
 
@@ -201,7 +201,7 @@ var code = \`<!doctype html>
 
 <input type="text" />
 
-\${"<" + "script"}>   console.log(1 + 2 + \\\`\\\${3 + 3}\\\`)   \${"<" + "/script"}>
+<script>   console.log(1 + 2 + \\\`\\\${3 + 3}\\\`)   </script>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
@@ -215,7 +215,7 @@ var code = \`<!doctype html>
 <IMG SRC="\${___HTML_LOADER_IMPORT_0___}">
 <img src="//image.png">
 
-\${"<" + "script"} src="\${___HTML_LOADER_IMPORT_3___}">\${"<" + "/script"}>
+<script src="\${___HTML_LOADER_IMPORT_3___}"></script>
 
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
@@ -270,7 +270,7 @@ var code = \`<!doctype html>
   <input type="image" src="\${___HTML_LOADER_IMPORT_0___}" alt="Submit">
 </form>
 
-\${"<" + "script"} src="\${___HTML_LOADER_IMPORT_9___}">\${"<" + "/script"}>
+<script src="\${___HTML_LOADER_IMPORT_9___}"></script>
 
 <audio controls>
   <source src="\${___HTML_LOADER_IMPORT_7___}" type="audio/ogg">
@@ -393,18 +393,18 @@ or
 
 <img src="\${___HTML_LOADER_IMPORT_0___}" src="image.png" />
 
-\${"<" + "script"} type="module" src="\${___HTML_LOADER_IMPORT_14___}">\${"<" + "/script"}>
-\${"<" + "script"} nomodule src="\${___HTML_LOADER_IMPORT_15___}">\${"<" + "/script"}>
-\${"<" + "script"} type="text/javascript" src="\${___HTML_LOADER_IMPORT_15___}">\${"<" + "/script"}>
-\${"<" + "script"} type="application/javascript" src="\${___HTML_LOADER_IMPORT_15___}">\${"<" + "/script"}>
-\${"<" + "script"} type="application/json" src="fallback.file.json">\${"<" + "/script"}>
-\${"<" + "script"} type="text/x-handlebars-template" src="preprocessor.hbs">\${"<" + "/script"}>
-\${"<" + "script"} type="module">
+<script type="module" src="\${___HTML_LOADER_IMPORT_14___}"></script>
+<script nomodule src="\${___HTML_LOADER_IMPORT_15___}"></script>
+<script type="text/javascript" src="\${___HTML_LOADER_IMPORT_15___}"></script>
+<script type="application/javascript" src="\${___HTML_LOADER_IMPORT_15___}"></script>
+<script type="application/json" src="fallback.file.json"></script>
+<script type="text/x-handlebars-template" src="preprocessor.hbs"></script>
+<script type="module">
   function test() {}
-\${"<" + "/script"}>
-\${"<" + "script"}>
+</script>
+<script>
   function test() {}
-\${"<" + "/script"}>
+</script>
 
 <img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_13___}" />
@@ -478,9 +478,9 @@ or
 <a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
 <a HREF="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
 
-\${"<" + "script"} type="text/javascript">
+<script type="text/javascript">
   console.log('HERE')
-\${"<" + "/script"}>
+</script>
 
 <style type="text/css">
   p {
@@ -514,16 +514,16 @@ alt" />
 <img data-dz-thumbnail="" width="95" height="95" title="<%= name %>" alt="<%= name %>" src="<%= imgsrc %>" />
 
 <svg>
-  \${"<" + "script"} href="\${___HTML_LOADER_IMPORT_3___}">\${"<" + "/script"}>
+  <script href="\${___HTML_LOADER_IMPORT_3___}"></script>
 </svg>
 <svg>
-  \${"<" + "script"} type="application/json" href="./script.file.js">\${"<" + "/script"}>
+  <script type="application/json" href="./script.file.js"></script>
 </svg>
 <svg>
-  \${"<" + "script"} xlink:href="\${___HTML_LOADER_IMPORT_3___}">\${"<" + "/script"}>
+  <script xlink:href="\${___HTML_LOADER_IMPORT_3___}"></script>
 </svg>
 <svg>
-  \${"<" + "script"} type="application/json" xlink:href="./script.file.js">\${"<" + "/script"}>
+  <script type="application/json" xlink:href="./script.file.js"></script>
 </svg>
 
 <input type="text" name="test">
@@ -1434,7 +1434,7 @@ var code = \`<!doctype html>
   <li>Milk</li>
 </ol>
 
-\${"<" + "script"}>console.log({"json": "with \\\\"quotes\\\\" in value"})\${"<" + "/script"}>
+<script>console.log({"json": "with \\\\"quotes\\\\" in value"})</script>
 
 <!-- comment -->
 
@@ -1445,7 +1445,7 @@ var code = \`<!doctype html>
 
 <input type="text" />
 
-\${"<" + "script"}>   console.log(1 + 2 + \\\`\\\${3 + 3}\\\`)   \${"<" + "/script"}>
+<script>   console.log(1 + 2 + \\\`\\\${3 + 3}\\\`)   </script>
 
 <img src="\${___HTML_LOADER_IMPORT_0___}">
 <img src='\${___HTML_LOADER_IMPORT_0___}'>
@@ -1459,7 +1459,7 @@ var code = \`<!doctype html>
 <IMG SRC="\${___HTML_LOADER_IMPORT_0___}">
 <img src="//image.png">
 
-\${"<" + "script"} src="\${___HTML_LOADER_IMPORT_3___}">\${"<" + "/script"}>
+<script src="\${___HTML_LOADER_IMPORT_3___}"></script>
 
 <custom-element custom-src="image.png" />
 <custom-img custom-src="image.png"/></custom-element>
@@ -1514,7 +1514,7 @@ var code = \`<!doctype html>
   <input type="image" src="\${___HTML_LOADER_IMPORT_0___}" alt="Submit">
 </form>
 
-\${"<" + "script"} src="https://github.com/webpack-contrib/css-loader/blob/master/src/index.js">\${"<" + "/script"}>
+<script src="https://github.com/webpack-contrib/css-loader/blob/master/src/index.js"></script>
 
 <audio controls>
   <source src="\${___HTML_LOADER_IMPORT_7___}" type="audio/ogg">
@@ -1637,18 +1637,18 @@ or
 
 <img src="\${___HTML_LOADER_IMPORT_0___}" src="image.png" />
 
-\${"<" + "script"} type="module" src="\${___HTML_LOADER_IMPORT_13___}">\${"<" + "/script"}>
-\${"<" + "script"} nomodule src="\${___HTML_LOADER_IMPORT_14___}">\${"<" + "/script"}>
-\${"<" + "script"} type="text/javascript" src="\${___HTML_LOADER_IMPORT_14___}">\${"<" + "/script"}>
-\${"<" + "script"} type="application/javascript" src="\${___HTML_LOADER_IMPORT_14___}">\${"<" + "/script"}>
-\${"<" + "script"} type="application/json" src="fallback.file.json">\${"<" + "/script"}>
-\${"<" + "script"} type="text/x-handlebars-template" src="preprocessor.hbs">\${"<" + "/script"}>
-\${"<" + "script"} type="module">
+<script type="module" src="\${___HTML_LOADER_IMPORT_13___}"></script>
+<script nomodule src="\${___HTML_LOADER_IMPORT_14___}"></script>
+<script type="text/javascript" src="\${___HTML_LOADER_IMPORT_14___}"></script>
+<script type="application/javascript" src="\${___HTML_LOADER_IMPORT_14___}"></script>
+<script type="application/json" src="fallback.file.json"></script>
+<script type="text/x-handlebars-template" src="preprocessor.hbs"></script>
+<script type="module">
   function test() {}
-\${"<" + "/script"}>
-\${"<" + "script"}>
+</script>
+<script>
   function test() {}
-\${"<" + "/script"}>
+</script>
 
 <img src=\${___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___, true)} />
 <img src="\${___HTML_LOADER_IMPORT_12___}" />
@@ -1722,9 +1722,9 @@ or
 <a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
 <a HREF="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
 
-\${"<" + "script"} type="text/javascript">
+<script type="text/javascript">
   console.log('HERE')
-\${"<" + "/script"}>
+</script>
 
 <style type="text/css">
   p {
@@ -1758,16 +1758,16 @@ alt" />
 <img data-dz-thumbnail="" width="95" height="95" title="<%= name %>" alt="<%= name %>" src="<%= imgsrc %>" />
 
 <svg>
-  \${"<" + "script"} href="\${___HTML_LOADER_IMPORT_3___}">\${"<" + "/script"}>
+  <script href="\${___HTML_LOADER_IMPORT_3___}"></script>
 </svg>
 <svg>
-  \${"<" + "script"} type="application/json" href="./script.file.js">\${"<" + "/script"}>
+  <script type="application/json" href="./script.file.js"></script>
 </svg>
 <svg>
-  \${"<" + "script"} xlink:href="\${___HTML_LOADER_IMPORT_3___}">\${"<" + "/script"}>
+  <script xlink:href="\${___HTML_LOADER_IMPORT_3___}"></script>
 </svg>
 <svg>
-  \${"<" + "script"} type="application/json" xlink:href="./script.file.js">\${"<" + "/script"}>
+  <script type="application/json" xlink:href="./script.file.js"></script>
 </svg>
 
 <input type="text" name="test">

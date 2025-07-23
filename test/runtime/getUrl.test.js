@@ -4,7 +4,7 @@ describe("getUrl", () => {
   it("should work", () => {
     expect(getUrl(true)).toMatchSnapshot();
     expect(getUrl(null)).toMatchSnapshot();
-    // eslint-disable-next-line no-undefined
+
     expect(getUrl(undefined)).toMatchSnapshot();
     expect(getUrl("image.png")).toMatchSnapshot();
     expect(getUrl("image\timage.png")).toMatchSnapshot();
