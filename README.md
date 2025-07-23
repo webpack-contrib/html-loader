@@ -314,15 +314,14 @@ module.exports = {
                 // Type of processing, can be `src` or `scrset`
                 type: "src",
                 // Allow to filter some attributes (optional)
-                filter: (tag, attribute, attributes, resourcePath) => 
+                filter: (tag, attribute, attributes, resourcePath) =>
                   // The `tag` argument contains a name of the HTML tag.
                   // The `attribute` argument contains a name of the HTML attribute.
                   // The `attributes` argument contains all attributes of the tag.
                   // The `resourcePath` argument contains a path to the loaded HTML file.
 
                   // choose all HTML tags except img tag
-                   tag.toLowerCase() !== "img"
-                ,
+                  tag.toLowerCase() !== "img",
               },
             ],
           },
