@@ -16,7 +16,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
       chunkLoading: "require",
       publicPath: "/webpack/public/path/",
       library: "___TEST___",
-      assetModuleFilename: "[name][ext]",
+      assetModuleFilename: "[name]-[contenthash][ext]",
       hashFunction: "xxhash64",
     },
     module: {
