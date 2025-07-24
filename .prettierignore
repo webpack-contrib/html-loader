@@ -2,4 +2,5 @@
 /dist
 /node_modules
 /test/fixtures
+test/lock-files/**/*
 CHANGELOG.md

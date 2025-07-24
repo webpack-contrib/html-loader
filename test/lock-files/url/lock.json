@@ -1,5 +1,5 @@
 {
-  "https://github.com/webpack-contrib/css-loader/blob/master/src/index.js": { "integrity": "sha512-xkvpPsKYbZ7Ub9btIBeo0y7dDRkLAuEee9y78q4+DrlS5zZVEEIMy1DZhKldJnkGvV9YVaO7R/dh4RMj4ZcvCQ==", "contentType": "text/html; charset=utf-8" },
+  "https://github.com/webpack-contrib/css-loader/blob/master/src/index.js": { "integrity": "sha512-k99Z7sRHAMsmgiFFGgeQRCdroWRCKHDqy6JyviZ6c5OugQzrJSfS4j5XEAirp95wSYlXfXVXMew2IIvrv6Q8WQ==", "contentType": "text/html; charset=utf-8" },
   "https://raw.githubusercontent.com/webpack-contrib/html-loader/master/test/fixtures/image.png": { "integrity": "sha512-z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==", "contentType": "image/png" },
   "version": 1
 }
