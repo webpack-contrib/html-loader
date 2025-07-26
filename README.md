@@ -75,7 +75,7 @@ Type:
 type sources =
   | boolean
   | {
-      list?: Array<{
+      list?: {
         tag?: string;
         attribute?: string;
         type?: string;
@@ -85,7 +85,7 @@ type sources =
           attributes: string,
           resourcePath: string,
         ) => boolean;
-      }>;
+      }[];
       urlFilter?: (
         attribute: string,
         value: string,
@@ -204,7 +204,7 @@ module.exports = {
 Type:
 
 ```ts
-type list = Array<{
+type list = {
   tag?: string;
   attribute?: string;
   type?: string;
@@ -214,7 +214,7 @@ type list = Array<{
     attributes: string,
     resourcePath: string,
   ) => boolean;
-}>;
+}[];
 ```
 
 Default: [supported tags and attributes](#sources).
@@ -314,15 +314,14 @@ module.exports = {
                 // Type of processing, can be `src` or `scrset`
                 type: "src",
                 // Allow to filter some attributes (optional)
-                filter: (tag, attribute, attributes, resourcePath) => {
+                filter: (tag, attribute, attributes, resourcePath) =>
                   // The `tag` argument contains a name of the HTML tag.
                   // The `attribute` argument contains a name of the HTML attribute.
                   // The `attributes` argument contains all attributes of the tag.
                   // The `resourcePath` argument contains a path to the loaded HTML file.
 
                   // choose all HTML tags except img tag
-                  return tag.toLowerCase() !== "img";
-                },
+                  tag.toLowerCase() !== "img",
               },
             ],
           },
@@ -633,8 +632,8 @@ module.exports = {
             const isTemplateLiteralSupported = content[0] === "`";
 
             return content
-              .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
-              .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "');
+              .replaceAll("<%=", isTemplateLiteralSupported ? "${" : '" +')
+              .replaceAll("%>", isTemplateLiteralSupported ? "}" : '+ "');
           },
         },
       },
@@ -665,8 +664,8 @@ module.exports = {
             const isTemplateLiteralSupported = content[0] === "`";
 
             return content
-              .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
-              .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "')
+              .replaceAll("<%=", isTemplateLiteralSupported ? "${" : '" +')
+              .replaceAll("%>", isTemplateLiteralSupported ? "}" : '+ "')
               .replace("my-value", value);
           },
         },

@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 
 import {
   compile,
@@ -20,8 +20,8 @@ describe("'postprocess' option", () => {
         const isTemplateLiteralSupported = content[0] === "`";
 
         return content
-          .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
-          .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "');
+          .replaceAll("<%=", isTemplateLiteralSupported ? "${" : '" +')
+          .replaceAll("%>", isTemplateLiteralSupported ? "}" : '+ "');
       },
     });
     const stats = await compile(compiler);
@@ -47,8 +47,8 @@ describe("'postprocess' option", () => {
           const isTemplateLiteralSupported = content[0] === "`";
 
           return content
-            .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
-            .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "');
+            .replaceAll("<%=", isTemplateLiteralSupported ? "${" : '" +')
+            .replaceAll("%>", isTemplateLiteralSupported ? "}" : '+ "');
         },
       },
       {
@@ -86,8 +86,8 @@ describe("'postprocess' option", () => {
         const isTemplateLiteralSupported = content[0] === "`";
 
         return content
-          .replace(/<%=/g, isTemplateLiteralSupported ? `\${` : '" +')
-          .replace(/%>/g, isTemplateLiteralSupported ? "}" : '+ "');
+          .replaceAll("<%=", isTemplateLiteralSupported ? "${" : '" +')
+          .replaceAll("%>", isTemplateLiteralSupported ? "}" : '+ "');
       },
     });
     const stats = await compile(compiler);

@@ -1,23 +1,20 @@
-import { sourcesPlugin, minimizerPlugin } from "./plugins";
+import schema from "./options.json";
+import { minimizerPlugin, sourcesPlugin } from "./plugins";
 import {
-  pluginRunner,
-  normalizeOptions,
+  convertToTemplateLiteral,
+  getExportCode,
   getImportCode,
   getModuleCode,
-  getExportCode,
-  defaultMinimizerOptions,
+  normalizeOptions,
+  pluginRunner,
   supportTemplateLiteral,
-  convertToTemplateLiteral,
 } from "./utils";
-
-import schema from "./options.json";
 
 export default async function loader(content) {
   const rawOptions = this.getOptions(schema);
   const options = normalizeOptions(rawOptions, this);
 
   if (options.preprocessor) {
-    // eslint-disable-next-line no-param-reassign
     content = await options.preprocessor(content, this);
   }
 
@@ -71,12 +68,11 @@ export default async function loader(content) {
       : JSON.stringify(html)
   )
     // Invalid in JavaScript but valid HTML
-    .replace(/[\u2028\u2029]/g, (str) =>
+    .replaceAll(/[\u2028\u2029]/g, (str) =>
       str === "\u2029" ? "\\u2029" : "\\u2028",
     );
 
   if (options.postprocessor) {
-    // eslint-disable-next-line no-param-reassign
     html = await options.postprocessor(html, this);
   }
 
@@ -90,4 +86,4 @@ export default async function loader(content) {
   return `${importCode}${moduleCode}${exportCode}`;
 }
 
-export { defaultMinimizerOptions };
+export { defaultMinimizerOptions } from "./utils";

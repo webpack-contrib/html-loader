@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`'preprocess' option should work with async "preprocessor" function option: errors 1`] = `[]`;
 
@@ -18,7 +18,7 @@ export default code;"
 exports[`'preprocess' option should work with async "preprocessor" function option: result 1`] = `
 "<div>
   <p>Alexander Krasnoyarov</p>
-  <img src="replaced_file_protocol_/webpack/public/path/image.png" alt="alt" />
+  <img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png" alt="alt" />
 <div>
 "
 `;
@@ -39,7 +39,7 @@ export default code;"
 `;
 
 exports[`'preprocess' option should work with the "preprocessor" option #2: result 1`] = `
-"<picture><source type="image/webp" srcset="replaced_file_protocol_/webpack/public/path/image.png.webp"><img src="replaced_file_protocol_/webpack/public/path/image.png"></picture>
+"<picture><source type="image/webp" srcset="replaced_file_protocol_/webpack/public/path/image.png-7bc91c245a8a10a4.webp"><img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png"></picture>
 "
 `;
 
@@ -63,7 +63,7 @@ export default code;"
 exports[`'preprocess' option should work with the "preprocessor" option: result 1`] = `
 "<div>
   <p>Alexander Krasnoyarov</p>
-  <img src="replaced_file_protocol_/webpack/public/path/image.png" alt="alt" />
+  <img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png" alt="alt" />
 <div>
 "
 `;
@@ -84,7 +84,7 @@ export default code;"
 `;
 
 exports[`'preprocess' option should work with the async "preprocessor" function option #2: result 1`] = `
-"<picture><source type="image/webp" srcset="replaced_file_protocol_/webpack/public/path/image.png.webp"><img src="replaced_file_protocol_/webpack/public/path/image.png"></picture>
+"<picture><source type="image/webp" srcset="replaced_file_protocol_/webpack/public/path/image.png-7bc91c245a8a10a4.webp"><img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png"></picture>
 "
 `;
 

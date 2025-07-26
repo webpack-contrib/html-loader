@@ -1,4 +1,4 @@
-import { pathToFileURL } from "url";
+import { pathToFileURL } from "node:url";
 
 export default (id, stats) => {
   const { modules } = stats.toJson({ source: true });

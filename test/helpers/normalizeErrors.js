@@ -3,14 +3,13 @@ function removeCWD(str) {
   let cwd = process.cwd();
 
   if (isWin) {
-    // eslint-disable-next-line no-param-reassign
-    str = str.replace(/\\/g, "/");
-    // eslint-disable-next-line no-param-reassign
-    cwd = cwd.replace(/\\/g, "/");
+    str = str.replaceAll("\\", "/");
+
+    cwd = cwd.replaceAll("\\", "/");
   }
 
   return str
-    .replace(new RegExp(cwd, "g"), "")
+    .replaceAll(new RegExp(cwd, "g"), "")
     .replace(/\(from (.*)\)/, "(from /path/to/file.js)");
 }
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`'postprocess' option should work with async "postprocessor" function option: errors 1`] = `[]`;
 
@@ -18,7 +18,7 @@ export default code;"
 exports[`'postprocess' option should work with async "postprocessor" function option: result 1`] = `
 "<div>
   <p>{{firstname}} {{lastname}}</p>
-  <img src="replaced_file_protocol_/webpack/public/path/image.png" alt="alt" />
+  <img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png" alt="alt" />
 <div>
 "
 `;
@@ -66,10 +66,10 @@ export default code;"
 `;
 
 exports[`'postprocess' option should work with the "postprocessor" option: result 1`] = `
-"<img src="replaced_file_protocol_/webpack/public/path/image.png">
+"<img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png">
 <img src="Hello 2">
-<img src="/webpack/public/path/image.png">
-<img src="replaced_file_protocol_/webpack/public/path/image.png">
+<img src="/webpack/public/path/image-7bc91c245a8a10a4.png">
+<img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png">
 <div><h2>Gallery</h2></div>
 <!--Works fine, but need improve testing <div>< %= (await import('./gallery.html')).default % ></div>-->
 "

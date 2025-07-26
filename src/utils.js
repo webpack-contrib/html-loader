@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 
 import HtmlSourceError from "./HtmlSourceError";
 
@@ -25,11 +25,11 @@ function isASCIIWhitespace(character) {
 
 // (Don't use \s, to avoid matching non-breaking space)
 // eslint-disable-next-line no-control-regex
-const regexLeadingSpaces = /^[ \t\n\r\u000c]+/;
+const regexLeadingSpaces = /^[ \t\n\r\u000C]+/;
 // eslint-disable-next-line no-control-regex
-const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000c]+/;
+const regexLeadingCommasOrSpaces = /^[, \t\n\r\u000C]+/;
 // eslint-disable-next-line no-control-regex
-const regexLeadingNotSpaces = /^[^ \t\n\r\u000c]+/;
+const regexLeadingNotSpaces = /^[^ \t\n\r\u000C]+/;
 const regexTrailingCommas = /[,]+$/;
 const regexNonNegativeInteger = /^\d+$/;
 const COMMA = ",".charCodeAt(0);
@@ -46,6 +46,41 @@ const SMALL_LETTER_H = "h".charCodeAt(0);
 // https://html.spec.whatwg.org/multipage/infrastructure.html#valid-floating-point-number
 const regexFloatingPoint = /^-?(?:[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/;
 
+function isASCIIC0group(character) {
+  // C0 and &nbsp;
+  // eslint-disable-next-line no-control-regex
+  return /^[\u0001-\u0019\u00A0]/.test(character);
+}
+
+function c0ControlCodesExclude(source) {
+  let { value } = source;
+
+  if (!value) {
+    throw new Error("Must be non-empty");
+  }
+
+  let start = 0;
+  for (; start < value.length && isASCIIC0group(value[start]); start++);
+
+  if (start === value.length) {
+    throw new Error("Must be non-empty");
+  }
+
+  let end = value.length - 1;
+  for (; end > -1 && isASCIIC0group(value[end]); end--);
+  end += 1;
+
+  if (start !== 0 || end !== value.length) {
+    value = value.slice(start, end);
+
+    if (!value) {
+      throw new Error("Must be non-empty");
+    }
+  }
+
+  return { value, startOffset: source.startOffset + start };
+}
+
 export function parseSrcset(input) {
   // 1. Let input be the value passed to this algorithm.
   const inputLength = input.length;
@@ -54,17 +89,14 @@ export function parseSrcset(input) {
   let descriptors;
   let currentDescriptor;
   let state;
-  let c;
-
-  // 2. Let position be a pointer into input, initially pointing at the start
-  //    of the string.
+  let charCode;
   let position = 0;
   let startOffset;
+  const candidates = [];
 
-  // eslint-disable-next-line consistent-return
   function collectCharacters(regEx) {
     let chars;
-    const match = regEx.exec(input.substring(position));
+    const match = regEx.exec(input.slice(Math.max(0, position)));
 
     if (match) {
       [chars] = match;
@@ -74,13 +106,246 @@ export function parseSrcset(input) {
     }
   }
 
+  function parseDescriptors() {
+    // 9. Descriptor parser: Let error be no.
+    let pError = false;
+
+    // 10. Let width be absent.
+    // 11. Let density be absent.
+    // 12. Let future-compat-h be absent. (We're implementing it now as h)
+    let width;
+    let density;
+    let height;
+    let i;
+    const candidate = {};
+    let desc;
+    let lastChar;
+    let value;
+    let intVal;
+    let floatVal;
+
+    // 13. For each descriptor in descriptors, run the appropriate set of steps
+    // from the following list:
+    for (i = 0; i < descriptors.length; i++) {
+      desc = descriptors[i];
+
+      lastChar = desc[desc.length - 1].charCodeAt(0);
+      value = desc.slice(0, Math.max(0, desc.length - 1));
+      intVal = Number.parseInt(value, 10);
+      floatVal = Number.parseFloat(value);
+
+      // If the descriptor consists of a valid non-negative integer followed by
+      // a U+0077 LATIN SMALL LETTER W character
+      if (regexNonNegativeInteger.test(value) && lastChar === SMALL_LETTER_W) {
+        // If width and density are not both absent, then let error be yes.
+        if (width || density) {
+          pError = true;
+        }
+
+        // Apply the rules for parsing non-negative integers to the descriptor.
+        // If the result is zero, let error be yes.
+        // Otherwise, let width be the result.
+        if (intVal === 0) {
+          pError = true;
+        } else {
+          width = intVal;
+        }
+      }
+      // If the descriptor consists of a valid floating-point number followed by
+      // a U+0078 LATIN SMALL LETTER X character
+      else if (regexFloatingPoint.test(value) && lastChar === SMALL_LETTER_X) {
+        // If width, density and future-compat-h are not all absent, then let error
+        // be yes.
+        if (width || density || height) {
+          pError = true;
+        }
+
+        // Apply the rules for parsing floating-point number values to the descriptor.
+        // If the result is less than zero, let error be yes. Otherwise, let density
+        // be the result.
+        if (floatVal < 0) {
+          pError = true;
+        } else {
+          density = floatVal;
+        }
+      }
+      // If the descriptor consists of a valid non-negative integer followed by
+      // a U+0068 LATIN SMALL LETTER H character
+      else if (
+        regexNonNegativeInteger.test(value) &&
+        lastChar === SMALL_LETTER_H
+      ) {
+        // If height and density are not both absent, then let error be yes.
+        if (height || density) {
+          pError = true;
+        }
+
+        // Apply the rules for parsing non-negative integers to the descriptor.
+        // If the result is zero, let error be yes. Otherwise, let future-compat-h
+        // be the result.
+        if (intVal === 0) {
+          pError = true;
+        } else {
+          height = intVal;
+        }
+
+        // Anything else, Let error be yes.
+      } else {
+        pError = true;
+      }
+    }
+
+    // 15. If error is still no, then append a new image source to candidates whose
+    // URL is url, associated with a width width if not absent and a pixel
+    // density density if not absent. Otherwise, there is a parse error.
+    if (!pError) {
+      candidate.source = { value: url, startOffset };
+
+      if (width) {
+        candidate.width = { value: width };
+      }
+
+      if (density) {
+        candidate.density = { value: density };
+      }
+
+      if (height) {
+        candidate.height = { value: height };
+      }
+
+      candidates.push(candidate);
+    } else {
+      throw new Error(
+        `Invalid srcset descriptor found in '${input}' at '${desc}'`,
+      );
+    }
+  }
+
+  function tokenize() {
+    // 8.1. Descriptor tokenizer: Skip whitespace
+    collectCharacters(regexLeadingSpaces);
+
+    // 8.2. Let current descriptor be the empty string.
+    currentDescriptor = "";
+
+    // 8.3. Let state be in descriptor.
+    state = "in descriptor";
+
+    while (true) {
+      // 8.4. Let charCode be the character at position.
+      charCode = input.charCodeAt(position);
+
+      //  Do the following depending on the value of state.
+      //  For the purpose of this step, "EOF" is a special character representing
+      //  that position is past the end of input.
+
+      // In descriptor
+      if (state === "in descriptor") {
+        // Do the following, depending on the value of charCode:
+
+        // Space character
+        // If current descriptor is not empty, append current descriptor to
+        // descriptors and let current descriptor be the empty string.
+        // Set state to after descriptor.
+        if (isASCIIWhitespace(charCode)) {
+          if (currentDescriptor) {
+            descriptors.push(currentDescriptor);
+            currentDescriptor = "";
+            state = "after descriptor";
+          }
+        }
+        // U+002C COMMA (,)
+        // Advance position to the next character in input. If current descriptor
+        // is not empty, append current descriptor to descriptors. Jump to the step
+        // labeled descriptor parser.
+        else if (charCode === COMMA) {
+          position += 1;
+
+          if (currentDescriptor) {
+            descriptors.push(currentDescriptor);
+          }
+
+          parseDescriptors();
+
+          return;
+        }
+        // U+0028 LEFT PARENTHESIS (()
+        // Append charCode to current descriptor. Set state to in parens.
+        else if (charCode === LEFT_PARENTHESIS) {
+          currentDescriptor += input.charAt(position);
+          state = "in parens";
+        }
+        // EOF
+        // If current descriptor is not empty, append current descriptor to
+        // descriptors. Jump to the step labeled descriptor parser.
+        else if (Number.isNaN(charCode)) {
+          if (currentDescriptor) {
+            descriptors.push(currentDescriptor);
+          }
+
+          parseDescriptors();
+
+          return;
+
+          // Anything else
+          // Append charCode to current descriptor.
+        } else {
+          currentDescriptor += input.charAt(position);
+        }
+      }
+      // In parens
+      else if (state === "in parens") {
+        // U+0029 RIGHT PARENTHESIS ())
+        // Append charCode to current descriptor. Set state to in descriptor.
+        if (charCode === RIGHT_PARENTHESIS) {
+          currentDescriptor += input.charAt(position);
+          state = "in descriptor";
+        }
+        // EOF
+        // Append current descriptor to descriptors. Jump to the step labeled
+        // descriptor parser.
+        else if (Number.isNaN(charCode)) {
+          descriptors.push(currentDescriptor);
+          parseDescriptors();
+          return;
+        }
+        // Anything else
+        // Append charCode to current descriptor.
+        else {
+          currentDescriptor += input.charAt(position);
+        }
+      }
+      // After descriptor
+      else if (state === "after descriptor") {
+        // Do the following, depending on the value of charCode:
+        if (isASCIIWhitespace(charCode)) {
+          // Space character: Stay in this state.
+        }
+        // EOF: Jump to the step labeled descriptor parser.
+        else if (Number.isNaN(charCode)) {
+          parseDescriptors();
+          return;
+        }
+        // Anything else
+        // Set state to in descriptor. Set position to the previous character in input.
+        else {
+          state = "in descriptor";
+          position -= 1;
+        }
+      }
+
+      // Advance position to the next character in input.
+      position += 1;
+    }
+  }
+
   // 3. Let candidates be an initially empty source set.
-  const candidates = [];
+  // const candidates = []; // Moved to top
 
   // 4. Splitting loop: Collect a sequence of characters that are space
   //    characters or U+002C COMMA characters. If any U+002C COMMA characters
   //    were collected, that is a parse error.
-  // eslint-disable-next-line no-constant-condition
+
   while (true) {
     collectCharacters(regexLeadingCommasOrSpaces);
 
@@ -118,249 +383,6 @@ export function parseSrcset(input) {
 
     // 16. Return to the step labeled splitting loop.
   }
-
-  /**
-   * Tokenizes descriptor properties prior to parsing
-   * Returns undefined.
-   */
-  function tokenize() {
-    // 8.1. Descriptor tokenizer: Skip whitespace
-    collectCharacters(regexLeadingSpaces);
-
-    // 8.2. Let current descriptor be the empty string.
-    currentDescriptor = "";
-
-    // 8.3. Let state be in descriptor.
-    state = "in descriptor";
-
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      // 8.4. Let c be the character at position.
-      c = input.charCodeAt(position);
-
-      //  Do the following depending on the value of state.
-      //  For the purpose of this step, "EOF" is a special character representing
-      //  that position is past the end of input.
-
-      // In descriptor
-      if (state === "in descriptor") {
-        // Do the following, depending on the value of c:
-
-        // Space character
-        // If current descriptor is not empty, append current descriptor to
-        // descriptors and let current descriptor be the empty string.
-        // Set state to after descriptor.
-        if (isASCIIWhitespace(c)) {
-          if (currentDescriptor) {
-            descriptors.push(currentDescriptor);
-            currentDescriptor = "";
-            state = "after descriptor";
-          }
-        }
-        // U+002C COMMA (,)
-        // Advance position to the next character in input. If current descriptor
-        // is not empty, append current descriptor to descriptors. Jump to the step
-        // labeled descriptor parser.
-        else if (c === COMMA) {
-          position += 1;
-
-          if (currentDescriptor) {
-            descriptors.push(currentDescriptor);
-          }
-
-          parseDescriptors();
-
-          return;
-        }
-        // U+0028 LEFT PARENTHESIS (()
-        // Append c to current descriptor. Set state to in parens.
-        else if (c === LEFT_PARENTHESIS) {
-          currentDescriptor += input.charAt(position);
-          state = "in parens";
-        }
-        // EOF
-        // If current descriptor is not empty, append current descriptor to
-        // descriptors. Jump to the step labeled descriptor parser.
-        else if (isNaN(c)) {
-          if (currentDescriptor) {
-            descriptors.push(currentDescriptor);
-          }
-
-          parseDescriptors();
-
-          return;
-
-          // Anything else
-          // Append c to current descriptor.
-        } else {
-          currentDescriptor += input.charAt(position);
-        }
-      }
-      // In parens
-      else if (state === "in parens") {
-        // U+0029 RIGHT PARENTHESIS ())
-        // Append c to current descriptor. Set state to in descriptor.
-        if (c === RIGHT_PARENTHESIS) {
-          currentDescriptor += input.charAt(position);
-          state = "in descriptor";
-        }
-        // EOF
-        // Append current descriptor to descriptors. Jump to the step labeled
-        // descriptor parser.
-        else if (isNaN(c)) {
-          descriptors.push(currentDescriptor);
-          parseDescriptors();
-          return;
-        }
-        // Anything else
-        // Append c to current descriptor.
-        else {
-          currentDescriptor += input.charAt(position);
-        }
-      }
-      // After descriptor
-      else if (state === "after descriptor") {
-        // Do the following, depending on the value of c:
-        if (isASCIIWhitespace(c)) {
-          // Space character: Stay in this state.
-        }
-        // EOF: Jump to the step labeled descriptor parser.
-        else if (isNaN(c)) {
-          parseDescriptors();
-          return;
-        }
-        // Anything else
-        // Set state to in descriptor. Set position to the previous character in input.
-        else {
-          state = "in descriptor";
-          position -= 1;
-        }
-      }
-
-      // Advance position to the next character in input.
-      position += 1;
-    }
-  }
-
-  /**
-   * Adds descriptor properties to a candidate, pushes to the candidates array
-   * @return undefined
-   */
-  // Declared outside of the while loop so that it's only created once.
-  function parseDescriptors() {
-    // 9. Descriptor parser: Let error be no.
-    let pError = false;
-
-    // 10. Let width be absent.
-    // 11. Let density be absent.
-    // 12. Let future-compat-h be absent. (We're implementing it now as h)
-    let w;
-    let d;
-    let h;
-    let i;
-    const candidate = {};
-    let desc;
-    let lastChar;
-    let value;
-    let intVal;
-    let floatVal;
-
-    // 13. For each descriptor in descriptors, run the appropriate set of steps
-    // from the following list:
-    for (i = 0; i < descriptors.length; i++) {
-      desc = descriptors[i];
-
-      lastChar = desc[desc.length - 1].charCodeAt(0);
-      value = desc.substring(0, desc.length - 1);
-      intVal = parseInt(value, 10);
-      floatVal = parseFloat(value);
-
-      // If the descriptor consists of a valid non-negative integer followed by
-      // a U+0077 LATIN SMALL LETTER W character
-      if (regexNonNegativeInteger.test(value) && lastChar === SMALL_LETTER_W) {
-        // If width and density are not both absent, then let error be yes.
-        if (w || d) {
-          pError = true;
-        }
-
-        // Apply the rules for parsing non-negative integers to the descriptor.
-        // If the result is zero, let error be yes.
-        // Otherwise, let width be the result.
-        if (intVal === 0) {
-          pError = true;
-        } else {
-          w = intVal;
-        }
-      }
-      // If the descriptor consists of a valid floating-point number followed by
-      // a U+0078 LATIN SMALL LETTER X character
-      else if (regexFloatingPoint.test(value) && lastChar === SMALL_LETTER_X) {
-        // If width, density and future-compat-h are not all absent, then let error
-        // be yes.
-        if (w || d || h) {
-          pError = true;
-        }
-
-        // Apply the rules for parsing floating-point number values to the descriptor.
-        // If the result is less than zero, let error be yes. Otherwise, let density
-        // be the result.
-        if (floatVal < 0) {
-          pError = true;
-        } else {
-          d = floatVal;
-        }
-      }
-      // If the descriptor consists of a valid non-negative integer followed by
-      // a U+0068 LATIN SMALL LETTER H character
-      else if (
-        regexNonNegativeInteger.test(value) &&
-        lastChar === SMALL_LETTER_H
-      ) {
-        // If height and density are not both absent, then let error be yes.
-        if (h || d) {
-          pError = true;
-        }
-
-        // Apply the rules for parsing non-negative integers to the descriptor.
-        // If the result is zero, let error be yes. Otherwise, let future-compat-h
-        // be the result.
-        if (intVal === 0) {
-          pError = true;
-        } else {
-          h = intVal;
-        }
-
-        // Anything else, Let error be yes.
-      } else {
-        pError = true;
-      }
-    }
-
-    // 15. If error is still no, then append a new image source to candidates whose
-    // URL is url, associated with a width width if not absent and a pixel
-    // density density if not absent. Otherwise, there is a parse error.
-    if (!pError) {
-      candidate.source = { value: url, startOffset };
-
-      if (w) {
-        candidate.width = { value: w };
-      }
-
-      if (d) {
-        candidate.density = { value: d };
-      }
-
-      if (h) {
-        candidate.height = { value: h };
-      }
-
-      candidates.push(candidate);
-    } else {
-      throw new Error(
-        `Invalid srcset descriptor found in '${input}' at '${desc}'`,
-      );
-    }
-  }
 }
 
 export function parseSrc(input) {
@@ -385,7 +407,7 @@ export function parseSrc(input) {
 
   let value = input;
   if (start !== 0 || end !== value.length) {
-    value = value.substring(start, end);
+    value = value.slice(start, end);
 
     if (!value) {
       throw new Error("Must be non-empty");
@@ -419,7 +441,7 @@ export function isURLRequestable(url, options = {}) {
   if (isDataUrl(url) && options.isSupportDataURL) {
     try {
       decodeURIComponent(url);
-    } catch (ignoreError) {
+    } catch {
       return false;
     }
 
@@ -489,7 +511,7 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
     resource = path.win32.relative(context, resource);
 
     if (!WINDOWS_ABS_PATH_REGEXP.test(resource)) {
-      resource = resource.replace(WINDOWS_PATH_SEPARATOR_REGEXP, "/");
+      resource = resource.replaceAll(WINDOWS_PATH_SEPARATOR_REGEXP, "/");
 
       if (!resource.startsWith("../")) {
         resource = `./${resource}`;
@@ -502,7 +524,7 @@ const absoluteToRequest = (context, maybeAbsolutePath) => {
   }
 
   if (!RELATIVE_PATH_REGEXP.test(maybeAbsolutePath)) {
-    return `./${maybeAbsolutePath.replace(WINDOWS_PATH_SEPARATOR_REGEXP, "/")}`;
+    return `./${maybeAbsolutePath.replaceAll(WINDOWS_PATH_SEPARATOR_REGEXP, "/")}`;
   }
 
   // not an absolute path
@@ -520,10 +542,10 @@ const MODULE_REQUEST_REGEXP = /^[^?]*~/;
 export function requestify(context, request) {
   const isWindowsAbsolutePath = WINDOWS_ABS_PATH_REGEXP.test(request);
   const newRequest = isWindowsAbsolutePath
-    ? decodeURI(request).replace(/[\t\n\r]/g, "")
+    ? decodeURI(request).replaceAll(/[\t\n\r]/g, "")
     : decodeURI(request)
-        .replace(/[\t\n\r]/g, "")
-        .replace(/\\/g, "/");
+        .replaceAll(/[\t\n\r]/g, "")
+        .replaceAll("\\", "/");
 
   if (isWindowsAbsolutePath || newRequest.charCodeAt(0) === SLASH) {
     return newRequest;
@@ -578,7 +600,7 @@ function getMinimizeOption(rawOptions, loaderContext) {
 }
 
 function getAttributeValue(attributes, name) {
-  const [result] = attributes.filter((i) => i.name.toLowerCase() === name);
+  const result = attributes.find((i) => i.name.toLowerCase() === name);
 
   return typeof result === "undefined" ? result : result.value;
 }
@@ -718,7 +740,6 @@ function metaContentFilter(tag, attribute, attributes) {
       name = name.trim();
 
       if (!name) {
-        // eslint-disable-next-line no-continue
         continue;
       }
 
@@ -787,7 +808,7 @@ export function srcsetType(options) {
 
   const result = [];
 
-  sourceSet.forEach((sourceItem) => {
+  for (const sourceItem of sourceSet) {
     let { source } = sourceItem;
 
     try {
@@ -807,16 +828,14 @@ export function srcsetType(options) {
         isSupportAbsoluteURL: options.isSupportAbsoluteURL,
       })
     ) {
-      return false;
+      continue;
     }
 
     const startOffset = options.valueStartOffset + source.startOffset;
     const endOffset = startOffset + source.value.length;
 
     result.push({ value: source.value, startOffset, endOffset });
-
-    return false;
-  });
+  }
 
   return result;
 }
@@ -1114,13 +1133,12 @@ function normalizeSourcesList(sources) {
         const existingAttributes = result.get(tag);
 
         if (existingAttributes) {
-          attributes.forEach(([k, v]) => existingAttributes.set(k, v));
+          for (const [k, v] of attributes) existingAttributes.set(k, v);
         } else {
           result.set(tag, new Map(attributes));
         }
       }
 
-      // eslint-disable-next-line no-continue
       continue;
     }
 
@@ -1131,7 +1149,6 @@ function normalizeSourcesList(sources) {
 
     let typeFn;
 
-    // eslint-disable-next-line default-case
     switch (source.type) {
       case "src":
         typeFn = srcType;
@@ -1197,7 +1214,6 @@ export function pluginRunner(plugins) {
       const result = {};
 
       for (const plugin of plugins) {
-        // eslint-disable-next-line no-param-reassign, no-await-in-loop
         content = await plugin(content, result);
       }
 
@@ -1277,7 +1293,7 @@ export function getModuleCode(html, replacements, loaderContext, options) {
       ? `${GET_SOURCE_FROM_IMPORT_NAME}(${importName}${!isValueQuoted ? ", true" : ""})`
       : importName;
 
-    code = code.replace(new RegExp(replacementName, "g"), () =>
+    code = code.replaceAll(new RegExp(replacementName, "g"), () =>
       isTemplateLiteralSupported
         ? `\${${name}}${typeof hash !== "undefined" ? hash : ""}`
         : `" + ${name}${typeof hash !== "undefined" ? ` + ${JSON.stringify(hash)}` : ""} + "`,
@@ -1285,8 +1301,8 @@ export function getModuleCode(html, replacements, loaderContext, options) {
   }
 
   // Replaces "<script>" or "</script>" to "<" + "script>" or "<" + "/script>".
-  code = code.replace(/<(\/?script)/g, (_, s) =>
-    isTemplateLiteralSupported ? `\${"<" + "${s}"}` : `<" + "${s}`,
+  code = code.replaceAll(/<(\/\?script)/g, (_, scriptTag) =>
+    isTemplateLiteralSupported ? `\${"<${scriptTag}"}` : `<" + "${scriptTag}`,
   );
 
   code = `// Module\nvar code = ${code};\n`;
@@ -1310,45 +1326,10 @@ export function getModuleCode(html, replacements, loaderContext, options) {
 
 export function getExportCode(html, options) {
   if (options.esModule) {
-    return `// Exports\nexport default code;`;
+    return "// Exports\nexport default code;";
   }
 
-  return `// Exports\nmodule.exports = code;`;
-}
-
-function isASCIIC0group(character) {
-  // C0 and &nbsp;
-  // eslint-disable-next-line no-control-regex
-  return /^[\u0001-\u0019\u00a0]/.test(character);
-}
-
-export function c0ControlCodesExclude(source) {
-  let { value } = source;
-
-  if (!value) {
-    throw new Error("Must be non-empty");
-  }
-
-  let start = 0;
-  for (; start < value.length && isASCIIC0group(value[start]); start++);
-
-  if (start === value.length) {
-    throw new Error("Must be non-empty");
-  }
-
-  let end = value.length - 1;
-  for (; end > -1 && isASCIIC0group(value[end]); end--);
-  end += 1;
-
-  if (start !== 0 || end !== value.length) {
-    value = value.substring(start, end);
-
-    if (!value) {
-      throw new Error("Must be non-empty");
-    }
-  }
-
-  return { value, startOffset: source.startOffset + start };
+  return "// Exports\nmodule.exports = code;";
 }
 
 export function traverse(root, callback) {
@@ -1367,9 +1348,9 @@ export function traverse(root, callback) {
     }
 
     if (res !== false && Array.isArray(childNodes) && childNodes.length >= 0) {
-      childNodes.forEach((child) => {
+      for (const child of childNodes) {
         visit(child, node);
-      });
+      }
     }
   };
 
@@ -1383,15 +1364,10 @@ export function supportTemplateLiteral(loaderContext) {
 
   // TODO remove in the next major release
   if (
-    // eslint-disable-next-line no-underscore-dangle
     loaderContext._compilation &&
-    // eslint-disable-next-line no-underscore-dangle
     loaderContext._compilation.options &&
-    // eslint-disable-next-line no-underscore-dangle
     loaderContext._compilation.options.output &&
-    // eslint-disable-next-line no-underscore-dangle
     loaderContext._compilation.options.output.environment &&
-    // eslint-disable-next-line no-underscore-dangle
     loaderContext._compilation.options.output.environment.templateLiteral
   ) {
     return true;

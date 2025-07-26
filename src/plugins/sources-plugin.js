@@ -1,9 +1,9 @@
 import { parse } from "parse5";
 
 import {
-  traverse,
   getFilter,
   requestify,
+  traverse,
   webpackIgnoreCommentRegexp,
 } from "../utils";
 
@@ -42,7 +42,7 @@ export default (options) =>
         return;
       }
 
-      attributes.forEach((attribute) => {
+      for (const attribute of attributes) {
         let { name } = attribute;
 
         name = attribute.prefix ? `${attribute.prefix}:${name}` : name;
@@ -53,20 +53,20 @@ export default (options) =>
         ]);
 
         if (handlers.size === 0) {
-          return;
+          continue;
         }
 
         const handler = handlers.get(name.toLowerCase());
 
         if (!handler) {
-          return;
+          continue;
         }
 
         if (
           handler.filter &&
           !handler.filter(tagName, name, attributes, options.resourcePath)
         ) {
-          return;
+          continue;
         }
 
         const attributeAndValue = html.slice(
@@ -94,8 +94,7 @@ export default (options) =>
                 startOffset: sourceCodeLocation.endTag.startOffset,
                 endOffset: sourceCodeLocation.endTag.endOffset,
               }
-            : // eslint-disable-next-line no-undefined
-              undefined,
+            : undefined,
           attributes,
           attribute: name,
           attributePrefix: attribute.prefix,
@@ -123,13 +122,12 @@ export default (options) =>
 
         for (const source of result) {
           if (!source) {
-            // eslint-disable-next-line no-continue
             continue;
           }
 
           sources.push({ ...source, name, isValueQuoted });
         }
-      });
+      }
     });
 
     const urlFilter = getFilter(options.sources.urlFilter);
@@ -144,7 +142,6 @@ export default (options) =>
       let request = value;
 
       if (!urlFilter(name, value, options.resourcePath)) {
-        // eslint-disable-next-line no-continue
         continue;
       }
 
@@ -152,8 +149,8 @@ export default (options) =>
       const indexHash = request.lastIndexOf("#");
 
       if (indexHash >= 0) {
-        hash = request.substring(indexHash);
-        request = request.substring(0, indexHash);
+        hash = request.slice(Math.max(0, indexHash));
+        request = request.slice(0, Math.max(0, indexHash));
       }
 
       request = requestify(options.context, request);
@@ -182,7 +179,6 @@ export default (options) =>
         });
       }
 
-      // eslint-disable-next-line no-param-reassign
       html =
         html.slice(0, startOffset + offset) +
         replacementName +
