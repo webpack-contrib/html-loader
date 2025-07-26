@@ -52,7 +52,6 @@
     "*.webp",
     "node_modules",
     "coverage",
-    "*.log",
-    "test/lock-files/url/**"
+    "*.log"
   ]
 }

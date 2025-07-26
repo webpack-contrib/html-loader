@@ -229,9 +229,9 @@ describe("loader", () => {
             allowedUris: [() => true],
             lockfileLocation: path.resolve(
               __dirname,
-              "./lock-files/url/lock.json",
+              "./outputs/url/lock.json",
             ),
-            cacheLocation: path.resolve(__dirname, "./lock-files/url"),
+            cacheLocation: path.resolve(__dirname, "./outputs/url"),
           },
         },
       },
