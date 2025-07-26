@@ -52,6 +52,7 @@
     "*.webp",
     "node_modules",
     "coverage",
-    "*.log"
+    "*.log",
+    "test/outputs/url/**"
   ]
 }
