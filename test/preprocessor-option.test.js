@@ -23,8 +23,8 @@ describe("'preprocess' option", () => {
 
         try {
           result = Handlebars.compile(content)({
-            firstname: "Alexander",
-            lastname: "Krasnoyarov",
+            firstname: "Firstname",
+            lastname: "Lastname",
           });
         } catch (error) {
           loaderContext.emitError(error);
@@ -57,8 +57,8 @@ describe("'preprocess' option", () => {
 
         try {
           result = await Handlebars.compile(content)({
-            firstname: "Alexander",
-            lastname: "Krasnoyarov",
+            firstname: "Firstname",
+            lastname: "Lastname",
           });
         } catch (error) {
           await loaderContext.emitError(error);
