@@ -7,7 +7,7 @@ exports[`'preprocess' option should work with async "preprocessor" function opti
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`<div>
-  <p>Alexander Krasnoyarov</p>
+  <p>Firstname Lastname</p>
   <img src="\${___HTML_LOADER_IMPORT_0___}" alt="alt" />
 <div>
 \`;
@@ -17,7 +17,7 @@ export default code;"
 
 exports[`'preprocess' option should work with async "preprocessor" function option: result 1`] = `
 "<div>
-  <p>Alexander Krasnoyarov</p>
+  <p>Firstname Lastname</p>
   <img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png" alt="alt" />
 <div>
 "
@@ -52,7 +52,7 @@ exports[`'preprocess' option should work with the "preprocessor" option: module 
 var ___HTML_LOADER_IMPORT_0___ = new URL("./image.png", import.meta.url);
 // Module
 var code = \`<div>
-  <p>Alexander Krasnoyarov</p>
+  <p>Firstname Lastname</p>
   <img src="\${___HTML_LOADER_IMPORT_0___}" alt="alt" />
 <div>
 \`;
@@ -62,7 +62,7 @@ export default code;"
 
 exports[`'preprocess' option should work with the "preprocessor" option: result 1`] = `
 "<div>
-  <p>Alexander Krasnoyarov</p>
+  <p>Firstname Lastname</p>
   <img src="replaced_file_protocol_/webpack/public/path/image-7bc91c245a8a10a4.png" alt="alt" />
 <div>
 "
